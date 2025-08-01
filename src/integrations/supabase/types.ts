@@ -1154,6 +1154,42 @@ export type Database = {
         }
         Relationships: []
       }
+      waitlist_signups: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          instagram: string | null
+          ip_address: string | null
+          name: string
+          phone: string | null
+          referral_source: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          instagram?: string | null
+          ip_address?: string | null
+          name: string
+          phone?: string | null
+          referral_source?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          instagram?: string | null
+          ip_address?: string | null
+          name?: string
+          phone?: string | null
+          referral_source?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       wallet_sessions: {
         Row: {
           created_at: string
