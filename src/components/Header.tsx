@@ -4,12 +4,12 @@ import musicosLogo from '@/assets/musicos-logo.png';
 
 export const Header = () => {
   return (
-    <header className="fixed top-5 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl z-50">
-      <nav className="glass rounded-full px-6 py-3 flex items-center justify-between">
+    <header className="fixed top-5 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl z-50 animate-fade-up">
+      <nav className="glass-strong rounded-full px-8 py-4 flex items-center justify-between shadow-2xl backdrop-blur-xl">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-3">
-          <img src={musicosLogo} alt="MusicOS" className="w-8 h-8" />
-          <span className="text-xl font-bold text-gradient-brand">MusicOS</span>
+        <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+          <img src={musicosLogo} alt="MusicOS" className="w-10 h-10 animate-float" />
+          <span className="text-2xl font-bold text-gradient-brand">MusicOS</span>
         </a>
         
         {/* Menu */}
@@ -20,7 +20,7 @@ export const Header = () => {
           
           <a 
             href="#waitlist"
-            className="btn-primary px-6 py-2.5 text-sm font-semibold"
+            className="btn-primary px-8 py-3 text-base font-bold rounded-full"
           >
             Join Waitlist
           </a>
