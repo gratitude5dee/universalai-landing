@@ -1,141 +1,88 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Brain, 
-  Shield, 
-  DollarSign, 
-  Users, 
-  BarChart3, 
-  Sparkles,
-  Music,
-  Mic,
-  Layers
-} from "lucide-react";
+import React from 'react';
+import { PhoneMockup } from '@/components/PhoneMockup';
+import featureIdeasToProjects from '@/assets/feature-ideas-to-projects.png';
+import featureCollaboration from '@/assets/feature-collaboration.png';
+import featureProjects from '@/assets/feature-projects.png';
+import featureCalendar from '@/assets/feature-calendar.png';
 
-const features = [
-  {
-    icon: Brain,
-    title: "AI-Powered Music Production",
-    description: "Create professional tracks with intelligent composition, arrangement, and mixing assistance.",
-    gradient: "text-gradient-orange"
-  },
-  {
-    icon: Shield,
-    title: "Blockchain Rights Management",
-    description: "Secure, transparent ownership and licensing powered by blockchain technology.",
-    gradient: "text-gradient-purple"
-  },
-  {
-    icon: DollarSign,
-    title: "Integrated Creator Monetization",
-    description: "Multiple revenue streams including streaming, NFTs, and direct fan payments.",
-    gradient: "text-gradient-rainbow"
-  },
-  {
-    icon: Users,
-    title: "Collaborative Creation Suite",
-    description: "Real-time collaboration tools for remote music production with anyone, anywhere.",
-    gradient: "text-gradient-orange"
-  },
-  {
-    icon: BarChart3,
-    title: "Real-time Analytics Dashboard",
-    description: "Track performance, audience engagement, and revenue across all platforms.",
-    gradient: "text-gradient-purple"
-  },
-  {
-    icon: Sparkles,
-    title: "Smart Audio Processing",
-    description: "Advanced AI algorithms for mastering, restoration, and audio enhancement.",
-    gradient: "text-gradient-rainbow"
-  }
-];
+interface SectionProps {
+  title: string;
+  children: React.ReactNode;
+  mockupSrc: string;
+  mockupAlt: string;
+  reverse?: boolean;
+}
 
-const additionalFeatures = [
-  {
-    icon: Music,
-    title: "Universal DAW Integration",
-    description: "Seamlessly works with all major Digital Audio Workstations"
-  },
-  {
-    icon: Mic,
-    title: "Voice-to-Music AI",
-    description: "Transform humming or singing into full arrangements"
-  },
-  {
-    icon: Layers,
-    title: "Infinite Sample Library",
-    description: "Access millions of royalty-free samples and loops"
-  }
-];
+const Section: React.FC<SectionProps> = ({ 
+  title, 
+  children, 
+  mockupSrc, 
+  mockupAlt, 
+  reverse = false 
+}) => {
+  return (
+    <section className={`section-spacing grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center ${
+      reverse ? 'lg:grid-flow-col-dense' : ''
+    }`}>
+      {/* Text Content */}
+      <div className={`space-y-6 ${reverse ? 'lg:col-start-2' : ''}`}>
+        <h2 className="text-4xl lg:text-5xl font-semibold leading-tight text-gradient-primary">
+          {title}
+        </h2>
+        <p className="text-lg lg:text-xl leading-relaxed max-w-md" style={{ color: 'var(--text-secondary)' }}>
+          {children}
+        </p>
+      </div>
+
+      {/* Mockup */}
+      <div className={`${reverse ? 'lg:col-start-1' : ''} flex justify-center`}>
+        <PhoneMockup 
+          screenContentSrc={mockupSrc} 
+          alt={mockupAlt}
+          className="animate-scale-in" 
+        />
+      </div>
+    </section>
+  );
+};
 
 export const FeaturesSection = () => {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-gradient-rainbow mb-6">
-            Revolutionizing Music Creation
-          </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            MusicOS combines cutting-edge AI, blockchain technology, and collaborative tools 
-            to create the ultimate platform for modern music creators.
-          </p>
-        </div>
+    <main className="container-main">
+      {/* Features */}
+      <Section 
+        title="Turn ideas into projects" 
+        mockupSrc={featureIdeasToProjects}
+        mockupAlt="Converting music ideas into full projects"
+      >
+        MusicOS takes your creative ideas to the next level by turning them into structured Projects. Transform voice memos into full arrangements, rough sketches into complete compositions, and creative sparks into professional releases.
+      </Section>
+      
+      <Section 
+        title="Stay in the loop" 
+        mockupSrc={featureCollaboration}
+        mockupAlt="Team collaboration and chat summarization"
+        reverse={true}
+      >
+        Add MusicOS to your team chats to automatically summarize conversations, track important decisions, and schedule follow-ups. Never lose track of creative feedback or important project updates again.
+      </Section>
+      
+      <Section 
+        title="Build and present" 
+        mockupSrc={featureProjects}
+        mockupAlt="Beautiful project gallery and presentation view"
+      >
+        Organize your music projects into stunning visual spaces. Store audio files, manage creative assets, collaborate with team members, and present your work in a completely new way that impresses clients and collaborators.
+      </Section>
 
-        {/* Main Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="glass-card border-primary/20 hover:border-primary/40 transition-all duration-300 group cursor-pointer"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardContent className="p-6">
-                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-12 h-12 text-primary" />
-                </div>
-                <h3 className={`text-xl font-semibold mb-3 ${feature.gradient}`}>
-                  {feature.title}
-                </h3>
-                <p className="text-foreground/70 leading-relaxed">
-                  {feature.description}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Additional Features */}
-        <div className="text-center mb-12">
-          <h3 className="text-2xl font-bold text-gradient-orange mb-8">
-            And Much More...
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {additionalFeatures.map((feature, index) => (
-              <div 
-                key={index} 
-                className="flex items-center gap-4 p-4 glass-card border-secondary/20 hover:border-secondary/40 transition-all duration-300"
-              >
-                <feature.icon className="w-8 h-8 text-secondary flex-shrink-0" />
-                <div className="text-left">
-                  <h4 className="font-semibold text-foreground">{feature.title}</h4>
-                  <p className="text-sm text-muted-foreground">{feature.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center">
-          <div className="inline-flex items-center gap-2 text-muted-foreground mb-4">
-            <div className="audio-wave"></div>
-            <span className="text-sm">Building the future of music</span>
-            <div className="audio-wave"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <Section 
+        title="Never miss a deadline" 
+        mockupSrc={featureCalendar}
+        mockupAlt="Integrated calendar for music project deadlines"
+        reverse={true}
+      >
+        Keep track of recording sessions, release deadlines, and collaboration meetings with an integrated calendar. Schedule studio time, client calls, and creative sessions directly from your workspace.
+      </Section>
+    </main>
   );
 };

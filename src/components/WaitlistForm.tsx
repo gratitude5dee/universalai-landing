@@ -144,50 +144,46 @@ export const WaitlistForm = () => {
   if (isSuccess) {
     return (
       <div className="max-w-2xl mx-auto text-center">
-        <div className="glass-card p-8 mb-8">
+        <div className="glass p-12 rounded-3xl mb-8">
           <div className="success-checkmark mb-6">
-            <CheckCircle className="w-16 h-16 text-primary mx-auto" />
+            <CheckCircle className="w-16 h-16 mx-auto" style={{ color: 'var(--accent-primary)' }} />
           </div>
-          <h3 className="text-2xl font-bold text-gradient-orange mb-4">
+          <h3 className="text-3xl font-bold mb-4 text-gradient-brand">
             Welcome to MusicOS! 🎵
           </h3>
-          <p className="text-lg text-foreground/80 mb-6">
-            You're <span className="text-gradient-purple font-bold">#{position}</span> on the waitlist.
+          <p className="text-lg mb-6" style={{ color: 'var(--text-secondary)' }}>
+            You're <span className="text-gradient-brand font-bold">#{position}</span> on the waitlist.
             We'll notify you when early access opens!
           </p>
           
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="flex items-center gap-2 text-muted-foreground">
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <div className="flex items-center gap-2" style={{ color: 'var(--text-secondary)' }}>
               <Users className="w-5 h-5" />
               <span>{position} creators waiting</span>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="space-y-6">
+            <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
               Share MusicOS with your network:
             </p>
             <div className="flex gap-4 justify-center">
               <Button
-                variant="outline"
-                size="sm"
                 onClick={() => {
                   const text = "I just joined the MusicOS waitlist! The future of music creation is here. 🎵";
                   const url = window.location.href;
                   window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
                 }}
-                className="bg-primary/10 border-primary/20 hover:bg-primary/20"
+                className="btn-glass px-6 py-3"
               >
                 Share on Twitter
               </Button>
               <Button
-                variant="outline"
-                size="sm"
                 onClick={() => {
                   navigator.clipboard.writeText(window.location.href);
                   toast({ title: "Link copied!", description: "Share with your music creator friends!" });
                 }}
-                className="bg-secondary/10 border-secondary/20 hover:bg-secondary/20"
+                className="btn-glass px-6 py-3"
               >
                 Copy Link
               </Button>
@@ -197,7 +193,8 @@ export const WaitlistForm = () => {
           <Button
             variant="ghost"
             onClick={resetForm}
-            className="mt-6 text-muted-foreground hover:text-foreground"
+            className="mt-8 text-sm"
+            style={{ color: 'var(--text-secondary)' }}
           >
             Sign up another email
           </Button>
@@ -208,24 +205,17 @@ export const WaitlistForm = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <div className="text-center mb-8">
-        <h2 className="text-4xl font-bold text-gradient-rainbow mb-4">
+      <div className="text-center mb-12">
+        <h2 className="text-5xl lg:text-6xl font-bold mb-6 text-gradient-primary">
           Be First to Experience MusicOS
         </h2>
-        <p className="text-xl text-foreground/80 mb-2">
+        <p className="text-xl lg:text-2xl mb-8" style={{ color: 'var(--text-secondary)' }}>
           Join the waitlist for early access to the operating system that's revolutionizing music creation
         </p>
-        <div className="flex items-center justify-center gap-2 text-muted-foreground">
-          <div className="audio-wave"></div>
-          <div className="audio-wave"></div>
-          <div className="audio-wave"></div>
-          <div className="audio-wave"></div>
-          <div className="audio-wave"></div>
-        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="glass-card p-8 space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="glass p-8 rounded-3xl space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <Input
               type="text"
@@ -234,7 +224,7 @@ export const WaitlistForm = () => {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="waitlist-input h-12 text-base"
+              className="form-input h-14 text-base"
               disabled={isSubmitting}
             />
           </div>
@@ -246,13 +236,13 @@ export const WaitlistForm = () => {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="waitlist-input h-12 text-base"
+              className="form-input h-14 text-base"
               disabled={isSubmitting}
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <Input
               type="text"
@@ -260,7 +250,7 @@ export const WaitlistForm = () => {
               placeholder="Instagram Handle (optional)"
               value={formData.instagram}
               onChange={handleInputChange}
-              className="waitlist-input h-12 text-base"
+              className="form-input h-14 text-base"
               disabled={isSubmitting}
             />
           </div>
@@ -271,7 +261,7 @@ export const WaitlistForm = () => {
               placeholder="Phone Number (optional)"
               value={formData.phone}
               onChange={handleInputChange}
-              className="waitlist-input h-12 text-base"
+              className="form-input h-14 text-base"
               disabled={isSubmitting}
             />
           </div>
@@ -280,7 +270,7 @@ export const WaitlistForm = () => {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full h-14 text-lg font-semibold btn-neon-orange"
+          className="w-full btn-primary h-16 text-lg font-semibold"
         >
           {isSubmitting ? (
             <>
@@ -292,7 +282,7 @@ export const WaitlistForm = () => {
           )}
         </Button>
 
-        <p className="text-xs text-center text-muted-foreground">
+        <p className="text-xs text-center" style={{ color: 'var(--text-secondary)' }}>
           By joining, you agree to receive updates about MusicOS. Unsubscribe anytime.
         </p>
       </form>
