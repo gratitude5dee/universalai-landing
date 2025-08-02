@@ -15,7 +15,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
   return (
     <div className={`relative w-full max-w-[320px] mx-auto group ${className}`}>
       {/* Glow Effect */}
-      <div className="absolute -inset-2 bg-gradient-to-r from-purple-600/50 to-cyan-600/50 rounded-[3rem] blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-[3rem] blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
       
       {/* Phone Frame */}
       <img 

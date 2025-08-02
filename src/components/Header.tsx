@@ -14,8 +14,8 @@ export const Header = () => {
   };
 
   return (
-    <header className="fixed top-5 left-1/2 transform -translate-x-1/2 w-[95%] max-w-6xl z-50 animate-fade-up">
-      <nav className="glass-strong rounded-full px-8 py-4 flex items-center justify-between shadow-2xl backdrop-blur-xl">
+    <header className="fixed top-0 left-0 right-0 z-50 animate-fade-up">
+      <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
           <img src={musicosLogo} alt="MusicOS" className="w-10 h-10 animate-float" />
