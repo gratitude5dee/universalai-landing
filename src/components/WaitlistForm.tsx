@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { useSecurityMonitoring } from "@/hooks/useSecurityMonitoring";
 import { CheckCircle, Loader2, Users } from "lucide-react";
 
 interface WaitlistFormData {
@@ -23,6 +24,7 @@ export const WaitlistForm = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [position, setPosition] = useState<number | null>(null);
   const { toast } = useToast();
+  const { checkRateLimit, detectSuspiciousInput, logSecurityEvent } = useSecurityMonitoring();
 
   const getUserIP = async (): Promise<string> => {
     try {
@@ -35,11 +37,28 @@ export const WaitlistForm = () => {
     }
   };
 
+  const sanitizeInput = (input: string) => {
+    // Remove HTML tags and trim whitespace
+    return input.replace(/<[^>]*>/g, '').trim();
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    
+    // Security check for suspicious input
+    if (detectSuspiciousInput(value, name)) {
+      toast({
+        title: "Invalid Input",
+        description: "Please enter valid information only.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    const sanitizedValue = sanitizeInput(value);
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: sanitizedValue,
     }));
   };
 
@@ -48,22 +67,67 @@ export const WaitlistForm = () => {
     return emailRegex.test(email);
   };
 
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+
+    // Name validation
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+    } else if (formData.name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters long';
+    } else if (formData.name.trim().length > 100) {
+      errors.name = 'Name must be less than 100 characters';
+    }
+
+    // Email validation
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+    } else if (!validateEmail(formData.email.trim())) {
+      errors.email = 'Please enter a valid email address';
+    }
+
+    // Instagram validation (optional but if provided, should be valid)
+    if (formData.instagram && formData.instagram.trim()) {
+      if (!formData.instagram.trim().match(/^[a-zA-Z0-9._]{1,30}$/)) {
+        errors.instagram = 'Instagram username should only contain letters, numbers, periods, and underscores';
+      }
+    }
+
+    // Phone validation (optional but if provided, should be valid)
+    if (formData.phone && formData.phone.trim()) {
+      if (!formData.phone.trim().match(/^[\+]?[1-9][\d]{0,15}$/)) {
+        errors.phone = 'Please enter a valid phone number';
+      }
+    }
+
+    return errors;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name.trim() || !formData.email.trim()) {
+    // Rate limiting check
+    const rateLimitKey = `waitlist_${formData.email.trim().toLowerCase()}`;
+    if (!checkRateLimit(rateLimitKey, 3, 300000)) { // 3 attempts per 5 minutes
       toast({
-        title: "Missing Information",
-        description: "Please fill in your name and email address.",
+        title: "Too Many Attempts",
+        description: "Please wait before trying again.",
         variant: "destructive",
       });
       return;
     }
 
-    if (!validateEmail(formData.email)) {
+    // Validate form
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      const firstError = Object.values(validationErrors)[0];
+      logSecurityEvent({
+        type: 'validation_failure',
+        details: `Form validation failed: ${firstError}`,
+      });
       toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
+        title: "Validation Error",
+        description: firstError,
         variant: "destructive",
       });
       return;
@@ -80,8 +144,8 @@ export const WaitlistForm = () => {
         email: formData.email.trim().toLowerCase(),
         instagram: formData.instagram.trim() || null,
         phone: formData.phone.trim() || null,
-        ip_address: ipAddress,
-        user_agent: navigator.userAgent,
+        ip_address: ipAddress || 'unknown', // Fallback for IP service failure
+        user_agent: navigator.userAgent.substring(0, 500), // Limit user agent length
         referral_source: urlParams.get('ref') || 'direct',
       };
 
