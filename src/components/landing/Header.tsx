@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, LogOut, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import musicosLogo from '@/assets/musicos-logo.png';
+import WaitlistModal from './WaitlistModal';
 
 const Header = () => {
   const { user, signOut, loading } = useAuth();
+  const [waitlistModalOpen, setWaitlistModalOpen] = useState(false);
 
   const handleSignOut = async () => {
     await signOut();
@@ -50,18 +52,23 @@ const Header = () => {
                   <Button variant="ghost" size="sm" asChild className="text-white hover:text-primary">
                     <Link to="/auth">Sign In</Link>
                   </Button>
-                  <a 
-                    href="#waitlist"
+                  <Button 
+                    onClick={() => setWaitlistModalOpen(true)}
                     className="btn-primary px-8 py-3 text-base font-bold rounded-full"
                   >
                     Join Waitlist
-                  </a>
+                  </Button>
                 </>
               )}
             </>
           )}
         </div>
       </nav>
+      
+      <WaitlistModal 
+        open={waitlistModalOpen} 
+        onOpenChange={setWaitlistModalOpen} 
+      />
     </header>
   );
 };
