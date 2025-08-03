@@ -1,9 +1,9 @@
 import React from 'react';
 import { PhoneMockup } from '@/components/PhoneMockup';
-import featureIdeasToProjects from '@/assets/feature-ideas-to-projects.png';
-import featureCollaboration from '@/assets/feature-collaboration.png';
-import featureProjects from '@/assets/feature-projects.png';
-import featureCalendar from '@/assets/feature-calendar.png';
+import featureIdeasToProjects from '@/assets/feature-ai-chat-mobile.jpg';
+import featureCollaboration from '@/assets/feature-collaboration-mobile.jpg';
+import featureProjects from '@/assets/feature-projects-mobile.jpg';
+import featureCalendar from '@/assets/feature-calendar-mobile.jpg';
 
 interface SectionProps {
   title: string;

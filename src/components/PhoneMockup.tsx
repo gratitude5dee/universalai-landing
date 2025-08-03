@@ -1,5 +1,4 @@
 import React from 'react';
-import iphoneFrame from '@/assets/iphone-frame.png';
 
 interface PhoneMockupProps {
   screenContentSrc: string;
@@ -7,37 +6,36 @@ interface PhoneMockupProps {
   className?: string;
 }
 
-export const PhoneMockup: React.FC<PhoneMockupProps> = ({ 
-  screenContentSrc, 
-  alt, 
-  className = "" 
-}) => {
+export const PhoneMockup: React.FC<PhoneMockupProps> = ({ screenContentSrc, alt, className = '' }) => {
   return (
-    <div className={`relative w-full max-w-[320px] mx-auto group ${className}`}>
-      {/* Glow Effect */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/30 to-purple-600/30 rounded-[3rem] blur-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
-      
+    <div className={`relative w-full max-w-sm mx-auto ${className}`}>
       {/* Phone Frame */}
-      <img 
-        src={iphoneFrame} 
-        alt="Phone frame" 
-        className="w-full relative z-10 pointer-events-none drop-shadow-2xl"
-      />
-      
-      {/* Screen Content */}
-      <div className="absolute top-[6%] left-[6%] right-[6%] bottom-[6%] overflow-hidden rounded-[12%] bg-black group-hover:shadow-2xl transition-shadow duration-500">
-        <img 
-          src={screenContentSrc} 
-          alt={alt} 
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-        />
+      <div className="relative">
+        {/* Outer frame with rounded corners */}
+        <div className="relative bg-gray-800 rounded-[3rem] p-2 shadow-2xl">
+          {/* Inner frame */}
+          <div className="bg-black rounded-[2.5rem] p-1">
+            {/* Screen area */}
+            <div className="relative bg-black rounded-[2.2rem] overflow-hidden aspect-[9/19.5]">
+              {/* Notch */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-10"></div>
+              
+              {/* Screen content */}
+              <img 
+                src={screenContentSrc} 
+                alt={alt} 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
         
-        {/* Screen Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/10 pointer-events-none"></div>
+        {/* Side buttons */}
+        <div className="absolute -left-1 top-20 w-1 h-8 bg-gray-700 rounded-r"></div>
+        <div className="absolute -left-1 top-32 w-1 h-12 bg-gray-700 rounded-r"></div>
+        <div className="absolute -left-1 top-48 w-1 h-12 bg-gray-700 rounded-r"></div>
+        <div className="absolute -right-1 top-36 w-1 h-16 bg-gray-700 rounded-l"></div>
       </div>
-      
-      {/* Reflection Effect */}
-      <div className="absolute top-[6%] left-[6%] right-[6%] h-1/3 bg-gradient-to-b from-white/20 to-transparent rounded-t-[12%] pointer-events-none z-20"></div>
     </div>
   );
 };

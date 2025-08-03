@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
 import { PhoneMockup } from "@/components/PhoneMockup";
-import featureAiChat from "@/assets/feature-ai-chat.png";
+import featureAiChat from "@/assets/feature-ai-chat-mobile.jpg";
 
 export const HeroSection = () => {
   const scrollToWaitlist = () => {
