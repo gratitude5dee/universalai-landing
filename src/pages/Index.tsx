@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Header from '@/components/landing/Header';
 import PhoneMockup from '@/components/landing/PhoneMockup';
+import { Card3D, GlassCard } from '@/components/ui/3d-card';
 
 // Import feature images
 import featureAiChat from '@/assets/feature-ai-chat.jpg';
@@ -37,23 +38,18 @@ const Section: React.FC<{
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`space-y-6 ${reverse ? 'lg:col-start-2' : ''}`}
       >
-        <h2 
-          className="text-5xl font-semibold leading-tight"
-          style={{
-            background: 'linear-gradient(180deg, #ffffff 70%, #a3a3b8)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            letterSpacing: '-1px'
-          }}
-        >
-          {title}
-        </h2>
-        <p 
-          className="text-xl leading-relaxed max-w-md"
-          style={{ color: 'var(--text-secondary)' }}
-        >
-          {children}
-        </p>
+        <Card3D className="border-0">
+          <h2 
+            className="text-5xl font-semibold leading-tight text-gradient-primary mb-6"
+          >
+            {title}
+          </h2>
+          <p 
+            className="text-xl leading-relaxed max-w-md text-white/80"
+          >
+            {children}
+          </p>
+        </Card3D>
       </motion.div>
       
       <motion.div
@@ -88,28 +84,26 @@ const Index = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.15 }}
-            className="space-y-6"
+            className="space-y-8"
           >
-            <motion.h1 
-              className="text-4xl md:text-7xl font-bold leading-tight max-w-4xl"
-              style={{
-                background: 'linear-gradient(180deg, #ffffff 70%, #a3a3b8)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                letterSpacing: '-2px',
-                textShadow: '0 0 80px rgba(255, 255, 255, 0.15)'
-              }}
-            >
-              The ultimate productivity tool for creatives{' '}
-              <span role="img" aria-label="fire">🔥</span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed"
-              style={{ color: 'var(--text-secondary)' }}
-            >
-              Brainstorm, collaborate, and manage your projects from idea to reality. All in one place.
-            </motion.p>
+            <GlassCard variant="subtle" className="max-w-5xl mx-auto border-0">
+              <motion.h1 
+                className="text-4xl md:text-7xl font-bold leading-tight text-gradient-hero"
+                style={{
+                  letterSpacing: '-2px',
+                  textShadow: '0 0 80px rgba(255, 255, 255, 0.15)'
+                }}
+              >
+                The ultimate productivity tool for creatives{' '}
+                <span role="img" aria-label="fire">🔥</span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed text-white/80 mt-6"
+              >
+                Brainstorm, collaborate, and manage your projects from idea to reality. All in one place.
+              </motion.p>
+            </GlassCard>
           </motion.div>
           
           <motion.div
@@ -158,16 +152,12 @@ const Index = () => {
       </main>
       
       {/* Footer */}
-      <footer 
-        className="text-center py-20 px-8 mt-20"
-        style={{
-          borderTop: '1px solid var(--glass-border)',
-          color: 'var(--text-secondary)'
-        }}
-      >
-        <p className="text-sm">
-          © {new Date().getFullYear()} FYI. A UniversalAI Product.
-        </p>
+      <footer className="text-center py-20 px-8 mt-20">
+        <GlassCard variant="subtle" className="max-w-md mx-auto">
+          <p className="text-sm text-white/70">
+            © {new Date().getFullYear()} FYI. A UniversalAI Product.
+          </p>
+        </GlassCard>
       </footer>
     </div>
   );

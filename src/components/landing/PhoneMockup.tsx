@@ -26,16 +26,17 @@ const PhoneMockup: React.FC<PhoneMockupProps> = ({
       />
       
       {/* Screen Content with improved effects */}
-      <div className="absolute top-[6%] left-[6%] right-[6%] bottom-[6%] overflow-hidden rounded-[12%] bg-black group-hover:shadow-2xl transition-all duration-500 border border-white/10">
+      <div className="absolute top-[6%] left-[6%] right-[6%] bottom-[6%] overflow-hidden rounded-[12%] bg-transparent group-hover:shadow-2xl transition-all duration-500">
         <img 
           src={screenContentSrc} 
           alt={alt} 
           className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
+          style={{ backgroundColor: 'transparent' }}
         />
         
         {/* Enhanced Screen Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-white/5 pointer-events-none"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/5 pointer-events-none group-hover:to-primary/10 transition-all duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-white/3 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/3 pointer-events-none group-hover:to-primary/5 transition-all duration-500"></div>
       </div>
       
       {/* Enhanced Reflection Effect */}

@@ -79,54 +79,57 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ open, onOpenChange }) => 
   };
 
   if (isSuccess) {
-    return (
-      <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="sm:max-w-md">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              <DialogTitle>Welcome to the waitlist!</DialogTitle>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleClose}
-              className="h-6 w-6"
-            >
-              <X className="h-4 w-4" />
-            </Button>
+  return (
+    <Dialog open={open} onOpenChange={handleClose}>
+      <DialogContent className="sm:max-w-md glass-modal border-0 text-white">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <CheckCircle className="w-5 h-5 text-green-400" />
+            <DialogTitle className="text-white font-semibold">Welcome to the waitlist!</DialogTitle>
           </div>
-          
-          <div className="text-center py-6 space-y-4">
-            <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center">
-              <CheckCircle className="w-8 h-8 text-green-500" />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold">You're in!</h3>
-              <p className="text-muted-foreground">
-                We'll notify you when MusicOS is ready to rock your world.
-              </p>
-            </div>
-            <Button onClick={handleClose} className="w-full">
-              Close
-            </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleClose}
+            className="h-6 w-6 text-white/80 hover:text-white hover:bg-white/10"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+        
+        <div className="text-center py-6 space-y-4">
+          <div className="w-16 h-16 mx-auto bg-green-500/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-green-400/30">
+            <CheckCircle className="w-8 h-8 text-green-400" />
           </div>
-        </DialogContent>
-      </Dialog>
-    );
+          <div>
+            <h3 className="text-lg font-semibold text-white">You're in!</h3>
+            <p className="text-white/80">
+              We'll notify you when MusicOS is ready to rock your world.
+            </p>
+          </div>
+          <Button 
+            onClick={handleClose} 
+            className="w-full bg-primary hover:bg-primary/90 text-white border-0"
+          >
+            Close
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
   }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md glass-modal border-0 text-white">
         <DialogHeader>
           <div className="flex items-center justify-between">
-            <DialogTitle>Join the Waitlist</DialogTitle>
+            <DialogTitle className="text-white font-semibold">Join the Waitlist</DialogTitle>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => onOpenChange(false)}
-              className="h-6 w-6"
+              className="h-6 w-6 text-white/80 hover:text-white hover:bg-white/10"
             >
               <X className="h-4 w-4" />
             </Button>
@@ -135,18 +138,19 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ open, onOpenChange }) => 
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Name *</Label>
+            <Label htmlFor="name" className="text-white font-medium">Name *</Label>
             <Input
               id="name"
               value={formData.name}
               onChange={(e) => handleInputChange('name', e.target.value)}
               placeholder="Your full name"
               required
+              className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/15 focus:border-primary/50"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="email">Email *</Label>
+            <Label htmlFor="email" className="text-white font-medium">Email *</Label>
             <Input
               id="email"
               type="email"
@@ -154,22 +158,24 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ open, onOpenChange }) => 
               onChange={(e) => handleInputChange('email', e.target.value)}
               placeholder="your@email.com"
               required
+              className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/15 focus:border-primary/50"
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="igHandle">Instagram Handle</Label>
+            <Label htmlFor="igHandle" className="text-white font-medium">Instagram Handle</Label>
             <Input
               id="igHandle"
               value={formData.igHandle}
               onChange={(e) => handleInputChange('igHandle', e.target.value)}
               placeholder="@yourusername (optional)"
+              className="bg-white/10 border-white/20 text-white placeholder:text-white/60 focus:bg-white/15 focus:border-primary/50"
             />
           </div>
           
           <Button 
             type="submit" 
-            className="w-full" 
+            className="w-full bg-primary hover:bg-primary/90 text-white border-0 shadow-lg shadow-primary/25" 
             disabled={isSubmitting}
           >
             {isSubmitting ? (
@@ -183,7 +189,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ open, onOpenChange }) => 
           </Button>
         </form>
         
-        <p className="text-xs text-muted-foreground text-center">
+        <p className="text-xs text-white/70 text-center">
           Be the first to know when MusicOS launches and get exclusive early access.
         </p>
       </DialogContent>
