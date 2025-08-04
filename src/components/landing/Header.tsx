@@ -17,39 +17,35 @@ const Header = () => {
   const handleSignOut = async () => {
     await signOut();
   };
-  return <header className="fixed top-0 left-0 right-0 z-50 animate-fade-up">
-      <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
+  return <header className="fixed top-0 left-0 right-0 z-50 animate-fade-up glass-subtle">
+      <nav className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-7xl mx-auto">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
+        <a href="/" className="flex items-center gap-2 sm:gap-3 hover:scale-105 transition-transform duration-300">
           <LightningLogo />
-          <span className="text-2xl font-bold text-gradient-brand">MusicOS</span>
+          <span className="text-xl sm:text-2xl font-bold text-gradient-brand">MusicOS</span>
         </a>
         
         {/* Menu */}
-        <div className="flex items-center gap-4">
-          <button className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors">
-            <Menu size={24} />
-          </button>
-          
+        <div className="flex items-center gap-2 sm:gap-4">
           {!loading && <>
               {user ? <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="flex items-center gap-2 text-white hover:text-primary">
+                    <Button variant="ghost" size="sm" className="flex items-center gap-2 text-white hover:text-primary btn-mobile">
                       <User size={16} />
-                      <span className="hidden sm:inline">{user.user_metadata?.username || user.email}</span>
+                      <span className="hidden sm:inline text-sm">{user.user_metadata?.username || user.email}</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuContent align="end" className="w-48 glass-modal">
                     <DropdownMenuItem onClick={handleSignOut} className="flex items-center gap-2 text-destructive">
                       <LogOut size={16} />
                       Sign Out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu> : <>
-                  <Button variant="ghost" size="sm" asChild className="text-white hover:text-primary">
-                    
-                  </Button>
-                  <Button onClick={() => setWaitlistModalOpen(true)} className="btn-primary px-8 py-3 text-base font-bold rounded-full">
+                  <Button 
+                    onClick={() => setWaitlistModalOpen(true)} 
+                    className="btn-primary px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-full btn-mobile"
+                  >
                     Join Waitlist
                   </Button>
                 </>}

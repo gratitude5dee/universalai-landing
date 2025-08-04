@@ -21,25 +21,25 @@ const Section: React.FC<SectionProps> = ({
   reverse = false 
 }) => {
   return (
-    <section className={`section-spacing grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center ${
+    <section className={`py-16 md:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center ${
       reverse ? 'lg:grid-flow-col-dense' : ''
     }`}>
       {/* Text Content */}
-      <div className={`space-y-6 ${reverse ? 'lg:col-start-2' : ''}`}>
-        <h2 className="text-4xl lg:text-5xl font-semibold leading-tight text-gradient-primary">
+      <div className={`space-y-6 px-4 sm:px-6 lg:px-0 ${reverse ? 'lg:col-start-2' : ''}`}>
+        <h2 className="text-mobile-lg md:text-4xl lg:text-5xl font-semibold leading-tight text-gradient-primary">
           {title}
         </h2>
-        <p className="text-lg lg:text-xl leading-relaxed max-w-md" style={{ color: 'var(--text-secondary)' }}>
+        <p className="text-mobile-base md:text-lg lg:text-xl leading-relaxed max-w-lg" style={{ color: 'var(--text-secondary)' }}>
           {children}
         </p>
       </div>
 
       {/* Mockup */}
-      <div className={`${reverse ? 'lg:col-start-1' : ''} flex justify-center`}>
+      <div className={`${reverse ? 'lg:col-start-1' : ''} flex justify-center px-4 sm:px-6 lg:px-0`}>
         <PhoneMockup 
           screenContentSrc={mockupSrc} 
           alt={mockupAlt}
-          className="animate-scale-in" 
+          className="animate-mobile-slide-up max-w-xs sm:max-w-sm md:max-w-md mx-auto" 
         />
       </div>
     </section>
@@ -48,7 +48,7 @@ const Section: React.FC<SectionProps> = ({
 
 export const FeaturesSection = () => {
   return (
-    <main className="container-main">
+    <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
       {/* Features */}
       <Section 
         title="Turn ideas into projects" 

@@ -1,16 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Header from '@/components/landing/Header';
 import { HeroSection } from '@/components/HeroSection';
 import { FeaturesSection } from '@/components/FeaturesSection';
+import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
-import { useIsMobile } from '@/hooks/use-mobile';
 
-
-const Index = () => {
-  const isMobile = useIsMobile();
-
+const MobileOptimizedIndex = () => {
   return (
     <div className="min-h-screen text-white overflow-hidden">
       <Header />
@@ -27,4 +23,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default MobileOptimizedIndex;
