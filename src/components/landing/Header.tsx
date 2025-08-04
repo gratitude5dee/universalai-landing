@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import musicosLogo from '@/assets/musicos-logo.png';
+import LightningLogo from '@/components/ui/LightningLogo';
 import WaitlistModal from './WaitlistModal';
 
 const Header = () => {
@@ -20,7 +21,7 @@ const Header = () => {
       <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-          <img src={musicosLogo} alt="MusicOS" className="w-10 h-10 animate-lightning" />
+          <LightningLogo />
           <span className="text-2xl font-bold text-gradient-brand">MusicOS</span>
         </a>
         
