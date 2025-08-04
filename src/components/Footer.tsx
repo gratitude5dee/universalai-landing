@@ -10,7 +10,7 @@ export const Footer = () => {
             © {new Date().getFullYear()} MusicOS. All rights reserved.
           </p>
           <p className="text-xs mt-2" style={{ color: 'var(--text-secondary)' }}>
-            Made with <span style={{ color: 'var(--accent-primary)' }}>♪</span> for music creators worldwide
+            Made with <span style={{ color: 'var(--accent-primary)' }}>♪</span> by 5-Dee Studios
           </p>
         </div>
 
