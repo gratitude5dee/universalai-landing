@@ -7,17 +7,17 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import musicosLogo from '@/assets/musicos-logo.png';
 import LightningLogo from '@/components/ui/LightningLogo';
 import WaitlistModal from './WaitlistModal';
-
 const Header = () => {
-  const { user, signOut, loading } = useAuth();
+  const {
+    user,
+    signOut,
+    loading
+  } = useAuth();
   const [waitlistModalOpen, setWaitlistModalOpen] = useState(false);
-
   const handleSignOut = async () => {
     await signOut();
   };
-
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 animate-fade-up">
+  return <header className="fixed top-0 left-0 right-0 z-50 animate-fade-up">
       <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
@@ -31,10 +31,8 @@ const Header = () => {
             <Menu size={24} />
           </button>
           
-          {!loading && (
-            <>
-              {user ? (
-                <DropdownMenu>
+          {!loading && <>
+              {user ? <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="ghost" size="sm" className="flex items-center gap-2 text-white hover:text-primary">
                       <User size={16} />
@@ -47,31 +45,19 @@ const Header = () => {
                       Sign Out
                     </DropdownMenuItem>
                   </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <>
+                </DropdownMenu> : <>
                   <Button variant="ghost" size="sm" asChild className="text-white hover:text-primary">
-                    <Link to="/auth">Sign In</Link>
+                    
                   </Button>
-                  <Button 
-                    onClick={() => setWaitlistModalOpen(true)}
-                    className="btn-primary px-8 py-3 text-base font-bold rounded-full"
-                  >
+                  <Button onClick={() => setWaitlistModalOpen(true)} className="btn-primary px-8 py-3 text-base font-bold rounded-full">
                     Join Waitlist
                   </Button>
-                </>
-              )}
-            </>
-          )}
+                </>}
+            </>}
         </div>
       </nav>
       
-      <WaitlistModal 
-        open={waitlistModalOpen} 
-        onOpenChange={setWaitlistModalOpen} 
-      />
-    </header>
-  );
+      <WaitlistModal open={waitlistModalOpen} onOpenChange={setWaitlistModalOpen} />
+    </header>;
 };
-
 export default Header;
