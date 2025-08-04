@@ -20,7 +20,7 @@ const Header = () => {
       <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
         {/* Logo */}
         <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-          <img src={musicosLogo} alt="MusicOS" className="w-10 h-10 animate-float" />
+          <img src={musicosLogo} alt="MusicOS" className="w-10 h-10 animate-lightning" />
           <span className="text-2xl font-bold text-gradient-brand">MusicOS</span>
         </a>
         
