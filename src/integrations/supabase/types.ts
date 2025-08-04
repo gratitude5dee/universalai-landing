@@ -14,6 +14,224 @@ export type Database = {
   }
   public: {
     Tables: {
+      ai_runs: {
+        Row: {
+          board_id: string
+          completed_at: string | null
+          created_at: string
+          created_nodes: Json | null
+          error_message: string | null
+          id: string
+          model: string
+          prompt: string
+          response: string | null
+          status: string
+          tokens_used: number | null
+          user_id: string
+        }
+        Insert: {
+          board_id: string
+          completed_at?: string | null
+          created_at?: string
+          created_nodes?: Json | null
+          error_message?: string | null
+          id?: string
+          model?: string
+          prompt: string
+          response?: string | null
+          status?: string
+          tokens_used?: number | null
+          user_id: string
+        }
+        Update: {
+          board_id?: string
+          completed_at?: string | null
+          created_at?: string
+          created_nodes?: Json | null
+          error_message?: string | null
+          id?: string
+          model?: string
+          prompt?: string
+          response?: string | null
+          status?: string
+          tokens_used?: number | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_runs_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      board_collaborators: {
+        Row: {
+          board_id: string
+          created_at: string
+          email: string | null
+          id: string
+          invited_by: string
+          role: string
+          status: string
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          board_id: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          invited_by: string
+          role?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          board_id?: string
+          created_at?: string
+          email?: string | null
+          id?: string
+          invited_by?: string
+          role?: string
+          status?: string
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "board_collaborators_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      board_comments: {
+        Row: {
+          board_id: string
+          content: string
+          created_at: string
+          id: string
+          node_id: string | null
+          position_x: number | null
+          position_y: number | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          board_id: string
+          content: string
+          created_at?: string
+          id?: string
+          node_id?: string | null
+          position_x?: number | null
+          position_y?: number | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          board_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          node_id?: string | null
+          position_x?: number | null
+          position_y?: number | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "board_comments_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      board_shares: {
+        Row: {
+          board_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          share_id: string
+          title: string
+        }
+        Insert: {
+          board_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          share_id: string
+          title: string
+        }
+        Update: {
+          board_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          share_id?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "board_shares_board_id_fkey"
+            columns: ["board_id"]
+            isOneToOne: false
+            referencedRelation: "boards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      boards: {
+        Row: {
+          canvas_data: Json
+          created_at: string
+          description: string | null
+          id: string
+          is_public: boolean
+          slug: string | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          canvas_data?: Json
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_public?: boolean
+          slug?: string | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          canvas_data?: Json
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_public?: boolean
+          slug?: string | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       characters: {
         Row: {
           created_at: string | null
@@ -48,6 +266,103 @@ export type Database = {
             columns: ["project_id"]
             isOneToOne: false
             referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      content_folders: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          parent_folder_id: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          parent_folder_id?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          parent_folder_id?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_folders_parent_folder_id_fkey"
+            columns: ["parent_folder_id"]
+            isOneToOne: false
+            referencedRelation: "content_folders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      content_items: {
+        Row: {
+          created_at: string
+          description: string | null
+          file_size: number | null
+          file_type: string
+          file_url: string | null
+          folder_id: string | null
+          id: string
+          metadata: Json | null
+          qr_code_data: string | null
+          tags: string[] | null
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          file_size?: number | null
+          file_type: string
+          file_url?: string | null
+          folder_id?: string | null
+          id?: string
+          metadata?: Json | null
+          qr_code_data?: string | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          file_size?: number | null
+          file_type?: string
+          file_url?: string | null
+          folder_id?: string | null
+          id?: string
+          metadata?: Json | null
+          qr_code_data?: string | null
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_items_folder_id_fkey"
+            columns: ["folder_id"]
+            isOneToOne: false
+            referencedRelation: "content_folders"
             referencedColumns: ["id"]
           },
         ]
@@ -364,6 +679,115 @@ export type Database = {
             columns: ["shot_id"]
             isOneToOne: false
             referencedRelation: "shots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      gigs: {
+        Row: {
+          capacity: number | null
+          contract_url: string | null
+          created_at: string | null
+          date: string
+          door_split_percentage: number | null
+          guarantee_amount: number | null
+          id: string
+          notes: string | null
+          status: string | null
+          ticket_price: number | null
+          title: string
+          updated_at: string | null
+          user_id: string
+          venue_id: string | null
+        }
+        Insert: {
+          capacity?: number | null
+          contract_url?: string | null
+          created_at?: string | null
+          date: string
+          door_split_percentage?: number | null
+          guarantee_amount?: number | null
+          id?: string
+          notes?: string | null
+          status?: string | null
+          ticket_price?: number | null
+          title: string
+          updated_at?: string | null
+          user_id: string
+          venue_id?: string | null
+        }
+        Update: {
+          capacity?: number | null
+          contract_url?: string | null
+          created_at?: string | null
+          date?: string
+          door_split_percentage?: number | null
+          guarantee_amount?: number | null
+          id?: string
+          notes?: string | null
+          status?: string | null
+          ticket_price?: number | null
+          title?: string
+          updated_at?: string | null
+          user_id?: string
+          venue_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "gigs_venue_id_fkey"
+            columns: ["venue_id"]
+            isOneToOne: false
+            referencedRelation: "venues"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      invoices: {
+        Row: {
+          amount: number
+          created_at: string | null
+          due_date: string | null
+          gig_id: string
+          id: string
+          invoice_number: string | null
+          notes: string | null
+          paid_date: string | null
+          payment_method: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string | null
+          due_date?: string | null
+          gig_id: string
+          id?: string
+          invoice_number?: string | null
+          notes?: string | null
+          paid_date?: string | null
+          payment_method?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string | null
+          due_date?: string | null
+          gig_id?: string
+          id?: string
+          invoice_number?: string | null
+          notes?: string | null
+          paid_date?: string | null
+          payment_method?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invoices_gig_id_fkey"
+            columns: ["gig_id"]
+            isOneToOne: false
+            referencedRelation: "gigs"
             referencedColumns: ["id"]
           },
         ]
@@ -1023,6 +1447,51 @@ export type Database = {
           },
         ]
       }
+      tour_contacts: {
+        Row: {
+          company: string | null
+          created_at: string | null
+          email: string | null
+          id: string
+          last_contacted: string | null
+          name: string
+          notes: string | null
+          phone: string | null
+          role: string | null
+          tags: string[] | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          last_contacted?: string | null
+          name: string
+          notes?: string | null
+          phone?: string | null
+          role?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string | null
+          email?: string | null
+          id?: string
+          last_contacted?: string | null
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          role?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       track_items: {
         Row: {
           created_at: string | null
@@ -1151,6 +1620,57 @@ export type Database = {
           updated_at?: string
           used_credits?: number
           user_id?: string
+        }
+        Relationships: []
+      }
+      venues: {
+        Row: {
+          address: string | null
+          capacity: number | null
+          city: string | null
+          contact_email: string | null
+          contact_name: string | null
+          contact_phone: string | null
+          country: string | null
+          created_at: string | null
+          genres: string[] | null
+          id: string
+          name: string
+          state: string | null
+          updated_at: string | null
+          venue_type: string | null
+        }
+        Insert: {
+          address?: string | null
+          capacity?: number | null
+          city?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          country?: string | null
+          created_at?: string | null
+          genres?: string[] | null
+          id?: string
+          name: string
+          state?: string | null
+          updated_at?: string | null
+          venue_type?: string | null
+        }
+        Update: {
+          address?: string | null
+          capacity?: number | null
+          city?: string | null
+          contact_email?: string | null
+          contact_name?: string | null
+          contact_phone?: string | null
+          country?: string | null
+          created_at?: string | null
+          genres?: string[] | null
+          id?: string
+          name?: string
+          state?: string | null
+          updated_at?: string | null
+          venue_type?: string | null
         }
         Relationships: []
       }
@@ -1304,6 +1824,10 @@ export type Database = {
           metadata?: Json
         }
         Returns: boolean
+      }
+      generate_board_slug: {
+        Args: { board_title: string }
+        Returns: string
       }
       get_available_credits: {
         Args: Record<PropertyKey, never>
