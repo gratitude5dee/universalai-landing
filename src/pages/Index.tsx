@@ -2,8 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Header from '@/components/landing/Header';
-import PhoneMockup from '@/components/landing/PhoneMockup';
-import { Card3D, GlassCard } from '@/components/ui/3d-card';
+import { PhoneMockup } from '@/components/PhoneMockup';
 
 // Import feature images
 import featureAiChat from '@/assets/feature-ai-chat.jpg';
@@ -38,18 +37,23 @@ const Section: React.FC<{
         transition={{ duration: 0.8, ease: "easeOut" }}
         className={`space-y-6 ${reverse ? 'lg:col-start-2' : ''}`}
       >
-        <Card3D className="border-0">
-          <h2 
-            className="text-5xl font-semibold leading-tight text-gradient-primary mb-6"
-          >
-            {title}
-          </h2>
-          <p 
-            className="text-xl leading-relaxed max-w-md text-white/80"
-          >
-            {children}
-          </p>
-        </Card3D>
+        <h2 
+          className="text-5xl font-semibold leading-tight"
+          style={{
+            background: 'linear-gradient(180deg, #ffffff 70%, #a3a3b8)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            letterSpacing: '-1px'
+          }}
+        >
+          {title}
+        </h2>
+        <p 
+          className="text-xl leading-relaxed max-w-md"
+          style={{ color: 'var(--text-secondary)' }}
+        >
+          {children}
+        </p>
       </motion.div>
       
       <motion.div
@@ -84,26 +88,27 @@ const Index = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: "easeOut", staggerChildren: 0.15 }}
-            className="space-y-8"
+            className="space-y-6"
           >
-            <GlassCard variant="subtle" className="max-w-5xl mx-auto border-0">
-              <motion.h1 
-                className="text-4xl md:text-7xl font-bold leading-tight text-gradient-hero"
-                style={{
-                  letterSpacing: '-2px',
-                  textShadow: '0 0 80px rgba(255, 255, 255, 0.15)'
-                }}
-              >
-                The ultimate productivity tool for creatives{' '}
-                <span role="img" aria-label="fire">🔥</span>
-              </motion.h1>
-              
-              <motion.p 
-                className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed text-white/80 mt-6"
-              >
-                Brainstorm, collaborate, and manage your projects from idea to reality. All in one place.
-              </motion.p>
-            </GlassCard>
+            <motion.h1 
+              className="text-4xl md:text-7xl font-bold leading-tight max-w-4xl"
+              style={{
+                background: 'linear-gradient(180deg, #ffffff 70%, #a3a3b8)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                letterSpacing: '-2px',
+                textShadow: '0 0 80px rgba(255, 255, 255, 0.15)'
+              }}
+            >
+              Your Entire Creative Workflow, Unified and Amplified.
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed"
+              style={{ color: 'var(--text-secondary)' }}
+            >
+              From a spark of an idea to a global tour, manage every step of your creative career with an intelligent, all-in-one OS.
+            </motion.p>
           </motion.div>
           
           <motion.div
@@ -117,47 +122,51 @@ const Index = () => {
 
         {/* Feature Sections */}
         <Section 
-          title="Turn ideas into projects" 
+          title="From Idea to IP: Structure Your Creativity." 
           mockupSrc={featureIdeasToProjects}
-          mockupAlt="Turning an idea into a Formula 1 project"
+          mockupAlt="Turning an idea into a structured project"
         >
-          FYI.AI takes your ideas to the next level by turning them into Projects. Turn dialogue into film treatments, verses into albums, and sketches into business plans. The applications are infinite.
+          FYI.AI transforms your raw ideas into actionable projects. Instantly convert conversations into film treatments, lyrics into album roadmaps, and sketches into business plans.
         </Section>
         
         <Section 
-          title="Stay in the loop" 
+          title="Effortless Collaboration: Centralize Your Comms." 
           mockupSrc={featureInTheLoop}
           mockupAlt="AI summarizing a team chat"
           reverse={true}
         >
-          Add FYI.AI to group chats to summarize conversations, recall key information, and schedule follow-ups. Never lose track of an important decision again.
+          Integrate FYI.AI into your team chats to get automated summaries, track key decisions, and create actionable follow-ups. Never lose a great idea in a long thread again.
         </Section>
         
         <Section 
-          title="Build and present" 
+          title="Professional Project Hubs: Showcase Your Work." 
           mockupSrc={featureBuildProjects}
           mockupAlt="Project gallery view"
         >
-          Organize your work into beautiful project spaces. Store files, manage assets, add team members, and present your work in a whole new way.
+          Organize your work into dynamic project spaces. Consolidate files, manage digital assets, assign tasks to team members, and present your vision with clarity and impact.
         </Section>
 
         <Section 
-          title="Never miss a deadline" 
+          title="Master Your Schedule: The Artist's Calendar." 
           mockupSrc={featureCalendar}
           mockupAlt="Scheduling an event in FYI Calendar"
           reverse={true}
         >
-          Keep track of project deadlines and deliverables with an integrated calendar. Schedule team meetings and launch calls directly from your workspace.
+          Keep every deadline, release date, and tour stop in view with an integrated calendar. Schedule team meetings, studio sessions, and launch events directly from your central workspace.
         </Section>
       </main>
       
       {/* Footer */}
-      <footer className="text-center py-20 px-8 mt-20">
-        <GlassCard variant="subtle" className="max-w-md mx-auto">
-          <p className="text-sm text-white/70">
-            © {new Date().getFullYear()} FYI. A UniversalAI Product.
-          </p>
-        </GlassCard>
+      <footer 
+        className="text-center py-20 px-8 mt-20"
+        style={{
+          borderTop: '1px solid var(--glass-border)',
+          color: 'var(--text-secondary)'
+        }}
+      >
+        <p className="text-sm">
+          © {new Date().getFullYear()} MUSICOS. A UniversalAI Product.
+        </p>
       </footer>
     </div>
   );
