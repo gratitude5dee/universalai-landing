@@ -38,7 +38,7 @@ export const HeroSection = () => {
             </h1>
             
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4">
-              Brainstorm, collaborate, and manage your projects from idea to reality. 
+              From a spark of an idea to a global tour, manage every step of your creative career with an intelligent, all-in-one OS.. 
               <span className="text-gradient-subtle"> All in one place.</span>
             </p>
 
