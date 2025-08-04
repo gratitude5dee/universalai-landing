@@ -22,7 +22,8 @@ const Header = () => {
         {/* Logo */}
         <a href="/" className="flex items-center gap-2 sm:gap-3 hover:scale-105 transition-transform duration-300">
           <LightningLogo />
-          <span className="text-xl sm:text-2xl font-bold text-gradient-brand">MusicOS</span>
+          <span className="text-xl sm:text-2xl font-bold text-gradient-brand">UniversalAI
+        </span>
         </a>
         
         {/* Menu */}
@@ -42,10 +43,7 @@ const Header = () => {
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu> : <>
-                  <Button 
-                    onClick={() => setWaitlistModalOpen(true)} 
-                    className="btn-primary px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-full btn-mobile"
-                  >
+                  <Button onClick={() => setWaitlistModalOpen(true)} className="btn-primary px-4 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-full btn-mobile">
                     Join Waitlist
                   </Button>
                 </>}
