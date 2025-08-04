@@ -13,28 +13,64 @@ export const HeroSection = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center text-center pt-24 pb-16 relative overflow-hidden">
+      {/* Linear background gradient */}
+      <div className="absolute inset-0 bg-gradient-hero opacity-40"></div>
+      
+      {/* Subtle grid pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Hero Content */}
-          <div className="animate-mobile-fade-in space-y-8 md:space-y-12">
-            <h1 className="text-mobile-xl md:text-7xl lg:text-8xl font-bold leading-tight text-white">
-              The ultimate productivity tool for{" "}
-              <span className="text-gradient-accent">music creators</span>{" "}
-              <span className="text-2xl md:text-6xl lg:text-7xl">🔥</span>
+          <div className="animate-fade-in space-y-8 md:space-y-12">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
+              <span className="text-gradient-hero">The ultimate</span>{" "}
+              <span className="text-white">productivity tool for</span>{" "}
+              <span className="text-gradient-accent">music creators</span>
             </h1>
             
-            <p className="text-mobile-base md:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4">
-              Brainstorm, collaborate, and manage your projects from idea to reality. All in one place.
+            <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4">
+              Brainstorm, collaborate, and manage your projects from idea to reality. 
+              <span className="text-gradient-subtle"> All in one place.</span>
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+              <Button 
+                onClick={scrollToWaitlist} 
+                className="btn-primary text-lg px-8 py-3 min-w-[200px]"
+              >
+                Join Waitlist
+              </Button>
+              <Button 
+                variant="outline" 
+                className="btn-glass text-lg px-8 py-3 min-w-[200px] group"
+              >
+                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                Watch Demo
+              </Button>
+            </div>
           </div>
 
           {/* Hero Mockup */}
-          <div className="animate-scale-in mt-12 md:mt-16 relative flex justify-center">
-            <PhoneMockup 
-              screenContentSrc={featureAiChat} 
-              alt="MusicOS AI chat interface" 
-              className="max-w-xs sm:max-w-sm md:max-w-md relative z-10 mx-auto"
-            />
+          <div className="animate-scale-in mt-16 md:mt-20 relative flex justify-center">
+            <div className="relative">
+              <PhoneMockup 
+                screenContentSrc={featureAiChat} 
+                alt="MusicOS AI chat interface" 
+                className="max-w-xs sm:max-w-sm md:max-w-md relative z-10 mx-auto"
+              />
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-primary opacity-20 blur-3xl scale-110 -z-10"></div>
+            </div>
           </div>
         </div>
       </div>

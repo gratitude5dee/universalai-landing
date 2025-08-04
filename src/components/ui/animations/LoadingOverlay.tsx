@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MatrixLoader } from './MatrixLoader';
+import { FiveDeeMatrixLoader } from './FiveDeeMatrixLoader';
 
 interface LoadingOverlayProps {
   isLoading: boolean;
@@ -53,10 +53,9 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
 
   if (showMatrixAnimation) {
     return (
-      <MatrixLoader
+      <FiveDeeMatrixLoader
         isVisible={internalLoading}
         onComplete={handleMatrixComplete}
-        showFYI={true}
       />
     );
   }
