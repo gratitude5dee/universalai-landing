@@ -32,9 +32,9 @@ export const HeroSection = () => {
           {/* Hero Content */}
           <div className="animate-fade-in space-y-8 md:space-y-12">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
-              <span className="text-gradient-hero">The ultimate</span>{" "}
-              <span className="text-white">productivity tool for</span>{" "}
-              <span className="text-gradient-accent">music creators</span>
+              <span className="text-gradient-hero">Your Entire Creative</span>{" "}
+              <span className="text-white">Workflow, Amplified</span>{" "}
+              <span className="text-gradient-accent">& Unified</span>
             </h1>
             
             <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4">
