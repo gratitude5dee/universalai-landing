@@ -51,11 +51,11 @@ export const FeaturesSection = () => {
     <main className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
       {/* Features */}
       <Section 
-        title="Turn ideas into projects" 
+        title="From Idea to IP: Structure Your Creativity." 
         mockupSrc={featureIdeasToProjects}
         mockupAlt="Converting music ideas into full projects"
       >
-        MusicOS takes your creative ideas to the next level by turning them into structured Projects. Transform voice memos into full arrangements, rough sketches into complete compositions, and creative sparks into professional releases.
+        Universal transforms your raw ideas into actionable projects. Instantly convert conversations into film treatments, lyrics into album roadmaps, and sketches into business plans.
       </Section>
       
       <Section 
