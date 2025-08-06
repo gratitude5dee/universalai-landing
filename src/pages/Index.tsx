@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Header from '@/components/landing/Header';
-import { HeroSection } from '@/components/HeroSection';
+import { EnhancedFestivalHero } from '@/components/festival/EnhancedFestivalHero';
 import { FeaturesSection } from '@/components/FeaturesSection';
 import { Footer } from '@/components/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -20,7 +20,7 @@ const Index = () => {
       <Header />
       
       {/* Hero Section */}
-      <HeroSection />
+      <EnhancedFestivalHero />
       
       {/* Features Section */}
       <FeaturesSection />

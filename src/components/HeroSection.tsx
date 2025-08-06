@@ -7,6 +7,7 @@ import HackathonBadge from '@/components/landing/HackathonBadge';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
 import FestivalCTA from '@/components/landing/FestivalCTA';
 import WaitlistModal from '@/components/landing/WaitlistModal';
+import TextReveal from '@/components/festival/TextReveal';
 
 export const HeroSection = () => {
   const [waitlistModalOpen, setWaitlistModalOpen] = useState(false);
@@ -42,11 +43,11 @@ export const HeroSection = () => {
             
             {/* Hero Content */}
             <div className="animate-fade-in space-y-8 md:space-y-12">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
-                <span className="text-gradient-hero">Your Entire Creative</span>{" "}
-                <span className="text-white">Workflow, Unified</span>{" "}
-                <span className="text-gradient-accent">& Amplified</span>
-              </h1>
+              <TextReveal
+                text="Your Entire Creative Workflow, Unified & Amplified"
+                className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight text-gradient-festival"
+                delay={0.3}
+              />
               
               <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-4">
                 From a spark of an idea to a global tour, manage every step of your creative career with an intelligent, all-in-one OS.. 
@@ -57,9 +58,9 @@ export const HeroSection = () => {
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
                 <FestivalCTA onClick={() => setWaitlistModalOpen(true)} />
                 
-                <Button 
+                 <Button 
                   variant="outline" 
-                  className="btn-glass text-lg px-8 py-3 min-w-[200px] group"
+                  className="btn-glass text-lg px-8 py-3 min-w-[200px] group festival-shimmer"
                 >
                   <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                   Watch Demo

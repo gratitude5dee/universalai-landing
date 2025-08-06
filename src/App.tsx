@@ -6,6 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { LoadingOverlay } from "@/components/ui/animations/LoadingOverlay";
 import { useAppLoading } from "@/hooks/useAppLoading";
+import CustomCursor from "@/components/festival/CustomCursor";
+import WebGLBackground from "@/components/festival/WebGLBackground";
+import FloatingStageElements from "@/components/festival/FloatingStageElements";
+import ParticleField from "@/components/festival/ParticleField";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
@@ -20,11 +24,18 @@ const AppContent = () => {
 
   return (
     <>
+      {/* Festival Experience Background Effects */}
+      <WebGLBackground />
+      <ParticleField />
+      <CustomCursor />
+      <FloatingStageElements />
+      
       <LoadingOverlay
         isLoading={isLoading}
         onLoadingComplete={() => {}}
         showMatrixAnimation={true}
       />
+      
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/auth" element={<Auth />} />

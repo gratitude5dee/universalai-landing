@@ -98,7 +98,7 @@ const FestivalCTA: React.FC<FestivalCTAProps> = ({ onClick, disabled, loading })
             relative overflow-hidden px-8 py-4 text-lg font-bold
             bg-gradient-to-r from-green-500 via-yellow-400 to-pink-500
             hover:from-green-400 hover:via-yellow-300 hover:to-pink-400
-            text-black border-0 rounded-full
+            text-black border-0 rounded-full festival-shimmer
             transition-all duration-300 ease-out
             ${isHovered ? 'shadow-2xl shadow-green-500/50' : 'shadow-lg shadow-green-500/25'}
           `}
