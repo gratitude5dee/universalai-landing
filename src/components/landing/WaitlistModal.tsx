@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { X, CheckCircle, Loader2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+import SuccessExperience from './SuccessExperience';
 
 interface WaitlistModalProps {
   open: boolean;
@@ -26,6 +27,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ open, onOpenChange }) => 
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [waitlistPosition, setWaitlistPosition] = useState(0);
 
   const handleInputChange = (field: keyof WaitlistData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -51,10 +53,21 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ open, onOpenChange }) => 
     setIsSubmitting(true);
     
     try {
-      // For now, we'll simulate success since waitlist table may not exist
-      // This should be replaced with actual Supabase integration when the table is set up
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+      // Insert into waitlist_signups table
+      const { error } = await supabase
+        .from('waitlist_signups')
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          instagram: formData.igHandle,
+        });
 
+      if (error) throw error;
+
+      // Get position in waitlist
+      const { data: countData } = await supabase.rpc('get_waitlist_count');
+      setWaitlistPosition(countData || 0);
+      
       setIsSuccess(true);
       toast({ 
         title: "Success!", 

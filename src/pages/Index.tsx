@@ -6,13 +6,17 @@ import { HeroSection } from '@/components/HeroSection';
 import { FeaturesSection } from '@/components/FeaturesSection';
 import { Footer } from '@/components/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
+import FestivalAnimations from '@/components/animations/FestivalAnimations';
 
 
 const Index = () => {
   const isMobile = useIsMobile();
 
   return (
-    <div className="min-h-screen text-white overflow-hidden">
+    <div className="min-h-screen text-white overflow-hidden relative">
+      {/* Festival Background Animations */}
+      <FestivalAnimations />
+      
       <Header />
       
       {/* Hero Section */}
