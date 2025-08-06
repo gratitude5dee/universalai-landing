@@ -1037,55 +1037,46 @@ export type Database = {
         Row: {
           ai_preferences: Json | null
           avatar_url: string | null
-          claude_api_key: string | null
           connected_accounts: Json | null
           created_at: string
           id: string
           last_wallet_connection: string | null
-          luma_api_key: string | null
           onboarding_completed: boolean
           personality_type: string | null
           updated_at: string
           uploaded_files: Json | null
           username: string | null
           wallet_address: string | null
-          wallet_auth_token: string | null
           wallet_type: string | null
         }
         Insert: {
           ai_preferences?: Json | null
           avatar_url?: string | null
-          claude_api_key?: string | null
           connected_accounts?: Json | null
           created_at?: string
           id: string
           last_wallet_connection?: string | null
-          luma_api_key?: string | null
           onboarding_completed?: boolean
           personality_type?: string | null
           updated_at?: string
           uploaded_files?: Json | null
           username?: string | null
           wallet_address?: string | null
-          wallet_auth_token?: string | null
           wallet_type?: string | null
         }
         Update: {
           ai_preferences?: Json | null
           avatar_url?: string | null
-          claude_api_key?: string | null
           connected_accounts?: Json | null
           created_at?: string
           id?: string
           last_wallet_connection?: string | null
-          luma_api_key?: string | null
           onboarding_completed?: boolean
           personality_type?: string | null
           updated_at?: string
           uploaded_files?: Json | null
           username?: string | null
           wallet_address?: string | null
-          wallet_auth_token?: string | null
           wallet_type?: string | null
         }
         Relationships: []
@@ -1183,6 +1174,33 @@ export type Database = {
           },
         ]
       }
+      referral_tracking: {
+        Row: {
+          conversion_date: string | null
+          created_at: string
+          id: string
+          referee_email: string
+          referral_code: string
+          referrer_email: string
+        }
+        Insert: {
+          conversion_date?: string | null
+          created_at?: string
+          id?: string
+          referee_email: string
+          referral_code: string
+          referrer_email: string
+        }
+        Update: {
+          conversion_date?: string | null
+          created_at?: string
+          id?: string
+          referee_email?: string
+          referral_code?: string
+          referrer_email?: string
+        }
+        Relationships: []
+      }
       scenes: {
         Row: {
           created_at: string
@@ -1242,6 +1260,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      share_analytics: {
+        Row: {
+          created_at: string
+          id: string
+          platform: string
+          referral_code: string
+          user_email: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          platform: string
+          referral_code: string
+          user_email: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          platform?: string
+          referral_code?: string
+          user_email?: string
+        }
+        Relationships: []
       }
       shared_videos: {
         Row: {
@@ -1623,6 +1665,33 @@ export type Database = {
         }
         Relationships: []
       }
+      user_secrets: {
+        Row: {
+          created_at: string
+          encrypted_value: string
+          id: string
+          secret_type: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          encrypted_value: string
+          id?: string
+          secret_type: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          encrypted_value?: string
+          id?: string
+          secret_type?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       venues: {
         Row: {
           address: string | null
@@ -1676,6 +1745,7 @@ export type Database = {
       }
       waitlist_signups: {
         Row: {
+          badges: Json | null
           created_at: string | null
           email: string
           id: string
@@ -1683,10 +1753,13 @@ export type Database = {
           ip_address: string | null
           name: string
           phone: string | null
+          referral_code: string | null
           referral_source: string | null
+          shared_count: number | null
           user_agent: string | null
         }
         Insert: {
+          badges?: Json | null
           created_at?: string | null
           email: string
           id?: string
@@ -1694,10 +1767,13 @@ export type Database = {
           ip_address?: string | null
           name: string
           phone?: string | null
+          referral_code?: string | null
           referral_source?: string | null
+          shared_count?: number | null
           user_agent?: string | null
         }
         Update: {
+          badges?: Json | null
           created_at?: string | null
           email?: string
           id?: string
@@ -1705,7 +1781,9 @@ export type Database = {
           ip_address?: string | null
           name?: string
           phone?: string | null
+          referral_code?: string | null
           referral_source?: string | null
+          shared_count?: number | null
           user_agent?: string | null
         }
         Relationships: []
@@ -1830,6 +1908,17 @@ export type Database = {
         Returns: string
       }
       get_available_credits: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
+      get_recent_signups: {
+        Args: { limit_count?: number }
+        Returns: {
+          signup_time: string
+          display_name: string
+        }[]
+      }
+      get_waitlist_count: {
         Args: Record<PropertyKey, never>
         Returns: number
       }
