@@ -3,6 +3,7 @@ import { User, LogOut } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import WaitlistModal from '@/components/landing/WaitlistModal';
 
 const Header = () => {
   const { user, signOut, loading } = useAuth();
@@ -46,6 +47,7 @@ const Header = () => {
           )}
         </div>
       </nav>
+      <WaitlistModal open={waitlistModalOpen} onOpenChange={setWaitlistModalOpen} />
     </header>
   );
 };

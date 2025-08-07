@@ -93,97 +93,60 @@ const LiveWaitlistCounter = () => {
     <div className="flex flex-col items-center gap-4 py-6">
       {/* Main Counter */}
       <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        className="flex items-center gap-3 bg-gradient-to-r from-green-500/20 via-yellow-400/20 to-pink-500/20 backdrop-blur-sm border border-white/20 rounded-full px-6 py-3"
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-center gap-3 border border-border rounded-full px-5 py-2 bg-secondary/40"
       >
-        <motion.div
-          animate={{ 
-            scale: [1, 1.2, 1],
-            filter: ["hue-rotate(0deg)", "hue-rotate(120deg)", "hue-rotate(240deg)", "hue-rotate(360deg)"]
-          }}
-          transition={{ 
-            duration: 2, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        >
-          <Flame className="w-5 h-5 text-orange-500" />
-        </motion.div>
-
         <div className="flex items-baseline gap-2">
           <AnimatePresence mode="wait">
             <motion.span
               key={displayCount}
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              className="text-2xl font-bold bg-gradient-to-r from-green-400 via-yellow-400 to-pink-400 bg-clip-text text-transparent"
+              exit={{ y: -8, opacity: 0 }}
+              className="text-xl font-semibold"
             >
               {displayCount.toLocaleString()}
             </motion.span>
           </AnimatePresence>
-          <span className="text-white/80 font-medium">creators already joined!</span>
+          <span className="text-sm text-muted-foreground">signups</span>
         </div>
-
-        <motion.div
-          animate={{ 
-            scale: [1, 1.1, 1],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ 
-            duration: 3, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        >
-          <TrendingUp className="w-5 h-5 text-green-400" />
-        </motion.div>
       </motion.div>
 
       {/* Milestone Progress */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-        className="text-center"
-      >
-        <div className="text-sm text-white/70 font-medium">
-          {getMilestoneMessage(displayCount)}
+      <div className="text-center">
+        <div className="text-xs text-muted-foreground">
+          {getMilestoneMessage(displayCount).replace(' 🎉','')}
         </div>
-        
-        {/* Progress Bar */}
-        <div className="mt-2 w-64 h-2 bg-white/10 rounded-full overflow-hidden">
+        <div className="mt-2 w-64 h-2 bg-border rounded-full overflow-hidden">
           <motion.div
-            className="h-full bg-gradient-to-r from-green-400 to-yellow-400"
+            className="h-full bg-primary"
             initial={{ width: 0 }}
-            animate={{ 
-              width: `${Math.min((displayCount % 100) / 100 * 100, 100)}%` 
-            }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            animate={{ width: `${Math.min((displayCount % 100) / 100 * 100, 100)}%` }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
           />
         </div>
-      </motion.div>
+      </div>
 
       {/* Recent Signups Ticker */}
       {recentSignups.length > 0 && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="flex items-center gap-2 text-xs text-white/60"
+          transition={{ delay: 0.2 }}
+          className="flex items-center gap-2 text-xs text-muted-foreground"
         >
           <span>Recent:</span>
           <div className="flex gap-3">
             {recentSignups.slice(0, 3).map((signup, index) => (
               <motion.span
                 key={index}
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: 10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1 + index * 0.2 }}
+                transition={{ delay: 0.2 + index * 0.1 }}
                 className="flex items-center gap-1"
               >
-                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                 {signup.display_name}
               </motion.span>
             ))}
