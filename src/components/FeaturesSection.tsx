@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { PhoneMockup } from '@/components/PhoneMockup';
 import featureIdeasToProjects from '@/assets/feature-ai-chat-mobile.jpg';
 import featureCollaboration from '@/assets/feature-collaboration-mobile.jpg';
@@ -20,28 +22,56 @@ const Section: React.FC<SectionProps> = ({
   mockupAlt, 
   reverse = false 
 }) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const textVariants = {
+    hidden: { opacity: 0, x: reverse ? 100 : -100 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+  };
+
+  const mockupVariants = {
+    hidden: { opacity: 0, scale: 0.8, x: reverse ? -100 : 100 },
+    visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.2 } },
+  };
+
   return (
-    <section className={`py-16 md:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center ${
-      reverse ? 'lg:grid-flow-col-dense' : ''
-    }`}>
+    <section
+      ref={ref}
+      className={`py-16 md:py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center ${
+        reverse ? 'lg:grid-flow-col-dense' : ''
+      }`}
+    >
       {/* Text Content */}
-      <div className={`space-y-6 px-4 sm:px-6 lg:px-0 ${reverse ? 'lg:col-start-2' : ''}`}>
-        <h2 className="text-mobile-lg md:text-4xl lg:text-5xl font-semibold leading-tight text-gradient-primary">
+      <motion.div
+        variants={textVariants}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        className={`space-y-6 px-4 sm:px-6 lg:px-0 ${reverse ? 'lg:col-start-2' : ''}`}
+      >
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-gradient-primary font-grotesk">
           {title}
         </h2>
-        <p className="text-mobile-base md:text-lg lg:text-xl leading-relaxed max-w-lg" style={{ color: 'var(--text-secondary)' }}>
+        <p className="text-lg md:text-xl lg:text-2xl leading-relaxed text-white/70 max-w-lg">
           {children}
         </p>
-      </div>
+      </motion.div>
 
       {/* Mockup */}
-      <div className={`${reverse ? 'lg:col-start-1' : ''} flex justify-center px-4 sm:px-6 lg:px-0`}>
+      <motion.div
+        variants={mockupVariants}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        className={`${reverse ? 'lg:col-start-1' : ''} flex justify-center px-4 sm:px-6 lg:px-0`}
+      >
         <PhoneMockup 
           screenContentSrc={mockupSrc} 
           alt={mockupAlt}
-          className="animate-mobile-slide-up max-w-xs sm:max-w-sm md:max-w-md mx-auto" 
+          className="max-w-xs sm:max-w-sm md:max-w-md mx-auto"
         />
-      </div>
+      </motion.div>
     </section>
   );
 };
@@ -55,7 +85,7 @@ export const FeaturesSection = () => {
         mockupSrc={featureIdeasToProjects}
         mockupAlt="Converting music ideas into full projects"
       >
-        Universal transforms your raw ideas into actionable projects. Instantly convert conversations into film treatments, lyrics into album roadmaps, and sketches into business plans.
+        Universal transforms your raw ideas into actionable projects. Instantly convert conversations into film treatments, lyrics into album roadmaps, and sketches into business.
       </Section>
       
       <Section 

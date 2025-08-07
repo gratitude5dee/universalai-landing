@@ -8,115 +8,127 @@ interface FestivalIntroLoaderProps {
 const FestivalIntroLoader: React.FC<FestivalIntroLoaderProps> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [showLoader, setShowLoader] = useState(true);
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+  const [stage, setStage] = useState(0); // 0: initial, 1: logo, 2: text, 3: progress, 4: complete
 
   useEffect(() => {
-    // Create particles
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      delay: Math.random() * 2,
-    }));
-    setParticles(newParticles);
+    const sequence = [
+      () => setStage(1), // Show logo
+      () => setStage(2), // Show text
+      () => setStage(3), // Start progress bar
+      () => { // Finish
+        const interval = setInterval(() => {
+          setProgress(p => {
+            if (p >= 100) {
+              clearInterval(interval);
+              setStage(4);
+              setTimeout(() => {
+                setShowLoader(false);
+                setTimeout(onComplete, 1000);
+              }, 500);
+              return 100;
+            }
+            return p + 2;
+          });
+        }, 30);
+      },
+    ];
 
-    // Simulate loading progress
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setShowLoader(false);
-            setTimeout(onComplete, 800);
-          }, 1000);
-          return 100;
-        }
-        return prev + Math.random() * 10;
-      });
-    }, 200);
+    sequence.forEach((action, index) => {
+      setTimeout(action, index * 800);
+    });
 
-    return () => clearInterval(interval);
   }, [onComplete]);
+
+  const logoText = "MUSICÓS";
+  const logoVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { type: 'spring', damping: 12, stiffness: 200 } },
+  };
 
   return (
     <AnimatePresence>
       {showLoader && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.8, ease: [0.55, 0.06, 0.68, 0.19] }}
-          className="fixed inset-0 z-50 flex items-center justify-center flex-col"
-          style={{
-            background: 'linear-gradient(135deg, #0a0e0a, #1a1f1a)',
+          exit={{
+            opacity: 0,
+            y: "-100vh",
+            transition: { duration: 1, ease: "circOut" }
           }}
+          className="fixed inset-0 z-50 flex items-center justify-center flex-col bg-[#080808]"
         >
-          {/* Particle Field */}
-          <div className="absolute inset-0 pointer-events-none">
-            {particles.map((particle) => (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 3.5 }}
+            className="absolute inset-0 bg-festival-glow opacity-30"
+          />
+
+          {stage >= 1 && (
+            <motion.h1
+              variants={logoVariants}
+              initial="hidden"
+              animate="visible"
+              className="font-festival text-6xl md:text-8xl text-transparent bg-clip-text text-gradient-festival mb-4 tracking-wider"
+            >
+              {logoText.split("").map((char, index) => (
+                <motion.span key={index} variants={letterVariants}>
+                  {char}
+                </motion.span>
+              ))}
+            </motion.h1>
+          )}
+
+          {stage >= 2 && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              className="text-green-400 text-xl mb-8 font-grotesk"
+            >
+              The stage is being set...
+            </motion.p>
+          )}
+
+          {stage >= 3 && (
+            <div className="w-80 h-1.5 bg-white/10 rounded-full overflow-hidden mb-4 relative">
               <motion.div
-                key={particle.id}
-                className="absolute w-1 h-1 bg-green-400 rounded-full"
-                style={{
-                  left: `${particle.x}%`,
-                  top: `${particle.y}%`,
-                }}
-                animate={{
-                  scale: [0, 1, 0],
-                  opacity: [0, 1, 0],
-                  x: Math.random() * 200 - 100,
-                  y: Math.random() * 200 - 100,
-                }}
-                transition={{
-                  duration: 3,
-                  delay: particle.delay,
-                  repeat: Infinity,
-                  ease: 'easeOut',
-                }}
+                className="h-full bg-gradient-to-r from-green-400 to-yellow-400"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ duration: 0.3, ease: 'linear' }}
               />
-            ))}
-          </div>
+              <motion.div
+                className="absolute top-0 h-full w-2 bg-white/80"
+                style={{ left: `${progress}%` }}
+                animate={{
+                  boxShadow: ['0 0 10px #fff', '0 0 20px #fff', '0 0 10px #fff'],
+                }}
+                transition={{ repeat: Infinity, duration: 1 }}
+              />
+            </div>
+          )}
 
-          {/* Festival Logo */}
-          <motion.h1
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ 
-              duration: 1.5, 
-              ease: [0.68, -0.55, 0.265, 1.55]
-            }}
-            className="font-festival text-6xl md:text-8xl text-transparent bg-clip-text text-gradient-festival mb-4 tracking-wider"
-          >
-            OUTSIDE LANDS
-          </motion.h1>
-
-          {/* Festival Dates */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-            className="text-green-400 text-xl mb-8 font-grotesk"
-          >
-            AUG 8-10, 2025 • GOLDEN GATE PARK
-          </motion.p>
-
-          {/* Progress Bar */}
-          <div className="w-80 h-1 bg-white/10 rounded-full overflow-hidden mb-4">
-            <motion.div
-              className="h-full bg-gradient-to-r from-green-400 to-yellow-400"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-            />
-          </div>
-
-          {/* Loading Text */}
-          <motion.p
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-white/70 text-sm font-grotesk"
-          >
-            Loading festival experience...
-          </motion.p>
+          {stage >= 3 && (
+             <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+              className="text-white/70 text-sm font-grotesk"
+            >
+              Tuning the instruments... {Math.round(progress)}%
+            </motion.p>
+          )}
         </motion.div>
       )}
     </AnimatePresence>
