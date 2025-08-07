@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
 import MinimalHero from '@/components/minimal/MinimalHero';
+import SocialProof from '@/components/minimal/SocialProof';
 import TechnicalFeatures from '@/components/minimal/TechnicalFeatures';
 import MetricsSection from '@/components/minimal/MetricsSection';
 import Spinner from '@/components/ui/spinner';
@@ -14,6 +15,7 @@ const Index = () => {
       <Header />
       <main className="pt-24">
         <MinimalHero />
+        <SocialProof />
         <TechnicalFeatures />
         <Suspense fallback={<div className="flex justify-center py-32"><Spinner /></div>}>
           <LazyCodeDemo />
