@@ -1,31 +1,21 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import Header from '@/components/landing/Header';
-import { EnhancedFestivalHero } from '@/components/festival/EnhancedFestivalHero';
-import { FeaturesSection } from '@/components/FeaturesSection';
 import { Footer } from '@/components/Footer';
-import { useIsMobile } from '@/hooks/use-mobile';
-import FestivalAnimations from '@/components/animations/FestivalAnimations';
-
+import MinimalHero from '@/components/minimal/MinimalHero';
+import TechnicalFeatures from '@/components/minimal/TechnicalFeatures';
+import CodeDemo from '@/components/minimal/CodeDemo';
+import MetricsSection from '@/components/minimal/MetricsSection';
 
 const Index = () => {
-  const isMobile = useIsMobile();
-
   return (
-    <div className="min-h-screen text-white overflow-hidden relative">
-      {/* Festival Background Animations */}
-      <FestivalAnimations />
-      
+    <div className="min-h-screen text-foreground bg-background">
       <Header />
-      
-      {/* Hero Section */}
-      <EnhancedFestivalHero />
-      
-      {/* Features Section */}
-      <FeaturesSection />
-      
-      {/* Footer */}
+      <main className="pt-24">
+        <MinimalHero />
+        <TechnicalFeatures />
+        <CodeDemo />
+        <MetricsSection />
+      </main>
       <Footer />
     </div>
   );

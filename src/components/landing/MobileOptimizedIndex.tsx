@@ -1,23 +1,17 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { HeroSection } from '@/components/HeroSection';
-import { FeaturesSection } from '@/components/FeaturesSection';
 import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
+import MinimalHero from '@/components/minimal/MinimalHero';
+import TechnicalFeatures from '@/components/minimal/TechnicalFeatures';
 
 const MobileOptimizedIndex = () => {
   return (
-    <div className="min-h-screen text-white overflow-hidden">
+    <div className="min-h-screen text-foreground bg-background">
       <Header />
-      
-      {/* Hero Section */}
-      <HeroSection />
-      
-      {/* Features Section */}
-      <FeaturesSection />
-      
-      {/* Footer */}
+      <main className="pt-20 px-4">
+        <MinimalHero />
+        <TechnicalFeatures />
+      </main>
       <Footer />
     </div>
   );

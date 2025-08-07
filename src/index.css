@@ -7,88 +7,39 @@ Dark mode first with aurora gradients and glassmorphism
 */
 
 :root {
-  /* Core Colors - Linear inspired */
-  --background: #05040a; /* Very dark, almost black blue/purple */
-  --foreground: #f0f0f5; /* Primary text */
-  --text-secondary: #a3a3b8; /* Secondary text */
-  
-  /* MusicOS Brand Colors */
-  --accent-primary: #ff6b00; /* Electric Orange */
-  --accent-secondary: #9b87f5; /* Electric Purple */
-  --accent-tertiary: #00ffff; /* Cyan */
-  
-  /* Shadcn UI Colors in HSL */
-  --border: 217 32% 17%;
-  --input: 217 32% 17%;
-  --ring: 224 71% 4%;
-  --primary: 20 100% 50%;
-  --primary-foreground: 0 0% 98%;
-  --primary-glow: 20 100% 70%;
-  --secondary: 217 32% 17%;
-  --secondary-foreground: 0 0% 98%;
-  --secondary-glow: 258 90% 66%;
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 0 85% 97%;
-  --muted: 217 32% 17%;
-  --muted-foreground: 215 20% 65%;
-  --accent: 258 90% 66%;
-  --accent-foreground: 0 0% 98%;
-  --accent-glow: 258 90% 80%;
-  --popover: 224 71% 4%;
-  --popover-foreground: 0 0% 98%;
-  --card: 224 71% 4%;
-  --card-foreground: 0 0% 98%;
-  
-  /* Aurora Gradient Colors - Enhanced */
-  --aurora-1: #3a25a3; /* Deep purple */
-  --aurora-2: #6d28d9; /* Medium purple */
-  --aurora-3: #1e1b4b; /* Dark blue */
-  --aurora-4: #4f46e5; /* Electric blue */
-  --aurora-5: #7c3aed; /* Vibrant purple */
-  --aurora-6: #06b6d4; /* Cyan accent */
-  
-  /* Glassmorphism - Enhanced */
-  --glass-bg: rgba(20, 19, 34, 0.3);
-  --glass-bg-strong: rgba(30, 27, 75, 0.8);
-  --glass-bg-modal: rgba(15, 14, 25, 0.95);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-border-strong: rgba(255, 255, 255, 0.3);
-  --glass-border-accent: rgba(255, 107, 0, 0.3);
-  --glass-blur: 12px;
-  --glass-blur-strong: 20px;
-  --glass-blur-extreme: 32px;
-  
-  /* Spacing & Layout */
-  --container-padding: 0 4%;
-  --section-spacing: 8rem;
-  --hero-padding: 8rem;
-  
+  /* Monochrome technical palette */
+  --background: 0 0% 4%; /* #0A0A0A */
+  --foreground: 0 0% 100%;
+  --muted-foreground: 0 0% 63%; /* #A0A0A0 */
+
+  --border: 0 0% 13%; /* #222 */
+  --input: 0 0% 13%;
+  --ring: 210 100% 48%; /* accent ring */
+
+  --primary: 210 100% 48%; /* Electric blue */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 0 0% 9%;
+  --secondary-foreground: 0 0% 100%;
+
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+
+  --muted: 0 0% 9%;
+  /* Accent (same as primary for simplicity) */
+  --accent: 210 100% 48%;
+  --accent-foreground: 0 0% 100%;
+
+  --popover: 0 0% 6%;
+  --popover-foreground: 0 0% 100%;
+  --card: 0 0% 6%;
+  --card-foreground: 0 0% 100%;
+
   /* Typography */
   --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  
-  /* Border Radius */
+
+  /* Radius */
   --radius: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 50px;
-  
-  /* Festival-themed Shadows & Effects */
-  --shadow-glow: 0 0 40px rgba(255, 107, 0, 0.3);
-  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  --shadow-hero: 0 25px 50px -12px rgba(79, 70, 229, 0.4);
-  --shadow-3d: 0 10px 40px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-3d-hover: 0 20px 60px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4);
-  --festival-glow: 0 0 20px #00ff88, 0 0 40px #ffeb3b, 0 0 60px #ff6b6b;
-  --festival-shadow: 0 10px 30px -10px rgba(0, 255, 136, 0.3);
-  --festival-shimmer: 0 0 30px rgba(0, 255, 136, 0.4), 0 0 60px rgba(255, 235, 59, 0.3);
-  --shadow-modal: 0 25px 100px rgba(0, 0, 0, 0.8), 0 8px 32px rgba(0, 0, 0, 0.4);
-  
-  /* Festival Color Palette */
-  --festival-green: #00ff88;
-  --festival-yellow: #ffeb3b;
-  --festival-pink: #ff6b6b;
-  --festival-cyan: #4ecdc4;
-  --festival-bg: #0a0e0a;
 }
 
 * {
@@ -97,27 +48,18 @@ Dark mode first with aurora gradients and glassmorphism
   padding: 0;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
   font-family: var(--font-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  cursor: none;
-  
-  /* Animated Aurora Background */
-  background-image: 
-    radial-gradient(at 20% 80%, var(--aurora-1) 0px, transparent 50%),
-    radial-gradient(at 80% 20%, var(--aurora-2) 0px, transparent 50%),
-    radial-gradient(at 50% 50%, var(--aurora-3) 0px, transparent 60%);
-  background-repeat: no-repeat;
-  background-size: 200% 200%;
-  animation: aurora 25s ease-in-out infinite alternate;
+  /* Subtle grid dots */
+  background-image: radial-gradient(hsl(0 0% 100% / 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 /* Noise Overlay for texture */
@@ -155,13 +97,11 @@ a {
 }
 
 @layer components {
-  /* Glassmorphism Effects - Enhanced */
   .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-glass);
+    background: rgba(255, 255, 255, 0.01);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
   
   .glass-subtle {

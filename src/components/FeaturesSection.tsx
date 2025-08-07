@@ -29,12 +29,12 @@ const Section: React.FC<SectionProps> = ({
 
   const textVariants = {
     hidden: { opacity: 0, x: reverse ? 100 : -100 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+    visible: { opacity: 1, x: 0 },
   };
 
   const mockupVariants = {
     hidden: { opacity: 0, scale: 0.8, x: reverse ? -100 : 100 },
-    visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut', delay: 0.2 } },
+    visible: { opacity: 1, scale: 1, x: 0 },
   };
 
   return (

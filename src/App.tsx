@@ -4,12 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { useState } from "react";
-import CustomCursor from "@/components/festival/CustomCursor";
-import WebGLBackground from "@/components/festival/WebGLBackground";
-import FloatingStageElements from "@/components/festival/FloatingStageElements";
-import ParticleField from "@/components/festival/ParticleField";
-import FestivalIntroLoader from "@/components/festival/FestivalIntroLoader";
+
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
@@ -17,33 +12,13 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const AppContent = () => {
-  const [introVisible, setIntroVisible] = useState(true);
-
-  const handleIntroComplete = () => {
-    setIntroVisible(false);
-  };
-
   return (
-    <>
-      {introVisible ? (
-        <FestivalIntroLoader onComplete={handleIntroComplete} />
-      ) : (
-        <>
-          {/* Festival Experience Background Effects */}
-          <WebGLBackground />
-          <ParticleField />
-          <CustomCursor />
-          <FloatingStageElements />
-
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/auth" element={<Auth />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </>
-      )}
-    </>
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/auth" element={<Auth />} />
+      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 
