@@ -293,16 +293,21 @@ export const WaitlistForm = () => {
             />
           </div>
           <div>
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-              className="form-input h-14 text-base"
-              disabled={isSubmitting}
-            />
+            <div className="relative">
+              <label htmlFor="email" className="sr-only">Email Address</label>
+              <Input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+                className="form-input h-14 text-base pr-20"
+                disabled={isSubmitting}
+              />
+              <a href="/privacy" className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-muted-foreground hover:text-white transition-colors">Privacy</a>
+            </div>
           </div>
         </div>
 
