@@ -59,7 +59,9 @@ export const Footer = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border-secondary flex items-center justify-between">
-          <p className="text-xs text-text-tertiary">© 2025 MusicOS. All rights reserved.</p>
+          <p className="text-xs text-text-tertiary">
+            © 2025 MusicOS. A <a href="https://universalaiapp.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-white transition-colors">UniversalAI</a> Project.
+          </p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-text-tertiary hover:text-white transition-colors">
               <Github className="w-4 h-4" />
