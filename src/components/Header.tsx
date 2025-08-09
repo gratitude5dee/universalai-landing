@@ -1,67 +1,54 @@
 import React from 'react';
-import { Menu, LogOut, User } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
-import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import musicosLogo from '@/assets/musicos-logo.png';
 
-export const Header = () => {
-  const { user, signOut, loading } = useAuth();
-
-  const handleSignOut = async () => {
-    await signOut();
-  };
-
+const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 animate-fade-up">
-      <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
-        {/* Logo */}
-        <a href="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-300">
-          <img src={musicosLogo} alt="MusicOS" className="w-10 h-10 animate-float" />
-          <span className="text-2xl font-bold text-gradient-brand">MusicOS</span>
-        </a>
-        
-        {/* Menu */}
-        <div className="flex items-center gap-4">
-          <button className="lg:hidden p-2 text-gray-400 hover:text-white transition-colors">
-            <Menu size={24} />
+    <header className="sticky top-0 z-50 border-b" style={{ borderColor: 'hsl(var(--lp-divider))' }}>
+      <nav className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between px-6" style={{ backgroundColor: 'hsl(var(--lp-bg))', color: 'hsl(var(--lp-text))' }}>
+        {/* Left: Brand */}
+        <div className="flex items-center gap-8">
+          <a href="/" className="font-semibold tracking-tight hover:opacity-90 transition-opacity" aria-label="MusicOS home">
+            MusicOS
+          </a>
+        </div>
+
+        {/* Center: Nav */}
+        <ul className="hidden md:flex items-center gap-6 text-sm text-[hsl(var(--lp-muted))]">
+          {['Platform', 'Manifesto', 'Company', 'Download', 'Blog'].map((item) => (
+            <li key={item}>
+              <a href="#" className="transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2" style={{
+                boxShadow: 'none'
+              }}>{item}</a>
+            </li>
+          ))}
+        </ul>
+
+        {/* Right: Lang + CTA */}
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="hidden sm:inline-flex items-center rounded-md px-2 py-1 text-sm transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2"
+            style={{ color: 'hsl(var(--lp-text))', borderColor: 'hsl(var(--lp-divider))' }}
+            aria-label="Change language"
+          >
+            EN
           </button>
-          
-          {!loading && (
-            <>
-              {user ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm" className="flex items-center gap-2 text-white hover:text-primary">
-                      <User size={16} />
-                      <span className="hidden sm:inline">{user.user_metadata?.username || user.email}</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-48">
-                    <DropdownMenuItem onClick={handleSignOut} className="flex items-center gap-2 text-destructive">
-                      <LogOut size={16} />
-                      Sign Out
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <>
-                  <Button variant="ghost" size="sm" asChild className="text-white hover:text-primary">
-                    <Link to="/auth">Sign In</Link>
-                  </Button>
-                  <a 
-                    href="#waitlist"
-                    className="btn-primary px-8 py-3 text-base font-bold rounded-full"
-                  >
-                    Join Waitlist
-                  </a>
-                </>
-              )}
-            </>
-          )}
+          <a
+            href="#contact"
+            className="inline-flex h-11 items-center justify-center rounded-xl px-4 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2"
+            style={{
+              backgroundColor: 'hsl(var(--lp-cta-bg))',
+              color: 'white',
+              boxShadow: 'none'
+            }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'hsl(var(--lp-cta-hover))')}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = 'hsl(var(--lp-cta-bg))')}
+          >
+            Contact us
+          </a>
         </div>
       </nav>
     </header>
   );
 };
+
+export default Header;

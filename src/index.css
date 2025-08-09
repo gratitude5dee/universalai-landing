@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 :root {
-  /* Color System */
+  /* Color System (dark baseline) */
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
   --bg-tertiary: #111111;
@@ -37,6 +37,23 @@
   --text-6xl: 3.75rem;   /* 60px */
   --text-7xl: 4.5rem;    /* 72px */
   --text-8xl: 6rem;      /* 96px */
+
+  /* Light landing palette (HSL tokens) */
+  --lp-bg: 0 0% 98%;            /* #FAFAFA */
+  --lp-text: 240 5% 4%;         /* near-black #0B0B0C */
+  --lp-muted: 220 9% 46%;       /* #6B7280 */
+  --lp-card: 240 5% 4%;         /* dark surface */
+  --lp-card-border: 0 0% 100% / 0.06; /* subtle white border with alpha */
+
+  --lp-accent-1: 264 84% 53%;   /* indigo #6A20ED */
+  --lp-accent-2: 270 84% 67%;   /* violet #A855F7 */
+  --lp-accent-3: 330 76% 72%;   /* pink #EC4899 */
+  --lp-accent-4: 42 96% 65%;    /* amber #F59E0B */
+
+  --lp-cta-bg: 0 0% 7%;         /* #111 */
+  --lp-cta-hover: 0 0% 0%;      /* #000 */
+  --lp-divider: 0 0% 0% / 0.06;  /* header bottom divider */
+  --lp-glass-overlay: 0 0% 100% / 0.35; /* glassy overlay */
 }
 
 body {
