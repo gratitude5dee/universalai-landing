@@ -1,7 +1,10 @@
 import React from 'react';
 
-const SocialProof = () => {
-  const signups = 24;
+interface SocialProofProps {
+  signups: number;
+}
+
+const SocialProof: React.FC<SocialProofProps> = ({ signups }) => {
   const goal = 100;
   const progress = (signups / goal) * 100;
 
@@ -14,7 +17,7 @@ const SocialProof = () => {
         </div>
         <div className="w-full bg-border-secondary rounded-full h-1.5 mt-2">
           <div
-            className="bg-accent-primary h-1.5 rounded-full"
+            className="bg-accent-primary h-1.5 rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>

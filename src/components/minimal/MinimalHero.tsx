@@ -3,7 +3,11 @@ import Spinner from '@/components/ui/spinner';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
-const MinimalHero = () => {
+interface MinimalHeroProps {
+  onSignupSuccess: () => void;
+}
+
+const MinimalHero: React.FC<MinimalHeroProps> = ({ onSignupSuccess }) => {
   const [email, setEmail] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [status, setStatus] = useState<FormStatus>('idle');
@@ -36,6 +40,7 @@ const MinimalHero = () => {
     try {
       await mockSubmit(email);
       setStatus('success');
+      onSignupSuccess();
     } catch (err) {
       setStatus('error');
       setError((err as Error).message);
