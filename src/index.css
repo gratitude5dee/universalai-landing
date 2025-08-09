@@ -54,6 +54,10 @@
   --lp-cta-hover: 0 0% 0%;      /* #000 */
   --lp-divider: 0 0% 0% / 0.06;  /* header bottom divider */
   --lp-glass-overlay: 0 0% 100% / 0.35; /* glassy overlay */
+
+  /* Blue CTA tokens to match header/hero in reference */
+  --lp-blue: 206 100% 48%;       /* #0070F3 */
+  --lp-blue-hover: 206 100% 40%; /* darker hover */
 }
 
 body {
