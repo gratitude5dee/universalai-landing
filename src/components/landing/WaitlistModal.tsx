@@ -116,9 +116,10 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ open, onOpenChange }) => 
           </div>
           <div>
             <h3 className="text-lg font-semibold text-white">You're in!</h3>
-            <p className="text-white/80">
-              We'll notify you when MusicOS is ready to rock your world.
-            </p>
+            <p className="text-white/80">We'll notify you when MusicOS is ready to rock your world.</p>
+            {waitlistPosition > 0 && (
+              <p className="text-white/70 mt-2 text-sm">Current waitlist signups: {waitlistPosition.toLocaleString()}</p>
+            )}
           </div>
           <Button 
             onClick={handleClose} 
