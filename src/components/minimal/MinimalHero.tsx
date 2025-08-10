@@ -20,10 +20,10 @@ const MinimalHero = () => {
           </div>
 
           <h1 className="font-extrabold tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4rem)] mb-4">
-            Engineered for the Demands of Tomorrow
+            Free your Creativity, and put your music back in your hands while putting the industry administrative tasks to autopilot.
           </h1>
           <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">
-            A developer-grade workspace for music production. Plan, collaborate, and ship with precision.
+            A vibe-CREATING operating system for musicians, DJ's, comedians, and touring performers. Organize, plan, and create with hyperproductivity.
           </p>
           <div className="flex items-center gap-3">
             <button
