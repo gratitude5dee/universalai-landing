@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { TrendingUp } from 'lucide-react';
+import { Flame, TrendingUp } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
 
@@ -129,23 +129,30 @@ const LiveWaitlistCounter = () => {
       </div>
 
       {/* Recent Signups Ticker */}
-      <div className="text-center h-6 flex items-center justify-center">
-        {recentSignups.length > 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center gap-2 text-xs text-muted-foreground"
-          >
-            <TrendingUp className="w-4 h-4 text-green-500" />
-            <span>
-              <strong>{recentSignups.length} new signups</strong> in the last 24 hours.
-            </span>
-          </motion.div>
-        ) : (
-          <p className="text-xs text-muted-foreground">Join thousands creating with MusicOS.</p>
-        )}
-      </div>
+      {recentSignups.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center gap-2 text-xs text-muted-foreground"
+        >
+          <span>Recent:</span>
+          <div className="flex gap-3">
+            {recentSignups.slice(0, 3).map((signup, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 + index * 0.1 }}
+                className="flex items-center gap-1"
+              >
+                <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                {signup.display_name}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };
