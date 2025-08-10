@@ -35,14 +35,11 @@ const MinimalHero = () => {
             <a href="#features" className="text-sm text-text-secondary hover:text-white transition-colors">Learn more</a>
           </div>
 
-          <div className="mt-8">
-            <LiveWaitlistCounter />
-          </div>
         </div>
 
         {/* Right gradient art card */}
-        <div className="lg:col-span-6">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] min-h-[320px] lg:min-h-[420px]">
+        <div className="lg:col-span-6 flex flex-col">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] min-h-[320px] lg:min-h-[420px] flex-grow">
             <div className="absolute inset-0 opacity-90" style={{
               background:
                 'radial-gradient(120px 160px at 20% 30%, rgba(106,32,237,0.8), transparent 60%), \
@@ -61,6 +58,9 @@ const MinimalHero = () => {
                 Start a Free Trial →
               </button>
             </div>
+          </div>
+          <div className="mt-4">
+            <LiveWaitlistCounter />
           </div>
         </div>
       </div>
