@@ -55,7 +55,7 @@ const MinimalHero = () => {
 
             <div className="absolute bottom-4 left-4">
               <button
-                onClick={openWaitlist}
+                onClick={() => window.location.href = 'https://demo.universal-ai.xyz'}
                 className="px-4 py-2 rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black"
               >
                 Start a Free Trial →
