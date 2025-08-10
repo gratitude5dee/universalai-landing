@@ -20,7 +20,7 @@ const MinimalHero = () => {
           </div>
 
           <h1 className="font-extrabold tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4rem)] mb-4">
-            Free your Creativity, and put your music back in your hands while putting the industry administrative tasks to autopilot.
+            Free your Creativity, and put your music back in your hands.
           </h1>
           <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">
             A vibe-CREATING operating system for musicians, DJ's, comedians, and touring performers. Organize, plan, and create with hyperproductivity.
