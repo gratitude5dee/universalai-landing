@@ -3,8 +3,8 @@ import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
 
 const tiers = [
-  { name: 'Starter', price: 'Free', desc: 'For individuals getting started', features: ['Unlimited projects', 'Basic collaboration', 'Community support'] },
-  { name: 'Pro', price: '$12/mo', desc: 'For teams who ship weekly', features: ['Everything in Starter', 'Advanced roles & permissions', 'Automations', 'Priority support'] },
+  { name: 'Starter', price: 'Free', desc: 'Always Open-Source,Free for Self-Hosting', features: ['Unlimited projects', 'Basic collaboration', 'Community support'] },
+  { name: 'Pro', price: '$99/mo', desc: 'For teams who ship weekly', features: ['Everything in Starter', 'Advanced roles & permissions', 'Automations', 'Priority support'] },
   { name: 'Studio', price: 'Contact', desc: 'For studios & enterprises', features: ['Custom SSO', 'Premium support', 'Security reviews', 'Onboarding & training'] },
 ];
 
