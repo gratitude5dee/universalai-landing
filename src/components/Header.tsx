@@ -25,7 +25,7 @@ const Header = () => {
 
           {/* Right side actions */}
           <div className="flex items-center gap-2">
-            {/* CTA - visible on all screens, but text will be changed later */}
+            {/* CTA - visible on all screens */}
             <button
               type="button"
               onClick={() => setOpen(true)}
