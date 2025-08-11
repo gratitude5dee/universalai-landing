@@ -22,7 +22,7 @@ const MinimalHero = () => {
           <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">
             A vibe-CREATING operating system for musicians, DJ's, comedians, and touring performers. Organize, plan, and create with hyperproductivity.
           </p>
-          <div className="flex items-center gap-3 flex-wrap px-[240px] my-px py-px mx-[25px]">
+          <div className="flex items-center gap-3 flex-wrap px-[240px] my-px py-px mx-[40px]">
             <button onClick={openWaitlist} className="px-5 h-11 rounded-xl text-white font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black bg-violet-950 hover:bg-violet-800">
               Join Waitlist →
             </button>
@@ -40,11 +40,11 @@ const MinimalHero = () => {
                  radial-gradient(180px 200px at 50% 50%, rgba(236,72,153,0.6), transparent 70%), \
                  radial-gradient(140px 160px at 70% 20%, rgba(245,158,11,0.5), transparent 70%)'
           }} />
-            <div className="absolute inset-0 bg-white/10 mix-blend-overlay" />
+            <div className="absolute inset-0 bg-white/10 mix-blend-overlay px-[66px]" />
             <div className="absolute inset-0 border border-white/20 rounded-3xl pointer-events-none" />
 
-            <div className="absolute bottom-4 left-4">
-              <button onClick={() => window.location.href = 'https://demo.universal-ai.xyz'} className="px-4 py-2 rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black">
+            <div className="absolute bottom-4 left-4 py-[127px] px-[91px] mx-[6px] my-0">
+              <button onClick={() => window.location.href = 'https://demo.universal-ai.xyz'} className="rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black py-[9px] px-[10px] mx-[240px] my-0">
                 Start a Free Trial →
               </button>
             </div>
