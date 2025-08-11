@@ -11,7 +11,7 @@ const MinimalHero = () => {
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full relative z-10 py-24">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full relative z-10 py-16 sm:py-20 lg:py-24">
         {/* Left copy */}
         <div className="lg:col-span-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-primary mb-6">
@@ -25,7 +25,7 @@ const MinimalHero = () => {
           <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">
             A vibe-CREATING operating system for musicians, DJ's, comedians, and touring performers. Organize, plan, and create with hyperproductivity.
           </p>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <button
               onClick={openWaitlist}
               className="px-5 h-11 rounded-xl bg-black text-white font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
