@@ -1,8 +1,10 @@
 import React from 'react';
 import { useInView } from '@/hooks/use-in-view';
-
 const CodeDemo = () => {
-  const { ref, inView } = useInView();
+  const {
+    ref,
+    inView
+  } = useInView();
   const codeExample = `// Initialize MusicOS Client
 import { MusicOS } from '@musicos/sdk';
 
@@ -32,15 +34,13 @@ await client.tasks.create({
 client.on('task:completed', (task) => {
   console.log(\`✓ \${task.title} completed by \${task.assignee}\`);
 });`;
-
-  return (
-    <section ref={ref} className={`py-32 transition-opacity duration-1000 ${inView ? 'opacity-100 fade-up' : 'opacity-0'}`}>
+  return <section ref={ref} className={`py-32 transition-opacity duration-1000 ${inView ? 'opacity-100 fade-up' : 'opacity-0'}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - description */}
           <div>
             <p className="text-sm text-text-tertiary mb-2 font-mono">DEVELOPER EXPERIENCE</p>
-            <h2 className="text-5xl font-bold mb-6">Ship faster with our SDK.</h2>
+            <h2 className="text-5xl font-bold mb-6">Create production-grade IP with our OS.</h2>
             <p className="text-lg text-text-secondary mb-8">
               Integrate MusicOS into your workflow with our TypeScript SDK.
               Full type safety, real-time subscriptions, and 99.99% uptime guaranteed.
@@ -78,8 +78,6 @@ client.on('task:completed', (task) => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CodeDemo;
