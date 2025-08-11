@@ -22,7 +22,7 @@ const MinimalHero = () => {
           <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">
             A vibe-CREATING operating system for musicians, DJ's, comedians, and touring performers. Organize, plan, and create with hyperproductivity.
           </p>
-          <div className="flex items-center gap-3 flex-wrap">
+          <div className="flex items-center gap-3 flex-wrap px-[240px] my-px py-px mx-[25px]">
             <button onClick={openWaitlist} className="px-5 h-11 rounded-xl text-white font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black bg-violet-950 hover:bg-violet-800">
               Join Waitlist →
             </button>
