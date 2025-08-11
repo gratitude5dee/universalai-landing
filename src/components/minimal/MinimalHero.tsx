@@ -48,10 +48,10 @@ const MinimalHero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
                 {/* Hover CTA (mobile visible, desktop on hover) */}
-                <div className="absolute inset-0 flex items-end justify-end p-4 sm:p-6">
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-end p-4 sm:p-6 pointer-events-none">
                   <button
                     onClick={() => (window.location.href = 'https://app.universal-ai.xyz')}
-                    className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 rounded-full bg-white/10 backdrop-blur-md text-white text-sm md:text-base font-semibold hover:bg-white/20 px-5 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
+                    className="pointer-events-auto opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 rounded-full bg-white/10 backdrop-blur-md text-white text-sm md:text-base font-semibold hover:bg-white/20 px-5 py-2.5 shadow-[0_8px_30px_rgba(0,0,0,0.3)]"
                     aria-label="Start a Free Trial"
                   >
                     Start a Free Trial →
