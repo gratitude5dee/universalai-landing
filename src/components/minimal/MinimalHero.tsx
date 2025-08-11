@@ -5,7 +5,7 @@ const MinimalHero = () => {
   const openWaitlist = () => {
     window.dispatchEvent(new Event('open-waitlist'));
   };
-  return <section className="min-h-[60vh] md:min-h-[70vh] lg:min-h-[calc(80vh-500px)] flex items-center relative">
+  return <section className="relative">
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
@@ -18,12 +18,12 @@ const MinimalHero = () => {
           </div>
 
           <h1 className="font-extrabold tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4rem)] mb-4">
-            Free your Creativity, and put your music back in your hands.
+            Stop Managing Spreadsheets. Start Building Your Empire.
           </h1>
-          <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">A VIBE-CREATING operating system for musicians, DJ's, comedians, and touring performers.  Organize, plan, and create with hyperproductivity.</p>
+          <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">75% of your time isn't spent making music. We automate the admin so you can get back to creating.</p>
           <div className="flex items-center gap-3 flex-wrap">
             <button onClick={openWaitlist} className="px-5 h-11 rounded-xl text-white font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black bg-violet-950 hover:bg-violet-800">
-              Join Waitlist →
+              Get Started →
             </button>
             <a href="#features" className="text-sm text-text-secondary hover:text-white transition-colors">Learn more</a>
           </div>

@@ -11,11 +11,9 @@ const MetricsSection = () => {
   return (
     <section className="py-16 md:py-24">
       <div className="mx-auto max-w-[1200px] px-6 md:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 border border-border rounded-lg p-6">
-          <Metric value="99.98%" label="Uptime" />
-          <Metric value="<120ms" label="Avg. response" />
-          <Metric value="500k+" label="Tasks shipped" />
-          <Metric value="120+" label="Teams onboarded" />
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-6 border border-border rounded-lg p-6">
+          <Metric value="80%" label="Less admin time" />
+          <Metric value="3.5x" label="Revenue increase" />
         </div>
       </div>
     </section>
