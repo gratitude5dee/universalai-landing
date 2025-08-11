@@ -19,9 +19,10 @@ const MinimalHero = () => {
           <h1 className="font-extrabold tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4rem)] mb-4">
             Free your Creativity, and put your music back in your hands.
           </h1>
-          <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">
-            A vibe-CREATING operating system for musicians, DJ's, comedians, and touring performers. Organize, plan, and create with hyperproductivity.
-          </p>
+          <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">A VIBE-CREATING operating system for musicians, DJ's, comedians, and touring performers. 
+
+
+Organize, plan, and create with hyperproductivity.</p>
           <div className="flex items-center gap-3 flex-wrap px-[240px] my-px py-px mx-[40px]">
             <button onClick={openWaitlist} className="px-5 h-11 rounded-xl text-white font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black bg-violet-950 hover:bg-violet-800">
               Join Waitlist →
