@@ -3,14 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Flame, TrendingUp } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
-import { cn } from '@/lib/utils';
 
 interface RecentSignup {
   signup_time: string;
   display_name: string;
 }
 
-const LiveWaitlistCounter: React.FC<{ className?: string }> = ({ className }) => {
+const LiveWaitlistCounter = () => {
   const [displayCount, setDisplayCount] = useState(0);
   const [recentSignups, setRecentSignups] = useState<RecentSignup[]>([]);
 
@@ -91,7 +90,7 @@ const LiveWaitlistCounter: React.FC<{ className?: string }> = ({ className }) =>
   };
 
   return (
-    <div className={cn("flex flex-col items-center gap-4 py-6", className)}>
+    <div className="flex flex-col items-center gap-4 py-6">
       {/* Main Counter */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
