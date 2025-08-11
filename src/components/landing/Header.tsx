@@ -24,7 +24,7 @@ const Header = () => {
     return () => window.removeEventListener('open-waitlist', onOpen as EventListener);
   }, []);
   return <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 dark:bg-bg-primary/80 backdrop-blur-md border-b border-border-primary">
-      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between bg-slate-950 rounded-lg">
+      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between rounded-lg bg-zinc-950">
         {/* Logo */}
         <div className="flex items-center gap-8">
           <Link to="/" className="font-extrabold tracking-tight text-lg">MusicOS</Link>
