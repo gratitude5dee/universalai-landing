@@ -47,7 +47,7 @@ const Header = () => {
 
           <button onClick={() => setOpen(true)} className="group relative overflow-hidden px-4 py-2 bg-black text-white text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
             <span className="relative z-10">Join Waitlist</span>
-            <div className="absolute inset-0 bg-white/10 group-hover:bg-white/20 transition-colors" />
+            <div className="absolute inset-0 transition-colors bg-purple-950" />
           </button>
         </div>
       </nav>
