@@ -29,20 +29,28 @@ const MinimalHero = () => {
 
         </div>
 
-        {/* Right gradient art card */}
+        {/* Right media card with hover CTA */}
         <div className="lg:col-span-6 flex flex-col">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] min-h-[320px] lg:min-h-[420px] flex-grow">
-            <div className="absolute inset-0 opacity-90" style={{
-            background: 'radial-gradient(120px 160px at 20% 30%, rgba(106,32,237,0.8), transparent 60%), \
-                 radial-gradient(160px 180px at 80% 70%, rgba(168,85,247,0.7), transparent 60%), \
-                 radial-gradient(180px 200px at 50% 50%, rgba(236,72,153,0.6), transparent 70%), \
-                 radial-gradient(140px 160px at 70% 20%, rgba(245,158,11,0.5), transparent 70%)'
-          }} />
-            <div className="absolute inset-0 bg-white/10 mix-blend-overlay px-[66px]" />
-            <div className="absolute inset-0 border border-white/20 rounded-3xl pointer-events-none" />
+          <div className="group relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] min-h-[320px] lg:min-h-[420px] flex-grow bg-black">
+            <video
+              className="absolute inset-0 w-full h-full object-cover"
+              src="/videos/unidemo-2.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              aria-label="UniversalAI product demo"
+            />
+            {/* dark gradient overlay for readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            <div className="absolute inset-0 border border-white/10 rounded-3xl pointer-events-none" />
 
-            <div className="absolute bottom-4 left-4 py-[127px] px-[91px] mx-[6px] my-0">
-              <button onClick={() => window.location.href = 'https://app.universal-ai.xyz'} className="rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black py-[9px] px-[10px] mx-[240px] my-0">
+            {/* Hover CTA */}
+            <div className="absolute inset-0 flex items-end justify-end p-4">
+              <button
+                onClick={() => (window.location.href = 'https://app.universal-ai.xyz')}
+                className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full bg-white/10 backdrop-blur-md text-white text-sm font-medium hover:bg-white/20 px-4 py-2"
+              >
                 Start a Free Trial →
               </button>
             </div>
@@ -50,6 +58,25 @@ const MinimalHero = () => {
           <div className="mt-4">
             <LiveWaitlistCounter />
           </div>
+        </div>
+      </div>
+      {/* Partnerships */}
+      <div className="max-w-7xl mx-auto px-6 mt-4 relative z-10">
+        <div className="flex items-center justify-center gap-3 sm:gap-6 overflow-x-auto py-4">
+          {[
+            { name: 'OutsideLands', abbr: 'OL' },
+            { name: 'E3 Entertainment', abbr: 'E3' },
+            { name: '5-Dee Studios', abbr: '5D' },
+            { name: 'Create Music', abbr: 'CM' },
+            { name: 'Human.Tech', abbr: 'HT' },
+          ].map((b) => (
+            <div key={b.name} className="shrink-0">
+              <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm flex items-center justify-center text-xs sm:text-sm text-white/80">
+                {b.abbr}
+              </div>
+              <span className="sr-only">{b.name}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>;

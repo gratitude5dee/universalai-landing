@@ -30,18 +30,28 @@ export const FiveDeeMatrixLoader: React.FC<FiveDeeMatrixLoaderProps> = ({
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Matrix characters
-    const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+    // Matrix characters (inspired by reference)
+    const chars = '01$*+-.=_/\\|<>abcdefDEE';
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize);
     const drops: number[] = Array(columns).fill(1);
 
+    // additional sparkles coordinates
+    const sparkles = Array.from({ length: 40 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      s: Math.random() * 1.2 + 0.3,
+    }));
+
     // Matrix animation
     const matrix = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+      // Trail fade
+      ctx.fillStyle = 'rgba(10, 10, 15, 0.06)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = 'hsl(var(--primary))';
+      // Matrix glyph color from CSS var
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary')?.trim() || '#00ff88';
+      ctx.fillStyle = accent;
       ctx.font = `${fontSize}px 'JetBrains Mono', monospace`;
 
       for (let i = 0; i < drops.length; i++) {
@@ -61,6 +71,19 @@ export const FiveDeeMatrixLoader: React.FC<FiveDeeMatrixLoaderProps> = ({
     // Start matrix animation
     const matrixInterval = setInterval(matrix, 35);
 
+    // Subtle sparkle twinkle
+    const sparkleInterval = setInterval(() => {
+      const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary')?.trim() || '#00ff88';
+      ctx.fillStyle = accent + '80';
+      sparkles.forEach((p, i) => {
+        const char = ['*', '+', '.', '$'][i % 4];
+        ctx.fillText(char, p.x, p.y);
+        p.y += (Math.sin(i + Date.now() * 0.001) + 1) * 0.5;
+        if (p.y > canvas.height) p.y = 0;
+      });
+    }, 120);
+
+
     // Show logo after 1.5 seconds
     const logoTimer = setTimeout(() => {
       setShowLogo(true);
@@ -74,6 +97,7 @@ export const FiveDeeMatrixLoader: React.FC<FiveDeeMatrixLoaderProps> = ({
 
     return () => {
       clearInterval(matrixInterval);
+      clearInterval(sparkleInterval);
       clearTimeout(logoTimer);
       window.removeEventListener('resize', resizeCanvas);
     };
@@ -96,7 +120,7 @@ export const FiveDeeMatrixLoader: React.FC<FiveDeeMatrixLoaderProps> = ({
             ref={canvasRef}
             className="absolute inset-0"
             style={{ 
-              background: 'linear-gradient(135deg, hsl(var(--background)), hsl(var(--background-secondary)))'
+              background: 'radial-gradient(900px 600px at 50% 40%, rgba(139, 92, 246, 0.15), transparent 60%), linear-gradient(180deg, #0a0a0f 0%, #080812 100%)'
             }}
           />
           
@@ -129,8 +153,8 @@ export const FiveDeeMatrixLoader: React.FC<FiveDeeMatrixLoaderProps> = ({
           )}
 
           {/* Scanlines effect */}
-          <div className="absolute inset-0 pointer-events-none opacity-10">
-            <div className="h-full w-full bg-scanlines animate-scanlines"></div>
+          <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay">
+            <div className="h-full w-full bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.2)_0px,rgba(0,0,0,0.2)_1px,transparent_2px,transparent_3px)]"></div>
           </div>
         </motion.div>
       )}
