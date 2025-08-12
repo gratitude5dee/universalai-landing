@@ -73,7 +73,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             <div className="absolute inset-0 border border-white/20 rounded-3xl pointer-events-none" />
 
             <div className="absolute bottom-4 left-4 py-[127px] my-0 mx-0 px-[170px]">
-              <button onClick={() => window.location.href = 'https://app.universal-ai.xyz'} className="rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black py-[9px] px-[10px] my-0 mx-[45px]">
+              <button onClick={() => window.location.href = 'https://demo.universal-ai.xyz'} className="rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black py-[9px] px-[10px] my-0 mx-[45px]">
                 Start a Free Trial →
               </button>
             </div>
