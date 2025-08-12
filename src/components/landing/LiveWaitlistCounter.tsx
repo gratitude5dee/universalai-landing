@@ -3,37 +3,50 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Flame, TrendingUp } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useQuery } from '@tanstack/react-query';
-
 interface RecentSignup {
   signup_time: string;
   display_name: string;
 }
-
 const LiveWaitlistCounter = () => {
   const [displayCount, setDisplayCount] = useState(0);
   const [recentSignups, setRecentSignups] = useState<RecentSignup[]>([]);
 
   // Fetch waitlist count
-  const { data: count, refetch } = useQuery({
+  const {
+    data: count,
+    refetch
+  } = useQuery({
     queryKey: ['waitlist-count'],
     queryFn: async () => {
-      const { data, error } = await supabase.rpc('get_waitlist_count');
+      const {
+        data,
+        error
+      } = await supabase.rpc('get_waitlist_count');
       if (error) throw error;
       return data as number;
     },
-    refetchInterval: 10000, // Poll every 10 seconds
+    refetchInterval: 10000,
+    // Poll every 10 seconds
     initialData: 0
   });
 
   // Fetch recent signups for ticker
-  const { data: signups } = useQuery({
+  const {
+    data: signups
+  } = useQuery({
     queryKey: ['recent-signups'],
     queryFn: async () => {
-      const { data, error } = await supabase.rpc('get_recent_signups', { limit_count: 5 });
+      const {
+        data,
+        error
+      } = await supabase.rpc('get_recent_signups', {
+        limit_count: 5
+      });
       if (error) throw error;
       return data as RecentSignup[];
     },
-    refetchInterval: 15000, // Refresh every 15 seconds
+    refetchInterval: 15000,
+    // Refresh every 15 seconds
     initialData: []
   });
 
@@ -44,68 +57,60 @@ const LiveWaitlistCounter = () => {
       const timer = setInterval(() => {
         setDisplayCount(prev => {
           const next = prev + increment;
-          if ((increment > 0 && next >= count) || (increment < 0 && next <= count)) {
+          if (increment > 0 && next >= count || increment < 0 && next <= count) {
             clearInterval(timer);
             return count;
           }
           return next;
         });
       }, 50);
-
       return () => clearInterval(timer);
     }
   }, [count, displayCount]);
-
   useEffect(() => {
     setRecentSignups(signups || []);
   }, [signups]);
 
   // Real-time subscription for live updates
   useEffect(() => {
-    const channel = supabase
-      .channel('waitlist-updates')
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'waitlist_signups'
-        },
-        () => {
-          refetch();
-        }
-      )
-      .subscribe();
-
+    const channel = supabase.channel('waitlist-updates').on('postgres_changes', {
+      event: 'INSERT',
+      schema: 'public',
+      table: 'waitlist_signups'
+    }, () => {
+      refetch();
+    }).subscribe();
     return () => {
       supabase.removeChannel(channel);
     };
   }, [refetch]);
-
   const getMilestoneMessage = (count: number) => {
     if (count < 100) return `${100 - count} more for exclusive early access!`;
     if (count < 500) return `${500 - count} more to unlock beta features!`;
     if (count < 1000) return `${1000 - count} more for VIP status!`;
     return "VIP status unlocked! 🎉";
   };
-
-  return (
-    <div className="flex flex-col items-center gap-4 py-6">
+  return <div className="flex flex-col items-center gap-4 py-6 mx-0 px-[18px]">
       {/* Main Counter */}
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-3 border border-border rounded-full px-5 py-2 bg-secondary/40"
-      >
+      <motion.div initial={{
+      opacity: 0,
+      y: 8
+    }} animate={{
+      opacity: 1,
+      y: 0
+    }} className="flex items-center gap-3 border border-border rounded-full px-5 py-2 bg-secondary/40">
         <div className="flex items-baseline gap-2">
           <AnimatePresence mode="wait">
-            <motion.span
-              key={displayCount}
-              initial={{ y: 8, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -8, opacity: 0 }}
-              className="text-xl font-semibold"
-            >
+            <motion.span key={displayCount} initial={{
+            y: 8,
+            opacity: 0
+          }} animate={{
+            y: 0,
+            opacity: 1
+          }} exit={{
+            y: -8,
+            opacity: 0
+          }} className="text-xl font-semibold">
               {displayCount.toLocaleString()}
             </motion.span>
           </AnimatePresence>
@@ -116,45 +121,44 @@ const LiveWaitlistCounter = () => {
       {/* Milestone Progress */}
       <div className="text-center">
         <div className="text-xs text-muted-foreground">
-          {getMilestoneMessage(displayCount).replace(' 🎉','')}
+          {getMilestoneMessage(displayCount).replace(' 🎉', '')}
         </div>
         <div className="mt-2 w-64 h-2 bg-border rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-primary"
-            initial={{ width: 0 }}
-            animate={{ width: `${Math.min((displayCount % 100) / 100 * 100, 100)}%` }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          />
+          <motion.div className="h-full bg-primary" initial={{
+          width: 0
+        }} animate={{
+          width: `${Math.min(displayCount % 100 / 100 * 100, 100)}%`
+        }} transition={{
+          duration: 0.4,
+          ease: 'easeOut'
+        }} />
         </div>
       </div>
 
       {/* Recent Signups Ticker */}
-      {recentSignups.length > 0 && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="flex items-center gap-2 text-xs text-muted-foreground"
-        >
+      {recentSignups.length > 0 && <motion.div initial={{
+      opacity: 0
+    }} animate={{
+      opacity: 1
+    }} transition={{
+      delay: 0.2
+    }} className="flex items-center gap-2 text-xs text-muted-foreground">
           <span>Recent:</span>
           <div className="flex gap-3">
-            {recentSignups.slice(0, 3).map((signup, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, x: 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 + index * 0.1 }}
-                className="flex items-center gap-1"
-              >
+            {recentSignups.slice(0, 3).map((signup, index) => <motion.span key={index} initial={{
+          opacity: 0,
+          x: 10
+        }} animate={{
+          opacity: 1,
+          x: 0
+        }} transition={{
+          delay: 0.2 + index * 0.1
+        }} className="flex items-center gap-1">
                 <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                 {signup.display_name}
-              </motion.span>
-            ))}
+              </motion.span>)}
           </div>
-        </motion.div>
-      )}
-    </div>
-  );
+        </motion.div>}
+    </div>;
 };
-
 export default LiveWaitlistCounter;
