@@ -9,16 +9,24 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
   const openWaitlist = () => {
     window.dispatchEvent(new Event('open-waitlist'));
   };
-  
-  // Exclusive Design Partners data
-  const partners = [
-    { name: 'OutsideLands', abbr: 'OL' },
-    { name: 'E3 Entertainment', abbr: 'E3' },
-    { name: '5-Dee Studios', abbr: '5D' },
-    { name: 'Create Music', abbr: 'CM' },
-    { name: 'Human.Tech', abbr: 'HT' },
-  ];
 
+  // Exclusive Design Partners data
+  const partners = [{
+    name: 'OutsideLands',
+    abbr: 'OL'
+  }, {
+    name: 'E3 Entertainment',
+    abbr: 'E3'
+  }, {
+    name: '5-Dee Studios',
+    abbr: '5D'
+  }, {
+    name: 'Create Music',
+    abbr: 'CM'
+  }, {
+    name: 'Human.Tech',
+    abbr: 'HT'
+  }];
   return <section className={`min-h-[80vh] flex items-center relative ${className}`}>
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-black" />
@@ -46,14 +54,12 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           <div className="mt-6 hidden" aria-label="Exclusive Design Partners">
             <h2 className="text-center text-xs md:text-sm font-medium text-text-secondary mb-3">Exclusive Design Partners</h2>
             <div className="grid grid-cols-5 gap-3 sm:gap-4 items-center">
-              {partners.map((p) => (
-                <div key={p.name} className="flex items-center justify-center">
+              {partners.map(p => <div key={p.name} className="flex items-center justify-center">
                   <div className="h-9 w-full max-w-[100px] rounded-xl bg-white/5 border border-border-primary/60 backdrop-blur-sm flex items-center justify-center text-[10px] sm:text-xs text-text-secondary">
                     {p.abbr}
                   </div>
                   <span className="sr-only">{p.name} logo</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
@@ -83,17 +89,15 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           </div>
 
           {/* Exclusive Design Partners (right column under signups) */}
-          <div className="mt-8" aria-label="Exclusive Design Partners">
+          <div aria-label="Exclusive Design Partners" className="mt-8 mx-0 px-0">
             <h2 className="text-center text-xs md:text-sm font-medium text-text-secondary mb-3">Exclusive Design Partners</h2>
             <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 items-center justify-items-center">
-              {partners.map((p) => (
-                <div key={p.name} className="w-full flex items-center justify-center">
+              {partners.map(p => <div key={p.name} className="w-full flex items-center justify-center">
                   <div className="px-5 h-10 rounded-full border border-border-primary text-text-secondary inline-flex items-center justify-center">
                     {p.abbr}
                   </div>
                   <span className="sr-only">{p.name} logo</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
