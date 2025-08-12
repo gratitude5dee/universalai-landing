@@ -27,7 +27,7 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between rounded-lg bg-inherit">
         {/* Logo */}
         <div className="flex items-center gap-8">
-          <Link to="/" className="font-extrabold tracking-tight text-lg">MusicOS</Link>
+          <Link to="/" className="font-extrabold tracking-tight text-lg">UniversalAI</Link>
 
           {/* Navigation */}
           <div className="hidden md:flex items-center gap-6">
