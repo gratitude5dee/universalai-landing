@@ -81,23 +81,25 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           <div className="mt-4">
             <LiveWaitlistCounter />
           </div>
-
-          {/* Exclusive Design Partners (right column under signups) */}
-          <div className="mt-8" aria-label="Exclusive Design Partners">
-            <h2 className="text-center text-xs md:text-sm font-medium text-text-secondary mb-3">Exclusive Design Partners</h2>
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 items-center justify-items-center">
-              {partners.map((p) => (
-                <div key={p.name} className="w-full flex items-center justify-center">
-                  <div className="px-5 h-10 rounded-full border border-border-primary text-text-secondary inline-flex items-center justify-center">
-                    {p.abbr}
-                  </div>
-                  <span className="sr-only">{p.name} logo</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
+
+      {/* Exclusive Design Partners - Full width */}
+      <section aria-label="Exclusive Design Partners" className="w-full">
+        <div className="max-w-7xl mx-auto px-6 pb-10">
+          <h2 className="text-center text-xs md:text-sm font-medium text-text-secondary mb-3 md:mb-4">Exclusive Design Partners</h2>
+          <div className="flex flex-wrap items-center justify-center md:justify-between gap-3 md:gap-4">
+            {partners.map((p) => (
+              <div key={p.name} className="shrink-0">
+                <div className="px-6 h-10 rounded-full border border-border-primary text-text-secondary inline-flex items-center justify-center">
+                  {p.abbr}
+                </div>
+                <span className="sr-only">{p.name} logo</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
     </section>;
 };
