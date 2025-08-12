@@ -42,6 +42,21 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             <a href="#features" className="text-sm text-text-secondary hover:text-white transition-colors">Learn more</a>
           </div>
 
+          {/* Exclusive Design Partners (moved under CTA) */}
+          <div className="mt-6" aria-label="Exclusive Design Partners">
+            <h2 className="text-center text-xs md:text-sm font-medium text-text-secondary mb-3">Exclusive Design Partners</h2>
+            <div className="grid grid-cols-5 gap-3 sm:gap-4 items-center">
+              {partners.map((p) => (
+                <div key={p.name} className="flex items-center justify-center">
+                  <div className="h-9 w-full max-w-[100px] rounded-xl bg-white/5 border border-border-primary/60 backdrop-blur-sm flex items-center justify-center text-[10px] sm:text-xs text-text-secondary">
+                    {p.abbr}
+                  </div>
+                  <span className="sr-only">{p.name} logo</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
 
         {/* Right gradient art card */}
@@ -71,7 +86,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
 
       {/* Exclusive Design Partners */}
       <section aria-label="Exclusive Design Partners" className="relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 pb-12">
+        <div className="max-w-7xl mx-auto px-6 pb-12 hidden">
           <h2 className="text-center text-sm md:text-base font-medium text-text-secondary mb-4">Exclusive Design Partners</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-6 items-center justify-items-center">
             {partners.map((p) => (
