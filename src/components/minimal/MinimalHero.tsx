@@ -1,12 +1,12 @@
 import React from 'react';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
-const MinimalHero: React.FC<{ className?: string }> = ({ className }) => {
+const MinimalHero = () => {
   const openWaitlist = () => {
     window.dispatchEvent(new Event('open-waitlist'));
   };
-  return <section className={`min-h-[80vh] flex items-center relative ${className ?? ''}`}>
+  return <section className="min-h-[80vh] flex items-center relative">
       {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-inherit" />
 
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full relative z-10 py-16 sm:py-20 lg:py-24">
         {/* Left copy */}
@@ -32,14 +32,6 @@ const MinimalHero: React.FC<{ className?: string }> = ({ className }) => {
         {/* Right gradient art card */}
         <div className="lg:col-span-6 flex flex-col">
           <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] min-h-[320px] lg:min-h-[420px] flex-grow">
-            <video
-              className="absolute inset-0 w-full h-full object-contain"
-              src="/videos/unidemo-2.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
             <div className="absolute inset-0 opacity-90" style={{
             background: 'radial-gradient(120px 160px at 20% 30%, rgba(106,32,237,0.8), transparent 60%), \
                  radial-gradient(160px 180px at 80% 70%, rgba(168,85,247,0.7), transparent 60%), \
