@@ -1,10 +1,11 @@
 import React from 'react';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
-const MinimalHero = () => {
+interface MinimalHeroProps { className?: string }
+const MinimalHero: React.FC<MinimalHeroProps> = ({ className }) => {
   const openWaitlist = () => {
     window.dispatchEvent(new Event('open-waitlist'));
   };
-  return <section className="min-h-[80vh] flex items-center relative">
+  return <section className={`min-h-[80vh] flex items-center relative ${className ?? ''}`}>
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-inherit" />
 
