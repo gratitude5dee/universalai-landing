@@ -41,7 +41,7 @@ const MinimalHero = () => {
             <div className="absolute inset-0 bg-white/10 mix-blend-overlay px-[66px]" />
             <div className="absolute inset-0 border border-white/20 rounded-3xl pointer-events-none" />
 
-            <div className="absolute bottom-4 left-4 py-[127px] px-[91px] my-0 mx-0">
+            <div className="absolute bottom-4 left-4 py-[127px] my-0 mx-0 px-[170px]">
               <button onClick={() => window.location.href = 'https://app.universal-ai.xyz'} className="rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black py-[9px] px-[10px] my-0 mx-[45px]">
                 Start a Free Trial →
               </button>
