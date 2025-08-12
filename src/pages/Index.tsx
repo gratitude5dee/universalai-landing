@@ -6,17 +6,12 @@ import SocialProof from '@/components/minimal/SocialProof';
 import TechnicalFeatures from '@/components/minimal/TechnicalFeatures';
 import MetricsSection from '@/components/minimal/MetricsSection';
 import Spinner from '@/components/ui/spinner';
-import Partnerships from '@/components/Partnerships';
-
 const LazyCodeDemo = React.lazy(() => import('@/components/minimal/CodeDemo'));
-
 const Index = () => {
-  return (
-    <div className="min-h-screen text-foreground bg-background">
+  return <div className="min-h-screen text-foreground bg-background">
       <Header />
       <main className="pt-24">
-        <MinimalHero />
-        <Partnerships />
+        <MinimalHero className="bg-zinc-950" />
         <SocialProof />
         <TechnicalFeatures />
         <Suspense fallback={<div className="flex justify-center py-32"><Spinner /></div>}>
@@ -25,8 +20,6 @@ const Index = () => {
         <MetricsSection />
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
