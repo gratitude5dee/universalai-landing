@@ -79,6 +79,22 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
               <span className="text-sm text-primary">Trusted by 10,000+ Creators Worldwide</span>
             </motion.div>
 
+            {/* UniversalAI Title */}
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            delay: 0.15,
+            duration: 0.6
+          }} className="mb-4">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary">
+                UniversalAI
+              </h2>
+            </motion.div>
+
             {/* Main Headline */}
             <motion.h1 initial={{
             opacity: 0,
