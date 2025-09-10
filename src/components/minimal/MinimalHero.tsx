@@ -63,7 +63,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh] -mt-[50px]">
           {/* Left Column - Content */}
-          <div className="flex flex-col justify-center text-center lg:text-left">
+          <div className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1">
             {/* Trust Badge */}
             <motion.div initial={{
             opacity: 0,
@@ -164,7 +164,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className="flex items-center justify-center relative"
+            className="flex items-center justify-center relative order-1 lg:order-2"
           >
             <VideoPlayerMockup videoSrc="/videos/unidemo-2.mp4" />
           </motion.div>
