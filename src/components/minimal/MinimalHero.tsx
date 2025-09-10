@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
-import AnimatedOrb from '@/components/ui/AnimatedOrb';
+import VideoPlayerMockup from '@/components/ui/VideoPlayerMockup';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
 interface MinimalHeroProps {
   className?: string;
@@ -125,40 +125,14 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             </motion.div>
           </div>
 
-          {/* Right Column - Visual Element */}
-          <motion.div initial={{
-          opacity: 0,
-          scale: 0.8
-        }} animate={{
-          opacity: 1,
-          scale: 1
-        }} transition={{
-          delay: 0.3,
-          duration: 1
-        }} className="flex items-center justify-center relative">
-            {/* Main Orb */}
-            <div className="relative">
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-primary via-primary-glow to-secondary opacity-80 blur-sm animate-pulse" />
-              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-primary-glow via-secondary to-primary opacity-60 animate-float" />
-              <div className="absolute inset-8 rounded-full bg-gradient-to-br from-secondary via-primary to-primary-glow opacity-40 animate-pulse" style={{
-              animationDelay: '1s'
-            }} />
-              
-              {/* Center Core */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-white/10 glass border border-white/20 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary animate-spin" style={{
-                animationDuration: '8s'
-              }} />
-              </div>
-            </div>
-            
-            {/* Floating Elements */}
-            <div className="absolute -top-12 -left-12 w-24 h-24 rounded-full bg-primary/30 blur-xl animate-float" style={{
-            animationDelay: '2s'
-          }} />
-            <div className="absolute -bottom-12 -right-12 w-32 h-32 rounded-full bg-secondary/20 blur-2xl animate-float" style={{
-            animationDelay: '3s'
-          }} />
+          {/* Right Column - Video Player Mockup */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            className="flex items-center justify-center relative"
+          >
+            <VideoPlayerMockup videoSrc="/videos/unidemo-2.mp4" />
           </motion.div>
         </div>
 
