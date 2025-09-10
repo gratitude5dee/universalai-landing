@@ -718,6 +718,36 @@ export type Database = {
           },
         ]
       }
+      function_rate_limits: {
+        Row: {
+          call_count: number | null
+          created_at: string | null
+          function_name: string
+          id: string
+          ip_address: string | null
+          user_id: string | null
+          window_start: string | null
+        }
+        Insert: {
+          call_count?: number | null
+          created_at?: string | null
+          function_name: string
+          id?: string
+          ip_address?: string | null
+          user_id?: string | null
+          window_start?: string | null
+        }
+        Update: {
+          call_count?: number | null
+          created_at?: string | null
+          function_name?: string
+          id?: string
+          ip_address?: string | null
+          user_id?: string | null
+          window_start?: string | null
+        }
+        Relationships: []
+      }
       fund_transactions: {
         Row: {
           amount: number
@@ -2221,6 +2251,10 @@ export type Database = {
         }
         Returns: boolean
       }
+      check_rate_limit: {
+        Args: { func_name: string; max_calls?: number; window_minutes?: number }
+        Returns: boolean
+      }
       generate_board_slug: {
         Args: { board_title: string }
         Returns: string
@@ -2229,11 +2263,18 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: number
       }
-      get_recent_signups: {
+      get_recent_signups_admin: {
         Args: { limit_count?: number }
         Returns: {
           display_name: string
           signup_time: string
+        }[]
+      }
+      get_waitlist_activity: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          period: string
+          signup_count: number
         }[]
       }
       get_waitlist_count: {
