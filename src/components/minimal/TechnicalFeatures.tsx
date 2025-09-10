@@ -5,35 +5,29 @@ import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
 const TechnicalFeatures = () => {
   const features = [
     {
-      icon: '🤖',
-      title: 'AI Agent Marketplace',
-      description: 'Deploy intelligent AI agents that automate your creative workflows, manage community engagement, and scale your content production without limits.',
-    },
-    {
-      icon: '🔐',
-      title: 'Blockchain IP Protection',
-      description: 'Secure your creative assets with immutable blockchain records. Instant copyright protection and verifiable ownership for all your digital creations.',
-    },
-    {
-      icon: '💰',
-      title: 'Creator Treasury',
-      description: 'Professional-grade financial tools designed for creators. Track revenue, manage royalties, and automate payments across multiple income streams.',
-    },
-    {
-      icon: '🎨',
-      title: 'WZRD Studio',
-      description: 'AI-enhanced creative studio with advanced tools for content generation, editing, and optimization across all media formats.',
-    },
-    {
-      icon: '🌐',
-      title: 'Multi-Platform Distribution',
-      description: 'Publish once, distribute everywhere. Seamlessly share your content across 20+ platforms with built-in analytics and performance tracking.',
-    },
-    {
       icon: '📊',
-      title: 'Real-Time Analytics',
-      description: 'Data-driven insights that help you understand your audience, optimize content strategy, and maximize engagement across all channels.',
+      title: 'Precision-Driven Portfolio Growth',
+      description: 'Every move guided by data and insights for smarter portfolio growth.',
+      visualization: 'chart'
     },
+    {
+      icon: '💎',
+      title: 'Diversified Assets', 
+      description: 'Tailor your portfolio to achieve optimal performance.',
+      visualization: 'dots'
+    },
+    {
+      icon: '🔄',
+      title: 'Your Portfolio, Optimized in Real-Time',
+      description: 'Adjusted instantly with market changes to enhance investment efficiency.',
+      visualization: 'network'
+    },
+    {
+      icon: '⚡',
+      title: 'Maximize Returns, Minimize Effort',
+      description: 'A fully automated investment system that saves you time and worry.',
+      visualization: 'lightning'
+    }
   ];
 
   return (
@@ -52,41 +46,107 @@ const TechnicalFeatures = () => {
             Platform Features
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6">
-            Everything You Need to Succeed
+            Invest with Confidence.<br />Backed by Intelligence.
           </h2>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            From ideation to monetization, we've built the complete toolkit for modern creators
+            Our innovative AI technology transforms asset management by analyzing vast data sets in real-time
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <GlassmorphicCard className="p-6 lg:p-8 h-full group hover:scale-105 transition-all duration-300 hover:bg-white/5">
-                <div className="relative">
-                  {/* Top gradient line */}
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary-glow to-accent-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Icon */}
-                  <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-r from-secondary-glow to-accent-orange flex items-center justify-center mb-6 text-2xl lg:text-3xl">
-                    {feature.icon}
-                  </div>
-                  
-                  {/* Content */}
-                  <h3 className="text-lg lg:text-xl font-bold mb-4">
-                    {feature.title}
-                  </h3>
-                  
-                  <p className="text-muted-foreground leading-relaxed text-sm lg:text-base">
-                    {feature.description}
-                  </p>
+              <GlassmorphicCard className="h-full hover:border-primary/30 transition-all duration-300 group p-8">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{feature.description}</p>
                 </div>
+                
+                {/* Visualization Components */}
+                {feature.visualization === 'chart' && (
+                  <div className="h-32 relative">
+                    <svg width="100%" height="100%" viewBox="0 0 300 120" className="overflow-visible">
+                      <defs>
+                        <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.8" />
+                          <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0.1" />
+                        </linearGradient>
+                      </defs>
+                      <path 
+                        d="M0,100 Q50,90 100,70 T200,40 300,20"
+                        fill="none"
+                        stroke="hsl(var(--primary))"
+                        strokeWidth="3"
+                        className="drop-shadow-glow"
+                      />
+                      <path 
+                        d="M0,100 Q50,90 100,70 T200,40 300,20 L300,120 L0,120 Z"
+                        fill="url(#chartGradient)"
+                      />
+                      <circle cx="200" cy="40" r="4" fill="white" className="drop-shadow-lg" />
+                      <line x1="200" y1="40" x2="200" y2="120" stroke="white" strokeWidth="1" opacity="0.3" />
+                    </svg>
+                  </div>
+                )}
+                
+                {feature.visualization === 'dots' && (
+                  <div className="grid grid-cols-8 gap-2 h-32 content-center">
+                    {Array.from({ length: 32 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className={`w-3 h-3 rounded-full transition-all duration-500 ${
+                          [0, 4, 8, 11, 15, 19, 22, 24, 28, 31].includes(i)
+                            ? 'bg-gradient-to-br from-primary to-primary-glow shadow-glow'
+                            : 'bg-white/10'
+                        }`}
+                        style={{ 
+                          animationDelay: `${i * 50}ms`,
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+                
+                {feature.visualization === 'network' && (
+                  <div className="relative h-32 flex items-center justify-center">
+                    <svg className="absolute inset-0 w-full h-full">
+                      <line x1="50%" y1="50%" x2="20%" y2="20%" stroke="hsl(var(--primary))" strokeWidth="2" opacity="0.5" />
+                      <line x1="50%" y1="50%" x2="80%" y2="20%" stroke="hsl(var(--primary))" strokeWidth="2" opacity="0.5" />
+                      <line x1="50%" y1="50%" x2="20%" y2="80%" stroke="hsl(var(--primary))" strokeWidth="2" opacity="0.5" />
+                      <line x1="50%" y1="50%" x2="80%" y2="80%" stroke="hsl(var(--primary))" strokeWidth="2" opacity="0.5" />
+                    </svg>
+                    <div className="absolute top-[10%] left-[10%] w-8 h-8 rounded-full glass flex items-center justify-center text-xs">📊</div>
+                    <div className="absolute top-[10%] right-[10%] w-8 h-8 rounded-full glass flex items-center justify-center text-xs">💼</div>
+                    <div className="absolute bottom-[10%] left-[10%] w-8 h-8 rounded-full glass flex items-center justify-center text-xs">📈</div>
+                    <div className="absolute bottom-[10%] right-[10%] w-8 h-8 rounded-full glass flex items-center justify-center text-xs">💎</div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center text-white font-bold">+</div>
+                  </div>
+                )}
+                
+                {feature.visualization === 'lightning' && (
+                  <div className="flex justify-center items-center h-32">
+                    <svg width="80" height="80" viewBox="0 0 80 80" className="drop-shadow-glow">
+                      <defs>
+                        <linearGradient id="lightningGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="hsl(var(--primary))" />
+                          <stop offset="100%" stopColor="hsl(var(--primary-glow))" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M32 8 L16 40 L32 40 L24 72 L64 32 L40 32 L48 8 Z"
+                        fill="url(#lightningGradient)"
+                        stroke="white"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </div>
+                )}
               </GlassmorphicCard>
             </motion.div>
           ))}

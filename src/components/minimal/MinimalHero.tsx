@@ -12,26 +12,24 @@ interface MinimalHeroProps {
 const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
   return (
     <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background ${className}`}>
-      {/* Background Elements */}
-      <div className="absolute inset-0 hero-bg-animated" />
+      {/* Video Background */}
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-30 z-0"
+      >
+        <source src="/videos/unidemo-2.mp4" type="video/mp4" />
+      </video>
       
-      {/* Floating Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <AnimatedOrb 
-          size="large" 
-          className="absolute top-20 left-10 floating-orb opacity-50" 
-          variant="primary"
-        />
-        <AnimatedOrb 
-          size="medium" 
-          className="absolute top-60 right-10 floating-orb opacity-60" 
-          variant="secondary"
-        />
-        <AnimatedOrb 
-          size="small" 
-          className="absolute bottom-20 left-1/3 floating-orb opacity-40" 
-          variant="primary"
-        />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-background/60 z-0" />
+      
+      {/* Orange Glow Effects */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        <div className="absolute top-1/2 right-0 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary-glow/20 rounded-full blur-2xl animate-float" />
       </div>
 
       {/* Content */}
