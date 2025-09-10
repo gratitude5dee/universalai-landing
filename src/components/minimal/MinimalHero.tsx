@@ -178,12 +178,12 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           {/* Partnerships Section */}
           <div className="mt-12 lg:mt-16">
             <p className="text-sm text-muted-foreground mb-8">Trusted by top innovative teams</p>
-            <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap">
-              <div className="text-white/80 font-medium text-lg">Aegra</div>
-              <div className="text-white/80 font-medium text-lg">Portivo</div>
-              <div className="text-white/80 font-medium text-lg">Vaultic</div>
-              <div className="text-white/80 font-medium text-lg">Altoris</div>
-              <div className="text-white/80 font-medium text-lg">Quantora</div>
+            <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap mx-[15px] px-[88px]">
+              <div className="text-white/80 font-medium text-lg">E3 Entertainment</div>
+              <div className="text-white/80 font-medium text-lg">GQ Africa</div>
+              <div className="text-white/80 font-medium text-lg">Create Music</div>
+              <div className="text-white/80 font-medium text-lg">Zooties</div>
+              <div className="text-white/80 font-medium text-lg">5-Dee Studios</div>
             </div>
           </div>
         </motion.div>
