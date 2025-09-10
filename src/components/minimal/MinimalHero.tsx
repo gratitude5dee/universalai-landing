@@ -180,7 +180,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       }} transition={{
         delay: 0.6,
         duration: 0.6
-      }} className="text-center mt-16 lg:mt-24 mt-[27px] mb-[77px] py-0">
+      }} className="text-center mt-[-73px] lg:mt-[-49px] mb-[77px] py-0">
           <LiveWaitlistCounter />
           
           {/* Partnerships Section */}
