@@ -3,7 +3,7 @@ import { Github, Twitter } from 'lucide-react';
 
 export const Footer = () => {
   return (
-    <footer className="border-t border-border-primary py-16">
+    <footer className="border-t border-border-medium bg-gradient-to-t from-background to-background/95 py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Company */}
@@ -58,13 +58,13 @@ export const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-border-secondary flex items-center justify-between">
-          <p className="text-xs text-text-tertiary">© 2025 MusicOS. All rights reserved.</p>
+        <div className="pt-8 border-t border-border-subtle flex items-center justify-between">
+          <p className="text-xs text-muted-foreground">© 2025 Asset. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-text-tertiary hover:text-white transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 p-2 rounded-lg hover:bg-primary/10 hover:border hover:border-border-accent">
               <Github className="w-4 h-4" />
             </a>
-            <a href="#" className="text-text-tertiary hover:text-white transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 p-2 rounded-lg hover:bg-primary/10 hover:border hover:border-border-accent">
               <Twitter className="w-4 h-4" />
             </a>
           </div>

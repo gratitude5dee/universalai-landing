@@ -21,6 +21,11 @@ export default {
         extend: {
             colors: {
                 border: "hsl(var(--border))",
+                "border-subtle": "var(--border-subtle)",
+                "border-medium": "var(--border-medium)",
+                "border-strong": "var(--border-strong)",
+                "border-accent": "var(--border-accent)",
+                "border-accent-strong": "var(--border-accent-strong)",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
                 background: "hsl(var(--background))",

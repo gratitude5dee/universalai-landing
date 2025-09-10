@@ -35,6 +35,11 @@
   --destructive-foreground: 0 0% 98%;
 
   --border: 217.2 32.6% 17.5%;
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-medium: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --border-accent: rgba(255, 107, 53, 0.3);
+  --border-accent-strong: rgba(255, 107, 53, 0.5);
   --input: 217.2 32.6% 17.5%;
   --ring: 262.1 83.3% 77.8%;
 
