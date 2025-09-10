@@ -19,7 +19,7 @@ const VideoPlayerMockup: React.FC<VideoPlayerMockupProps> = ({
       className={`relative w-full max-w-lg mx-auto ${className}`}
     >
       {/* Device Frame */}
-      <div className="relative glass-strong rounded-2xl p-4 border border-white/20 shadow-2xl hover:shadow-primary/20 transition-all duration-500 animate-float">
+      <div className="relative glass-strong rounded-2xl p-4 border border-white/20 shadow-2xl hover:shadow-primary/20 transition-all duration-500">
         {/* Glow Effect */}
         <div className="absolute -inset-2 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-3xl blur-xl opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
         
