@@ -186,29 +186,48 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           </motion.div>
         </div>
 
-        {/* Bottom Section - Waitlist Counter & Partnerships */}
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} animate={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        delay: 0.6,
-        duration: 0.6
-      }} className="text-center mt-[-73px] lg:mt-[-49px] mb-[77px] py-0">
+        {/* Waitlist Counter Section - Directly under video player */}
+        <motion.div 
+          initial={{
+            opacity: 0,
+            y: 20
+          }} 
+          animate={{
+            opacity: 1,
+            y: 0
+          }} 
+          transition={{
+            delay: 0.6,
+            duration: 0.6
+          }} 
+          className="text-center mt-8 lg:mt-12"
+        >
           <LiveWaitlistCounter />
-          
-          {/* Partnerships Section */}
-          <div className="mt-12 lg:mt-16">
-            <p className="text-sm text-muted-foreground mb-8">Trusted by top innovative teams</p>
-            <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap mx-[15px] px-[88px]">
-              <div className="text-white/80 font-medium text-lg">E3 Entertainment</div>
-              <div className="text-white/80 font-medium text-lg">GQ Africa</div>
-              <div className="text-white/80 font-medium text-lg">Create Music</div>
-              <div className="text-white/80 font-medium text-lg">Zooties</div>
-              <div className="text-white/80 font-medium text-lg">5-Dee Studios</div>
-            </div>
+        </motion.div>
+
+        {/* Partnerships Section */}
+        <motion.div 
+          initial={{
+            opacity: 0,
+            y: 20
+          }} 
+          animate={{
+            opacity: 1,
+            y: 0
+          }} 
+          transition={{
+            delay: 0.7,
+            duration: 0.6
+          }} 
+          className="text-center mt-12 lg:mt-16 mb-[77px]"
+        >
+          <p className="text-sm text-muted-foreground mb-8">Trusted by top innovative teams</p>
+          <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap mx-[15px] px-[88px]">
+            <div className="text-white/80 font-medium text-lg">E3 Entertainment</div>
+            <div className="text-white/80 font-medium text-lg">GQ Africa</div>
+            <div className="text-white/80 font-medium text-lg">Create Music</div>
+            <div className="text-white/80 font-medium text-lg">Zooties</div>
+            <div className="text-white/80 font-medium text-lg">5-Dee Studios</div>
           </div>
         </motion.div>
       </div>
