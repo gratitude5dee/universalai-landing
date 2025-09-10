@@ -103,12 +103,12 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             delay: 0.2,
             duration: 0.8
           }} className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight mb-6">
-              Where{' '}
+              Cultivate your{' '}
               <span className="gradient-text">
-                Creators
-              </span>{' '}
-              Build<br />
-              The Future of UniversalAI
+                Creator
+              </span>
+              :<br />
+              Every Being is A Billion
             </motion.h1>
 
             {/* Subtitle */}
