@@ -90,7 +90,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             delay: 0.15,
             duration: 0.6
           }} className="mb-4">
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-primary">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary">
                 UniversalAI
               </h2>
             </motion.div>
