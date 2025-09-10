@@ -82,7 +82,7 @@ const LiveWaitlistCounter = () => {
     if (count < 1000) return `${1000 - count} more for VIP status!`;
     return "VIP status unlocked! 🎉";
   };
-  return <div className="flex flex-col items-center gap-3 py-4 mx-0 px-4 max-w-sm mx-auto">
+  return <div className="flex flex-col items-center gap-2 py-3 mx-0 px-3 max-w-sm mx-auto">
       {/* Main Counter */}
       <motion.div initial={{
       opacity: 0,
@@ -90,7 +90,7 @@ const LiveWaitlistCounter = () => {
     }} animate={{
       opacity: 1,
       y: 0
-    }} className="flex items-center gap-3 border border-border rounded-full px-5 py-2 bg-secondary/40">
+    }} className="flex items-center gap-3 border border-border rounded-full px-4 py-1.5 bg-secondary/40">
         <div className="flex items-baseline gap-2">
           <AnimatePresence mode="wait">
             <motion.span key={displayCount} initial={{
@@ -102,11 +102,11 @@ const LiveWaitlistCounter = () => {
           }} exit={{
             y: -8,
             opacity: 0
-          }} className="text-xl font-semibold">
+          }} className="text-lg font-semibold">
               {displayCount.toLocaleString()}
             </motion.span>
           </AnimatePresence>
-          <span className="text-sm text-muted-foreground">signups</span>
+          <span className="text-xs text-muted-foreground">signups</span>
         </div>
       </motion.div>
 
@@ -115,7 +115,7 @@ const LiveWaitlistCounter = () => {
         <div className="text-xs text-muted-foreground">
           {getMilestoneMessage(displayCount).replace(' 🎉', '')}
         </div>
-        <div className="mt-2 w-64 h-2 bg-border rounded-full overflow-hidden">
+        <div className="mt-1.5 w-48 sm:w-64 h-1.5 bg-border rounded-full overflow-hidden">
           <motion.div className="h-full bg-primary" initial={{
           width: 0
         }} animate={{
@@ -136,7 +136,7 @@ const LiveWaitlistCounter = () => {
       delay: 0.2
     }} className="flex items-center gap-2 text-xs text-muted-foreground">
           <span>Recent:</span>
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3">
             {recentSignups.slice(0, 3).map((signup, index) => <motion.span key={index} initial={{
           opacity: 0,
           x: 10
