@@ -57,8 +57,8 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh] -mt-[50px]">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center min-h-[80vh] -mt-[20px] sm:-mt-[50px]">
           {/* Left Column - Content */}
           <div className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1">
             {/* Trust Badge */}
@@ -182,8 +182,8 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
         }} transition={{
           delay: 0.3,
           duration: 1
-        }} className="flex flex-col items-center justify-center relative order-1 lg:order-2 mt-8 lg:mt-0">
-            <div className="w-full max-w-[280px] sm:max-w-[350px] lg:max-w-none">
+        }} className="flex flex-col items-center justify-center relative order-1 lg:order-2 mt-6 lg:mt-0">
+            <div className="w-full max-w-[300px] sm:max-w-[380px] lg:max-w-none">
               <VideoPlayerMockup videoSrc="/videos/unidemo-2.mp4" />
             </div>
             
@@ -197,7 +197,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           }} transition={{
             delay: 0.6,
             duration: 0.6
-          }} className="mt-4 w-full max-w-[280px] sm:max-w-[350px] lg:max-w-md">
+          }} className="mt-3 w-full max-w-[300px] sm:max-w-[380px] lg:max-w-md">
               <LiveWaitlistCounter />
             </motion.div>
           </motion.div>
@@ -213,7 +213,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       }} transition={{
         delay: 0.7,
         duration: 0.6
-      }} className="text-center mt-8 lg:mt-4 mb-[77px]">
+      }} className="text-center mt-12 lg:mt-4 mb-[77px]">
           <p className="text-sm text-muted-foreground mb-8">Trusted by top innovative teams</p>
           <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap mx-[15px] px-[88px]">
             <div className="text-white/80 font-medium text-lg">E3 Entertainment</div>
