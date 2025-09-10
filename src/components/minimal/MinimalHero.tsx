@@ -147,7 +147,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
           </motion.div>
         </div>
 
-        {/* Bottom Section - Waitlist Counter */}
+        {/* Bottom Section - Waitlist Counter & Partnerships */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -155,6 +155,18 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
           className="text-center mt-16 lg:mt-24"
         >
           <LiveWaitlistCounter />
+          
+          {/* Partnerships Section */}
+          <div className="mt-12 lg:mt-16">
+            <p className="text-sm text-muted-foreground mb-8">Trusted by top innovative teams</p>
+            <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap">
+              <div className="text-white/80 font-medium text-lg">Aegra</div>
+              <div className="text-white/80 font-medium text-lg">Portivo</div>
+              <div className="text-white/80 font-medium text-lg">Vaultic</div>
+              <div className="text-white/80 font-medium text-lg">Altoris</div>
+              <div className="text-white/80 font-medium text-lg">Quantora</div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
