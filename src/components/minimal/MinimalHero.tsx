@@ -180,30 +180,30 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className="flex items-center justify-center relative order-1 lg:order-2 mt-[100px] lg:mt-0"
+            className="flex flex-col items-center justify-center relative order-1 lg:order-2 mt-[100px] lg:mt-0"
           >
             <VideoPlayerMockup videoSrc="/videos/unidemo-2.mp4" />
+            
+            {/* Contained Waitlist Counter underneath video */}
+            <motion.div 
+              initial={{
+                opacity: 0,
+                y: 20
+              }} 
+              animate={{
+                opacity: 1,
+                y: 0
+              }} 
+              transition={{
+                delay: 0.6,
+                duration: 0.6
+              }} 
+              className="mt-6 w-full max-w-md"
+            >
+              <LiveWaitlistCounter />
+            </motion.div>
           </motion.div>
         </div>
-
-        {/* Waitlist Counter Section - Directly under video player */}
-        <motion.div 
-          initial={{
-            opacity: 0,
-            y: 20
-          }} 
-          animate={{
-            opacity: 1,
-            y: 0
-          }} 
-          transition={{
-            delay: 0.6,
-            duration: 0.6
-          }} 
-          className="text-center mt-8 lg:mt-12"
-        >
-          <LiveWaitlistCounter />
-        </motion.div>
 
         {/* Partnerships Section */}
         <motion.div 

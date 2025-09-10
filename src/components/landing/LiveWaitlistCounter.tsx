@@ -90,7 +90,7 @@ const LiveWaitlistCounter = () => {
     if (count < 1000) return `${1000 - count} more for VIP status!`;
     return "VIP status unlocked! 🎉";
   };
-  return <div className="flex flex-col items-center gap-4 py-6 mx-0 px-[18px]">
+  return <div className="flex flex-col items-center gap-3 py-4 mx-0 px-4 max-w-sm mx-auto">
       {/* Main Counter */}
       <motion.div initial={{
       opacity: 0,
