@@ -7,7 +7,7 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instanciate createClient with right options
+  // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "12.2.3 (519615d)"
@@ -66,6 +66,69 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      articles: {
+        Row: {
+          author: string | null
+          body_html: string | null
+          body_text: string | null
+          canonical_url: string | null
+          entities: Json | null
+          excerpt: string | null
+          fetched_at: string | null
+          id: string
+          image_url: string | null
+          published_at: string | null
+          score: number | null
+          simhash: number | null
+          source_id: string | null
+          tags: string[] | null
+          thumb_url: string | null
+          title: string
+          topics: string[] | null
+          url: string
+        }
+        Insert: {
+          author?: string | null
+          body_html?: string | null
+          body_text?: string | null
+          canonical_url?: string | null
+          entities?: Json | null
+          excerpt?: string | null
+          fetched_at?: string | null
+          id?: string
+          image_url?: string | null
+          published_at?: string | null
+          score?: number | null
+          simhash?: number | null
+          source_id?: string | null
+          tags?: string[] | null
+          thumb_url?: string | null
+          title: string
+          topics?: string[] | null
+          url: string
+        }
+        Update: {
+          author?: string | null
+          body_html?: string | null
+          body_text?: string | null
+          canonical_url?: string | null
+          entities?: Json | null
+          excerpt?: string | null
+          fetched_at?: string | null
+          id?: string
+          image_url?: string | null
+          published_at?: string | null
+          score?: number | null
+          simhash?: number | null
+          source_id?: string | null
+          tags?: string[] | null
+          thumb_url?: string | null
+          title?: string
+          topics?: string[] | null
+          url?: string
+        }
+        Relationships: []
       }
       board_collaborators: {
         Row: {
@@ -270,6 +333,33 @@ export type Database = {
           },
         ]
       }
+      columns: {
+        Row: {
+          id: string
+          is_paused: boolean | null
+          name: string
+          order_index: number
+          query: Json
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          is_paused?: boolean | null
+          name: string
+          order_index?: number
+          query: Json
+          user_id: string
+        }
+        Update: {
+          id?: string
+          is_paused?: boolean | null
+          name?: string
+          order_index?: number
+          query?: Json
+          user_id?: string
+        }
+        Relationships: []
+      }
       content_folders: {
         Row: {
           created_at: string
@@ -366,6 +456,60 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      crawl_jobs: {
+        Row: {
+          error: string | null
+          finished_at: string | null
+          id: string
+          source_id: string | null
+          started_at: string | null
+          status: string | null
+        }
+        Insert: {
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          source_id?: string | null
+          started_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          error?: string | null
+          finished_at?: string | null
+          id?: string
+          source_id?: string | null
+          started_at?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      crawl_logs: {
+        Row: {
+          created_at: string | null
+          id: number
+          job_id: string | null
+          level: string | null
+          meta: Json | null
+          msg: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          job_id?: string | null
+          level?: string | null
+          meta?: Json | null
+          msg?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          job_id?: string | null
+          level?: string | null
+          meta?: Json | null
+          msg?: string | null
+        }
+        Relationships: []
       }
       credit_transactions: {
         Row: {
@@ -742,6 +886,27 @@ export type Database = {
           },
         ]
       }
+      interactions: {
+        Row: {
+          article_id: string
+          created_at: string | null
+          kind: string
+          user_id: string
+        }
+        Insert: {
+          article_id: string
+          created_at?: string | null
+          kind: string
+          user_id: string
+        }
+        Update: {
+          article_id?: string
+          created_at?: string | null
+          kind?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       invoices: {
         Row: {
           amount: number
@@ -850,6 +1015,60 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      jobs: {
+        Row: {
+          completed_at: string | null
+          created_at: string | null
+          error_message: string | null
+          exec_mode: string
+          id: string
+          input_video_url: string
+          manifest_data: Json
+          mode: string
+          output_urls: string[] | null
+          progress: number | null
+          settings: Json
+          started_at: string | null
+          status: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          exec_mode?: string
+          id?: string
+          input_video_url: string
+          manifest_data: Json
+          mode: string
+          output_urls?: string[] | null
+          progress?: number | null
+          settings?: Json
+          started_at?: string | null
+          status?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          exec_mode?: string
+          id?: string
+          input_video_url?: string
+          manifest_data?: Json
+          mode?: string
+          output_urls?: string[] | null
+          progress?: number | null
+          settings?: Json
+          started_at?: string | null
+          status?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
       }
       keyframes: {
         Row: {
@@ -1445,6 +1664,45 @@ export type Database = {
           },
         ]
       }
+      sources: {
+        Row: {
+          created_at: string | null
+          domain: string
+          id: string
+          is_active: boolean | null
+          name: string
+          parse_strategy: string
+          rss_urls: string[] | null
+          selectors: Json | null
+          updated_at: string | null
+          weight: number | null
+        }
+        Insert: {
+          created_at?: string | null
+          domain: string
+          id?: string
+          is_active?: boolean | null
+          name: string
+          parse_strategy: string
+          rss_urls?: string[] | null
+          selectors?: Json | null
+          updated_at?: string | null
+          weight?: number | null
+        }
+        Update: {
+          created_at?: string | null
+          domain?: string
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          parse_strategy?: string
+          rss_urls?: string[] | null
+          selectors?: Json | null
+          updated_at?: string | null
+          weight?: number | null
+        }
+        Relationships: []
+      }
       storylines: {
         Row: {
           created_at: string
@@ -1661,6 +1919,39 @@ export type Database = {
           total_credits?: number
           updated_at?: string
           used_credits?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_preferences: {
+        Row: {
+          artists: string[] | null
+          keywords: string[] | null
+          muted_words: string[] | null
+          region: string | null
+          sources_allow: string[] | null
+          sources_block: string[] | null
+          topics: string[] | null
+          user_id: string
+        }
+        Insert: {
+          artists?: string[] | null
+          keywords?: string[] | null
+          muted_words?: string[] | null
+          region?: string | null
+          sources_allow?: string[] | null
+          sources_block?: string[] | null
+          topics?: string[] | null
+          user_id: string
+        }
+        Update: {
+          artists?: string[] | null
+          keywords?: string[] | null
+          muted_words?: string[] | null
+          region?: string | null
+          sources_allow?: string[] | null
+          sources_block?: string[] | null
+          topics?: string[] | null
           user_id?: string
         }
         Relationships: []
@@ -1898,8 +2189,8 @@ export type Database = {
       add_credits: {
         Args: {
           credit_amount: number
-          transaction_type?: string
           metadata?: Json
+          transaction_type?: string
         }
         Returns: boolean
       }
@@ -1914,8 +2205,8 @@ export type Database = {
       get_recent_signups: {
         Args: { limit_count?: number }
         Returns: {
-          signup_time: string
           display_name: string
+          signup_time: string
         }[]
       }
       get_waitlist_count: {
@@ -1927,7 +2218,7 @@ export type Database = {
         Returns: boolean
       }
       use_credits: {
-        Args: { resource_type: string; credit_cost?: number; metadata?: Json }
+        Args: { credit_cost?: number; metadata?: Json; resource_type: string }
         Returns: boolean
       }
     }
