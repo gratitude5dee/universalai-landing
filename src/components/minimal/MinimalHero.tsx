@@ -4,41 +4,58 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import VideoPlayerMockup from '@/components/ui/VideoPlayerMockup';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
+
 interface MinimalHeroProps {
   className?: string;
 }
+
 const MinimalHero: React.FC<MinimalHeroProps> = ({
   className = ''
 }) => {
-  return <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background ${className}`}>
-      {/* Video Background */}
-      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-30 z-0">
-        <source src="/videos/unidemo-2.mp4" type="video/mp4" />
-      </video>
+  return (
+    <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background ${className}`}>
+      {/* Noise Texture Overlay */}
+      <div className="absolute inset-0 z-0 opacity-20">
+        <svg width="100%" height="100%" className="absolute inset-0">
+          <filter id="noise">
+            <feTurbulence baseFrequency="0.9" numOctaves="3" result="noise"/>
+            <feColorMatrix in="noise" type="saturate" values="0"/>
+            <feComponentTransfer in="noise" result="monoNoise">
+              <feFuncA type="discrete" tableValues="0.8 0.5 0.3"/>
+            </feComponentTransfer>
+          </filter>
+          <rect width="100%" height="100%" filter="url(#noise)" opacity="0.15"/>
+        </svg>
+      </div>
       
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-background/60 z-0" />
+      {/* Main Background Overlay */}
+      <div className="absolute inset-0 bg-background/95 z-0" />
       
-      {/* Flowing Gradient Effects */}
+      {/* Purple Flowing Gradient Effects */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        {/* Main flowing shape - top right */}
-        <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[600px] opacity-80">
-          <div className="w-full h-full bg-gradient-to-br from-orange-500/60 via-red-500/50 to-orange-600/40 rounded-[50%] transform rotate-12 blur-2xl" />
+        {/* Primary curved shape - top right */}
+        <div className="absolute -top-1/3 -right-1/4 w-[1000px] h-[700px] opacity-90">
+          <div className="w-full h-full bg-gradient-to-bl from-purple-500/50 via-violet-600/40 to-purple-700/30 rounded-[45%] transform rotate-12 blur-3xl" />
         </div>
         
         {/* Secondary flowing shape - center left */}
-        <div className="absolute top-1/3 -left-1/4 w-[600px] h-[400px] opacity-70">
-          <div className="w-full h-full bg-gradient-to-tr from-red-600/50 via-orange-500/40 to-red-500/30 rounded-[60%] transform -rotate-45 blur-xl" />
+        <div className="absolute top-1/4 -left-1/3 w-[800px] h-[500px] opacity-80">
+          <div className="w-full h-full bg-gradient-to-tr from-violet-600/45 via-purple-500/35 to-indigo-600/25 rounded-[60%] transform -rotate-35 blur-2xl" />
         </div>
         
-        {/* Accent shape - bottom right */}
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] opacity-60">
-          <div className="w-full h-full bg-gradient-to-tl from-orange-400/40 via-red-400/30 to-orange-500/20 rounded-[40%] transform rotate-75 blur-3xl" />
+        {/* Large accent shape - bottom center */}
+        <div className="absolute -bottom-1/4 left-1/4 w-[600px] h-[400px] opacity-70">
+          <div className="w-full h-full bg-gradient-to-tl from-purple-400/40 via-violet-500/30 to-purple-600/20 rounded-[50%] transform rotate-45 blur-3xl" />
         </div>
         
         {/* Small accent - top left */}
-        <div className="absolute top-1/4 left-1/3 w-[200px] h-[200px] opacity-50">
-          <div className="w-full h-full bg-gradient-to-br from-red-500/30 to-orange-600/20 rounded-[70%] transform -rotate-30 blur-2xl" />
+        <div className="absolute top-1/5 left-1/4 w-[300px] h-[250px] opacity-60">
+          <div className="w-full h-full bg-gradient-to-br from-violet-500/35 to-purple-700/25 rounded-[65%] transform -rotate-20 blur-2xl" />
+        </div>
+        
+        {/* Additional depth shape - center right */}
+        <div className="absolute top-1/2 right-1/5 w-[400px] h-[300px] opacity-50">
+          <div className="w-full h-full bg-gradient-to-l from-indigo-500/30 via-purple-600/20 to-violet-500/15 rounded-[70%] transform rotate-60 blur-xl" />
         </div>
       </div>
 
@@ -179,6 +196,8 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           </div>
         </motion.div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default MinimalHero;
