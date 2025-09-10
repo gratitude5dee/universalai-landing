@@ -4,27 +4,24 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import VideoPlayerMockup from '@/components/ui/VideoPlayerMockup';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
-
 interface MinimalHeroProps {
   className?: string;
 }
-
 const MinimalHero: React.FC<MinimalHeroProps> = ({
   className = ''
 }) => {
-  return (
-    <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background ${className}`}>
+  return <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background ${className}`}>
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 z-0 opacity-20">
         <svg width="100%" height="100%" className="absolute inset-0">
           <filter id="noise">
-            <feTurbulence baseFrequency="0.9" numOctaves="3" result="noise"/>
-            <feColorMatrix in="noise" type="saturate" values="0"/>
+            <feTurbulence baseFrequency="0.9" numOctaves="3" result="noise" />
+            <feColorMatrix in="noise" type="saturate" values="0" />
             <feComponentTransfer in="noise" result="monoNoise">
-              <feFuncA type="discrete" tableValues="0.8 0.5 0.3"/>
+              <feFuncA type="discrete" tableValues="0.8 0.5 0.3" />
             </feComponentTransfer>
           </filter>
-          <rect width="100%" height="100%" filter="url(#noise)" opacity="0.15"/>
+          <rect width="100%" height="100%" filter="url(#noise)" opacity="0.15" />
         </svg>
       </div>
       
@@ -90,7 +87,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             delay: 0.15,
             duration: 0.6
           }} className="mb-4">
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-50">
                 UniversalAI
               </h2>
             </motion.div>
@@ -176,51 +173,45 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           </div>
 
           {/* Right Column - Video Player Mockup */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 1 }}
-            className="flex flex-col items-center justify-center relative order-1 lg:order-2 mt-[100px] lg:mt-0"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          scale: 0.8
+        }} animate={{
+          opacity: 1,
+          scale: 1
+        }} transition={{
+          delay: 0.3,
+          duration: 1
+        }} className="flex flex-col items-center justify-center relative order-1 lg:order-2 mt-[100px] lg:mt-0">
             <VideoPlayerMockup videoSrc="/videos/unidemo-2.mp4" />
             
             {/* Contained Waitlist Counter underneath video */}
-            <motion.div 
-              initial={{
-                opacity: 0,
-                y: 20
-              }} 
-              animate={{
-                opacity: 1,
-                y: 0
-              }} 
-              transition={{
-                delay: 0.6,
-                duration: 0.6
-              }} 
-              className="mt-6 w-full max-w-md"
-            >
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            delay: 0.6,
+            duration: 0.6
+          }} className="mt-6 w-full max-w-md">
               <LiveWaitlistCounter />
             </motion.div>
           </motion.div>
         </div>
 
         {/* Partnerships Section */}
-        <motion.div 
-          initial={{
-            opacity: 0,
-            y: 20
-          }} 
-          animate={{
-            opacity: 1,
-            y: 0
-          }} 
-          transition={{
-            delay: 0.7,
-            duration: 0.6
-          }} 
-          className="text-center mt-12 lg:mt-16 mb-[77px]"
-        >
+        <motion.div initial={{
+        opacity: 0,
+        y: 20
+      }} animate={{
+        opacity: 1,
+        y: 0
+      }} transition={{
+        delay: 0.7,
+        duration: 0.6
+      }} className="text-center mt-12 lg:mt-16 mb-[77px]">
           <p className="text-sm text-muted-foreground mb-8">Trusted by top innovative teams</p>
           <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap mx-[15px] px-[88px]">
             <div className="text-white/80 font-medium text-lg">E3 Entertainment</div>
@@ -231,8 +222,6 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           </div>
         </motion.div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default MinimalHero;
