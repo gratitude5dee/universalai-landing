@@ -61,7 +61,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh] -mt-[50px]">
           {/* Left Column - Content */}
           <div className="flex flex-col justify-center text-center lg:text-left">
             {/* Trust Badge */}
