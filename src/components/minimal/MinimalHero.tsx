@@ -211,7 +211,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       }} transition={{
         delay: 0.7,
         duration: 0.6
-      }} className="text-center mt-12 lg:mt-16 mb-[77px]">
+      }} className="text-center mt-0 lg:mt-4 mb-[77px]">
           <p className="text-sm text-muted-foreground mb-8">Trusted by top innovative teams</p>
           <div className="flex items-center justify-center gap-8 lg:gap-12 flex-wrap mx-[15px] px-[88px]">
             <div className="text-white/80 font-medium text-lg">E3 Entertainment</div>
