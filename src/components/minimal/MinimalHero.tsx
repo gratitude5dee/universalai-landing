@@ -19,10 +19,27 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       {/* Overlay */}
       <div className="absolute inset-0 bg-background/60 z-0" />
       
-      {/* Purple Glow Effects */}
+      {/* Flowing Gradient Effects */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute top-1/2 right-0 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary-glow/20 rounded-full blur-2xl animate-float" />
+        {/* Main flowing shape - top right */}
+        <div className="absolute -top-1/4 -right-1/4 w-[800px] h-[600px] opacity-80">
+          <div className="w-full h-full bg-gradient-to-br from-orange-500/60 via-red-500/50 to-orange-600/40 rounded-[50%] transform rotate-12 blur-2xl" />
+        </div>
+        
+        {/* Secondary flowing shape - center left */}
+        <div className="absolute top-1/3 -left-1/4 w-[600px] h-[400px] opacity-70">
+          <div className="w-full h-full bg-gradient-to-tr from-red-600/50 via-orange-500/40 to-red-500/30 rounded-[60%] transform -rotate-45 blur-xl" />
+        </div>
+        
+        {/* Accent shape - bottom right */}
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] opacity-60">
+          <div className="w-full h-full bg-gradient-to-tl from-orange-400/40 via-red-400/30 to-orange-500/20 rounded-[40%] transform rotate-75 blur-3xl" />
+        </div>
+        
+        {/* Small accent - top left */}
+        <div className="absolute top-1/4 left-1/3 w-[200px] h-[200px] opacity-50">
+          <div className="w-full h-full bg-gradient-to-br from-red-500/30 to-orange-600/20 rounded-[70%] transform -rotate-30 blur-2xl" />
+        </div>
       </div>
 
       {/* Content */}
