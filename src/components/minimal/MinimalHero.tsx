@@ -164,7 +164,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1 }}
-            className="flex items-center justify-center relative order-1 lg:order-2 mt-[50px] lg:mt-0"
+            className="flex items-center justify-center relative order-1 lg:order-2 mt-[100px] lg:mt-0"
           >
             <VideoPlayerMockup videoSrc="/videos/unidemo-2.mp4" />
           </motion.div>
