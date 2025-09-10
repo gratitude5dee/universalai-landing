@@ -1480,6 +1480,33 @@ export type Database = {
           },
         ]
       }
+      security_audit_log: {
+        Row: {
+          created_at: string
+          details: Json | null
+          event_type: string
+          id: string
+          ip_address: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          created_at?: string
+          details?: Json | null
+          event_type: string
+          id?: string
+          ip_address?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          created_at?: string
+          details?: Json | null
+          event_type?: string
+          id?: string
+          ip_address?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
       share_analytics: {
         Row: {
           created_at: string
@@ -2216,6 +2243,10 @@ export type Database = {
       is_authenticated_user: {
         Args: { requested_user_id: string }
         Returns: boolean
+      }
+      log_waitlist_access: {
+        Args: { access_type: string; ip_address?: string; user_agent?: string }
+        Returns: undefined
       }
       use_credits: {
         Args: { credit_cost?: number; metadata?: Json; resource_type: string }
