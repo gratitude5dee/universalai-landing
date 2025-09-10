@@ -24,7 +24,7 @@ const Header = () => {
     return () => window.removeEventListener('open-waitlist', onOpen as EventListener);
   }, []);
   return <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-xl border-b border-white/10 hover:border-primary/20 transition-all duration-300">
-      <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-8">
           <Link to="/" className="font-extrabold tracking-tight text-lg text-white flex items-center gap-3">
