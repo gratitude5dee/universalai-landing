@@ -24,7 +24,7 @@ const CTASection = () => {
           
           <Button 
             size="lg" 
-            className="text-lg px-8 py-6 h-auto shadow-orange hover:shadow-xl transition-all duration-300"
+            className="text-lg px-8 py-6 h-auto shadow-purple hover:shadow-xl transition-all duration-300"
             onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
           >
             Get Started Free

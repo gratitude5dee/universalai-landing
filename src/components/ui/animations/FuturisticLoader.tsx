@@ -69,7 +69,7 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({ onComplete }) => {
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 >
-                  <Zap className="h-12 w-12 text-orange-500" />
+                  <Zap className="h-12 w-12 text-purple-500" />
                 </motion.div>
                 <h1 className="text-4xl font-bold text-white">UniversalAI</h1>
               </div>
@@ -92,7 +92,7 @@ const FuturisticLoader: React.FC<FuturisticLoaderProps> = ({ onComplete }) => {
             <div className="w-80 max-w-md mx-auto">
               <div className="bg-white/10 rounded-full h-2 mb-4 overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-orange-500 to-amber-400 rounded-full"
+                  className="h-full bg-gradient-to-r from-purple-500 to-violet-400 rounded-full"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.3 }}

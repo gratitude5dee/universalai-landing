@@ -26,7 +26,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-background/60 z-0" />
       
-      {/* Orange Glow Effects */}
+      {/* Purple Glow Effects */}
       <div className="absolute inset-0 overflow-hidden z-0">
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary-glow/20 rounded-full blur-2xl animate-float" />
@@ -80,7 +80,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
         >
           <Button 
             size="lg" 
-            className="text-lg px-8 py-6 h-auto shadow-orange hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+            className="text-lg px-8 py-6 h-auto shadow-purple hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
             onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
           >
             Launch Your Creator Journey
