@@ -1,65 +1,110 @@
 import React from 'react';
-import { useInView } from '@/hooks/use-in-view';
+import { useInView } from 'react-intersection-observer';
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
+import InteractiveChart from '@/components/ui/InteractiveChart';
+import DynamicDotGrid from '@/components/ui/DynamicDotGrid';
+import NetworkVisualization from '@/components/ui/NetworkVisualization';
+import LightningVisualization from '@/components/ui/LightningVisualization';
+import { motion } from 'framer-motion';
 
 const TechnicalFeatures = () => {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ threshold: 0.2 });
+
   const features = [
     {
-      label: "01",
-      title: "Automated Admin & Tour Management",
-      description: "Save 30+ hours per week on invoices, contracts, rider requirements, and tour logistics. Eliminate the 75% of your time not spent on music.",
-      metrics: { "Time Saved": "30+ hrs/wk" }
+      label: "Precision-Driven",
+      title: "Portfolio Growth",
+      description: "Every move guided by data and insights for smarter portfolio growth.",
+      component: <InteractiveChart />,
+      gradient: "from-primary to-primary-glow"
     },
     {
-      label: "02",
-      title: "Sync Licensing Marketplace",
-      description: "Get your music in front of music supervisors with automated matching. A real testimonial showed a $45K increase in sync licenses.",
-      metrics: { "Revenue": "+5x" }
+      label: "Diversified",
+      title: "Asset Management",
+      description: "Tailor your portfolio to achieve optimal performance across multiple asset classes.",
+      component: <DynamicDotGrid />,
+      gradient: "from-secondary to-primary"
     },
     {
-      label: "03",
-      title: "Digital Asset & Marketing Automation",
-      description: "A self-running marketing machine that generates 10x content output. Create EPKs and tour posters in one click with an AI that learns your brand voice and aesthetic.",
-      metrics: { "Content Output": "10x" }
+      label: "Real-Time",
+      title: "Portfolio Optimization",
+      description: "Adjusted instantly with market changes to enhance investment efficiency.",
+      component: <NetworkVisualization />,
+      gradient: "from-primary-glow to-secondary"
     },
     {
-        label: "04",
-        title: "Web3 Tokenization & Fan Engagement",
-        description: "Turn fans into stakeholders with fan tokens, automatic royalty distribution, and token-gated content. Average token sale of $2.3M with over 15,000 token holders.",
-        metrics: { "Avg. Token Sale": "$2.3M" }
+      label: "Automated",
+      title: "Maximum Returns, Minimum Effort",
+      description: "A fully automated investment system that saves you time and worry.",
+      component: <LightningVisualization />,
+      gradient: "from-accent to-primary"
     }
   ];
 
   return (
-    <section ref={ref} id="features" className={`py-32 border-t border-border-primary transition-opacity duration-1000 ${inView ? 'opacity-100 fade-up' : 'opacity-0'}`}>
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Section header */}
-        <div className="mb-20 text-center">
-          <p className="text-sm text-text-tertiary mb-2 font-mono">FEATURES</p>
-          <h2 className="text-5xl font-bold">Your Music Empire, Automated.</h2>
-        </div>
+    <section ref={ref} className="py-32 px-4 md:px-8 lg:px-16 relative">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+      </div>
 
-        {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {features.map((feature) => (
-            <div key={feature.label} className="bg-bg-secondary p-8 rounded-lg border border-border-primary transform hover:-translate-y-1 transition-transform duration-300">
-              <div className="text-text-tertiary text-sm font-mono mb-4">{feature.label}</div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="text-text-secondary text-sm mb-6 leading-relaxed">{feature.description}</p>
+      <motion.div 
+        className="max-w-7xl mx-auto relative z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: inView ? 1 : 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.div 
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 30 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight">
+            Invest with Confidence.
+            <br />
+            <span className="bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
+              Backed by Intelligence.
+            </span>
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            Our AI-powered platform combines cutting-edge technology with proven investment strategies
+          </p>
+        </motion.div>
 
-              {/* Metrics */}
-              <div className="flex gap-4 pt-4 border-t border-border-secondary">
-                {Object.entries(feature.metrics).map(([key, value]) => (
-                  <div key={key} className="text-xs">
-                    <span className="text-text-tertiary">{key}: </span>
-                    <span className="text-accent-primary font-mono">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
+              transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
+            >
+              <GlassmorphicCard className="h-full group">
+                <div className="mb-6">
+                  <span className={`text-sm font-medium px-4 py-2 rounded-full bg-gradient-to-r ${feature.gradient} text-white/90`}>
+                    {feature.label}
+                  </span>
+                </div>
+                
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white group-hover:text-primary transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-gray-300 mb-4 text-lg leading-relaxed">
+                  {feature.description}
+                </p>
+                
+                {/* Interactive Component */}
+                <div className="relative">
+                  {feature.component}
+                </div>
+              </GlassmorphicCard>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

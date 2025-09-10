@@ -6,10 +6,42 @@
 @tailwind utilities;
 
 :root {
-  /* Color System */
+  /* Enhanced Color System - Purple Focus */
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  
+  --card: 0 0% 6.7%;
+  --card-foreground: 0 0% 100%;
+  
+  --popover: 0 0% 6.7%;
+  --popover-foreground: 0 0% 100%;
+  
+  --border: 0 0% 14.9%;
+  --input: 0 0% 14.9%;
+  
+  --primary: 261 83% 64%;        /* #6366f1 */
+  --primary-foreground: 0 0% 100%;
+  --primary-glow: 258 90% 66%;   /* #8b5cf6 */
+  
+  --secondary: 283 85% 68%;      /* #a855f7 */
+  --secondary-foreground: 0 0% 100%;
+  
+  --muted: 0 0% 14.9%;
+  --muted-foreground: 0 0% 63.9%;
+  
+  --accent: 142 76% 36%;         /* #00ff88 - keep existing */
+  --accent-foreground: 0 0% 9%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 261 83% 64%;
+
+  /* Legacy Variables for Compatibility */
   --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
   --bg-tertiary: #111111;
+  --bg-glass: rgba(10, 10, 10, 0.8);
 
   --text-primary: #ffffff;
   --text-secondary: #a1a1a1;
@@ -17,12 +49,27 @@
 
   --border-primary: rgba(255, 255, 255, 0.08);
   --border-secondary: rgba(255, 255, 255, 0.04);
+  --border-glass: rgba(255, 255, 255, 0.1);
 
   --accent-primary: #00ff88;
   --accent-hover: #00cc6a;
 
-  /* Remove all gradients except for subtle text effects */
+  /* Premium Gradients */
+  --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+  --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--primary)));
+  --gradient-orb: radial-gradient(circle at center, hsl(var(--primary)), hsl(var(--secondary)), hsl(261 50% 30%));
+  --gradient-glass: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
   --gradient-text: linear-gradient(to right, #ffffff, #a1a1a1);
+
+  /* Glassmorphism Effects */
+  --glass-backdrop: blur(20px);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 20px 60px rgba(99, 102, 241, 0.1);
+
+  /* Animation Shadows */
+  --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+  --shadow-card: 0 10px 30px hsl(var(--primary) / 0.2);
+  --shadow-hover: 0 20px 60px hsl(var(--primary) / 0.3);
 
   /* Typography System */
   --text-xs: 0.75rem;    /* 12px */
@@ -51,7 +98,7 @@ code, .mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Animation System */
+/* Enhanced Animation System */
 .fade-up {
   animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
@@ -67,7 +114,50 @@ code, .mono {
   }
 }
 
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: var(--shadow-glow); }
+  50% { box-shadow: 0 0 60px hsl(var(--primary-glow) / 0.6); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes chartDraw {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
 .stagger-children > * {
   animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: calc(var(--index) * 50ms);
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: var(--gradient-glass);
+  backdrop-filter: var(--glass-backdrop);
+  border: var(--glass-border);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Interactive Effects */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
 }

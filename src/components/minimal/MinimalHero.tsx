@@ -1,108 +1,159 @@
 import React from 'react';
-import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
+import { Button } from '@/components/ui/button';
+import ProfessionalCTA from './ProfessionalCTA';
+import LiveWaitlistCounter from '../landing/LiveWaitlistCounter';
+import AnimatedOrb from '@/components/ui/AnimatedOrb';
+import { motion } from 'framer-motion';
+
 interface MinimalHeroProps {
   className?: string;
 }
-const MinimalHero: React.FC<MinimalHeroProps> = ({
-  className = ''
-}) => {
-  const openWaitlist = () => {
-    window.dispatchEvent(new Event('open-waitlist'));
-  };
 
-  // Exclusive Design Partners data
-  const partners = [{
-    name: 'OutsideLands',
-    abbr: 'OL'
-  }, {
-    name: 'E3 Entertainment',
-    abbr: 'E3'
-  }, {
-    name: '5-Dee Studios',
-    abbr: '5D'
-  }, {
-    name: 'Create Music',
-    abbr: 'CM'
-  }, {
-    name: 'Human.Tech',
-    abbr: 'HT'
-  }];
-  return <section className={`min-h-[80vh] flex items-center relative ${className}`}>
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#0a0a0a_1px,transparent_1px),linear-gradient(to_bottom,#0a0a0a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-black" />
-
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 w-full relative z-10 py-16 sm:py-20 lg:py-24">
-        {/* Left copy */}
-        <div className="lg:col-span-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-primary mb-6">
-            <div className="w-2 h-2 bg-accent-primary rounded-full animate-pulse" />
-            <span className="text-xs text-text-secondary">Early Access</span>
-          </div>
-
-          <h1 className="font-extrabold tracking-tight leading-[1.05] text-[clamp(2.25rem,6vw,4rem)] mb-4">
-            Free your Creativity, and put your music back in your hands.
-          </h1>
-          <p className="text-base md:text-lg text-text-secondary max-w-xl mb-8">A VIBE-CREATING operating system for musicians, DJ's, comedians, and touring performers.  Organize, plan, and create with hyperproductivity.</p>
-          <div className="flex items-center gap-3 flex-wrap my-px py-px mx-[39px] px-[37px]">
-            <button onClick={openWaitlist} className="px-5 h-11 rounded-xl text-white font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black bg-violet-950 hover:bg-violet-800">
-              Join Waitlist →
-            </button>
-            <a href="#features" className="text-sm text-text-secondary hover:text-white transition-colors">Learn more</a>
-          </div>
-
-          {/* Exclusive Design Partners (moved under CTA) */}
-          <div className="mt-6 hidden" aria-label="Exclusive Design Partners">
-            <h2 className="text-center text-xs md:text-sm font-medium text-text-secondary mb-3">Exclusive Design Partners</h2>
-            <div className="grid grid-cols-5 gap-3 sm:gap-4 items-center">
-              {partners.map(p => <div key={p.name} className="flex items-center justify-center">
-                  <div className="h-9 w-full max-w-[100px] rounded-xl bg-white/5 border border-border-primary/60 backdrop-blur-sm flex items-center justify-center text-[10px] sm:text-xs text-text-secondary">
-                    {p.abbr}
-                  </div>
-                  <span className="sr-only">{p.name} logo</span>
-                </div>)}
-            </div>
-          </div>
-
-        </div>
-
-        {/* Right gradient art card */}
-        <div className="lg:col-span-6 flex flex-col">
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] min-h-[320px] lg:min-h-[420px] flex-grow">
-            <video className="absolute inset-0 w-full h-full object-cover" src="/videos/unidemo-2.mp4" autoPlay muted loop playsInline aria-hidden="true" />
-            <div className="absolute inset-0 opacity-90" style={{
-            background: 'radial-gradient(120px 160px at 20% 30%, rgba(106,32,237,0.8), transparent 60%), \
-                 radial-gradient(160px 180px at 80% 70%, rgba(168,85,247,0.7), transparent 60%), \
-                 radial-gradient(180px 200px at 50% 50%, rgba(236,72,153,0.6), transparent 70%), \
-                 radial-gradient(140px 160px at 70% 20%, rgba(245,158,11,0.5), transparent 70%)'
-          }} />
-            <div className="absolute inset-0 bg-white/10 mix-blend-overlay px-[66px]" />
-            <div className="absolute inset-0 border border-white/20 rounded-3xl pointer-events-none" />
-
-            <div className="absolute bottom-4 left-4 py-[127px] my-0 mx-0 px-[170px]">
-              <button onClick={() => window.location.href = 'https://demo.universal-ai.xyz'} className="rounded-lg bg-black/90 text-white text-sm font-medium hover:bg-black py-[9px] px-[10px] my-0 mx-[45px]">
-                Start a Free Trial →
-              </button>
-            </div>
-          </div>
-          <div className="mt-4">
-            <LiveWaitlistCounter />
-          </div>
-
-          {/* Exclusive Design Partners (right column under signups) */}
-          <div aria-label="Exclusive Design Partners" className="mt-8 mx-0 px-0">
-            <h2 className="text-center text-xs md:text-sm font-medium text-text-secondary mb-3">Exclusive Design Partners</h2>
-            <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4 items-center justify-items-center">
-              {partners.map(p => <div key={p.name} className="w-full flex items-center justify-center">
-                  <div className="px-5 h-10 rounded-full border border-border-primary text-text-secondary inline-flex items-center justify-center">
-                    {p.abbr}
-                  </div>
-                  <span className="sr-only">{p.name} logo</span>
-                </div>)}
-            </div>
-          </div>
-        </div>
+const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
+  return (
+    <section className={`relative min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 md:px-8 lg:px-16 overflow-hidden ${className}`}>
+      {/* Animated Orb Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <AnimatedOrb 
+          size="large" 
+          variant="primary"
+          className="absolute top-1/4 -right-48 opacity-30"
+        />
+        <AnimatedOrb 
+          size="medium" 
+          variant="secondary"
+          className="absolute bottom-1/4 -left-32 opacity-20"
+        />
+        
+        {/* Enhanced Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-purple-950/30 to-black opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-purple-900/20" />
       </div>
 
-    </section>;
+      {/* Main Content */}
+      <motion.div 
+        className="relative z-10 flex-1 max-w-4xl text-center lg:text-left lg:pr-8"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <motion.div
+          className="inline-block glass rounded-full px-6 py-2 mb-8 border border-primary/30"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <span className="text-sm font-medium bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            🚀 Investment Potential
+          </span>
+        </motion.div>
+
+        <motion.h1 
+          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-tight"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Empowering Your
+          <br />
+          <span className="bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
+            Investments
+          </span>
+          <br />
+          with AI Technology
+        </motion.h1>
+        
+        <motion.p 
+          className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl lg:max-w-none leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          Our innovative AI technology transforms asset management by analyzing vast data sets in real-time.
+        </motion.p>
+        
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          <ProfessionalCTA 
+            onClick={() => {
+              const event = new CustomEvent('openWaitlistModal');
+              window.dispatchEvent(event);
+            }} 
+            label="Get Started"
+          />
+          <Button variant="outline" size="lg" className="px-8 py-4 text-lg glass hover:glass-strong">
+            Learn More
+          </Button>
+        </motion.div>
+
+        {/* Trust Indicators */}
+        <motion.div 
+          className="flex flex-col items-center lg:items-start gap-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          <div className="flex items-center gap-2">
+            {['JD', 'AS', 'MK', 'RB'].map((initials, index) => (
+              <motion.div
+                key={initials}
+                className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/30 flex items-center justify-center text-sm font-medium"
+                style={{ marginLeft: index > 0 ? '-8px' : '0' }}
+                whileHover={{ scale: 1.1, zIndex: 10 }}
+              >
+                {initials}
+              </motion.div>
+            ))}
+            <div className="ml-2 text-sm text-gray-400">
+              Trusted by <span className="text-primary font-semibold">1.2k+</span> investors
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Right Side Content */}
+      <motion.div 
+        className="relative z-10 flex-1 max-w-2xl mt-16 lg:mt-0"
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+      >
+        <LiveWaitlistCounter />
+        
+        {/* Enhanced Partner Logos */}
+        <motion.div 
+          className="mt-12 text-center lg:text-left"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
+          <p className="text-sm text-gray-400 mb-6">Trusted by top innovative teams</p>
+          <div className="flex flex-wrap justify-center lg:justify-start gap-8 opacity-50 hover:opacity-70 transition-opacity duration-300">
+            {[
+              { name: 'Portivio', icon: '●' },
+              { name: 'Vaultic', icon: '■' },
+              { name: 'Alteris', icon: '★' },
+              { name: 'Quantora', icon: '◆' },
+              { name: 'Fundara', icon: '⬢' }
+            ].map((partner) => (
+              <motion.div 
+                key={partner.name} 
+                className="flex items-center gap-2 text-lg font-semibold tracking-wider"
+                whileHover={{ scale: 1.05, opacity: 1 }}
+              >
+                <span className="text-primary">{partner.icon}</span>
+                {partner.name}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
 };
+
 export default MinimalHero;
