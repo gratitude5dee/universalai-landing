@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import ProfessionalCTA from './ProfessionalCTA';
-import LiveWaitlistCounter from '../landing/LiveWaitlistCounter';
-import AnimatedOrb from '@/components/ui/AnimatedOrb';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Play } from 'lucide-react';
+import AnimatedOrb from '@/components/ui/AnimatedOrb';
+import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
 
 interface MinimalHeroProps {
   className?: string;
@@ -11,147 +11,121 @@ interface MinimalHeroProps {
 
 const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
   return (
-    <section className={`relative min-h-screen flex flex-col lg:flex-row items-center justify-center px-4 md:px-8 lg:px-16 overflow-hidden ${className}`}>
-      {/* Animated Orb Background */}
-      <div className="absolute inset-0 w-full h-full">
+    <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background ${className}`}>
+      {/* Background Elements */}
+      <div className="absolute inset-0 hero-bg-animated" />
+      
+      {/* Floating Elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <AnimatedOrb 
           size="large" 
+          className="absolute top-20 left-10 floating-orb opacity-50" 
           variant="primary"
-          className="absolute top-1/4 -right-48 opacity-30"
         />
         <AnimatedOrb 
           size="medium" 
+          className="absolute top-60 right-10 floating-orb opacity-60" 
           variant="secondary"
-          className="absolute bottom-1/4 -left-32 opacity-20"
         />
-        
-        {/* Enhanced Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-purple-950/30 to-black opacity-80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-purple-900/20" />
+        <AnimatedOrb 
+          size="small" 
+          className="absolute bottom-20 left-1/3 floating-orb opacity-40" 
+          variant="primary"
+        />
       </div>
 
-      {/* Main Content */}
-      <motion.div 
-        className="relative z-10 flex-1 max-w-4xl text-center lg:text-left lg:pr-8"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
+      {/* Content */}
+      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        {/* Trust Badge */}
         <motion.div
-          className="inline-block glass rounded-full px-6 py-2 mb-8 border border-primary/30"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1, duration: 0.6 }}
+          className="inline-flex items-center gap-2 glass border border-primary/30 rounded-full px-6 py-3 mb-8"
         >
-          <span className="text-sm font-medium bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
-            🚀 Investment Potential
-          </span>
+          <div className="w-4 h-4 bg-gradient-to-r from-primary to-primary-glow rounded-full animate-pulse" />
+          <span className="text-sm text-primary">Trusted by 10,000+ Creators Worldwide</span>
         </motion.div>
 
-        <motion.h1 
-          className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-8 leading-tight"
-          initial={{ opacity: 0, y: 20 }}
+        {/* Main Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
+          className="text-4xl sm:text-6xl lg:text-8xl font-extrabold leading-tight mb-6"
         >
-          Empowering Your
-          <br />
-          <span className="bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
-            Investments
-          </span>
-          <br />
-          with AI Technology
+          Where{' '}
+          <span className="gradient-text">
+            Creators
+          </span>{' '}
+          Build<br className="hidden sm:block" />
+          The Future of Digital Assets
         </motion.h1>
-        
-        <motion.p 
-          className="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl lg:max-w-none leading-relaxed"
+
+        {/* Subtitle */}
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed px-4"
         >
-          Our innovative AI technology transforms asset management by analyzing vast data sets in real-time.
+          The only platform that combines AI-powered creation tools, blockchain-backed IP protection, 
+          and integrated treasury management. Turn your creativity into sustainable revenue.
         </motion.p>
-        
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start items-center mb-12"
+
+        {/* CTA Buttons */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-16 px-4"
         >
-          <ProfessionalCTA 
-            onClick={() => {
-              const event = new CustomEvent('openWaitlistModal');
-              window.dispatchEvent(event);
-            }} 
-            label="Get Started"
-          />
-          <Button variant="outline" size="lg" className="px-8 py-4 text-lg glass hover:glass-strong">
-            Learn More
+          <Button 
+            size="lg" 
+            className="text-lg px-8 py-6 h-auto shadow-orange hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
+          >
+            Launch Your Creator Journey
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="text-lg px-8 py-6 h-auto glass hover:glass-strong border-white/20 text-white w-full sm:w-auto"
+          >
+            <Play className="mr-2 h-5 w-5" />
+            Watch Demo
           </Button>
         </motion.div>
 
         {/* Trust Indicators */}
-        <motion.div 
-          className="flex flex-col items-center lg:items-start gap-4"
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="flex flex-col items-center gap-6"
         >
-          <div className="flex items-center gap-2">
-            {['JD', 'AS', 'MK', 'RB'].map((initials, index) => (
-              <motion.div
-                key={initials}
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/30 flex items-center justify-center text-sm font-medium"
-                style={{ marginLeft: index > 0 ? '-8px' : '0' }}
-                whileHover={{ scale: 1.1, zIndex: 10 }}
-              >
-                {initials}
-              </motion.div>
-            ))}
-            <div className="ml-2 text-sm text-gray-400">
-              Trusted by <span className="text-primary font-semibold">1.2k+</span> investors
+          <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-6 px-4">
+            <div className="glass border border-white/10 rounded-full px-4 py-2 lg:px-6 lg:py-3 text-center">
+              <span className="text-secondary-glow font-bold text-base lg:text-lg">$2.3M+</span>
+              <span className="text-muted-foreground ml-2 text-sm lg:text-base">Creator Revenue Generated</span>
+            </div>
+            <div className="glass border border-white/10 rounded-full px-4 py-2 lg:px-6 lg:py-3 text-center">
+              <span className="text-secondary-glow font-bold text-base lg:text-lg">50K+</span>
+              <span className="text-muted-foreground ml-2 text-sm lg:text-base">AI Agents Deployed</span>
+            </div>
+            <div className="glass border border-white/10 rounded-full px-4 py-2 lg:px-6 lg:py-3 text-center">
+              <span className="text-secondary-glow font-bold text-base lg:text-lg">98%</span>
+              <span className="text-muted-foreground ml-2 text-sm lg:text-base">Creator Satisfaction</span>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
-
-      {/* Right Side Content */}
-      <motion.div 
-        className="relative z-10 flex-1 max-w-2xl mt-16 lg:mt-0"
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        <LiveWaitlistCounter />
-        
-        {/* Enhanced Partner Logos */}
-        <motion.div 
-          className="mt-12 text-center lg:text-left"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
-          <p className="text-sm text-gray-400 mb-6">Trusted by top innovative teams</p>
-          <div className="flex flex-wrap justify-center lg:justify-start gap-8 opacity-50 hover:opacity-70 transition-opacity duration-300">
-            {[
-              { name: 'Portivio', icon: '●' },
-              { name: 'Vaultic', icon: '■' },
-              { name: 'Alteris', icon: '★' },
-              { name: 'Quantora', icon: '◆' },
-              { name: 'Fundara', icon: '⬢' }
-            ].map((partner) => (
-              <motion.div 
-                key={partner.name} 
-                className="flex items-center gap-2 text-lg font-semibold tracking-wider"
-                whileHover={{ scale: 1.05, opacity: 1 }}
-              >
-                <span className="text-primary">{partner.icon}</span>
-                {partner.name}
-              </motion.div>
-            ))}
+          
+          <div className="px-4">
+            <LiveWaitlistCounter />
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

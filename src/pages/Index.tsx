@@ -1,25 +1,24 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
 import MinimalHero from '@/components/minimal/MinimalHero';
-import SocialProof from '@/components/minimal/SocialProof';
 import TechnicalFeatures from '@/components/minimal/TechnicalFeatures';
-import MetricsSection from '@/components/minimal/MetricsSection';
-import Spinner from '@/components/ui/spinner';
-const LazyCodeDemo = React.lazy(() => import('@/components/minimal/CodeDemo'));
+import ValuePropsSection from '@/components/minimal/ValuePropsSection';
+import CTASection from '@/components/minimal/CTASection';
+
 const Index = () => {
-  return <div className="min-h-screen text-foreground bg-background">
+  return (
+    <div className="min-h-screen text-foreground bg-background">
       <Header />
-      <main className="pt-24">
-        <MinimalHero className="bg-zinc-950" />
-        <SocialProof />
+      <main className="pt-20">
+        <MinimalHero />
         <TechnicalFeatures />
-        <Suspense fallback={<div className="flex justify-center py-32"><Spinner /></div>}>
-          <LazyCodeDemo />
-        </Suspense>
-        <MetricsSection />
+        <ValuePropsSection />
+        <CTASection />
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;

@@ -30,6 +30,8 @@ export default {
                     foreground: "hsl(var(--primary-foreground))",
                     glow: "hsl(var(--primary-glow))",
                 },
+                "secondary-glow": "hsl(var(--secondary-glow))",
+                "accent-orange": "hsl(var(--accent-orange))",
                 secondary: {
                     DEFAULT: "hsl(var(--secondary))",
                     foreground: "hsl(var(--secondary-foreground))",
@@ -109,6 +111,9 @@ export default {
             },
             dropShadow: {
                 'glow': '0 0 20px hsl(var(--primary) / 0.6)',
+            },
+            boxShadow: {
+                'orange': '0 10px 30px rgba(255, 107, 53, 0.3)',
             },
         },
     },
