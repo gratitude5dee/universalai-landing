@@ -2263,6 +2263,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: number
       }
+      get_public_waitlist_count: {
+        Args: Record<PropertyKey, never>
+        Returns: number
+      }
       get_recent_signups_admin: {
         Args: { limit_count?: number }
         Returns: {

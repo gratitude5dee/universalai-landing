@@ -21,7 +21,7 @@ const LiveWaitlistCounter = () => {
       const {
         data,
         error
-      } = await supabase.rpc('get_waitlist_count');
+      } = await supabase.rpc('get_public_waitlist_count');
       if (error) throw error;
       return data as number;
     },
@@ -30,25 +30,17 @@ const LiveWaitlistCounter = () => {
     initialData: 0
   });
 
-  // Fetch recent signups for ticker
-  const {
-    data: signups
-  } = useQuery({
-    queryKey: ['recent-signups'],
-    queryFn: async () => {
-      const {
-        data,
-        error
-      } = await supabase.rpc('get_recent_signups', {
-        limit_count: 5
-      });
-      if (error) throw error;
-      return data as RecentSignup[];
-    },
-    refetchInterval: 15000,
-    // Refresh every 15 seconds
-    initialData: []
-  });
+  // Generate mock signups for ticker (no real user data)
+  const generateMockSignups = () => {
+    const mockNames = ['Creator', 'Artist', 'Builder', 'Maker', 'Visionary'];
+    return mockNames.map((name, index) => ({
+      display_name: name,
+      signup_time: new Date(Date.now() - (index * 60000)).toISOString()
+    }));
+  };
+
+  // Use mock data instead of real signups for privacy
+  const signups = generateMockSignups();
 
   // Animate count changes
   useEffect(() => {

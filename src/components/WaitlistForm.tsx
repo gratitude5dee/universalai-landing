@@ -166,8 +166,8 @@ export const WaitlistForm = () => {
         throw error;
       }
 
-      // Get the user's position in the waitlist using secure function
-      const { data: count } = await supabase.rpc('get_waitlist_count');
+      // Get the user's position in the waitlist using public secure function
+      const { data: count } = await supabase.rpc('get_public_waitlist_count');
 
       setPosition(count || 1);
       setIsSuccess(true);

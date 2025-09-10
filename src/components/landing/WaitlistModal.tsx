@@ -71,7 +71,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({
       // Get position in waitlist
       const {
         data: countData
-      } = await supabase.rpc('get_waitlist_count');
+      } = await supabase.rpc('get_public_waitlist_count');
       setWaitlistPosition(countData || 0);
       setIsSuccess(true);
       toast({
