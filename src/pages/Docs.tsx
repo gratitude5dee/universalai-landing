@@ -28,7 +28,7 @@ const Docs: React.FC = () => {
           </section>
           <section>
             <h2 className="text-2xl font-semibold mb-2">Core Concepts</h2>
-            <p className="text-sm text-muted-foreground">Understand boards, tasks, assets, and automations.</p>
+            <p className="text-sm text-muted-foreground">Understand boards, tasks, UniversalAI, and automations.</p>
           </section>
           <section>
             <h2 className="text-2xl font-semibold mb-2">API & Integrations</h2>

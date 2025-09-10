@@ -59,7 +59,7 @@ export const Footer = () => {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-border-subtle flex items-center justify-between">
-          <p className="text-xs text-muted-foreground">© 2025 Asset. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2025 UniversalAI. All rights reserved.</p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 p-2 rounded-lg hover:bg-primary/10 hover:border hover:border-border-accent">
               <Github className="w-4 h-4" />

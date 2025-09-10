@@ -18,7 +18,7 @@ const Features: React.FC = () => {
 
         <section className="max-w-7xl mx-auto px-6 pb-20 grid gap-6 md:grid-cols-3">
           {[
-            { title: 'Advanced Management', desc: 'Powerful tools to organize projects, assets, and collaborators without friction.' },
+            { title: 'Advanced Management', desc: 'Powerful tools to organize projects, UniversalAI, and collaborators without friction.' },
             { title: 'Acceleration', desc: 'Optimized workflows to move faster with less context switching and better focus.' },
             { title: 'Monitoring', desc: 'Real-time insights across your work so you can stay in control and on track.' },
             { title: 'AI Assistance', desc: 'Let AI help with drafting, organizing, and summarizing—all within your flow.' },

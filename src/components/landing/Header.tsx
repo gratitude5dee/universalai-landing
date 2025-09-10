@@ -29,9 +29,9 @@ const Header = () => {
         <div className="flex items-center gap-8">
           <Link to="/" className="font-extrabold tracking-tight text-lg text-white flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-lg shadow-primary/25">
-              <span className="text-white font-bold text-sm">A</span>
+              <span className="text-white font-bold text-sm">U</span>
             </div>
-            Asset
+            UniversalAI
           </Link>
 
           {/* Navigation */}

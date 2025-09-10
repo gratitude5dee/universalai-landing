@@ -12,7 +12,7 @@ const TechnicalFeatures = () => {
     },
     {
       icon: '💎',
-      title: 'Diversified Assets', 
+      title: 'Diversified UniversalAI', 
       description: 'Tailor your portfolio to achieve optimal performance.',
       visualization: 'dots'
     },
@@ -49,7 +49,7 @@ const TechnicalFeatures = () => {
             Invest with Confidence.<br />Backed by Intelligence.
           </h2>
           <p className="text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Our innovative AI technology transforms asset management by analyzing vast data sets in real-time
+            Our innovative AI technology transforms UniversalAI management by analyzing vast data sets in real-time
           </p>
         </motion.div>
 

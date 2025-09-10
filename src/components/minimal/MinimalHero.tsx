@@ -57,7 +57,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({ className = '' }) => {
             Creators
           </span>{' '}
           Build<br className="hidden sm:block" />
-          The Future of Digital Assets
+          The Future of UniversalAI
         </motion.h1>
 
         {/* Subtitle */}
