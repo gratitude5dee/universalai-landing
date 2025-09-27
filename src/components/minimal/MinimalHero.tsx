@@ -218,7 +218,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             <div className="text-white/80 font-medium text-lg">E3 Entertainment</div>
             <div className="text-white/80 font-medium text-lg">GQ Africa</div>
             <div className="text-white/80 font-medium text-lg">Create Music</div>
-            <div className="text-white/80 font-medium text-lg">Zooties</div>
+            <div className="text-white/80 font-medium text-lg">Manus AI</div>
             <div className="text-white/80 font-medium text-lg">5-Dee Studios</div>
           </div>
         </motion.div>
