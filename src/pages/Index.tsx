@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
 import MinimalHero from '@/components/minimal/MinimalHero';
@@ -11,25 +11,40 @@ import TechnicalArchitecture from '@/components/sections/TechnicalArchitecture';
 import PricingSection from '@/components/sections/PricingSection';
 import AgenticAdvantage from '@/components/sections/AgenticAdvantage';
 import EnhancedCTA from '@/components/sections/EnhancedCTA';
+import UniversalAIIntroAnimation from '@/components/ui/UniversalAIIntroAnimation';
 
 const Index = () => {
+  const [showIntro, setShowIntro] = useState(true);
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
   return (
-    <div className="min-h-screen text-foreground bg-background">
-      <Header />
-      <main className="pt-20">
-        <MinimalHero />
-        <ParadigmShift />
-        <EcosystemPillars />
-        <AgentMarketplace />
-        <RevolutionaryIdentity />
-        <SuccessStories />
-        <TechnicalArchitecture />
-        <PricingSection />
-        <AgenticAdvantage />
-        <EnhancedCTA />
-      </main>
-      <Footer />
-    </div>
+    <>
+      {/* Award-winning intro animation */}
+      <UniversalAIIntroAnimation 
+        onComplete={handleIntroComplete}
+        allowSkip={true}
+      />
+      
+      <div className="min-h-screen text-foreground bg-background">
+        <Header />
+        <main className="pt-20">
+          <MinimalHero />
+          <ParadigmShift />
+          <EcosystemPillars />
+          <AgentMarketplace />
+          <RevolutionaryIdentity />
+          <SuccessStories />
+          <TechnicalArchitecture />
+          <PricingSection />
+          <AgenticAdvantage />
+          <EnhancedCTA />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 };
 
