@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import WaitlistModal from './WaitlistModal';
+import universalAILogo from '@/assets/universal-ai-logo.png';
 const navItems = [{
   label: 'Features',
   to: '/features'
@@ -28,9 +29,7 @@ const Header = () => {
         {/* Logo */}
         <div className="flex items-center gap-8">
           <Link to="/" className="font-extrabold tracking-tight text-lg text-white flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-glow flex items-center justify-center shadow-lg shadow-primary/25">
-              <span className="text-white font-bold text-sm">U</span>
-            </div>
+            <img src={universalAILogo} alt="UniversalAI Logo" className="w-8 h-8 rounded-lg shadow-lg shadow-primary/25" />
             UniversalAI
           </Link>
 
