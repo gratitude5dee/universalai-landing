@@ -203,7 +203,7 @@ const TechnicalArchitecture = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <Zap className="w-8 h-8 text-primary mx-auto mb-2" />
-                <div className="text-2xl font-bold text-primary">< 100ms</div>
+                <div className="text-2xl font-bold text-primary">&lt; 100ms</div>
                 <div className="text-xs text-muted-foreground">Agent Response Time</div>
               </div>
               <div className="text-center">
