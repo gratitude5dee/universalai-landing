@@ -3,6 +3,7 @@ import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
 
 const entries = [
+  { version: '0.3.0', date: '2025-09-27', notes: ['ManusAI integration with comprehensive 5DEE ecosystem', 'Complete transformation of Docs and Features pages', 'Added 9 core sections: ParadigmShift, EcosystemPillars, AgentMarketplace, RevolutionaryIdentity, SuccessStories, TechnicalArchitecture, PricingSection, AgenticAdvantage, EnhancedCTA', 'Advanced animations and glassmorphism design system', 'Technical architecture visualization and interactive components'] },
   { version: '0.2.0', date: '2025-08-08', notes: ['New landing header & hero styling', 'Waitlist modal with Supabase integration', 'Added Features, Docs, Pricing, Changelog pages'] },
   { version: '0.1.0', date: '2025-07-20', notes: ['Initial public preview', 'Core components and layout'] },
 ];
