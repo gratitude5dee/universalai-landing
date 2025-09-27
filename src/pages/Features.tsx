@@ -54,7 +54,6 @@ const Features: React.FC = () => {
             </div>
           </motion.div>
         </div>
-        <div className="absolute inset-0 hero-bg-animated opacity-30" />
       </section>
 
       {/* All Feature Sections */}
@@ -69,6 +68,8 @@ const Features: React.FC = () => {
         <AgenticAdvantage />
         <EnhancedCTA />
       </main>
+      
+      <div className="absolute inset-0 hero-bg-animated opacity-30" />
       
       <Footer />
     </div>
