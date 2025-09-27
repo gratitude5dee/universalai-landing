@@ -122,8 +122,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             delay: 0.3,
             duration: 0.6
           }} className="text-lg lg:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed">
-              The only platform that combines AI-powered creation tools, blockchain-backed IP protection, 
-              and integrated treasury management. Turn your creativity into sustainable revenue.
+              The first decentralized ecosystem combining on-chain studios, physical production spaces, and autonomous agent commerce. Build your digital empire through verified identity, programmable IP, and AI agents that think, create, and transact on your behalf.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -138,7 +137,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             duration: 0.6
           }} className="flex flex-col sm:flex-row gap-4 mb-8">
               <Button size="lg" className="text-lg px-8 py-6 h-auto shadow-purple hover:shadow-xl transition-all duration-300" onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}>
-                Launch Your Creator Journey
+                Enter the Agentic Economy
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
