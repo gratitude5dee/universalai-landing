@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
 import ScrollProgress from '@/components/ui/ScrollProgress';
+import CustomCursor from '@/components/ui/CustomCursor';
 import MinimalHero from '@/components/minimal/MinimalHero';
 import ParadigmShift from '@/components/sections/ParadigmShift';
 import EcosystemPillars from '@/components/sections/EcosystemPillars';
@@ -14,6 +15,7 @@ import AgenticAdvantage from '@/components/sections/AgenticAdvantage';
 import EnhancedCTA from '@/components/sections/EnhancedCTA';
 import UniversalAIIntroAnimation from '@/components/ui/UniversalAIIntroAnimation';
 import SplineHeroSection from '@/components/sections/SplineHeroSection';
+import SectionDivider from '@/components/ui/SectionDivider';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -24,6 +26,9 @@ const Index = () => {
 
   return (
     <>
+      {/* Custom Cursor Trail (desktop only) */}
+      <CustomCursor />
+      
       {/* Scroll Progress Indicator */}
       {!showIntro && <ScrollProgress />}
       
@@ -38,13 +43,21 @@ const Index = () => {
         <main className="pt-20">
           {!showIntro && <SplineHeroSection />}
           <MinimalHero />
+          <SectionDivider className="my-16" />
           <ParadigmShift />
+          <SectionDivider className="my-16" />
           <EcosystemPillars />
+          <SectionDivider className="my-16" />
           <AgentMarketplace />
+          <SectionDivider className="my-16" />
           <RevolutionaryIdentity />
+          <SectionDivider className="my-16" />
           <SuccessStories />
+          <SectionDivider className="my-16" />
           <TechnicalArchitecture />
+          <SectionDivider className="my-16" />
           <PricingSection />
+          <SectionDivider className="my-16" />
           <AgenticAdvantage />
           <EnhancedCTA />
         </main>

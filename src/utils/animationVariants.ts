@@ -6,8 +6,19 @@ export const prefersReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
+// Helper to create motion-safe variants
+const createSafeVariants = (variants: Variants): Variants => {
+  if (prefersReducedMotion()) {
+    return {
+      hidden: { opacity: 0 },
+      visible: { opacity: 1 }
+    };
+  }
+  return variants;
+};
+
 // Fade up animation
-export const fadeUp: Variants = {
+export const fadeUp: Variants = createSafeVariants({
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -17,10 +28,10 @@ export const fadeUp: Variants = {
       ease: [0.25, 0.1, 0.25, 1]
     }
   }
-};
+});
 
 // Fade in animation
-export const fadeIn: Variants = {
+export const fadeIn: Variants = createSafeVariants({
   hidden: { opacity: 0 },
   visible: { 
     opacity: 1,
@@ -29,10 +40,10 @@ export const fadeIn: Variants = {
       ease: 'easeOut'
     }
   }
-};
+});
 
 // Slide from left
-export const slideFromLeft: Variants = {
+export const slideFromLeft: Variants = createSafeVariants({
   hidden: { opacity: 0, x: -50 },
   visible: { 
     opacity: 1, 
@@ -42,10 +53,10 @@ export const slideFromLeft: Variants = {
       ease: [0.25, 0.1, 0.25, 1]
     }
   }
-};
+});
 
 // Slide from right
-export const slideFromRight: Variants = {
+export const slideFromRight: Variants = createSafeVariants({
   hidden: { opacity: 0, x: 50 },
   visible: { 
     opacity: 1, 
@@ -55,10 +66,10 @@ export const slideFromRight: Variants = {
       ease: [0.25, 0.1, 0.25, 1]
     }
   }
-};
+});
 
 // Scale up animation
-export const scaleUp: Variants = {
+export const scaleUp: Variants = createSafeVariants({
   hidden: { opacity: 0, scale: 0.95 },
   visible: { 
     opacity: 1, 
@@ -68,7 +79,7 @@ export const scaleUp: Variants = {
       ease: [0.25, 0.1, 0.25, 1]
     }
   }
-};
+});
 
 // Stagger children animation
 export const staggerContainer: Variants = {
@@ -76,14 +87,14 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
+      staggerChildren: prefersReducedMotion() ? 0 : 0.1,
+      delayChildren: prefersReducedMotion() ? 0 : 0.1
     }
   }
 };
 
 // Character reveal animation
-export const charReveal: Variants = {
+export const charReveal: Variants = createSafeVariants({
   hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
@@ -93,12 +104,12 @@ export const charReveal: Variants = {
       ease: [0.25, 0.1, 0.25, 1]
     }
   }
-};
+});
 
 // Card hover lift
 export const cardHover = {
   rest: { y: 0, scale: 1 },
-  hover: { 
+  hover: prefersReducedMotion() ? { y: 0, scale: 1 } : { 
     y: -8, 
     scale: 1.02,
     transition: {

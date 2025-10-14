@@ -22,9 +22,24 @@ const ParadigmShift = () => {
 
   return (
     <section className="py-32 px-4 sm:px-6 relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-60" />
+      {/* Background Effects with Parallax */}
+      <motion.div 
+        className="absolute inset-0"
+        style={{ willChange: 'transform' }}
+      >
+        <motion.div 
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-60"
+          animate={{
+            x: [0, 30, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </motion.div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
@@ -50,22 +65,33 @@ const ParadigmShift = () => {
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <GlassmorphicCard className="bg-red-500/5 border-red-500/20">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center">
+                <motion.div 
+                  className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center"
+                  whileInView={{ rotate: [0, -10, 0] }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
                   <X className="w-5 h-5 text-red-400" />
-                </div>
+                </motion.div>
                 <h3 className="text-2xl font-bold text-red-200">Traditional Creative Industry</h3>
               </div>
               <div className="space-y-4">
                 {oldModel.map((item, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                  <motion.div 
+                    key={index} 
+                    className="flex items-start gap-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                  >
                     <X className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
                     <p className="text-muted-foreground">{item}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </GlassmorphicCard>
@@ -75,22 +101,33 @@ const ParadigmShift = () => {
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <GlassmorphicCard className="bg-primary/5 border-primary/30">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-10 bg-primary/30 rounded-full flex items-center justify-center">
+                <motion.div 
+                  className="w-10 h-10 bg-primary/30 rounded-full flex items-center justify-center"
+                  whileInView={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                >
                   <Check className="w-5 h-5 text-primary" />
-                </div>
+                </motion.div>
                 <h3 className="text-2xl font-bold text-primary">The 5DEE Ecosystem</h3>
               </div>
               <div className="space-y-4">
                 {newModel.map((item, index) => (
-                  <div key={index} className="flex items-start gap-3">
+                  <motion.div 
+                    key={index} 
+                    className="flex items-start gap-3"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
+                  >
                     <Check className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                     <p className="text-foreground">{item}</p>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </GlassmorphicCard>

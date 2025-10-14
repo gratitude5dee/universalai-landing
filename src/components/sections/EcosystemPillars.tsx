@@ -83,43 +83,63 @@ const EcosystemPillars = () => {
 
         {/* Pillars Grid */}
         <div className="grid lg:grid-cols-2 gap-8">
-          {pillars.map((pillar, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-            >
-              <GlassmorphicCard className="h-full">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0">
-                    <pillar.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">{pillar.title}</h3>
-                    <p className="text-muted-foreground text-sm">{pillar.subtitle}</p>
-                  </div>
-                </div>
-
-                <div className="space-y-3 mb-6">
-                  {pillar.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                      <p className="text-sm text-foreground leading-relaxed">
-                        <strong className="text-primary">{feature.split(':')[0]}:</strong>
-                        {feature.split(':').slice(1).join(':')}
-                      </p>
+          {pillars.map((pillar, index) => {
+            const isLeftColumn = index % 2 === 0;
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ 
+                  opacity: 0, 
+                  x: isLeftColumn ? -50 : 50,
+                  y: 30
+                }}
+                whileInView={{ 
+                  opacity: 1, 
+                  x: 0,
+                  y: 0
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.15,
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+              >
+                <GlassmorphicCard className="h-full group">
+                  <div className="flex items-start gap-4 mb-6">
+                    <motion.div 
+                      className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center flex-shrink-0"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
+                    >
+                      <pillar.icon className="w-6 h-6 text-white" />
+                    </motion.div>
+                     <div>
+                      <h3 className="text-2xl font-bold mb-2">{pillar.title}</h3>
+                      <p className="text-muted-foreground text-sm">{pillar.subtitle}</p>
                     </div>
-                  ))}
-                </div>
+                  </div>
 
-                <div className="glass-strong rounded-lg p-3 border border-primary/20">
-                  <p className="text-xs text-primary font-medium">Technologies: {pillar.tech}</p>
-                </div>
-              </GlassmorphicCard>
-            </motion.div>
-          ))}
+                  <div className="space-y-3 mb-6">
+                    {pillar.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                        <p className="text-sm text-foreground leading-relaxed">
+                          <strong className="text-primary">{feature.split(':')[0]}:</strong>
+                          {feature.split(':').slice(1).join(':')}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="glass-strong rounded-lg p-3 border border-primary/20">
+                    <p className="text-xs text-primary font-medium">Technologies: {pillar.tech}</p>
+                  </div>
+                </GlassmorphicCard>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

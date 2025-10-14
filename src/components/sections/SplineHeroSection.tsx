@@ -48,24 +48,31 @@ export default function SplineHeroSection() {
         <motion.div
           style={{ 
             opacity, 
-            filter: blur.get() ? `blur(${blur.get()}px)` : 'none',
-            scale
+            scale,
+            willChange: 'transform, opacity'
           }}
           className="w-full h-full"
         >
-          <Spline
-            scene="https://prod.spline.design/CUGpKyxn7cmAWJ-l/scene.splinecode"
-            onLoad={() => {
-              console.log('Spline loaded successfully');
-              setIsLoading(false);
-            }}
-            onError={(error) => {
-              console.log('Spline error:', error);
-              setIsLoading(false);
-              setHasError(true);
+          <motion.div
+            style={{
+              filter: blur.get() ? `blur(${blur.get()}px)` : 'none',
             }}
             className="w-full h-full"
-          />
+          >
+            <Spline
+              scene="https://prod.spline.design/CUGpKyxn7cmAWJ-l/scene.splinecode"
+              onLoad={() => {
+                console.log('Spline loaded successfully');
+                setIsLoading(false);
+              }}
+              onError={(error) => {
+                console.log('Spline error:', error);
+                setIsLoading(false);
+                setHasError(true);
+              }}
+              className="w-full h-full"
+            />
+          </motion.div>
         </motion.div>
       )}
 
