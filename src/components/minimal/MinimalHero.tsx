@@ -71,7 +71,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           }} transition={{
             delay: 0.1,
             duration: 0.6
-          }} className="inline-flex items-center gap-2 glass border border-primary/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 self-center lg:self-start text-center">
+          }} className="inline-flex items-center gap-2 glass border border-primary/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 mt-[50px] self-center lg:self-start text-center">
               <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-primary to-primary-glow rounded-full animate-pulse" />
               <span className="text-xs sm:text-sm text-primary">Trusted by 10,000+ Creators Worldwide</span>
             </motion.div>
