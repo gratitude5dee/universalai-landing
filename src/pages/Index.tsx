@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
+import ScrollProgress from '@/components/ui/ScrollProgress';
 import MinimalHero from '@/components/minimal/MinimalHero';
 import ParadigmShift from '@/components/sections/ParadigmShift';
 import EcosystemPillars from '@/components/sections/EcosystemPillars';
@@ -23,6 +24,9 @@ const Index = () => {
 
   return (
     <>
+      {/* Scroll Progress Indicator */}
+      {!showIntro && <ScrollProgress />}
+      
       {/* Award-winning intro animation */}
       <UniversalAIIntroAnimation 
         onComplete={handleIntroComplete}

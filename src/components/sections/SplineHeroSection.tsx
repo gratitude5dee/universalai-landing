@@ -1,10 +1,18 @@
 import Spline from '@splinetool/react-spline';
 import { useState, useEffect } from 'react';
-import Spinner from '@/components/ui/spinner';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import SplineLogoOverlay from '@/components/ui/SplineLogoOverlay';
+import SplineLoadingSkeleton from '@/components/ui/SplineLoadingSkeleton';
 
 export default function SplineHeroSection() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  
+  // Parallax and scroll effects
+  const { scrollY } = useScroll();
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.3]);
+  const blur = useTransform(scrollY, [0, 300], [0, 8]);
+  const scale = useTransform(scrollY, [0, 300], [1, 1.1]);
 
   // Fallback timeout if Spline takes too long to load
   useEffect(() => {
@@ -23,12 +31,7 @@ export default function SplineHeroSection() {
   return (
     <section className="relative w-full h-screen overflow-hidden z-0 -mt-[50px]">
       {/* Loading State */}
-      {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-background z-10">
-          <Spinner />
-          <p className="ml-4 text-muted-foreground">Loading 3D Experience...</p>
-        </div>
-      )}
+      {isLoading && <SplineLoadingSkeleton />}
 
       {/* Error Fallback */}
       {hasError && (
@@ -40,22 +43,34 @@ export default function SplineHeroSection() {
         </div>
       )}
 
-      {/* Spline Scene */}
+      {/* Spline Scene with Parallax */}
       {!hasError && (
-        <Spline
-          scene="https://prod.spline.design/CUGpKyxn7cmAWJ-l/scene.splinecode"
-          onLoad={() => {
-            console.log('Spline loaded successfully');
-            setIsLoading(false);
-          }}
-          onError={(error) => {
-            console.log('Spline error:', error);
-            setIsLoading(false);
-            setHasError(true);
+        <motion.div
+          style={{ 
+            opacity, 
+            filter: blur.get() ? `blur(${blur.get()}px)` : 'none',
+            scale
           }}
           className="w-full h-full"
-        />
+        >
+          <Spline
+            scene="https://prod.spline.design/CUGpKyxn7cmAWJ-l/scene.splinecode"
+            onLoad={() => {
+              console.log('Spline loaded successfully');
+              setIsLoading(false);
+            }}
+            onError={(error) => {
+              console.log('Spline error:', error);
+              setIsLoading(false);
+              setHasError(true);
+            }}
+            className="w-full h-full"
+          />
+        </motion.div>
       )}
+
+      {/* Logo Overlay */}
+      <SplineLogoOverlay isSplineLoaded={!isLoading && !hasError} />
 
       {/* Scroll Indicator */}
       {!isLoading && !hasError && (

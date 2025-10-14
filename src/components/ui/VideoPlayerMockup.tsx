@@ -24,9 +24,11 @@ const VideoPlayerMockup: React.FC<VideoPlayerMockupProps> = ({
         <div className="absolute -inset-2 top-0 sm:top-[50px] lg:top-[-8px] bg-gradient-to-r from-primary/30 to-secondary/30 rounded-3xl blur-xl opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
         
         {/* Video Container */}
-        <div className="relative bg-black rounded-xl overflow-hidden aspect-video">
+        <div className="relative bg-black rounded-xl overflow-hidden aspect-video group">
           {/* Video */}
-          <video
+          <motion.video
+            whileHover={{ filter: 'brightness(1.1)' }}
+            transition={{ duration: 0.3 }}
             autoPlay
             muted
             loop
@@ -34,7 +36,7 @@ const VideoPlayerMockup: React.FC<VideoPlayerMockupProps> = ({
             className="w-full h-full object-cover"
           >
             <source src={videoSrc} type="video/mp4" />
-          </video>
+          </motion.video>
           
           {/* Video Controls Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300">
@@ -77,6 +79,14 @@ const VideoPlayerMockup: React.FC<VideoPlayerMockupProps> = ({
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{
+                  scale: {
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }
+                }}
                 className="bg-white/20 backdrop-blur-sm rounded-full p-6 border border-white/30 hover:bg-white/30 transition-all duration-200"
               >
                 <Play className="w-8 h-8 text-white ml-1" />

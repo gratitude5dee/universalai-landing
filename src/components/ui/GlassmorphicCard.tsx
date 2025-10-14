@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 interface GlassmorphicCardProps {
@@ -21,22 +22,51 @@ const GlassmorphicCard: React.FC<GlassmorphicCardProps> = ({
   };
 
   return (
-    <div
+    <motion.div
+      initial="rest"
+      whileHover={hover ? "hover" : undefined}
+      variants={hover ? {
+        rest: { y: 0, scale: 1 },
+        hover: { 
+          y: -8, 
+          scale: 1.02,
+          transition: {
+            duration: 0.3,
+            ease: [0.25, 0.1, 0.25, 1]
+          }
+        }
+      } : undefined}
       className={cn(
         'rounded-2xl p-8 relative overflow-hidden transition-all duration-300',
         variants[variant],
-        hover && 'hover-lift hover:border-primary/30',
+        hover && 'hover:border-primary/60 hover:shadow-xl hover:shadow-primary/10',
         className
       )}
+      style={{
+        willChange: hover ? 'transform' : 'auto'
+      }}
     >
       {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 pointer-events-none"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+      
+      {/* Enhanced backdrop blur on hover */}
+      <motion.div 
+        className="absolute inset-0 backdrop-blur-sm pointer-events-none"
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 0.5 }}
+        transition={{ duration: 0.3 }}
+      />
       
       {/* Content */}
       <div className="relative z-10">
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

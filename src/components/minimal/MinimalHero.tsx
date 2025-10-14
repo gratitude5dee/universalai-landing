@@ -31,29 +31,91 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
       {/* Purple Flowing Gradient Effects */}
       <div className="absolute inset-0 overflow-hidden z-0">
         {/* Primary curved shape - top right */}
-        <div className="absolute -top-1/3 -right-1/4 w-[600px] sm:w-[800px] lg:w-[1000px] h-[400px] sm:h-[550px] lg:h-[700px] opacity-50 sm:opacity-70 lg:opacity-90">
+        <motion.div 
+          className="absolute -top-1/3 -right-1/4 w-[600px] sm:w-[800px] lg:w-[1000px] h-[400px] sm:h-[550px] lg:h-[700px] opacity-50 sm:opacity-70 lg:opacity-90"
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.5, 0.7, 0.5],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        >
           <div className="w-full h-full bg-gradient-to-bl from-purple-500/50 via-violet-600/40 to-purple-700/30 rounded-[45%] transform rotate-12 blur-3xl" />
-        </div>
+        </motion.div>
         
         {/* Secondary flowing shape - center left */}
-        <div className="absolute top-1/4 -left-1/3 w-[500px] sm:w-[650px] lg:w-[800px] h-[300px] sm:h-[400px] lg:h-[500px] opacity-50 sm:opacity-65 lg:opacity-80">
+        <motion.div 
+          className="absolute top-1/4 -left-1/3 w-[500px] sm:w-[650px] lg:w-[800px] h-[300px] sm:h-[400px] lg:h-[500px] opacity-50 sm:opacity-65 lg:opacity-80"
+          animate={{
+            x: [0, 20, 0],
+            y: [0, 15, 0],
+            opacity: [0.5, 0.65, 0.5],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        >
           <div className="w-full h-full bg-gradient-to-tr from-violet-600/45 via-purple-500/35 to-indigo-600/25 rounded-[60%] transform -rotate-35 blur-2xl" />
-        </div>
+        </motion.div>
         
         {/* Large accent shape - bottom center */}
-        <div className="absolute -bottom-1/4 left-1/4 w-[400px] sm:w-[500px] lg:w-[600px] h-[250px] sm:h-[325px] lg:h-[400px] opacity-40 sm:opacity-55 lg:opacity-70">
+        <motion.div 
+          className="absolute -bottom-1/4 left-1/4 w-[400px] sm:w-[500px] lg:w-[600px] h-[250px] sm:h-[325px] lg:h-[400px] opacity-40 sm:opacity-55 lg:opacity-70"
+          animate={{
+            x: [0, -15, 0],
+            y: [0, -20, 0],
+            opacity: [0.4, 0.55, 0.4],
+          }}
+          transition={{
+            duration: 28,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 4
+          }}
+        >
           <div className="w-full h-full bg-gradient-to-tl from-purple-400/40 via-violet-500/30 to-purple-600/20 rounded-[50%] transform rotate-45 blur-3xl" />
-        </div>
+        </motion.div>
         
         {/* Small accent - top left */}
-        <div className="hidden sm:block absolute top-1/5 left-1/4 w-[200px] sm:w-[250px] lg:w-[300px] h-[150px] sm:h-[200px] lg:h-[250px] opacity-40 sm:opacity-50 lg:opacity-60">
+        <motion.div 
+          className="hidden sm:block absolute top-1/5 left-1/4 w-[200px] sm:w-[250px] lg:w-[300px] h-[150px] sm:h-[200px] lg:h-[250px] opacity-40 sm:opacity-50 lg:opacity-60"
+          animate={{
+            y: [0, 10, 0],
+            opacity: [0.4, 0.5, 0.4],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        >
           <div className="w-full h-full bg-gradient-to-br from-violet-500/35 to-purple-700/25 rounded-[65%] transform -rotate-20 blur-2xl" />
-        </div>
+        </motion.div>
         
         {/* Additional depth shape - center right */}
-        <div className="absolute top-1/2 right-1/5 w-[250px] sm:w-[325px] lg:w-[400px] h-[200px] sm:h-[250px] lg:h-[300px] opacity-30 sm:opacity-40 lg:opacity-50">
+        <motion.div 
+          className="absolute top-1/2 right-1/5 w-[250px] sm:w-[325px] lg:w-[400px] h-[200px] sm:h-[250px] lg:h-[300px] opacity-30 sm:opacity-40 lg:opacity-50"
+          animate={{
+            x: [0, 10, 0],
+            y: [0, -10, 0],
+            opacity: [0.3, 0.4, 0.3],
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3
+          }}
+        >
           <div className="w-full h-full bg-gradient-to-l from-indigo-500/30 via-purple-600/20 to-violet-500/15 rounded-[70%] transform rotate-60 blur-xl" />
-        </div>
+        </motion.div>
       </div>
 
       {/* Content */}
@@ -62,17 +124,33 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           {/* Left Column - Content */}
           <div className="flex flex-col justify-center text-center lg:text-left order-2 lg:order-1">
             {/* Trust Badge */}
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            delay: 0.1,
-            duration: 0.6
-          }} className="inline-flex items-center gap-2 glass border border-primary/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 mt-[50px] self-center lg:self-start text-center">
-              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-primary to-primary-glow rounded-full animate-pulse" />
+            <motion.div 
+              initial={{
+                opacity: 0,
+                y: 20
+              }} 
+              animate={{
+                opacity: 1,
+                y: 0
+              }} 
+              transition={{
+                delay: 0.1,
+                duration: 0.6
+              }} 
+              className="inline-flex items-center gap-2 glass border border-primary/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 mt-[50px] self-center lg:self-start text-center hover:border-primary/50 transition-colors duration-300"
+            >
+              <motion.div 
+                className="w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-primary to-primary-glow rounded-full"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.8, 1, 0.8],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
               <span className="text-xs sm:text-sm text-primary">Trusted by 10,000+ Creators Worldwide</span>
             </motion.div>
 
@@ -104,9 +182,21 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             duration: 0.8
           }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-tight mb-4 sm:mb-6">
               Cultivate your{' '}
-              <span className="gradient-text">
+              <motion.span 
+                className="gradient-text"
+                initial={{ backgroundPosition: '-200% center' }}
+                animate={{ backgroundPosition: '200% center' }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                style={{
+                  backgroundSize: '200% auto',
+                }}
+              >
                 Creator
-              </span>
+              </motion.span>
               :<br />
               Every Being is A Billion
             </motion.h1>
@@ -136,9 +226,18 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             delay: 0.4,
             duration: 0.6
           }} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 px-2 sm:px-0">
-              <Button size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto shadow-purple hover:shadow-xl transition-all duration-300" onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}>
+              <Button 
+                size="lg" 
+                className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto shadow-purple hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group" 
+                onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
+              >
                 Enter the Agentic Economy
-                <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                <motion.div
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                </motion.div>
               </Button>
               
               <Button variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto glass hover:glass-strong border-white/20 text-white">
