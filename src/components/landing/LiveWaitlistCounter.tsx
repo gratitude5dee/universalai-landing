@@ -23,11 +23,11 @@ const LiveWaitlistCounter = () => {
         error
       } = await supabase.rpc('get_public_waitlist_count');
       if (error) throw error;
-      return data as number;
+      return (data as number) + 500; // Add 500 to the count
     },
     refetchInterval: 10000,
     // Poll every 10 seconds
-    initialData: 0
+    initialData: 500
   });
 
   // Generate mock signups for ticker (no real user data)
