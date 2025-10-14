@@ -148,6 +148,108 @@ code, .mono {
   }
 }
 
+/* Matrix Canvas Styles */
+.matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 1.5s ease-out;
+}
+
+.matrix-canvas.fade-out {
+  opacity: 0;
+}
+
+/* ASCII Art Container */
+.ascii-art-container {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+}
+
+@keyframes asciiArtFadeIn {
+  to { opacity: 1; }
+}
+
+/* Status Indicator */
+.intro-status-indicator {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #0f0;
+  font-size: 0.9rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.2rem;
+  text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+  z-index: 15;
+}
+
+/* Matrix Loading Text */
+.matrix-loading-text {
+  color: #0f0;
+  font-size: 1.5rem;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+  animation: matrixGlitch 1.5s infinite;
+}
+
+@keyframes matrixGlitch {
+  0%, 90%, 100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  92% {
+    opacity: 0.8;
+    transform: translateX(-3px);
+  }
+  94% {
+    opacity: 0.8;
+    transform: translateX(3px);
+  }
+}
+
+/* Matrix Progress Bar */
+.matrix-progress-bar {
+  width: 400px;
+  height: 3px;
+  background: rgba(0, 255, 0, 0.2);
+  margin: 2rem auto 0;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.matrix-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0f0, #0f0 50%, #00ff00);
+  width: 0%;
+  transition: width 0.3s ease-out;
+  box-shadow: 0 0 15px #0f0;
+}
+
+@media (max-width: 768px) {
+  .matrix-loading-text {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+  }
+  
+  .matrix-progress-bar {
+    width: 300px;
+  }
+  
+  .intro-status-indicator {
+    font-size: 0.7rem;
+    letter-spacing: 0.1rem;
+  }
+}
+
 .floating-orb {
   animation: float 6s ease-in-out infinite;
 }

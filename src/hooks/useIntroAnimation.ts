@@ -4,18 +4,21 @@ interface UseIntroAnimationOptions {
   duration?: number;
   onComplete?: () => void;
   skipOnRepeat?: boolean;
+  onPhaseChange?: (phase: number) => void;
 }
 
 export const useIntroAnimation = (options: UseIntroAnimationOptions = {}) => {
   const {
-    duration = 4000,
+    duration = 15000,
     onComplete,
-    skipOnRepeat = true
+    skipOnRepeat = true,
+    onPhaseChange
   } = options;
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [phase, setPhase] = useState(0);
   
   const startTimeRef = useRef<number | null>(null);
   const animationFrameRef = useRef<number | null>(null);
@@ -112,10 +115,25 @@ export const useIntroAnimation = (options: UseIntroAnimationOptions = {}) => {
     }
   }, [isPlaying, skip]);
 
+  // Phase tracking based on progress
+  useEffect(() => {
+    const newPhase = 
+      progress < 20 ? 0 : // 0-3s Matrix rain
+      progress < 43.3 ? 1 : // 3-6.5s ASCII character
+      progress < 70 ? 2 : // 6.5-10.5s ASCII logo
+      3; // 10.5-15s Framer Motion
+    
+    if (newPhase !== phase) {
+      setPhase(newPhase);
+      onPhaseChange?.(newPhase);
+    }
+  }, [progress, phase, onPhaseChange]);
+
   return {
     isPlaying,
     progress,
     isComplete,
+    phase,
     skip,
     restart
   };

@@ -1,253 +1,315 @@
-import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence, useAnimation, Variants } from 'framer-motion';
-import LightningLogo from './LightningLogo';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useIntroAnimation } from '@/hooks/useIntroAnimation';
+import LightningLogo from '@/components/ui/LightningLogo';
+import MatrixCanvasBackground from '@/components/ui/MatrixCanvasBackground';
+import ASCIIArtRenderer from '@/components/ui/ASCIIArtRenderer';
+import IntroStatusIndicator from '@/components/ui/IntroStatusIndicator';
+import { ASCII_ART_CHARACTER, ASCII_ART_LOGO } from '@/data/asciiArt';
 
 interface UniversalAIIntroAnimationProps {
   onComplete?: () => void;
   allowSkip?: boolean;
 }
 
-const UniversalAIIntroAnimation: React.FC<UniversalAIIntroAnimationProps> = ({
+const UniversalAIIntroAnimation: React.FC<UniversalAIIntroAnimationProps> = ({ 
   onComplete,
   allowSkip = true
 }) => {
-  const { isPlaying, progress, skip, isComplete } = useIntroAnimation({
-    duration: 4000,
-    onComplete
+  const [statusMessage, setStatusMessage] = useState('◆ NEURAL NETWORK INITIALIZING ◆');
+  const [loadingText, setLoadingText] = useState('INITIALIZING CORE');
+  const [asciiStartTime, setAsciiStartTime] = useState(0);
+  
+  const { isPlaying, progress, isComplete, phase, skip } = useIntroAnimation({
+    onComplete,
+    duration: 15000,
+    onPhaseChange: (newPhase) => {
+      if (newPhase === 1) {
+        setStatusMessage('◆ LOADING NEURAL FRAMEWORK ◆');
+        setAsciiStartTime(Date.now());
+      } else if (newPhase === 2) {
+        setStatusMessage('◆ ESTABLISHING AI PROTOCOLS ◆');
+        setAsciiStartTime(Date.now());
+      } else if (newPhase === 3) {
+        setStatusMessage('◆ SYSTEM READY ◆');
+      }
+    }
   });
 
+  // Extract unique characters from ASCII art
+  const uniqueChars = React.useMemo(() => {
+    return [...new Set([...ASCII_ART_CHARACTER, ...ASCII_ART_LOGO])]
+      .filter(c => c !== '\n' && c !== ' ');
+  }, []);
+
+  // Loading text sequence
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const messages = [
+      'INITIALIZING CORE',
+      'LOADING AI MODELS',
+      'NEURAL NETS ACTIVE',
+      'CALIBRATING SYSTEMS',
+      'ESTABLISHING LINKS',
+      'SYSTEM ONLINE'
+    ];
+
+    let currentMsg = 0;
+    const interval = setInterval(() => {
+      currentMsg++;
+      if (currentMsg < messages.length) {
+        setLoadingText(messages[currentMsg]);
+      } else {
+        clearInterval(interval);
+      }
+    }, 2400);
+
+    return () => clearInterval(interval);
+  }, [isPlaying]);
+
+  // Animation variants
   const containerVariants: Variants = {
-    initial: {
+    hidden: { opacity: 0 },
+    visible: { 
       opacity: 1,
-      scale: 1,
+      transition: { 
+        delay: 0.5,
+        staggerChildren: 0.1 
+      }
     },
     exit: {
       opacity: 0,
       scale: 1.1,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1]
-      }
+      transition: { duration: 0.8 }
     }
   };
 
   const logoContainerVariants: Variants = {
-    initial: {
+    hidden: {
       scale: 0,
       rotateY: -180,
       opacity: 0
     },
-    animate: {
+    visible: {
       scale: [0, 1.2, 1],
       rotateY: [180, 0],
       opacity: 1,
       transition: {
         duration: 1.5,
         times: [0, 0.6, 1],
-        ease: [0.16, 1, 0.3, 1],
-        rotateY: {
-          duration: 1.2,
-          ease: "easeOut"
-        }
-      }
-    }
-  };
-
-  const titleVariants: Variants = {
-    initial: {},
-    animate: {
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 1.2
-      }
-    }
-  };
-
-  const letterVariants: Variants = {
-    initial: {
-      y: 100,
-      opacity: 0,
-      rotateX: 90,
-      scale: 0.8
-    },
-    animate: {
-      y: 0,
-      opacity: 1,
-      rotateX: 0,
-      scale: 1,
-      transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
-        type: "spring",
-        stiffness: 200,
-        damping: 20
-      }
-    }
-  };
-
-  const taglineVariants: Variants = {
-    initial: {
-      opacity: 0,
-      y: 30,
-      filter: "blur(10px)"
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        delay: 2.8,
-        duration: 1,
         ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
-  const particleVariants: Variants = {
-    initial: {
-      scale: 0,
-      opacity: 0
+  const titleVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const letterVariants: Variants = {
+    hidden: {
+      y: 100,
+      opacity: 0,
+      rotateX: 90
     },
-    animate: {
+    visible: {
+      y: 0,
+      opacity: 1,
+      rotateX: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  };
+
+  const taglineVariants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 1,
+        duration: 1
+      }
+    }
+  };
+
+  const particleVariants: Variants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: (i: number) => ({
       scale: [0, 1, 0],
       opacity: [0, 1, 0],
       transition: {
         duration: 2,
         repeat: Infinity,
-        repeatDelay: 0.5,
-        ease: "easeInOut"
+        delay: i * 0.1,
+        repeatDelay: 0.5
       }
-    }
+    })
   };
 
-  const skipButtonVariants: Variants = {
-    initial: {
-      opacity: 0,
-      y: 20
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 1,
-        duration: 0.5
-      }
-    }
-  };
-
-  const titleText = "UniversalAI";
-  const letters = titleText.split("");
+  const showFramerMotion = phase >= 3;
 
   if (isComplete) return null;
 
   return (
     <AnimatePresence>
-      {isPlaying && (
+      {isPlaying && !isComplete && (
         <motion.div
-          className="fixed inset-0 z-50 intro-animation-container"
-          variants={containerVariants}
-          initial="initial"
-          animate="initial"
-          exit="exit"
+          className="intro-animation-container"
+          style={{ background: '#000' }}
         >
-          {/* Background with animated gradients */}
-          <div className="absolute inset-0 intro-bg">
-            <div className="absolute inset-0 intro-gradient-1" />
-            <div className="absolute inset-0 intro-gradient-2" />
-            <div className="absolute inset-0 intro-gradient-3" />
-            <div className="absolute inset-0 intro-noise" />
-          </div>
+          {/* Matrix Canvas Background - Phase 0 */}
+          <MatrixCanvasBackground phase={phase} uniqueChars={uniqueChars} />
 
-          {/* Floating particles */}
-          <div className="absolute inset-0 overflow-hidden">
-            {[...Array(20)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-white/20 rounded-full intro-particle"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                variants={particleVariants}
-                initial="initial"
-                animate="animate"
-                transition={{
-                  delay: Math.random() * 2,
-                  duration: 2 + Math.random() * 2
-                }}
-              />
-            ))}
-          </div>
+          {/* ASCII Art Phase 1 - Character */}
+          <ASCIIArtRenderer
+            asciiArt={ASCII_ART_CHARACTER}
+            startTime={asciiStartTime}
+            duration={3500}
+            isActive={phase === 1}
+          />
 
-          {/* Main content */}
-          <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-            {/* Logo Animation */}
+          {/* ASCII Art Phase 2 - Logo */}
+          <ASCIIArtRenderer
+            asciiArt={ASCII_ART_LOGO}
+            startTime={asciiStartTime}
+            duration={4000}
+            isActive={phase === 2}
+          />
+
+          {/* Background effects for Framer Motion phase */}
+          {showFramerMotion && (
+            <>
+              <div className="intro-bg" />
+              <div className="intro-gradient-1" />
+              <div className="intro-gradient-2" />
+              <div className="intro-gradient-3" />
+              <div className="intro-noise" />
+            </>
+          )}
+
+          {/* Framer Motion Content - Phase 3 */}
+          {showFramerMotion && (
             <motion.div
-              className="mb-8 intro-logo-container"
-              variants={logoContainerVariants}
-              initial="initial"
-              animate="animate"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="relative z-10"
             >
-              <div className="relative">
-                <LightningLogo />
-                <div className="absolute inset-0 intro-logo-glow" />
-              </div>
-            </motion.div>
+              {/* Floating particles */}
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="intro-particle"
+                  variants={particleVariants}
+                  custom={i}
+                />
+              ))}
 
-            {/* Title Animation */}
-            <motion.div
-              className="mb-6"
-              variants={titleVariants}
-              initial="initial"
-              animate="animate"
-            >
-              <div className="flex flex-wrap justify-center items-center gap-1">
-                {letters.map((letter, index) => (
+              {/* Main content */}
+              <motion.div className="intro-logo-container" variants={logoContainerVariants}>
+                <motion.div 
+                  className="intro-logo-glow"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <div className="w-32 h-32 relative z-10">
+                  <LightningLogo />
+                </div>
+              </motion.div>
+
+              {/* UniversalAI Title */}
+              <motion.div 
+                className="intro-title"
+                variants={titleVariants}
+              >
+                {"UniversalAI".split("").map((letter, index) => (
                   <motion.span
-                    key={index}
+                    key={`${letter}-${index}`}
                     className="intro-title-letter"
                     variants={letterVariants}
                   >
                     {letter}
                   </motion.span>
                 ))}
-              </div>
-            </motion.div>
+              </motion.div>
 
-            {/* Tagline */}
-            <motion.div
-              className="intro-tagline"
-              variants={taglineVariants}
-              initial="initial"
-              animate="animate"
-            >
-              The Creator OS
-            </motion.div>
+              {/* Tagline */}
+              <motion.div 
+                className="intro-tagline"
+                variants={taglineVariants}
+              >
+                The Creator OS
+              </motion.div>
 
-            {/* Progress indicator */}
-            <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
-              <div className="intro-progress-container">
-                <div 
+              {/* Progress indicator */}
+              <motion.div className="intro-progress-container" variants={titleVariants}>
+                <motion.div 
                   className="intro-progress-bar"
-                  style={{ width: `${progress}%` }}
+                  initial={{ width: "0%" }}
+                  animate={{ width: `${(progress - 70) * 3.33}%` }}
+                  transition={{ duration: 0.1 }}
+                />
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Matrix Loading Text - Phases 0-2 */}
+          {phase < 3 && (
+            <div style={{ 
+              position: 'fixed', 
+              top: '50%', 
+              left: '50%', 
+              transform: 'translate(-50%, -50%)',
+              zIndex: 10,
+              textAlign: 'center'
+            }}>
+              <div className="matrix-loading-text">{loadingText}</div>
+              <div className="matrix-progress-bar">
+                <div 
+                  className="matrix-progress-fill" 
+                  style={{ width: `${Math.min(progress * 1.43, 100)}%` }}
                 />
               </div>
             </div>
-          </div>
+          )}
+
+          {/* Status Indicator */}
+          <IntroStatusIndicator message={statusMessage} />
 
           {/* Skip button */}
           {allowSkip && (
             <motion.button
-              className="absolute top-6 right-6 intro-skip-button"
-              variants={skipButtonVariants}
-              initial="initial"
-              animate="animate"
+              className="intro-skip-button"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
               onClick={skip}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              style={{ zIndex: 20 }}
             >
-              Skip
+              Skip Intro
             </motion.button>
           )}
         </motion.div>
