@@ -9,7 +9,7 @@ interface UseIntroAnimationOptions {
 
 export const useIntroAnimation = (options: UseIntroAnimationOptions = {}) => {
   const {
-    duration = 15000,
+    duration = 10500,
     onComplete,
     skipOnRepeat = true,
     onPhaseChange
@@ -115,13 +115,12 @@ export const useIntroAnimation = (options: UseIntroAnimationOptions = {}) => {
     }
   }, [isPlaying, skip]);
 
-  // Phase tracking based on progress
+  // Phase tracking based on progress (3 phases total)
   useEffect(() => {
     const newPhase = 
-      progress < 20 ? 0 : // 0-3s Matrix rain
-      progress < 43.3 ? 1 : // 3-6.5s ASCII character
-      progress < 70 ? 2 : // 6.5-10.5s ASCII logo
-      3; // 10.5-15s Framer Motion
+      progress < 28.6 ? 0 : // 0-3s Matrix rain
+      progress < 61.9 ? 1 : // 3-6.5s ASCII character
+      2; // 6.5-10.5s ASCII logo
     
     if (newPhase !== phase) {
       setPhase(newPhase);
