@@ -21,7 +21,7 @@ export default function SplineHeroSection() {
   }, [isLoading]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden z-0">
+    <section className="relative w-full h-screen overflow-hidden z-0 -mt-[50px]">
       {/* Loading State */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-background z-10">
