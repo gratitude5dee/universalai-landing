@@ -336,3 +336,16 @@ code, .mono {
     font-size: 0.75rem;
   }
 }
+
+/* Hide Spline branding logo */
+#spline-watermark,
+.spline-watermark,
+[class*="spline-watermark"],
+[id*="spline-watermark"],
+canvas + div[style*="position"],
+canvas ~ div[style*="position: absolute"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
