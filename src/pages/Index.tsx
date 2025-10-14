@@ -32,7 +32,7 @@ const Index = () => {
       <div className="min-h-screen text-foreground bg-background">
         <Header />
         <main className="pt-20">
-          <SplineHeroSection />
+          {!showIntro && <SplineHeroSection />}
           <MinimalHero />
           <ParadigmShift />
           <EcosystemPillars />

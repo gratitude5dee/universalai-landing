@@ -1,13 +1,27 @@
 import Spline from '@splinetool/react-spline';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Spinner from '@/components/ui/spinner';
 
 export default function SplineHeroSection() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
+  // Fallback timeout if Spline takes too long to load
+  useEffect(() => {
+    console.log('Spline component mounted, starting load...');
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        console.log('Spline load timeout - showing error state');
+        setIsLoading(false);
+        setHasError(true);
+      }
+    }, 10000);
+
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
+
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-background">
+    <section className="relative w-full h-screen overflow-hidden z-0 border-4 border-red-500">
       {/* Loading State */}
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-background z-10">
@@ -30,8 +44,12 @@ export default function SplineHeroSection() {
       {!hasError && (
         <Spline
           scene="https://prod.spline.design/CUGpKyxn7cmAWJ-l/scene.splinecode"
-          onLoad={() => setIsLoading(false)}
-          onError={() => {
+          onLoad={() => {
+            console.log('Spline loaded successfully');
+            setIsLoading(false);
+          }}
+          onError={(error) => {
+            console.log('Spline error:', error);
             setIsLoading(false);
             setHasError(true);
           }}
