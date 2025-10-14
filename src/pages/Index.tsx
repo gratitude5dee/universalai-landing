@@ -12,6 +12,7 @@ import PricingSection from '@/components/sections/PricingSection';
 import AgenticAdvantage from '@/components/sections/AgenticAdvantage';
 import EnhancedCTA from '@/components/sections/EnhancedCTA';
 import UniversalAIIntroAnimation from '@/components/ui/UniversalAIIntroAnimation';
+import SplineHeroSection from '@/components/sections/SplineHeroSection';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -31,6 +32,7 @@ const Index = () => {
       <div className="min-h-screen text-foreground bg-background">
         <Header />
         <main className="pt-20">
+          <SplineHeroSection />
           <MinimalHero />
           <ParadigmShift />
           <EcosystemPillars />
