@@ -10,7 +10,7 @@ interface MinimalHeroProps {
 const MinimalHero: React.FC<MinimalHeroProps> = ({
   className = ''
 }) => {
-  return <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background ${className}`}>
+  return <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background -mt-[150px] ${className}`}>
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 z-0 opacity-20">
         <svg width="100%" height="100%" className="absolute inset-0">
