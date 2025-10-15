@@ -72,11 +72,11 @@ const EcosystemPillars = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             Four Pillars of{' '}
-            <span className="italic font-medium gradient-text">Creative Sovereignty</span>
+            <span className="gradient-text">Creative Sovereignty</span>
           </h2>
-          <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             The foundational infrastructure enabling creators to own, operate, and scale their digital empires
           </p>
         </motion.div>

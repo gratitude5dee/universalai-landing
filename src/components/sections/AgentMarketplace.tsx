@@ -84,11 +84,11 @@ const AgentMarketplace = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             Deploy Your{' '}
-            <span className="italic font-medium gradient-text">Creative Army</span>
+            <span className="gradient-text">Creative Army</span>
           </h2>
-          <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Specialized AI agents that work 24/7 to scale your creative empire while you focus on what you do best
           </p>
         </motion.div>

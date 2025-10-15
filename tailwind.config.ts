@@ -63,7 +63,6 @@ export default {
                 },
             },
             fontFamily: {
-                display: ["Playfair Display", "Georgia", "serif"],
                 sans: ["Inter", "sans-serif"],
                 mono: ["JetBrains Mono", "monospace"],
             },

@@ -15,16 +15,16 @@ const CTASection = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="font-display text-4xl lg:text-5xl font-bold mb-6 tracking-tight leading-tight">
-            Ready to Transform Your <span className="italic font-medium">Creative Career</span>?
+          <h2 className="text-4xl lg:text-5xl font-extrabold mb-6">
+            Ready to Transform Your Creative Career?
           </h2>
-          <p className="font-sans text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
             Join thousands of creators who are already building sustainable businesses with UniversalAI
           </p>
           
           <Button 
             size="lg" 
-            className="font-sans text-lg px-8 py-6 h-auto shadow-purple hover:shadow-xl transition-all duration-300"
+            className="text-lg px-8 py-6 h-auto shadow-purple hover:shadow-xl transition-all duration-300"
             onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
           >
             Get Started Free

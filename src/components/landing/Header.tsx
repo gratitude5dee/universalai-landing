@@ -52,7 +52,7 @@ const Header = () => {
       <nav className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-8">
-          <Link to="/" className="font-display text-2xl font-bold tracking-tight text-white flex items-center gap-3">
+          <Link to="/" className="font-extrabold tracking-tight text-lg text-white flex items-center gap-3">
             <motion.img 
               src={universalAILogo} 
               alt="UniversalAI Logo" 
@@ -70,7 +70,7 @@ const Header = () => {
 
           {/* Navigation */}
           <div className="hidden md:flex items-center gap-6">
-            {navItems.map(item => <Link key={item.to} to={item.to} className={`font-sans relative group text-sm transition-all duration-300 px-3 py-2 rounded-lg ${location.pathname === item.to ? 'text-white bg-primary/10 border border-primary/30' : 'text-white/70 hover:text-white hover:bg-primary/5'}`}>
+            {navItems.map(item => <Link key={item.to} to={item.to} className={`relative group text-sm transition-all duration-300 px-3 py-2 rounded-lg ${location.pathname === item.to ? 'text-white bg-primary/10 border border-primary/30' : 'text-white/70 hover:text-white hover:bg-primary/5'}`}>
                 <span>{item.label}</span>
                 <span className="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-primary-glow transition-all duration-300 group-hover:w-3/4 transform -translate-x-1/2" />
               </Link>)}

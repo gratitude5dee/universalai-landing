@@ -131,11 +131,11 @@ const SuccessStories = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             Success{' '}
-            <span className="italic font-medium gradient-text">Stories</span>
+            <span className="gradient-text">Stories</span>
           </h2>
-          <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Real creators scaling their empires through autonomous intelligence
           </p>
         </motion.div>

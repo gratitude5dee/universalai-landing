@@ -50,11 +50,11 @@ const ParadigmShift = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             Beyond Tools. Beyond Platforms.{' '}
-            <span className="italic font-medium gradient-text">Beyond Human Limitations.</span>
+            <span className="gradient-text">Beyond Human Limitations.</span>
           </h2>
-          <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             The transition from extractive creative industries to the agentic economy where creators control their destiny
           </p>
         </motion.div>

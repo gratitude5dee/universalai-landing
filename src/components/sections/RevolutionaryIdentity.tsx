@@ -35,13 +35,13 @@ const RevolutionaryIdentity = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
             Your{' '}
-            <span className="italic font-medium gradient-text">"Unseen Identity"</span>
+            <span className="gradient-text">"Unseen Identity"</span>
             <br />
             Beyond Biometric Surveillance
           </h2>
-          <p className="font-sans text-xl text-muted-foreground max-w-4xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
             We prove you're human by understanding how you're uniquely human, not by scanning your eyeball
           </p>
         </motion.div>
@@ -118,7 +118,7 @@ const RevolutionaryIdentity = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <GlassmorphicCard className="max-w-5xl mx-auto">
-            <h3 className="font-display text-3xl font-bold text-center mb-8 tracking-tight">How Your Unseen Identity Works</h3>
+            <h3 className="text-3xl font-bold text-center mb-8">How Your Unseen Identity Works</h3>
             
             <div className="grid md:grid-cols-4 gap-6">
               {[
