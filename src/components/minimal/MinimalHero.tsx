@@ -4,15 +4,12 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import VideoPlayerMockup from '@/components/ui/VideoPlayerMockup';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
-import { useIsMobile } from '@/hooks/use-mobile';
-
 interface MinimalHeroProps {
   className?: string;
 }
 const MinimalHero: React.FC<MinimalHeroProps> = ({
   className = ''
 }) => {
-  const isMobile = useIsMobile();
   return <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background -mt-[150px] ${className}`}>
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 z-0 opacity-20">
@@ -36,11 +33,11 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
         {/* Primary curved shape - top right */}
         <motion.div 
           className="absolute -top-1/3 -right-1/4 w-[600px] sm:w-[800px] lg:w-[1000px] h-[400px] sm:h-[550px] lg:h-[700px] opacity-50 sm:opacity-70 lg:opacity-90"
-          animate={isMobile ? {} : {
+          animate={{
             y: [0, -20, 0],
             opacity: [0.5, 0.7, 0.5],
           }}
-          transition={isMobile ? {} : {
+          transition={{
             duration: 30,
             repeat: Infinity,
             ease: "easeInOut"
@@ -52,12 +49,12 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
         {/* Secondary flowing shape - center left */}
         <motion.div 
           className="absolute top-1/4 -left-1/3 w-[500px] sm:w-[650px] lg:w-[800px] h-[300px] sm:h-[400px] lg:h-[500px] opacity-50 sm:opacity-65 lg:opacity-80"
-          animate={isMobile ? {} : {
+          animate={{
             x: [0, 20, 0],
             y: [0, 15, 0],
             opacity: [0.5, 0.65, 0.5],
           }}
-          transition={isMobile ? {} : {
+          transition={{
             duration: 25,
             repeat: Infinity,
             ease: "easeInOut",
@@ -70,12 +67,12 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
         {/* Large accent shape - bottom center */}
         <motion.div 
           className="absolute -bottom-1/4 left-1/4 w-[400px] sm:w-[500px] lg:w-[600px] h-[250px] sm:h-[325px] lg:h-[400px] opacity-40 sm:opacity-55 lg:opacity-70"
-          animate={isMobile ? {} : {
+          animate={{
             x: [0, -15, 0],
             y: [0, -20, 0],
             opacity: [0.4, 0.55, 0.4],
           }}
-          transition={isMobile ? {} : {
+          transition={{
             duration: 28,
             repeat: Infinity,
             ease: "easeInOut",

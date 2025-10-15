@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { isMobileDevice } from '@/utils/deviceDetection';
 
 interface MatrixCanvasBackgroundProps {
   phase: number;
@@ -7,18 +6,10 @@ interface MatrixCanvasBackgroundProps {
 }
 
 const MatrixCanvasBackground: React.FC<MatrixCanvasBackgroundProps> = ({ phase, uniqueChars }) => {
-  const isMobile = isMobileDevice();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationFrameRef = useRef<number | null>(null);
   const dropsRef = useRef<number[]>([]);
   const speedsRef = useRef<number[]>([]);
-  
-  // Show simple gradient on mobile instead of canvas animation
-  if (isMobile) {
-    return (
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
-    );
-  }
 
   useEffect(() => {
     const canvas = canvasRef.current;

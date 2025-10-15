@@ -16,11 +16,9 @@ import EnhancedCTA from '@/components/sections/EnhancedCTA';
 import UniversalAIIntroAnimation from '@/components/ui/UniversalAIIntroAnimation';
 import SplineHeroSection from '@/components/sections/SplineHeroSection';
 import SectionDivider from '@/components/ui/SectionDivider';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 const Index = () => {
-  const isMobile = useIsMobile();
-  const [showIntro, setShowIntro] = useState(!isMobile);
+  const [showIntro, setShowIntro] = useState(true);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
@@ -29,23 +27,21 @@ const Index = () => {
   return (
     <>
       {/* Custom Cursor Trail (desktop only) */}
-      {!isMobile && <CustomCursor />}
+      <CustomCursor />
       
       {/* Scroll Progress Indicator */}
       {!showIntro && <ScrollProgress />}
       
-      {/* Award-winning intro animation - Skip on mobile */}
-      {!isMobile && (
-        <UniversalAIIntroAnimation 
-          onComplete={handleIntroComplete}
-          allowSkip={true}
-        />
-      )}
+      {/* Award-winning intro animation */}
+      <UniversalAIIntroAnimation 
+        onComplete={handleIntroComplete}
+        allowSkip={true}
+      />
       
       <div className="min-h-screen text-foreground bg-background">
         <Header />
         <main className="pt-20">
-          {!showIntro && !isMobile && <SplineHeroSection />}
+          {!showIntro && <SplineHeroSection />}
           <MinimalHero />
           <SectionDivider className="my-16" />
           <ParadigmShift />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface GlassmorphicCardProps {
   children: React.ReactNode;
@@ -16,11 +15,9 @@ const GlassmorphicCard: React.FC<GlassmorphicCardProps> = ({
   variant = 'default',
   hover = true
 }) => {
-  const isMobile = useIsMobile();
-  
   const variants = {
-    default: isMobile ? 'bg-white/10 backdrop-blur-md border border-white/10' : 'glass',
-    strong: isMobile ? 'bg-white/15 backdrop-blur-md border border-white/15' : 'glass-strong',
+    default: 'glass',
+    strong: 'glass-strong',
     subtle: 'bg-white/5 backdrop-blur-sm border border-white/5'
   };
 
