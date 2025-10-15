@@ -4,6 +4,11 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Play } from 'lucide-react';
 import VideoPlayerMockup from '@/components/ui/VideoPlayerMockup';
 import LiveWaitlistCounter from '@/components/landing/LiveWaitlistCounter';
+import e3Logo from '@/assets/partners/e3-logo.jpg';
+import createMusicLogo from '@/assets/partners/create-music-logo.svg';
+import manusLogo from '@/assets/partners/manus-logo.png';
+import gqLogo from '@/assets/partners/gq-logo.png';
+import fiveDeeLogo from '@/assets/partners/5dee-logo.svg';
 interface MinimalHeroProps {
   className?: string;
 }
@@ -312,13 +317,117 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
         delay: 0.7,
         duration: 0.6
       }} className="text-center mt-8 sm:mt-10 lg:mt-4 mb-12 sm:mb-16 lg:mb-[77px]">
-          <p className="text-xs sm:text-sm text-muted-foreground mb-6 sm:mb-8">Trusted by top innovative teams</p>
-          <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 flex-wrap px-4 sm:px-8 md:px-12">
-            <div className="text-white/80 font-medium text-sm sm:text-base md:text-lg whitespace-nowrap">E3 Entertainment</div>
-            <div className="text-white/80 font-medium text-sm sm:text-base md:text-lg whitespace-nowrap">GQ Africa</div>
-            <div className="text-white/80 font-medium text-sm sm:text-base md:text-lg whitespace-nowrap">Create Music</div>
-            <div className="text-white/80 font-medium text-sm sm:text-base md:text-lg whitespace-nowrap">Manus AI</div>
-            <div className="text-white/80 font-medium text-sm sm:text-base md:text-lg whitespace-nowrap">5-Dee Studios</div>
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="text-xs sm:text-sm text-muted-foreground mb-8 sm:mb-10 font-light tracking-wide"
+          >
+            Trusted by top innovative teams
+          </motion.p>
+          
+          {/* Logo Grid */}
+          <div className="relative">
+            {/* Subtle glow effect behind logos */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent blur-3xl" />
+            
+            <div className="relative flex items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-16 flex-wrap px-4 sm:px-8 md:px-12">
+              {/* E3 Entertainment */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.5 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                className="group relative"
+              >
+                <div className="relative glass border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                  <motion.div
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <img src={e3Logo} alt="E3 Entertainment" className="h-8 sm:h-10 w-auto object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300" />
+                  </motion.div>
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </motion.div>
+
+              {/* GQ Africa */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.5 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                className="group relative"
+              >
+                <div className="relative glass border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                  <motion.div
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  >
+                    <img src={gqLogo} alt="GQ Africa" className="h-8 sm:h-10 w-auto object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300" />
+                  </motion.div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </motion.div>
+
+              {/* Create Music */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.1, duration: 0.5 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                className="group relative"
+              >
+                <div className="relative glass border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                  <motion.div
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                  >
+                    <img src={createMusicLogo} alt="Create Music" className="h-8 sm:h-10 w-auto object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300" />
+                  </motion.div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </motion.div>
+
+              {/* Manus AI */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.5 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                className="group relative"
+              >
+                <div className="relative glass border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                  <motion.div
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                  >
+                    <img src={manusLogo} alt="Manus AI" className="h-8 sm:h-10 w-auto object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300" />
+                  </motion.div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </motion.div>
+
+              {/* 5-Dee Studios */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.3, duration: 0.5 }}
+                whileHover={{ y: -8, scale: 1.05 }}
+                className="group relative"
+              >
+                <div className="relative glass border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-md hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+                  <motion.div
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                  >
+                    <img src={fiveDeeLogo} alt="5-Dee Studios" className="h-8 sm:h-10 w-auto object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300" />
+                  </motion.div>
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/0 via-primary/5 to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>
