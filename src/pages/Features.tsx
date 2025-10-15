@@ -23,6 +23,7 @@ const Features: React.FC = () => {
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
       </section>
 
       {/* All Feature Sections */}
