@@ -7,7 +7,7 @@ const TechnicalArchitecture = () => {
   const architectureComponents = [
     {
       icon: Cpu,
-      title: "Agent Operating System (ElizaOS)",
+      title: "Agent Operating System",
       features: [
         "Pluggable Modular Architecture: Agents, actions, providers, evaluators",
         "Agent TCP Protocol: Standardized inter-agent communication", 
