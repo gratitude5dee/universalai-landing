@@ -1,12 +1,12 @@
-import React from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Link2, ChevronDown } from 'lucide-react';
-import { ChangelogRelease, ChangelogEntry } from '@/types/changelog';
-import ChangelogEntryComponent from './ChangelogEntry';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Badge } from '@/components/ui/badge';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ChevronDown, Share2, Check } from 'lucide-react';
+import { ChangelogRelease } from '@/types/changelog';
+import ChangelogEntry from './ChangelogEntry';
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
+import { useToast } from '@/hooks/use-toast';
 
 interface ChangelogReleaseCardProps {
   release: ChangelogRelease;
@@ -14,24 +14,31 @@ interface ChangelogReleaseCardProps {
 }
 
 const ChangelogReleaseCard: React.FC<ChangelogReleaseCardProps> = ({ release, index }) => {
-  const groupedByType = React.useMemo(() => {
-    const groups: { [key: string]: ChangelogEntry[] } = {};
-    
-    release.entries.forEach(entry => {
-      if (!groups[entry.type]) {
-        groups[entry.type] = [];
+  const [shared, setShared] = useState(false);
+  const { toast } = useToast();
+  
+  const entriesByType = React.useMemo(() => {
+    const grouped = release.entries.reduce((acc, entry) => {
+      if (!acc[entry.type]) {
+        acc[entry.type] = [];
       }
-      groups[entry.type].push(entry);
-    });
+      acc[entry.type].push(entry);
+      return acc;
+    }, {} as Record<string, typeof release.entries>);
     
-    return Object.entries(groups).map(([type, entries]) => ({ type, entries }));
+    return Object.entries(grouped).sort(([a], [b]) => a.localeCompare(b));
   }, [release.entries]);
 
   const handleShare = async () => {
-    const url = `${window.location.origin}/changelog#v${release.version}`;
+    const url = `${window.location.origin}${window.location.pathname}#${release.version}`;
     try {
       await navigator.clipboard.writeText(url);
-      // Could add toast notification here
+      setShared(true);
+      toast({
+        title: "Link copied!",
+        description: `Shareable link for v${release.version} copied to clipboard`,
+      });
+      setTimeout(() => setShared(false), 2000);
     } catch (err) {
       console.error('Failed to copy link:', err);
     }
@@ -41,63 +48,73 @@ const ChangelogReleaseCard: React.FC<ChangelogReleaseCardProps> = ({ release, in
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      id={release.version}
     >
-      <Card 
-        id={`v${release.version}`}
-        className="glass hover:glass-strong transition-all duration-300 border-border/50 overflow-hidden group"
+      <GlassmorphicCard 
+        variant="default"
+        className="border border-white/10 hover:border-primary/30 transition-all duration-300 relative overflow-hidden group"
       >
-        <CardHeader className="border-b border-border/50 bg-gradient-to-r from-primary/5 to-secondary/5">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex items-center gap-3 flex-wrap">
-              <h2 className="font-display text-2xl md:text-3xl font-bold tracking-tight">
+        {/* Gradient border effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        
+        <div className="space-y-6 relative z-10">
+          {/* Header */}
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h2 className="changelog-version text-primary mb-2">
                 v{release.version}
               </h2>
-              <Badge variant="outline" className="font-mono text-xs">
+              <time className="text-sm text-muted-foreground font-mono">
                 {new Date(release.date).toLocaleDateString('en-US', {
                   year: 'numeric',
-                  month: 'short',
+                  month: 'long',
                   day: 'numeric'
                 })}
-              </Badge>
+              </time>
             </div>
-            
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={handleShare}
-              className="shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+              className="p-2 rounded-lg hover:bg-primary/10 transition-all hover:scale-110"
+              title="Share this release"
             >
-              <Link2 className="h-4 w-4 mr-2" />
-              <span className="hidden sm:inline">Share</span>
-            </Button>
+              {shared ? (
+                <Check className="h-5 w-5 text-green-400" />
+              ) : (
+                <Share2 className="h-5 w-5 text-muted-foreground hover:text-primary" />
+              )}
+            </button>
           </div>
-        </CardHeader>
-        
-        <CardContent className="p-6 space-y-6">
-          {groupedByType.map(({ type, entries }) => (
-            <Collapsible key={type} defaultOpen>
-              <CollapsibleTrigger className="flex items-center gap-2 w-full group/trigger hover:text-primary transition-colors">
-                <ChevronDown className="h-4 w-4 transition-transform group-data-[state=closed]/trigger:-rotate-90" />
-                <h3 className="font-display text-lg font-semibold italic">
-                  {type}
-                  <span className="text-muted-foreground ml-2 text-sm font-normal">
-                    ({entries.length})
-                  </span>
-                </h3>
-              </CollapsibleTrigger>
-              
-              <CollapsibleContent className="mt-3">
-                <ul className="space-y-3 pl-6">
-                  {entries.map((entry, idx) => (
-                    <ChangelogEntryComponent key={idx} entry={entry} />
-                  ))}
-                </ul>
-              </CollapsibleContent>
-            </Collapsible>
-          ))}
-        </CardContent>
-      </Card>
+
+          {/* Entries by type */}
+          <div className="space-y-4">
+            {entriesByType.map(([type, entries]) => (
+              <Collapsible key={type} defaultOpen>
+                <CollapsibleTrigger className="flex items-center justify-between w-full group/trigger hover:bg-white/5 p-3 rounded-lg transition-all duration-200">
+                  <h3 className="changelog-category text-foreground">
+                    {type}
+                    <Badge 
+                      variant="secondary" 
+                      className="ml-2 bg-primary/20 border-primary/30 text-primary-foreground"
+                    >
+                      {entries.length}
+                    </Badge>
+                  </h3>
+                  <ChevronDown className="h-5 w-5 transition-transform duration-300 group-data-[state=open]/trigger:rotate-180 text-muted-foreground group-hover/trigger:text-primary" />
+                </CollapsibleTrigger>
+                
+                <CollapsibleContent className="pt-4 animate-accordion-down">
+                  <ul className="space-y-3 pl-2">
+                    {entries.map((entry, idx) => (
+                      <ChangelogEntry key={idx} entry={entry} />
+                    ))}
+                  </ul>
+                </CollapsibleContent>
+              </Collapsible>
+            ))}
+          </div>
+        </div>
+      </GlassmorphicCard>
     </motion.div>
   );
 };

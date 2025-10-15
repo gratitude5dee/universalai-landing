@@ -454,3 +454,14 @@ html {
   opacity: 0.7;
 }
 
+/* Changelog Badge Gradients */
+.badge-gradient-added {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.2));
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.badge-gradient-security {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(244, 63, 94, 0.2));
+  border-color: rgba(239, 68, 68, 0.4);
+}
+

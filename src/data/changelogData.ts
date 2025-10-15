@@ -2,6 +2,39 @@ import { ChangelogRelease } from '@/types/changelog';
 
 export const changelogReleases: ChangelogRelease[] = [
   {
+    version: '0.4.0',
+    date: '2025-10-15',
+    entries: [
+      { type: 'Added', summary: 'UniversalAI agent blueprint + MCP server implementation', scope: 'Integration', sha: '68d4b13', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/68d4b13' },
+      { type: 'Security', summary: 'Harden backend surfaces for canvas, research, and invoices', scope: 'Backend', sha: '1872f19', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/1872f19' },
+      { type: 'Security', summary: 'Harden Supabase backend security and workflows', scope: 'Backend', sha: '6dd8d2f', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/6dd8d2f' },
+      { type: 'Security', summary: 'Harden Supabase integrations for canvas, podcasts, research, and secrets', scope: 'Backend', sha: 'ba0bae2', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/ba0bae2' },
+      { type: 'Security', summary: 'Declare allowed methods in edge CORS headers', scope: 'Backend', sha: '2fab09d', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/2fab09d' },
+      { type: 'Improved', summary: 'Refined podcast generation workflow', scope: 'Features', sha: 'df12857', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/df12857' },
+      { type: 'Improved', summary: 'Updated Supabase podcast-generator edge function', scope: 'Backend', sha: 'c8a500c', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/c8a500c' },
+      { type: 'Improved', summary: 'Updated useContentManager hook', scope: 'Core', sha: '60085c8', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/60085c8' },
+      { type: 'Docs', summary: 'Merged PR #24: create-agents.md + MCP package', scope: 'Documentation', pr: 24 },
+      { type: 'Maintenance', summary: 'Consolidated multiple backend design/analysis branches', scope: 'Infrastructure', pr: 19 }
+    ]
+  },
+  {
+    version: '0.3.5',
+    date: '2025-10-14',
+    entries: [
+      { type: 'Schema', summary: 'Loader to fetch boards', scope: 'Database', pr: 16 },
+      { type: 'Schema', summary: 'Schema changes and refactor edge functions', scope: 'Database', pr: 15 },
+      { type: 'Schema', summary: 'Provider column to ai_runs', scope: 'Database', pr: 13 },
+      { type: 'Schema', summary: 'Migration for boards & projects', scope: 'Database', pr: 12 },
+      { type: 'Policy', summary: 'Extend board_shares and modify policies', scope: 'Security', pr: 9 },
+      { type: 'Added', summary: 'Email column to profiles + backfill', scope: 'Database', pr: 8 },
+      { type: 'Added', summary: 'File upload in TrainingDataStep', scope: 'Features', pr: 3 },
+      { type: 'Added', summary: 'Profile field for display name', scope: 'Features', pr: 2 },
+      { type: 'Added', summary: 'Podcasts table and updated functionality', scope: 'Features', pr: 4 },
+      { type: 'Improved', summary: 'Update GenerativePodcastsInterface.tsx', scope: 'UI', sha: 'e9b19cf', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/e9b19cf' },
+      { type: 'Auth', summary: 'Require authenticated session for voice management', scope: 'Security', pr: 5 }
+    ]
+  },
+  {
     version: '0.3.0',
     date: '2025-09-27',
     entries: [
