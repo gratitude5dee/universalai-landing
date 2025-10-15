@@ -29,7 +29,7 @@ export default function SplineHeroSection() {
   }, [isLoading]);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden z-0 -mt-[50px]">
+    <section className="relative w-full h-[60vh] md:h-screen overflow-hidden z-0 -mt-0 md:-mt-[50px]">
       {/* Loading State */}
       {isLoading && <SplineLoadingSkeleton />}
 
@@ -70,7 +70,7 @@ export default function SplineHeroSection() {
                 setIsLoading(false);
                 setHasError(true);
               }}
-              className="w-full h-full"
+              className="w-full h-full scale-75 md:scale-100 origin-center"
             />
           </motion.div>
         </motion.div>
