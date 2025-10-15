@@ -36,11 +36,11 @@ export default function SplineLogoOverlay({ isSplineLoaded }: SplineLogoOverlayP
           }}
           className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none"
         >
-          <div className="relative">
+          <div className="relative flex flex-col items-center gap-4">
             <motion.img 
               src={universalAILogo} 
               alt="Universal AI" 
-              className="w-32 h-32 md:w-48 md:h-48 drop-shadow-2xl"
+              className="w-24 h-24 md:w-32 md:h-32 drop-shadow-2xl"
               animate={{
                 filter: [
                   'drop-shadow(0 0 20px rgba(147, 51, 234, 0.5))',
@@ -54,6 +54,14 @@ export default function SplineLogoOverlay({ isSplineLoaded }: SplineLogoOverlayP
                 ease: 'easeInOut'
               }}
             />
+            <motion.h1 
+              className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white text-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              UniversalAI
+            </motion.h1>
           </div>
         </motion.div>
       )}

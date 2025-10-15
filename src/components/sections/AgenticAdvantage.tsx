@@ -54,14 +54,14 @@ const AgenticAdvantage = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
             The{' '}
-            <span className="gradient-text">Agentic Advantage</span>
+            <span className="italic font-medium gradient-text">Agentic Advantage</span>
           </h2>
-          <h3 className="text-2xl lg:text-3xl font-semibold mb-8 text-primary">
+          <h3 className="font-display text-2xl lg:text-3xl font-semibold mb-8 text-primary tracking-tight">
             Why 5DEE Defines the Future
           </h3>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+          <p className="font-sans text-xl text-muted-foreground max-w-4xl mx-auto">
             We're not just creating tools for creators—we're architecting the foundational infrastructure for humanity's transition to the agentic economy
           </p>
         </motion.div>
@@ -123,7 +123,7 @@ const AgenticAdvantage = () => {
             </div>
             
             <div className="relative z-10">
-              <h3 className="text-3xl lg:text-4xl font-bold mb-8 text-primary">
+              <h3 className="font-display text-3xl lg:text-4xl font-bold mb-8 text-primary tracking-tight">
                 The Infrastructure Revolution
               </h3>
               

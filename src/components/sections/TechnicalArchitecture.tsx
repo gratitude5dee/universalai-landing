@@ -103,11 +103,11 @@ const TechnicalArchitecture = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6">
+          <h2 className="font-display text-4xl lg:text-6xl font-bold mb-6 tracking-tight leading-tight">
             Technical{' '}
-            <span className="gradient-text">Architecture</span>
+            <span className="italic font-medium gradient-text">Architecture</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto">
             Enterprise-grade infrastructure powering the next generation of creative commerce
           </p>
         </motion.div>
@@ -120,7 +120,7 @@ const TechnicalArchitecture = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-20"
         >
-          <h3 className="text-3xl font-bold text-center mb-12">Core Infrastructure</h3>
+          <h3 className="font-display text-3xl font-bold text-center mb-12 tracking-tight">Core Infrastructure</h3>
           <div className="grid md:grid-cols-2 gap-8">
             {architectureComponents.map((component, index) => (
               <motion.div
@@ -166,7 +166,7 @@ const TechnicalArchitecture = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <h3 className="text-3xl font-bold text-center mb-12">Integrations & Ecosystem</h3>
+          <h3 className="font-display text-3xl font-bold text-center mb-12 tracking-tight">Integrations & Ecosystem</h3>
           <div className="grid lg:grid-cols-2 gap-8">
             {integrations.map((section, sectionIndex) => (
               <motion.div
@@ -216,7 +216,7 @@ const TechnicalArchitecture = () => {
           className="mt-20"
         >
           <GlassmorphicCard className="max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-center mb-8">Performance & Scale</h3>
+            <h3 className="font-display text-2xl font-bold text-center mb-8 tracking-tight">Performance & Scale</h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <Zap className="w-8 h-8 text-primary mx-auto mb-2" />

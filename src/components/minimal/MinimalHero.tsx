@@ -165,7 +165,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             delay: 0.15,
             duration: 0.6
           }} className="mb-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-50">
+              <h2 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-semibold tracking-tight text-slate-50">
                 UniversalAI
               </h2>
             </motion.div>
@@ -180,10 +180,10 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           }} transition={{
             delay: 0.2,
             duration: 0.8
-          }} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight sm:leading-tight mb-4 sm:mb-6">
+          }} className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight mb-4 sm:mb-6">
               Cultivate your{' '}
               <motion.span 
-                className="gradient-text"
+                className="italic font-medium gradient-text"
                 initial={{ backgroundPosition: '-200% center' }}
                 animate={{ backgroundPosition: '200% center' }}
                 transition={{
@@ -198,7 +198,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
                 Creator
               </motion.span>
               :<br />
-              Every Being is A Billion
+              Every Being is <span className="italic font-medium">A Billion</span>
             </motion.h1>
 
             {/* Subtitle */}
@@ -211,7 +211,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           }} transition={{
             delay: 0.3,
             duration: 0.6
-          }} className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0">
+          }} className="font-sans text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0">
               The first decentralized ecosystem combining on-chain studios, physical production spaces, and autonomous agent commerce. Build your digital empire through verified identity, programmable IP, and AI agents that think, create, and transact on your behalf.
             </motion.p>
 
@@ -228,7 +228,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
           }} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 px-2 sm:px-0">
               <Button 
                 size="lg" 
-                className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto shadow-purple hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group" 
+                className="font-sans text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto shadow-purple hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group" 
                 onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
               >
                 Enter the Agentic Economy
@@ -240,7 +240,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
                 </motion.div>
               </Button>
               
-              <Button variant="outline" size="lg" className="text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto glass hover:glass-strong border-white/20 text-white">
+              <Button variant="outline" size="lg" className="font-sans text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 h-auto glass hover:glass-strong border-white/20 text-white">
                 <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 Watch Demo
               </Button>
