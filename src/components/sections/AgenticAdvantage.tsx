@@ -82,13 +82,20 @@ const AgenticAdvantage = () => {
               }}
               className={index === 4 ? "lg:col-span-2 xl:col-span-1" : ""}
             >
-              <GlassmorphicCard className="h-full relative group hover:scale-105 transition-all duration-300">
+              <GlassmorphicCard className="h-full relative group hover:scale-105 transition-all duration-300 cursor-pointer">
                 {/* Icon */}
-                <div className={`w-16 h-16 bg-gradient-to-br ${advantage.gradient} rounded-2xl flex items-center justify-center mb-6 relative`}>
+                <motion.div 
+                  className={`w-16 h-16 bg-gradient-to-br ${advantage.gradient} rounded-2xl flex items-center justify-center mb-6 relative`}
+                  whileHover={{ 
+                    rotate: [0, -10, 10, -5, 5, 0],
+                    scale: 1.1
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
                   <advantage.icon className="w-8 h-8 text-white" />
                   {/* Glow effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${advantage.gradient} rounded-2xl blur-lg opacity-40 -z-10 group-hover:opacity-60 transition-opacity duration-300`} />
-                </div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${advantage.gradient} rounded-2xl blur-lg opacity-40 -z-10 group-hover:opacity-80 transition-opacity duration-300`} />
+                </motion.div>
 
                 {/* Content */}
                 <h3 className="text-2xl font-bold mb-4 text-foreground">{advantage.title}</h3>

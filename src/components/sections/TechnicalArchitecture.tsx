@@ -130,11 +130,16 @@ const TechnicalArchitecture = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <GlassmorphicCard className="h-full">
+                <GlassmorphicCard className="h-full group">
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center">
+                    <motion.div 
+                      className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center relative"
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
+                    >
                       <component.icon className="w-6 h-6 text-white" />
-                    </div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-xl blur-lg opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                    </motion.div>
                     <h4 className="text-xl font-bold">{component.title}</h4>
                   </div>
                   <div className="space-y-3">
@@ -175,13 +180,25 @@ const TechnicalArchitecture = () => {
                   <h4 className="text-2xl font-bold mb-6 text-primary">{section.category}</h4>
                   <div className="space-y-4">
                     {section.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mt-2 flex-shrink-0" />
+                      <motion.div 
+                        key={itemIndex} 
+                        className="flex items-start gap-3 group/item cursor-pointer"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: 0.1 * itemIndex }}
+                        whileHover={{ x: 4 }}
+                      >
+                        <motion.div 
+                          className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mt-2 flex-shrink-0"
+                          whileHover={{ scale: 1.5 }}
+                          transition={{ duration: 0.2 }}
+                        />
                         <div>
-                          <span className="font-medium text-foreground">{item.name}:</span>
+                          <span className="font-medium text-foreground group-hover/item:text-primary transition-colors duration-200">{item.name}:</span>
                           <span className="text-muted-foreground text-sm ml-1">{item.desc}</span>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
                 </GlassmorphicCard>

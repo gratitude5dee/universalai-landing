@@ -1,8 +1,85 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Play, BookOpen, Users, Building, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
+
+const MagneticCTA = () => {
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  const springConfig = { damping: 20, stiffness: 300 };
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!buttonRef.current) return;
+    
+    const rect = buttonRef.current.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - centerX;
+    const distanceY = e.clientY - centerY;
+    
+    const magnetStrength = 0.3;
+    x.set(distanceX * magnetStrength);
+    y.set(distanceY * magnetStrength);
+  };
+  
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
+      className="text-center mb-12"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+    >
+      <motion.div
+        ref={buttonRef}
+        style={{ x: springX, y: springY }}
+        className="inline-block"
+      >
+        <Button
+          size="lg"
+          className="text-2xl px-12 py-8 h-auto bg-gradient-to-r from-primary via-primary to-secondary hover:from-primary/80 hover:via-primary/80 hover:to-secondary/80 shadow-2xl shadow-primary/30 hover:shadow-primary/50 transition-all duration-500 group relative overflow-hidden"
+          onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
+        >
+          {/* Ripple effect on hover */}
+          {isHovered && (
+            <motion.div
+              className="absolute inset-0 bg-white/20 rounded-lg"
+              initial={{ scale: 0, opacity: 1 }}
+              animate={{ scale: 2, opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            />
+          )}
+          <span className="mr-4 relative z-10">Enter the Agentic Economy</span>
+          <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
+        </Button>
+      </motion.div>
+      <motion.p 
+        className="text-sm text-muted-foreground mt-4 italic"
+        animate={{ opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        Deploy your first agents in 60 seconds
+      </motion.p>
+    </motion.div>
+  );
+};
 
 const EnhancedCTA = () => {
   const breakingModels = [
@@ -138,26 +215,8 @@ const EnhancedCTA = () => {
           </motion.div>
         </div>
 
-        {/* Primary CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
-          className="text-center mb-12"
-        >
-          <Button
-            size="lg"
-            className="text-2xl px-12 py-8 h-auto bg-gradient-to-r from-primary via-primary to-secondary hover:from-primary/80 hover:via-primary/80 hover:to-secondary/80 shadow-2xl shadow-primary/30 hover:shadow-primary/50 transition-all duration-500 group"
-            onClick={() => window.dispatchEvent(new CustomEvent('open-waitlist'))}
-          >
-            <span className="mr-4">Enter the Agentic Economy</span>
-            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-          </Button>
-          <p className="text-sm text-muted-foreground mt-4 italic">
-            Deploy your first agents in 60 seconds
-          </p>
-        </motion.div>
+        {/* Primary CTA with Magnetic Effect */}
+        <MagneticCTA />
 
         {/* Risk Reversal */}
         <motion.div
