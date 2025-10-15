@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { X, Check } from 'lucide-react';
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
+import universalLogo from '@/assets/universal-logo.png';
 
 const ParadigmShift = () => {
   const oldModel = [
@@ -42,12 +43,43 @@ const ParadigmShift = () => {
       </motion.div>
       
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Logo at the top */}
+        <motion.div
+          initial={{ opacity: 0, y: -50, scale: 0.8 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ 
+            duration: 1.2, 
+            ease: [0.25, 0.1, 0.25, 1],
+            scale: { duration: 1.5, ease: "easeOut" }
+          }}
+          className="flex justify-center mb-12"
+        >
+          <motion.img 
+            src={universalLogo} 
+            alt="Universal AI Logo"
+            className="w-64 h-auto md:w-80 lg:w-96"
+            animate={{
+              y: [0, -10, 0],
+              rotateY: [0, 5, 0, -5, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            style={{
+              filter: "drop-shadow(0 0 30px rgba(var(--primary-rgb), 0.5))",
+            }}
+          />
+        </motion.div>
+
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
