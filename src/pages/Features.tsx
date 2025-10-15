@@ -54,11 +54,11 @@ const Features: React.FC = () => {
             </div>
           </motion.div>
         </div>
-        <div className="absolute inset-0 hero-bg-animated opacity-30" />
       </section>
 
       {/* All Feature Sections */}
-      <main>
+      <main className="relative">
+        <div className="absolute inset-0 hero-bg-animated opacity-30" />
         <ParadigmShift />
         <EcosystemPillars />
         <AgentMarketplace />
