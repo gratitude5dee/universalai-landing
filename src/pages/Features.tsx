@@ -23,7 +23,12 @@ const Features: React.FC = () => {
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
+      </section>
+
+      {/* All Feature Sections */}
+      <main className="relative">
+        <div className="absolute inset-0 hero-bg-animated opacity-30" />
+        <div className="container mx-auto px-6 relative z-10 py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -54,11 +59,6 @@ const Features: React.FC = () => {
             </div>
           </motion.div>
         </div>
-      </section>
-
-      {/* All Feature Sections */}
-      <main className="relative">
-        <div className="absolute inset-0 hero-bg-animated opacity-30" />
         <ParadigmShift />
         <EcosystemPillars />
         <AgentMarketplace />
