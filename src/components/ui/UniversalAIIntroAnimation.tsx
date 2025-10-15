@@ -5,6 +5,7 @@ import MatrixCanvasBackground from './MatrixCanvasBackground';
 import ASCIIArtRenderer from './ASCIIArtRenderer';
 import IntroStatusIndicator from './IntroStatusIndicator';
 import { ASCII_ART_CHARACTER, ASCII_ART_LOGO } from '@/data/asciiArt';
+import { isMobileDevice } from '@/utils/deviceDetection';
 
 interface UniversalAIIntroAnimationProps {
   onComplete?: () => void;
@@ -15,6 +16,7 @@ const UniversalAIIntroAnimation: React.FC<UniversalAIIntroAnimationProps> = ({
   onComplete,
   allowSkip = true 
 }) => {
+  const isMobile = isMobileDevice();
   const [statusMessage, setStatusMessage] = useState('◆ NEURAL NETWORK INITIALIZING ◆');
   const [loadingText, setLoadingText] = useState('INITIALIZING CORE');
   const [asciiStartTime, setAsciiStartTime] = useState<number>(Date.now());
@@ -125,14 +127,14 @@ const UniversalAIIntroAnimation: React.FC<UniversalAIIntroAnimationProps> = ({
           {/* Status Indicator */}
           <IntroStatusIndicator message={statusMessage} />
 
-          {/* Skip Button */}
+          {/* Skip Button - More prominent on mobile */}
           {allowSkip && (
             <button
               onClick={skip}
-              className="intro-skip-button"
+              className={`intro-skip-button ${isMobile ? 'mobile-skip-button' : ''}`}
               aria-label="Skip intro animation"
             >
-              SKIP [ESC]
+              {isMobile ? 'TAP TO SKIP' : 'SKIP [ESC]'}
             </button>
           )}
         </motion.div>

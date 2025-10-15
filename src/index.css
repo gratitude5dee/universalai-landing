@@ -424,3 +424,56 @@ html {
   }
 }
 
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Reduce blur effects on mobile for better performance */
+  .backdrop-blur-xl {
+    backdrop-filter: blur(12px) !important;
+  }
+  
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(16px) !important;
+  }
+  
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(20px) !important;
+  }
+  
+  /* Simplify glassmorphism on mobile */
+  .glass {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+  
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(12px) !important;
+  }
+  
+  /* Mobile-optimized skip button */
+  .mobile-skip-button {
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: auto !important;
+    right: auto !important;
+    padding: 16px 32px !important;
+    font-size: 16px !important;
+    background: rgba(147, 51, 234, 0.9) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50px !important;
+    animation: pulse 2s infinite !important;
+  }
+  
+  /* Reduce animation complexity on mobile */
+  .animate-float,
+  .animate-floatGentle {
+    animation: none !important;
+  }
+  
+  /* Disable heavy canvas animations on mobile */
+  .matrix-canvas {
+    display: none !important;
+  }
+}
+

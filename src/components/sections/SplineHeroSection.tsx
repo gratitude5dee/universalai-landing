@@ -3,10 +3,23 @@ import { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SplineLogoOverlay from '@/components/ui/SplineLogoOverlay';
 import SplineLoadingSkeleton from '@/components/ui/SplineLoadingSkeleton';
+import MobileHeroBackground from './MobileHeroBackground';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export default function SplineHeroSection() {
+  const isMobile = useIsMobile();
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  
+  // Don't even try to load Spline on mobile
+  if (isMobile) {
+    return (
+      <section className="relative w-full h-screen overflow-hidden z-0 -mt-[50px]">
+        <MobileHeroBackground />
+        <SplineLogoOverlay isSplineLoaded={true} />
+      </section>
+    );
+  }
   
   // Parallax and scroll effects
   const { scrollY } = useScroll();

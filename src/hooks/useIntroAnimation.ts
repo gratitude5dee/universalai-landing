@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { isMobileDevice } from '@/utils/deviceDetection';
 
 interface UseIntroAnimationOptions {
   duration?: number;
@@ -8,8 +9,9 @@ interface UseIntroAnimationOptions {
 }
 
 export const useIntroAnimation = (options: UseIntroAnimationOptions = {}) => {
+  const isMobile = isMobileDevice();
   const {
-    duration = 10500,
+    duration = isMobile ? 4000 : 10500, // Shorter duration on mobile
     onComplete,
     skipOnRepeat = true,
     onPhaseChange

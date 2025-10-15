@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Flame, TrendingUp } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
@@ -39,8 +39,8 @@ const LiveWaitlistCounter = () => {
     }));
   };
 
-  // Use mock data instead of real signups for privacy
-  const signups = generateMockSignups();
+  // Use mock data instead of real signups for privacy (memoized to prevent infinite loops)
+  const signups = useMemo(() => generateMockSignups(), []);
 
   // Animate count changes
   useEffect(() => {
@@ -59,8 +59,9 @@ const LiveWaitlistCounter = () => {
       return () => clearInterval(timer);
     }
   }, [count, displayCount]);
+  
   useEffect(() => {
-    setRecentSignups(signups || []);
+    setRecentSignups(signups);
   }, [signups]);
 
   // Real-time subscription for live updates
