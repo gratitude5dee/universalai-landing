@@ -65,6 +65,7 @@ export default {
             fontFamily: {
                 sans: ["Inter", "sans-serif"],
                 mono: ["JetBrains Mono", "monospace"],
+                display: ["Playfair Display", "Georgia", "serif"],
             },
             fontSize: {
                 'xs': 'var(--text-xs)',
