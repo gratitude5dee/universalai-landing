@@ -65,6 +65,11 @@ const ChangelogReleaseCard: React.FC<ChangelogReleaseCardProps> = ({ release, in
               <h2 className="changelog-version text-primary mb-2">
                 v{release.version}
               </h2>
+              {release.title && (
+                <p className="text-lg font-semibold text-foreground/90 mb-2">
+                  {release.title}
+                </p>
+              )}
               <time className="text-sm text-muted-foreground font-mono">
                 {new Date(release.date).toLocaleDateString('en-US', {
                   year: 'numeric',

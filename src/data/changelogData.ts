@@ -4,6 +4,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.4.0',
     date: '2025-10-15',
+    title: 'Agent Blueprint & Security Hardening',
     entries: [
       { type: 'Added', summary: 'UniversalAI agent blueprint + MCP server implementation', scope: 'Integration', sha: '68d4b13', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/68d4b13' },
       { type: 'Security', summary: 'Harden backend surfaces for canvas, research, and invoices', scope: 'Backend', sha: '1872f19', commitUrl: 'https://github.com/gratitude5dee/Universal-AI/commit/1872f19' },
@@ -20,6 +21,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.3.5',
     date: '2025-10-14',
+    title: 'Database Schema Updates & Authentication',
     entries: [
       { type: 'Schema', summary: 'Loader to fetch boards', scope: 'Database', pr: 16 },
       { type: 'Schema', summary: 'Schema changes and refactor edge functions', scope: 'Database', pr: 15 },
@@ -37,6 +39,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.3.0',
     date: '2025-09-27',
+    title: 'ManusAI Integration & UI Transformation',
     entries: [
       { type: 'Added', summary: 'ManusAI integration with comprehensive 5DEE ecosystem', scope: 'Integration' },
       { type: 'Changed', summary: 'Complete transformation of Docs and Features pages', scope: 'UI' },
@@ -48,6 +51,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.9',
     date: '2025-09-20',
+    title: 'Performance & Mobile Enhancements',
     entries: [
       { type: 'Improved', summary: 'Enhanced WebGL background animations', scope: 'Performance' },
       { type: 'Improved', summary: 'Improved mobile responsiveness for all sections', scope: 'UI' },
@@ -58,6 +62,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.8',
     date: '2025-09-15',
+    title: '3D Components & Lightning Visualizations',
     entries: [
       { type: 'Added', summary: 'New 3D card components with depth effects', scope: 'UI' },
       { type: 'Added', summary: 'Lightning visualization system', scope: 'UI' },
@@ -68,6 +73,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.7',
     date: '2025-09-10',
+    title: 'Agent Marketplace & Success Stories',
     entries: [
       { type: 'Added', summary: 'Agent marketplace filtering and search', scope: 'Features' },
       { type: 'Added', summary: 'Success stories carousel with smooth transitions', scope: 'UI' },
@@ -78,6 +84,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.6',
     date: '2025-09-05',
+    title: 'Revolutionary Identity & Agentic Advantage',
     entries: [
       { type: 'Added', summary: 'Revolutionary identity system implementation', scope: 'Core' },
       { type: 'Added', summary: 'Agentic advantage showcase components', scope: 'UI' },
@@ -88,6 +95,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.5',
     date: '2025-08-28',
+    title: 'Paradigm Shift & Ecosystem Pillars',
     entries: [
       { type: 'Added', summary: 'Paradigm shift section with interactive elements', scope: 'UI' },
       { type: 'Added', summary: 'Ecosystem pillars visualization', scope: 'UI' },
@@ -98,6 +106,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.4',
     date: '2025-08-22',
+    title: 'Professional CTA & Social Proof',
     entries: [
       { type: 'Added', summary: 'Professional CTA components', scope: 'UI' },
       { type: 'Added', summary: 'Social proof integration', scope: 'Features' },
@@ -108,6 +117,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.3',
     date: '2025-08-18',
+    title: 'Live Waitlist & Success Experience',
     entries: [
       { type: 'Added', summary: 'Live waitlist counter functionality', scope: 'Features' },
       { type: 'Added', summary: 'Success experience components', scope: 'UI' },
@@ -118,6 +128,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.2',
     date: '2025-08-15',
+    title: 'Phone Mockups & Video Integration',
     entries: [
       { type: 'Improved', summary: 'Phone mockup component refinements', scope: 'UI' },
       { type: 'Added', summary: 'Video player mockup integration', scope: 'UI' },
@@ -128,6 +139,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.1',
     date: '2025-08-12',
+    title: 'Navigation & Footer Improvements',
     entries: [
       { type: 'Improved', summary: 'Header navigation improvements', scope: 'UI' },
       { type: 'Improved', summary: 'Footer social links and branding', scope: 'UI' },
@@ -138,6 +150,7 @@ export const changelogReleases: ChangelogRelease[] = [
   {
     version: '0.2.0',
     date: '2025-08-08',
+    title: 'New Landing Pages & Waitlist Integration',
     entries: [
       { type: 'Added', summary: 'New landing header & hero styling', scope: 'UI' },
       { type: 'Added', summary: 'Waitlist modal with Supabase integration', scope: 'Features' },

@@ -25,5 +25,6 @@ export interface ChangelogEntry {
 export interface ChangelogRelease {
   version: string;
   date: string; // ISO format YYYY-MM-DD
+  title?: string; // Optional release title summarizing main changes
   entries: ChangelogEntry[];
 }
