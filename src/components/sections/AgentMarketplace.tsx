@@ -109,25 +109,51 @@ const AgentMarketplace = () => {
               }}
               className={index === 4 ? "md:col-span-2 xl:col-span-1" : ""}
             >
-              <GlassmorphicCard className="h-full hover:scale-105 transition-transform duration-300">
+              <GlassmorphicCard className="h-full group cursor-pointer">
                 {/* Agent Header */}
                 <div className="relative mb-6">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${agent.color} rounded-2xl flex items-center justify-center mb-4 shadow-lg`}>
+                  <motion.div 
+                    className={`w-16 h-16 bg-gradient-to-br ${agent.color} rounded-2xl flex items-center justify-center mb-4 shadow-lg relative`}
+                    whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <agent.icon className="w-8 h-8 text-white" />
-                  </div>
-                  <div className={`absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br ${agent.color} rounded-full blur-sm opacity-60 animate-pulse`} />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${agent.color} rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-300`} />
+                  </motion.div>
+                  <motion.div 
+                    className={`absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br ${agent.color} rounded-full blur-sm`}
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
                   
-                  <h3 className="text-2xl font-bold mb-2">{agent.name}</h3>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">{agent.name}</h3>
                   <p className="text-primary text-sm italic">{agent.subtitle}</p>
                 </div>
 
                 {/* Capabilities */}
                 <div className="space-y-3 mb-6">
                   {agent.capabilities.map((capability, capIndex) => (
-                    <div key={capIndex} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mt-2 flex-shrink-0" />
-                      <p className="text-sm text-muted-foreground leading-relaxed">{capability}</p>
-                    </div>
+                    <motion.div 
+                      key={capIndex} 
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: capIndex * 0.1 }}
+                    >
+                      <motion.div 
+                        className="w-2 h-2 bg-gradient-to-r from-primary to-secondary rounded-full mt-2 flex-shrink-0"
+                        whileHover={{ scale: 1.5 }}
+                      />
+                      <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors duration-300">{capability}</p>
+                    </motion.div>
                   ))}
                 </div>
 

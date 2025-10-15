@@ -121,46 +121,76 @@ const PricingSection = () => {
                 </div>
               )}
 
-              <GlassmorphicCard className={`h-full relative ${plan.popular ? 'border-primary/50 scale-105 lg:scale-110' : ''}`}>
+              <GlassmorphicCard className={`h-full relative group cursor-pointer ${plan.popular ? 'border-primary/50 scale-105 lg:scale-110' : ''}`}>
                 {/* Plan Header */}
                 <div className="text-center mb-6">
-                  <div className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${plan.gradient} rounded-2xl flex items-center justify-center`}>
-                    <div className="text-2xl font-bold text-white">{plan.name[0]}</div>
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                  <motion.div 
+                    className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${plan.gradient} rounded-2xl flex items-center justify-center relative`}
+                    whileHover={{ 
+                      rotate: [0, -15, 15, -10, 10, 0],
+                      scale: 1.1
+                    }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <div className="text-2xl font-bold text-white relative z-10">{plan.name[0]}</div>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${plan.gradient} rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-opacity duration-300`} />
+                  </motion.div>
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors duration-300">{plan.name}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{plan.subtitle}</p>
                   
-                  <div className="mb-6">
+                  <motion.div 
+                    className="mb-6"
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.05 }}
+                  >
                     <div className="flex items-baseline justify-center gap-1">
                       <span className="text-4xl font-bold text-primary">{plan.price}</span>
                       {plan.period && <span className="text-muted-foreground">{plan.period}</span>}
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Features List */}
                 <div className="space-y-3 mb-8 flex-grow">
                   {plan.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-start gap-3">
-                      <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <motion.div 
+                      key={featureIndex} 
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: featureIndex * 0.05 }}
+                      whileHover={{ x: 4 }}
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.2, rotate: 360 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      </motion.div>
                       <p className="text-sm text-foreground">{feature}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
 
                 {/* CTA Button */}
-                <Button 
-                  className={`w-full ${plan.popular ? 'bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80' : ''}`}
-                  variant={plan.popular ? "default" : "outline"}
-                  size="lg"
-                  onClick={() => {
-                    if (plan.cta === "Start Free" || plan.cta === "Launch Creator Journey") {
-                      window.dispatchEvent(new CustomEvent('open-waitlist'));
-                    }
-                  }}
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {plan.cta}
-                </Button>
+                  <Button 
+                    className={`w-full ${plan.popular ? 'bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80' : ''}`}
+                    variant={plan.popular ? "default" : "outline"}
+                    size="lg"
+                    onClick={() => {
+                      if (plan.cta === "Start Free" || plan.cta === "Launch Creator Journey") {
+                        window.dispatchEvent(new CustomEvent('open-waitlist'));
+                      }
+                    }}
+                  >
+                    {plan.cta}
+                  </Button>
+                </motion.div>
 
                 {/* Glow Effect for Popular */}
                 {plan.popular && (

@@ -143,19 +143,44 @@ const RevolutionaryIdentity = () => {
                   description: "Generate authentic avatars that think and create like you"
                 }
               ].map((process, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 mx-auto">
+                <motion.div 
+                  key={index} 
+                  className="text-center relative"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                >
+                  <motion.div 
+                    className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 mx-auto relative"
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 360,
+                      transition: { duration: 0.6 }
+                    }}
+                  >
                     {process.step}
-                  </div>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full blur-lg opacity-0"
+                      whileHover={{ opacity: 0.6 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
                   <h4 className="text-lg font-bold mb-2">{process.title}</h4>
                   <p className="text-sm text-muted-foreground">{process.description}</p>
                   
-                  {/* Connection Line */}
+                  {/* Animated Connection Line */}
                   {index < 3 && (
-                    <div className="hidden md:block absolute top-8 left-full w-6 h-0.5 bg-gradient-to-r from-primary to-secondary opacity-50" 
-                         style={{ transform: 'translateX(-50%)' }} />
+                    <motion.div 
+                      className="hidden md:block absolute top-8 left-full w-6 h-0.5 bg-gradient-to-r from-primary to-secondary" 
+                      style={{ transform: 'translateX(-50%)' }}
+                      initial={{ scaleX: 0, opacity: 0 }}
+                      whileInView={{ scaleX: 1, opacity: 0.5 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.7 + index * 0.15 }}
+                    />
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
 
