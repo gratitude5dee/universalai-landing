@@ -103,7 +103,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
                 delay: 0.1,
                 duration: 0.6
               }} 
-              className="relative inline-flex items-center gap-2 glass border border-primary/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 mt-[50px] self-center lg:self-start text-center hover:border-primary/50 transition-all duration-300 group overflow-hidden"
+              className="relative inline-flex items-center gap-2 glass border border-primary/30 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8 mt-[70px] self-center lg:self-start text-center hover:border-primary/50 transition-all duration-300 group overflow-hidden"
             >
               {/* Pulse Ring Effect */}
               <motion.div
