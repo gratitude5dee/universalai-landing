@@ -30,7 +30,7 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
   
   return <section className={`relative min-h-screen flex items-center justify-center overflow-hidden bg-background -mt-[150px] ${className}`}>
       {/* Dynamic Gradient Mesh Background */}
-      <DynamicBackground sectionTheme="hero" />
+      <DynamicBackground sectionTheme="default" />
       
       {/* Particle Field */}
       <ParticleField particleCount={50} connectionDistance={150} speed={0.5} />
