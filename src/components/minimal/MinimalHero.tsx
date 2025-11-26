@@ -60,7 +60,9 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             ease: "easeInOut"
           }}
         >
-          <div className="w-full h-full bg-gradient-to-bl from-primary/40 via-primary/20 to-transparent rounded-full blur-3xl" />
+          <div className="w-full h-full rounded-full blur-3xl" style={{
+            background: 'radial-gradient(circle, hsla(280, 70%, 50%, 0.25) 0%, hsla(220, 70%, 50%, 0.15) 50%, transparent 100%)'
+          }} />
         </motion.div>
         
         <motion.div 
@@ -76,7 +78,9 @@ const MinimalHero: React.FC<MinimalHeroProps> = ({
             delay: 2
           }}
         >
-          <div className="w-full h-full bg-gradient-to-tr from-secondary/30 via-secondary/15 to-transparent rounded-full blur-3xl" />
+          <div className="w-full h-full rounded-full blur-3xl" style={{
+            background: 'radial-gradient(circle, hsla(220, 70%, 50%, 0.2) 0%, hsla(180, 60%, 50%, 0.1) 50%, transparent 100%)'
+          }} />
         </motion.div>
       </div>
 
