@@ -16,6 +16,8 @@ import EnhancedCTA from '@/components/sections/EnhancedCTA';
 import UniversalAIIntroAnimation from '@/components/ui/UniversalAIIntroAnimation';
 import SplineHeroSection from '@/components/sections/SplineHeroSection';
 import SectionDivider from '@/components/ui/SectionDivider';
+import DynamicBackground from '@/components/ui/DynamicBackground';
+import ParticleField from '@/components/ui/ParticleField';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -26,6 +28,12 @@ const Index = () => {
 
   return (
     <>
+      {/* Dynamic gradient mesh background */}
+      {!showIntro && <DynamicBackground sectionTheme="default" />}
+      
+      {/* Particle field effect */}
+      {!showIntro && <ParticleField particleCount={40} connectionDistance={120} speed={0.3} />}
+      
       {/* Custom Cursor Trail (desktop only) */}
       <CustomCursor />
       
@@ -38,26 +46,26 @@ const Index = () => {
         allowSkip={true}
       />
       
-      <div className="min-h-screen text-foreground bg-background">
+      <div className="min-h-screen text-foreground relative">
         <Header />
-        <main className="pt-20">
+        <main className="pt-20 relative z-10">
           {!showIntro && <SplineHeroSection />}
           <MinimalHero />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <ParadigmShift />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <EcosystemPillars />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <AgentMarketplace />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <RevolutionaryIdentity />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <SuccessStories />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <TechnicalArchitecture />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <PricingSection />
-          <SectionDivider className="my-16" />
+          <SectionDivider className="my-24" />
           <AgenticAdvantage />
           <EnhancedCTA />
         </main>
