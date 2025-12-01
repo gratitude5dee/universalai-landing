@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Shield, Link2, TrendingUp } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { Shield, Link2, TrendingUp, ArrowUpRight } from 'lucide-react';
 import PillLabel from '@/components/ui/PillLabel';
 
 const features = [
@@ -31,9 +31,66 @@ const features = [
 ];
 
 const BuiltDifferentFeatures = () => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { damping: 25, stiffness: 150 };
+  const cardX = useSpring(mouseX, springConfig);
+  const cardY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / 20;
+    const y = (e.clientY - rect.top - rect.height / 2) / 20;
+    if (hoveredCard === index) {
+      mouseX.set(x);
+      mouseY.set(y);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredCard(null);
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
   return (
     <section className="relative py-32 overflow-hidden">
-      <div className="container mx-auto px-4">
+      {/* Animated background gradients */}
+      <motion.div
+        className="absolute top-0 left-1/4 w-[600px] h-[600px] -translate-x-1/2"
+        style={{
+          background: 'radial-gradient(circle, hsl(217 91% 60% / 0.1), transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+        animate={{
+          y: [0, -50, 0],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-1/4 w-[600px] h-[600px] translate-x-1/2"
+        style={{
+          background: 'radial-gradient(circle, hsl(38 100% 64% / 0.1), transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+        animate={{
+          y: [0, 50, 0],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      />
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -61,76 +118,171 @@ const BuiltDifferentFeatures = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -10 }}
-              className={`relative group cursor-pointer`}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
+              style={{
+                rotateX: hoveredCard === index ? cardY : 0,
+                rotateY: hoveredCard === index ? cardX : 0,
+              }}
+              onMouseMove={(e) => handleMouseMove(e, index)}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={handleMouseLeave}
+              className="relative group cursor-pointer perspective-1000"
             >
-              <div
-                className={`relative h-full rounded-2xl glass border ${feature.borderColor} p-8 overflow-hidden`}
+              <motion.div
+                whileHover={{ y: -10, scale: 1.02 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                className={`relative h-full rounded-3xl glass-strong border-2 ${feature.borderColor} p-8 overflow-hidden backdrop-blur-xl`}
               >
-                {/* Gradient background */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-50 group-hover:opacity-70 transition-opacity duration-300`}
+                {/* Animated gradient background */}
+                <motion.div
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-40`}
+                  animate={{
+                    opacity: hoveredCard === index ? 0.7 : 0.4,
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+
+                {/* Radial glow on hover */}
+                <motion.div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: `radial-gradient(circle at 50% 50%, ${
+                      feature.title === 'Ownership'
+                        ? 'hsl(217 91% 60% / 0.2)'
+                        : feature.title === 'Attribution'
+                        ? 'hsl(262 83% 58% / 0.2)'
+                        : 'hsl(38 100% 64% / 0.2)'
+                    }, transparent 70%)`,
+                  }}
                 />
 
                 {/* Content */}
                 <div className="relative z-10">
-                  {/* Icon */}
-                  <div className="mb-6">
+                  {/* Icon with glow */}
+                  <motion.div
+                    className="mb-6 relative"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                  >
+                    <div className="absolute inset-0 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity"
+                      style={{
+                        background: feature.title === 'Ownership'
+                          ? 'hsl(217 91% 60% / 0.4)'
+                          : feature.title === 'Attribution'
+                          ? 'hsl(262 83% 58% / 0.4)'
+                          : 'hsl(38 100% 64% / 0.4)',
+                      }}
+                    />
                     <div
-                      className={`w-16 h-16 rounded-2xl glass-strong border ${feature.borderColor} flex items-center justify-center`}
+                      className={`relative w-20 h-20 rounded-2xl glass-strong border-2 ${feature.borderColor} flex items-center justify-center group-hover:border-opacity-100 transition-all`}
                     >
-                      <feature.icon className={`w-8 h-8 ${feature.iconColor}`} />
+                      <feature.icon className={`w-10 h-10 ${feature.iconColor}`} />
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* Title */}
-                  <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
+                  {/* Title with gradient on hover */}
+                  <motion.h3
+                    className="text-3xl font-bold mb-4 group-hover:bg-gradient-to-r group-hover:from-foreground group-hover:to-foreground/80 group-hover:bg-clip-text group-hover:text-transparent transition-all"
+                  >
+                    {feature.title}
+                  </motion.h3>
 
                   {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                  <p className="text-muted-foreground leading-relaxed text-lg">{feature.description}</p>
 
                   {/* Special content for Monetization card */}
                   {feature.title === 'Monetization' && (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.5 }}
-                      className="mt-8 p-4 rounded-xl bg-background/50 border border-accent-amber/20"
+                      transition={{ delay: 0.6, duration: 0.4 }}
+                      className="mt-8 p-6 rounded-2xl glass border border-accent-amber/30 relative overflow-hidden group/earnings"
                     >
-                      <div className="text-3xl font-bold text-accent-amber mb-2">$4,892.47</div>
-                      <div className="text-sm text-muted-foreground mb-3">Monthly Earnings</div>
-                      <div className="flex gap-2 text-xs">
-                        <span className="px-2 py-1 rounded-full bg-accent-amber/10 text-accent-amber">
-                          Royalties
-                        </span>
-                        <span className="px-2 py-1 rounded-full bg-accent-rose/10 text-accent-rose">
-                          Licensing
-                        </span>
-                        <span className="px-2 py-1 rounded-full bg-primary/10 text-primary">Tips</span>
+                      {/* Shimmer effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-amber/10 to-transparent"
+                        animate={{
+                          x: ['-100%', '100%'],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: 'linear',
+                        }}
+                      />
+                      
+                      <div className="relative z-10">
+                        <motion.div
+                          className="text-4xl font-bold text-accent-amber mb-2 font-mono"
+                          animate={{
+                            scale: [1, 1.02, 1],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                          }}
+                        >
+                          $4,892.47
+                        </motion.div>
+                        <div className="text-sm text-muted-foreground mb-4">Monthly Earnings</div>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          <motion.span
+                            whileHover={{ scale: 1.1 }}
+                            className="px-3 py-1.5 rounded-full glass border border-accent-amber/30 text-accent-amber text-xs font-medium"
+                          >
+                            Royalties
+                          </motion.span>
+                          <motion.span
+                            whileHover={{ scale: 1.1 }}
+                            className="px-3 py-1.5 rounded-full glass border border-accent-rose/30 text-accent-rose text-xs font-medium"
+                          >
+                            Licensing
+                          </motion.span>
+                          <motion.span
+                            whileHover={{ scale: 1.1 }}
+                            className="px-3 py-1.5 rounded-full glass border border-primary/30 text-primary text-xs font-medium"
+                          >
+                            Tips
+                          </motion.span>
+                        </div>
+                        <p className="text-sm text-muted-foreground italic leading-relaxed">
+                          Embed your creative identity anywhere, in your own brand
+                        </p>
                       </div>
-                      <p className="text-xs text-muted-foreground mt-4 italic">
-                        Embed your creative identity anywhere, in your own brand
-                      </p>
                     </motion.div>
                   )}
+
+                  {/* Learn more link */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.7 }}
+                    className="mt-6 flex items-center gap-2 text-sm font-medium group/link cursor-pointer"
+                  >
+                    <span className={`${feature.iconColor} group-hover/link:underline`}>
+                      Learn more
+                    </span>
+                    <ArrowUpRight className={`w-4 h-4 ${feature.iconColor} group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform`} />
+                  </motion.div>
                 </div>
 
-                {/* Hover glow effect */}
+                {/* Animated border gradient on hover */}
                 <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 pointer-events-none"
                   style={{
-                    background: `radial-gradient(circle at center, ${
+                    background: `linear-gradient(135deg, ${
                       feature.title === 'Ownership'
-                        ? 'hsl(217 91% 60% / 0.1)'
+                        ? 'hsl(217 91% 60% / 0.3), transparent'
                         : feature.title === 'Attribution'
-                        ? 'hsl(262 83% 58% / 0.1)'
-                        : 'hsl(38 100% 64% / 0.1)'
-                    }, transparent 70%)`,
+                        ? 'hsl(262 83% 58% / 0.3), transparent'
+                        : 'hsl(38 100% 64% / 0.3), transparent'
+                    })`,
                   }}
+                  transition={{ duration: 0.3 }}
                 />
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
