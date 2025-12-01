@@ -28,7 +28,11 @@ export default {
                 "border-accent-strong": "var(--border-accent-strong)",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
-                background: "hsl(var(--background))",
+                background: {
+                    DEFAULT: "hsl(var(--background))",
+                    purple: "hsl(var(--background-purple))",
+                    secondary: "hsl(var(--background-secondary))",
+                },
                 foreground: "hsl(var(--foreground))",
                 primary: {
                     DEFAULT: "hsl(var(--primary))",
@@ -37,6 +41,8 @@ export default {
                 },
                 "secondary-glow": "hsl(var(--secondary-glow))",
                 "accent-purple": "hsl(var(--accent-purple))",
+                "accent-amber": "hsl(var(--accent-amber))",
+                "accent-rose": "hsl(var(--accent-rose))",
                 secondary: {
                     DEFAULT: "hsl(var(--secondary))",
                     foreground: "hsl(var(--secondary-foreground))",
@@ -60,12 +66,14 @@ export default {
                 card: {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
+                    glass: "var(--card-glass)",
                 },
             },
             fontFamily: {
                 sans: ["Inter", "sans-serif"],
                 mono: ["JetBrains Mono", "monospace"],
                 display: ["Playfair Display", "Georgia", "serif"],
+                playfair: ["Playfair Display", "Georgia", "serif"],
             },
             fontSize: {
                 'xs': 'var(--text-xs)',

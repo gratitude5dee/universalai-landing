@@ -3,21 +3,17 @@ import Header from '@/components/landing/Header';
 import { Footer } from '@/components/Footer';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import CustomCursor from '@/components/ui/CustomCursor';
-import MinimalHero from '@/components/minimal/MinimalHero';
-import ParadigmShift from '@/components/sections/ParadigmShift';
-import EcosystemPillars from '@/components/sections/EcosystemPillars';
-import AgentMarketplace from '@/components/sections/AgentMarketplace';
-import RevolutionaryIdentity from '@/components/sections/RevolutionaryIdentity';
-import SuccessStories from '@/components/sections/SuccessStories';
-import TechnicalArchitecture from '@/components/sections/TechnicalArchitecture';
-import PricingSection from '@/components/sections/PricingSection';
-import AgenticAdvantage from '@/components/sections/AgenticAdvantage';
-import EnhancedCTA from '@/components/sections/EnhancedCTA';
+import UniversalAIHero from '@/components/minimal/UniversalAIHero';
+import VideoSection from '@/components/sections/VideoSection';
+import BuiltDifferentFeatures from '@/components/sections/BuiltDifferentFeatures';
+import ModulesSection from '@/components/sections/ModulesSection';
+import TokenSection from '@/components/sections/TokenSection';
+import TokenCommunitySection from '@/components/sections/TokenCommunitySection';
+import ToolsSection from '@/components/sections/ToolsSection';
+import BlogSection from '@/components/sections/BlogSection';
+import FAQSection from '@/components/sections/FAQSection';
 import UniversalAIIntroAnimation from '@/components/ui/UniversalAIIntroAnimation';
-import SplineHeroSection from '@/components/sections/SplineHeroSection';
 import SectionDivider from '@/components/ui/SectionDivider';
-import DynamicBackground from '@/components/ui/DynamicBackground';
-import ParticleField from '@/components/ui/ParticleField';
 
 const Index = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -28,46 +24,33 @@ const Index = () => {
 
   return (
     <>
-      {/* Dynamic gradient mesh background */}
-      {!showIntro && <DynamicBackground sectionTheme="default" />}
-      
-      {/* Particle field effect */}
-      {!showIntro && <ParticleField particleCount={40} connectionDistance={120} speed={0.3} />}
-      
-      {/* Custom Cursor Trail (desktop only) */}
       <CustomCursor />
-      
-      {/* Scroll Progress Indicator */}
       {!showIntro && <ScrollProgress />}
       
-      {/* Award-winning intro animation */}
       <UniversalAIIntroAnimation 
         onComplete={handleIntroComplete}
         allowSkip={true}
       />
       
-      <div className="min-h-screen text-foreground relative">
+      <div className="min-h-screen text-foreground relative bg-background">
         <Header />
-        <main className="pt-20 relative z-10">
-          {!showIntro && <SplineHeroSection />}
-          <MinimalHero />
+        <main className="relative z-10">
+          {!showIntro && <UniversalAIHero />}
+          <VideoSection />
           <SectionDivider className="my-24" />
-          <ParadigmShift />
+          <BuiltDifferentFeatures />
           <SectionDivider className="my-24" />
-          <EcosystemPillars />
+          <ModulesSection />
           <SectionDivider className="my-24" />
-          <AgentMarketplace />
+          <TokenSection />
           <SectionDivider className="my-24" />
-          <RevolutionaryIdentity />
+          <TokenCommunitySection />
           <SectionDivider className="my-24" />
-          <SuccessStories />
+          <ToolsSection />
           <SectionDivider className="my-24" />
-          <TechnicalArchitecture />
+          <BlogSection />
           <SectionDivider className="my-24" />
-          <PricingSection />
-          <SectionDivider className="my-24" />
-          <AgenticAdvantage />
-          <EnhancedCTA />
+          <FAQSection />
         </main>
         <Footer />
       </div>
