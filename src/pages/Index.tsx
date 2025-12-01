@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Header from '@/components/landing/Header';
+import UniversalAIHeader from '@/components/landing/UniversalAIHeader';
 import { Footer } from '@/components/Footer';
+import UniversalAIFooter from '@/components/UniversalAIFooter';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import CustomCursor from '@/components/ui/CustomCursor';
 import UniversalAIHero from '@/components/minimal/UniversalAIHero';
@@ -33,7 +35,7 @@ const Index = () => {
       />
       
       <div className="min-h-screen text-foreground relative bg-background">
-        <Header />
+        <UniversalAIHeader />
         <main className="relative z-10">
           {!showIntro && <UniversalAIHero />}
           <VideoSection />
@@ -52,7 +54,7 @@ const Index = () => {
           <SectionDivider className="my-24" />
           <FAQSection />
         </main>
-        <Footer />
+        <UniversalAIFooter />
       </div>
     </>
   );
