@@ -20,8 +20,8 @@ const UniversalAIHeader = () => {
   const location = useLocation();
   const { scrollY } = useScroll();
 
-  const headerOpacity = useTransform(scrollY, [0, 100], [0.8, 0.95]);
-  const headerBlur = useTransform(scrollY, [0, 100], [8, 16]);
+  const headerOpacity = useTransform(scrollY, [0, 100], [0.85, 0.98]);
+  const headerBlur = useTransform(scrollY, [0, 100], [12, 20]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,7 +38,7 @@ const UniversalAIHeader = () => {
         backdropFilter: `blur(${headerBlur}px)`,
       }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'py-3' : 'py-6'
+        isScrolled ? 'py-3' : 'py-5'
       }`}
     >
       <div className="container mx-auto px-4">
@@ -46,8 +46,8 @@ const UniversalAIHeader = () => {
           style={{ opacity: headerOpacity }}
           className={`relative rounded-full border transition-all duration-300 ${
             isScrolled
-              ? 'glass-strong border-primary/30 shadow-elegant'
-              : 'glass border-primary/20'
+              ? 'glass-dark border-accent-amber/15 shadow-amber'
+              : 'glass-dark border-accent-amber/10'
           }`}
         >
           <nav className="flex items-center justify-between px-6 py-3">
@@ -59,7 +59,7 @@ const UniversalAIHeader = () => {
               >
                 <CrystallineSymbol size={32} />
               </motion.div>
-              <span className="text-lg font-semibold tracking-tight hidden sm:block group-hover:text-primary transition-colors">
+              <span className="text-lg font-semibold tracking-tight hidden sm:block group-hover:text-accent-amber transition-colors">
                 universal-ai
               </span>
             </Link>
@@ -74,15 +74,15 @@ const UniversalAIHeader = () => {
                     to={item.to}
                     className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
                       isActive
-                        ? 'text-foreground bg-primary/10'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-primary/5'
+                        ? 'text-foreground bg-accent-amber/10'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-accent-amber/5'
                     }`}
                   >
                     {item.label}
                     {isActive && (
                       <motion.div
                         layoutId="activeNav"
-                        className="absolute inset-0 rounded-full border border-primary/30"
+                        className="absolute inset-0 rounded-full border border-accent-amber/30"
                         transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                       />
                     )}
@@ -96,7 +96,7 @@ const UniversalAIHeader = () => {
               <Button
                 variant="default"
                 size="sm"
-                className="hidden sm:flex bg-gradient-to-r from-background to-background-secondary hover:from-background-secondary hover:to-background border border-primary/30 hover:border-primary/50"
+                className="hidden sm:flex glass-dark border border-accent-amber/20 hover:border-accent-amber/40 text-foreground rounded-full px-6"
               >
                 Contact
               </Button>
@@ -104,7 +104,7 @@ const UniversalAIHeader = () => {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2 rounded-full glass-strong border border-primary/30 hover:border-primary/50 transition-all"
+                className="lg:hidden p-2 rounded-full glass-dark border border-accent-amber/20 hover:border-accent-amber/40 transition-all"
               >
                 {mobileMenuOpen ? (
                   <X className="w-5 h-5" />
@@ -122,7 +122,7 @@ const UniversalAIHeader = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden mt-4 rounded-2xl glass-strong border border-primary/30 p-6 shadow-elegant"
+            className="lg:hidden mt-4 rounded-3xl glass-dark border border-accent-amber/15 p-6"
           >
             <div className="flex flex-col gap-2">
               {navItems.map((item) => {
@@ -132,10 +132,10 @@ const UniversalAIHeader = () => {
                     key={item.to}
                     to={item.to}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 ${
+                    className={`px-4 py-3 text-sm font-medium rounded-2xl transition-all duration-300 ${
                       isActive
-                        ? 'text-foreground bg-primary/10 border border-primary/30'
-                        : 'text-muted-foreground hover:text-foreground hover:bg-primary/5'
+                        ? 'text-foreground bg-accent-amber/10 border border-accent-amber/20'
+                        : 'text-muted-foreground hover:text-foreground hover:bg-accent-amber/5'
                     }`}
                   >
                     {item.label}
@@ -144,7 +144,7 @@ const UniversalAIHeader = () => {
               })}
               <Button
                 variant="default"
-                className="mt-4 w-full bg-gradient-to-r from-primary to-accent-rose hover:opacity-90"
+                className="mt-4 w-full bg-gradient-to-r from-accent-amber to-accent-rose hover:opacity-90 text-background font-semibold rounded-2xl"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact

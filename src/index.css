@@ -6,87 +6,96 @@
 @tailwind utilities;
 
 :root {
-  /* Cosmic background palette */
-  --background: 220 60% 6%;           /* #0A0F1E cosmic blue */
-  --background-purple: 270 60% 12%;   /* #1A0F2E subtle purple shift */
-  --background-secondary: 220 55% 10%;
-  --foreground: 30 20% 96%;           /* #F8F6F3 off-white */
+  /* Premium dark warm palette */
+  --background: 240 10% 4%;           /* #0A0A0F near-black */
+  --background-purple: 270 30% 8%;    /* Deep warm purple */
+  --background-secondary: 240 10% 6%;
+  --foreground: 30 20% 96%;           /* #F8F6F3 warm off-white */
   
-  /* Card surfaces */
-  --card: 220 50% 10%;
+  /* Card surfaces - ultra dark with warmth */
+  --card: 240 10% 7%;
   --card-foreground: 30 20% 96%;
-  --card-glass: rgba(255, 255, 255, 0.08);
+  --card-glass: rgba(255, 255, 255, 0.04);
+  --card-dark: rgba(12, 12, 18, 0.92);
   
   /* Popover */
-  --popover: 220 50% 10%;
+  --popover: 240 10% 7%;
   --popover-foreground: 30 20% 96%;
   
-  /* Primary - Deep cosmic blue/purple */
+  /* Primary - Warm purple */
   --primary: 262 83% 58%;
   --primary-foreground: 30 20% 96%;
   --primary-glow: 260 85% 70%;
   
-  /* Secondary - Ethereal blue */
-  --secondary: 217 91% 60%;
-  --secondary-foreground: 30 20% 96%;
+  /* Secondary - Cyan accent */
+  --secondary: 185 90% 55%;
+  --secondary-foreground: 240 10% 4%;
   
   /* Accent colors - Warm golden amber and soft rose */
   --accent-amber: 38 100% 64%;        /* #FFB547 warm golden */
   --accent-rose: 340 100% 71%;        /* #FF6B9D soft rose */
+  --accent-cyan: 185 90% 55%;         /* Cyan accent */
   --accent: 38 100% 64%;
-  --accent-foreground: 220 60% 6%;
+  --accent-foreground: 240 10% 4%;
   
   /* Muted */
-  --muted: 255 15% 25%;
-  --muted-foreground: 255 15% 68%;    /* #A8A3B8 muted lavender */
+  --muted: 255 10% 20%;
+  --muted-foreground: 255 10% 60%;
   
   /* Destructive */
   --destructive: 0 84% 60%;
   --destructive-foreground: 30 20% 96%;
   
-  /* Border & Input */
-  --border: 220 40% 20%;
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-medium: rgba(255, 255, 255, 0.1);
-  --border-strong: rgba(255, 255, 255, 0.2);
-  --border-accent: rgba(147, 51, 234, 0.3);
-  --border-accent-strong: rgba(147, 51, 234, 0.5);
-  --input: 220 40% 20%;
+  /* Border & Input - warm tinted */
+  --border: 260 20% 18%;
+  --border-subtle: rgba(255, 200, 120, 0.04);
+  --border-medium: rgba(255, 200, 120, 0.08);
+  --border-strong: rgba(255, 200, 120, 0.15);
+  --border-accent: rgba(255, 181, 71, 0.2);
+  --border-accent-strong: rgba(255, 181, 71, 0.4);
+  --border-warm: rgba(255, 200, 120, 0.08);
+  --input: 260 20% 18%;
   --ring: 262 83% 58%;
-  --radius: 0.5rem;
+  --radius: 1.5rem;
   
   /* Chart colors */
   --chart-1: 262 83% 58%;
-  --chart-2: 217 91% 60%;
+  --chart-2: 185 90% 55%;
   --chart-3: 173 58% 39%;
   --chart-4: 38 100% 64%;
   --chart-5: 340 100% 71%;
   
-  /* Gradient variables - Ethereal and cosmic */
+  /* Gradient variables - Warm ethereal */
   --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%), hsl(260 85% 70%));
-  --gradient-secondary: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
+  --gradient-secondary: linear-gradient(135deg, hsl(185 90% 55%), hsl(185 90% 65%));
   --gradient-accent: linear-gradient(135deg, hsl(38 100% 64%), hsl(340 100% 71%));
-  --gradient-cosmic: linear-gradient(180deg, hsl(220 60% 6%), hsl(270 60% 12%));
+  --gradient-cosmic: linear-gradient(180deg, hsl(240 10% 4%), hsl(270 30% 8%));
   --gradient-amber: linear-gradient(135deg, hsl(38 100% 64%), hsl(38 100% 74%));
   --gradient-rose: linear-gradient(135deg, hsl(340 100% 71%), hsl(340 100% 81%));
+  --gradient-warm: linear-gradient(135deg, hsl(38 100% 64% / 0.2), hsl(340 100% 71% / 0.2));
   --gradient-hero: linear-gradient(135deg, 
-    rgba(155, 135, 245, 0.3) 0%, 
-    rgba(147, 51, 234, 0.3) 50%, 
-    rgba(107, 33, 168, 0.2) 100%);
+    rgba(255, 181, 71, 0.15) 0%, 
+    rgba(255, 107, 157, 0.15) 50%, 
+    rgba(138, 92, 246, 0.15) 100%);
 
-  /* Glass effects */
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-bg-strong: rgba(255, 255, 255, 0.08);
-  --glass-border-strong: rgba(255, 255, 255, 0.2);
+  /* Glass effects - warmer and darker */
+  --glass-bg: rgba(255, 255, 255, 0.02);
+  --glass-border: rgba(255, 200, 120, 0.08);
+  --glass-bg-strong: rgba(255, 255, 255, 0.04);
+  --glass-border-strong: rgba(255, 200, 120, 0.15);
+  --glass-warm: rgba(255, 181, 71, 0.03);
   
-  /* Shadow variables */
-  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.12);
-  --shadow-elegant: 0 10px 30px -10px hsl(262 83% 58% / 0.3);
-  --shadow-glow: 0 0 40px hsl(260 85% 70% / 0.4);
-  --shadow-amber: 0 0 30px hsl(38 100% 64% / 0.3);
-  --shadow-rose: 0 0 30px hsl(340 100% 71% / 0.3);
-  --shadow-purple: 0 10px 30px rgba(147, 51, 234, 0.3);
+  /* Ambient warm glow */
+  --ambient-warm: rgba(255, 180, 80, 0.08);
+  --ambient-rose: rgba(255, 107, 157, 0.06);
+  
+  /* Shadow variables - warmer */
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-elegant: 0 10px 30px -10px hsl(38 100% 64% / 0.2);
+  --shadow-glow: 0 0 40px hsl(38 100% 64% / 0.3);
+  --shadow-amber: 0 0 30px hsl(38 100% 64% / 0.25);
+  --shadow-rose: 0 0 30px hsl(340 100% 71% / 0.2);
+  --shadow-purple: 0 10px 30px rgba(147, 51, 234, 0.2);
   
   /* Animation variables */
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -372,6 +381,26 @@ code, .mono {
   border: 1px solid var(--glass-border-strong);
 }
 
+.glass-warm {
+  background: linear-gradient(135deg, var(--glass-warm), var(--glass-bg));
+  backdrop-filter: blur(30px);
+  border: 1px solid var(--border-warm);
+}
+
+.glass-dark {
+  background: rgba(8, 8, 12, 0.9);
+  backdrop-filter: blur(40px);
+  border: 1px solid var(--border-warm);
+}
+
+/* Ambient warm background */
+.ambient-warm-bg {
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(255, 181, 71, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(255, 140, 50, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(200, 120, 60, 0.05) 0%, transparent 70%);
+}
+
 /* Interactive Effects */
 .hover-lift {
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -379,7 +408,7 @@ code, .mono {
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-hover);
+  box-shadow: var(--shadow-amber);
 }
 
 /* ============= INTRO ANIMATION STYLES ============= */

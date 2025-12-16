@@ -8,51 +8,41 @@ const modules = [
     icon: UserCheck,
     title: 'Proof of Humanity Verification',
     description: 'Verify creators are human, not bots, with decentralized identity protocols',
-    gradient: 'from-primary/20 via-primary/10 to-transparent',
-    iconBg: 'bg-primary/10',
-    iconBorder: 'border-primary/30',
-    iconColor: 'text-primary',
-    glowColor: 'hsl(262 83% 58% / 0.15)',
+    iconColor: 'text-secondary',
+    borderColor: 'border-secondary/20',
+    glowColor: 'rgba(0, 200, 200, 0.12)',
   },
   {
     icon: DollarSign,
     title: 'Private Revenue Bridge',
     description: 'Private, secure transactions for creator earnings with zero-knowledge proofs',
-    gradient: 'from-accent-amber/20 via-accent-amber/10 to-transparent',
-    iconBg: 'bg-accent-amber/10',
-    iconBorder: 'border-accent-amber/30',
     iconColor: 'text-accent-amber',
-    glowColor: 'hsl(38 100% 64% / 0.15)',
+    borderColor: 'border-accent-amber/20',
+    glowColor: 'rgba(255, 181, 71, 0.12)',
   },
   {
     icon: FileCheck,
     title: 'Clean Attribution',
     description: 'ZK proofs for content provenance & licensing verification',
-    gradient: 'from-secondary/20 via-secondary/10 to-transparent',
-    iconBg: 'bg-secondary/10',
-    iconBorder: 'border-secondary/30',
-    iconColor: 'text-secondary',
-    glowColor: 'hsl(217 91% 60% / 0.15)',
+    iconColor: 'text-primary',
+    borderColor: 'border-primary/20',
+    glowColor: 'rgba(138, 92, 246, 0.12)',
   },
   {
     icon: Sparkles,
     title: 'Embedded AI Monetization',
     description: 'Earn automatically when AI systems reference or use your creative work',
-    gradient: 'from-accent-rose/20 via-accent-rose/10 to-transparent',
-    iconBg: 'bg-accent-rose/10',
-    iconBorder: 'border-accent-rose/30',
     iconColor: 'text-accent-rose',
-    glowColor: 'hsl(340 100% 71% / 0.15)',
+    borderColor: 'border-accent-rose/20',
+    glowColor: 'rgba(255, 107, 157, 0.12)',
   },
   {
     icon: Key,
     title: 'zk-Creator Proofs',
     description: 'Prove ownership and authenticity without revealing sensitive identity data',
-    gradient: 'from-primary/20 via-primary/10 to-transparent',
-    iconBg: 'bg-primary/10',
-    iconBorder: 'border-primary/30',
-    iconColor: 'text-primary',
-    glowColor: 'hsl(262 83% 58% / 0.15)',
+    iconColor: 'text-accent-amber',
+    borderColor: 'border-accent-amber/20',
+    glowColor: 'rgba(255, 181, 71, 0.12)',
   },
 ];
 
@@ -93,11 +83,11 @@ const ModulesSection = () => {
 
   return (
     <section ref={sectionRef} className="relative py-32 overflow-hidden">
-      {/* Ambient background effects */}
+      {/* Ambient background effect */}
       <motion.div
         className="absolute top-1/2 left-1/4 w-[500px] h-[500px] -translate-y-1/2"
         style={{
-          background: 'radial-gradient(circle, hsl(262 83% 58% / 0.08), transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255, 181, 71, 0.05), transparent 70%)',
           filter: 'blur(100px)',
         }}
         animate={{
@@ -105,7 +95,7 @@ const ModulesSection = () => {
           opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-          duration: 8,
+          duration: 10,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -134,7 +124,7 @@ const ModulesSection = () => {
         {/* Horizontal scrolling carousel */}
         <div className="relative -mx-4 px-4">
           <div ref={scrollRef} className="overflow-hidden">
-            <motion.div style={{ x }} className="flex gap-6 pb-8 px-4">
+            <motion.div style={{ x }} className="flex gap-5 pb-8 px-4">
               {modules.map((module, index) => (
                 <motion.div
                   key={module.title}
@@ -149,16 +139,13 @@ const ModulesSection = () => {
                   onMouseMove={(e) => handleMouseMove(e, index)}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={handleMouseLeave}
-                  className="flex-shrink-0 w-[380px] group cursor-pointer"
+                  className="flex-shrink-0 w-[360px] group cursor-pointer"
                 >
                   <motion.div
-                    whileHover={{ y: -15, scale: 1.02 }}
+                    whileHover={{ y: -12, scale: 1.01 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                    className="relative h-full rounded-3xl glass-strong border-2 border-primary/20 p-8 overflow-hidden backdrop-blur-xl"
+                    className={`relative h-full rounded-3xl glass-dark border ${module.borderColor} p-7 overflow-hidden`}
                   >
-                    {/* Gradient background */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${module.gradient} opacity-50 group-hover:opacity-70 transition-opacity duration-500`} />
-
                     {/* Radial glow effect */}
                     <motion.div
                       className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -167,54 +154,33 @@ const ModulesSection = () => {
                       }}
                     />
 
-                    {/* Shimmer effect on hover */}
-                    <motion.div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-100"
-                      initial={false}
-                      animate={{
-                        x: hoveredIndex === index ? ['-100%', '100%'] : '-100%',
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: hoveredIndex === index ? Infinity : 0,
-                        ease: 'linear',
-                      }}
-                      style={{
-                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
-                      }}
-                    />
-
                     {/* Content */}
                     <div className="relative z-10">
-                      {/* Icon with animated glow */}
+                      {/* Icon with glow */}
                       <motion.div
-                        className="mb-6 relative"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className="mb-5 relative"
+                        whileHover={{ scale: 1.05 }}
                         transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                       >
-                        {/* Outer glow ring */}
                         <motion.div
-                          className={`absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                          style={{
-                            background: module.glowColor,
-                            scale: 1.5,
-                          }}
+                          className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                          style={{ background: module.glowColor }}
                         />
                         
                         <div
-                          className={`relative w-20 h-20 rounded-2xl ${module.iconBg} border-2 ${module.iconBorder} flex items-center justify-center backdrop-blur-sm group-hover:border-opacity-100 transition-all duration-300`}
+                          className={`relative w-14 h-14 rounded-2xl glass-dark border ${module.borderColor} flex items-center justify-center group-hover:border-opacity-100 transition-all duration-300`}
                         >
-                          <module.icon className={`w-10 h-10 ${module.iconColor}`} />
+                          <module.icon className={`w-7 h-7 ${module.iconColor}`} />
                         </div>
                       </motion.div>
 
                       {/* Title */}
-                      <h3 className="text-2xl font-bold mb-4 group-hover:text-foreground/90 transition-colors">
+                      <h3 className="text-xl font-bold mb-3 text-foreground">
                         {module.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-muted-foreground leading-relaxed mb-6">
+                      <p className="text-muted-foreground leading-relaxed text-sm mb-5">
                         {module.description}
                       </p>
 
@@ -227,15 +193,6 @@ const ModulesSection = () => {
                         <ChevronRight className={`w-4 h-4 ${module.iconColor}`} />
                       </motion.div>
                     </div>
-
-                    {/* Animated border on hover */}
-                    <motion.div
-                      className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 pointer-events-none"
-                      style={{
-                        background: `linear-gradient(135deg, ${module.glowColor}, transparent 60%)`,
-                      }}
-                      transition={{ duration: 0.5 }}
-                    />
                   </motion.div>
                 </motion.div>
               ))}

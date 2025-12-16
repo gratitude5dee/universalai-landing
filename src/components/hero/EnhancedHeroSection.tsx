@@ -17,7 +17,7 @@ const EnhancedHeroSection = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Create floating particles
+    // Create floating particles with warm colors
     const particles: Array<{
       x: number;
       y: number;
@@ -29,39 +29,36 @@ const EnhancedHeroSection = () => {
     }> = [];
 
     const colors = [
-      'rgba(138, 92, 246, 0.4)',  // purple
-      'rgba(255, 181, 71, 0.4)',  // amber
-      'rgba(255, 107, 157, 0.4)', // rose
-      'rgba(56, 189, 248, 0.3)',  // blue
+      'rgba(255, 181, 71, 0.5)',   // amber
+      'rgba(255, 140, 80, 0.4)',   // orange
+      'rgba(255, 107, 157, 0.4)',  // rose
+      'rgba(138, 92, 246, 0.3)',   // purple
     ];
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 60; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 4 + 2,
-        speedX: (Math.random() - 0.5) * 0.5,
-        speedY: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 3 + 1,
+        speedX: (Math.random() - 0.5) * 0.3,
+        speedY: (Math.random() - 0.5) * 0.3,
         color: colors[Math.floor(Math.random() * colors.length)],
-        opacity: Math.random() * 0.5 + 0.3,
+        opacity: Math.random() * 0.6 + 0.2,
       });
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw particles
       particles.forEach((particle) => {
         particle.x += particle.speedX;
         particle.y += particle.speedY;
 
-        // Wrap around edges
         if (particle.x < 0) particle.x = canvas.width;
         if (particle.x > canvas.width) particle.x = 0;
         if (particle.y < 0) particle.y = canvas.height;
         if (particle.y > canvas.height) particle.y = 0;
 
-        // Draw particle with glow
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
         
@@ -71,7 +68,7 @@ const EnhancedHeroSection = () => {
           0,
           particle.x,
           particle.y,
-          particle.size * 3
+          particle.size * 4
         );
         gradient.addColorStop(0, particle.color);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
@@ -95,28 +92,31 @@ const EnhancedHeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background via-background-purple to-background">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Warm ambient background gradients */}
+      <div className="absolute inset-0 ambient-warm-bg opacity-60" />
+      
       {/* Animated particle background */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-50"
         style={{ filter: 'blur(1px)' }}
       />
 
-      {/* Large bokeh orbs */}
+      {/* Large warm bokeh orbs */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full"
+        className="absolute top-1/4 left-1/4 w-[700px] h-[700px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(255, 181, 71, 0.15), transparent 60%)',
-          filter: 'blur(80px)',
+          background: 'radial-gradient(circle, rgba(255, 181, 71, 0.12), transparent 60%)',
+          filter: 'blur(100px)',
         }}
         animate={{
           scale: [1, 1.2, 1],
-          x: [0, 50, 0],
+          x: [0, 40, 0],
           y: [0, -30, 0],
         }}
         transition={{
-          duration: 8,
+          duration: 10,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -125,16 +125,16 @@ const EnhancedHeroSection = () => {
       <motion.div
         className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(255, 107, 157, 0.15), transparent 60%)',
-          filter: 'blur(80px)',
+          background: 'radial-gradient(circle, rgba(255, 107, 157, 0.1), transparent 60%)',
+          filter: 'blur(100px)',
         }}
         animate={{
           scale: [1, 1.3, 1],
-          x: [0, -50, 0],
-          y: [0, 50, 0],
+          x: [0, -40, 0],
+          y: [0, 40, 0],
         }}
         transition={{
-          duration: 10,
+          duration: 12,
           repeat: Infinity,
           ease: 'easeInOut',
           delay: 1,
@@ -144,15 +144,15 @@ const EnhancedHeroSection = () => {
       <motion.div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(138, 92, 246, 0.2), transparent 70%)',
-          filter: 'blur(100px)',
+          background: 'radial-gradient(circle, rgba(138, 92, 246, 0.1), transparent 70%)',
+          filter: 'blur(120px)',
         }}
         animate={{
           scale: [1, 1.4, 1],
-          opacity: [0.3, 0.6, 0.3],
+          opacity: [0.2, 0.4, 0.2],
         }}
         transition={{
-          duration: 6,
+          duration: 8,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -166,10 +166,10 @@ const EnhancedHeroSection = () => {
             href="#"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 glass-strong border border-primary/30 rounded-full px-6 py-3 mb-12 hover:border-primary/50 transition-all duration-300 group backdrop-blur-md"
+            className="inline-flex items-center gap-2 glass-warm border border-accent-amber/20 rounded-full px-6 py-3 mb-12 hover:border-accent-amber/40 transition-all duration-300 group backdrop-blur-md"
           >
-            <span className="text-sm">Create without limits. Build with UniversalAI Today</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <span className="text-sm text-foreground/90">Create without limits. Build with UniversalAI Today</span>
+            <ArrowRight className="w-4 h-4 text-accent-amber group-hover:translate-x-1 transition-transform" />
           </motion.a>
 
           {/* 3D Atomic Symbol */}
@@ -215,13 +215,13 @@ const EnhancedHeroSection = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="glass-strong border-primary/30 hover:border-primary/50 backdrop-blur-md text-base px-8"
+              className="glass-dark border-accent-amber/20 hover:border-accent-amber/40 backdrop-blur-md text-base px-8 rounded-2xl"
             >
               Documentation
             </Button>
             <Button 
               size="lg"
-              className="bg-gradient-to-r from-primary to-accent-rose hover:opacity-90 text-base px-8 group"
+              className="bg-gradient-to-r from-accent-amber to-accent-rose hover:opacity-90 text-base px-8 group text-background font-semibold rounded-2xl"
             >
               Features
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
