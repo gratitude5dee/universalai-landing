@@ -26,6 +26,7 @@ export default {
                 "border-strong": "var(--border-strong)",
                 "border-accent": "var(--border-accent)",
                 "border-accent-strong": "var(--border-accent-strong)",
+                "border-warm": "var(--border-warm)",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
                 background: {
@@ -43,6 +44,7 @@ export default {
                 "accent-purple": "hsl(var(--accent-purple))",
                 "accent-amber": "hsl(var(--accent-amber))",
                 "accent-rose": "hsl(var(--accent-rose))",
+                "accent-cyan": "hsl(var(--accent-cyan))",
                 secondary: {
                     DEFAULT: "hsl(var(--secondary))",
                     foreground: "hsl(var(--secondary-foreground))",
@@ -67,6 +69,7 @@ export default {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                     glass: "var(--card-glass)",
+                    dark: "var(--card-dark)",
                 },
             },
             fontFamily: {

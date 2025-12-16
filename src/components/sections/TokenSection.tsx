@@ -11,12 +11,12 @@ const headlines = [
 // Floating particle component
 const FloatingParticle = ({ delay, duration, x, y }: { delay: number; duration: number; x: string; y: string }) => (
   <motion.div
-    className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-accent-amber to-accent-rose opacity-60"
+    className="absolute w-2 h-2 rounded-full bg-gradient-to-r from-accent-amber to-accent-rose opacity-50"
     style={{ left: x, top: y }}
     animate={{
-      y: [0, -100, 0],
-      opacity: [0.3, 0.8, 0.3],
-      scale: [1, 1.5, 1],
+      y: [0, -80, 0],
+      opacity: [0.2, 0.6, 0.2],
+      scale: [1, 1.3, 1],
     }}
     transition={{
       duration,
@@ -40,19 +40,19 @@ const TokenSection = () => {
 
   return (
     <section className="relative py-40 overflow-hidden">
-      {/* Enhanced dreamlike background */}
+      {/* Enhanced warm background */}
       <div className="absolute inset-0">
         {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-accent-amber/10 via-background to-background-purple" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
         
         {/* Animated gradient mesh */}
         <motion.div
           className="absolute inset-0"
           style={{
             background: `
-              radial-gradient(circle at 20% 30%, hsl(38 100% 64% / 0.15), transparent 50%),
-              radial-gradient(circle at 80% 60%, hsl(340 100% 71% / 0.15), transparent 50%),
-              radial-gradient(circle at 50% 80%, hsl(262 83% 58% / 0.1), transparent 50%)
+              radial-gradient(circle at 20% 30%, rgba(255, 181, 71, 0.1), transparent 50%),
+              radial-gradient(circle at 80% 60%, rgba(255, 140, 80, 0.08), transparent 50%),
+              radial-gradient(circle at 50% 80%, rgba(255, 107, 157, 0.06), transparent 50%)
             `,
           }}
           animate={{
@@ -69,12 +69,12 @@ const TokenSection = () => {
         <motion.div
           className="absolute bottom-0 left-1/4 w-[500px] h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, hsl(38 100% 64% / 0.25), transparent 60%)',
+            background: 'radial-gradient(circle, rgba(255, 181, 71, 0.15), transparent 60%)',
             filter: 'blur(100px)',
           }}
           animate={{
-            y: [0, -80, 0],
-            scale: [1, 1.3, 1],
+            y: [0, -60, 0],
+            scale: [1, 1.2, 1],
             x: [-20, 20, -20],
           }}
           transition={{
@@ -87,12 +87,12 @@ const TokenSection = () => {
         <motion.div
           className="absolute bottom-0 right-1/4 w-[500px] h-[500px] rounded-full"
           style={{
-            background: 'radial-gradient(circle, hsl(340 100% 71% / 0.25), transparent 60%)',
+            background: 'radial-gradient(circle, rgba(255, 107, 157, 0.12), transparent 60%)',
             filter: 'blur(100px)',
           }}
           animate={{
-            y: [0, -60, 0],
-            scale: [1, 1.4, 1],
+            y: [0, -50, 0],
+            scale: [1, 1.3, 1],
             x: [20, -20, 20],
           }}
           transition={{
@@ -102,23 +102,6 @@ const TokenSection = () => {
             delay: 1,
           }}
         />
-        
-        <motion.div
-          className="absolute top-1/4 left-1/2 w-[600px] h-[600px] rounded-full -translate-x-1/2"
-          style={{
-            background: 'radial-gradient(circle, hsl(262 83% 58% / 0.2), transparent 60%)',
-            filter: 'blur(120px)',
-          }}
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
 
         {/* Floating particles */}
         <FloatingParticle delay={0} duration={8} x="10%" y="20%" />
@@ -126,7 +109,6 @@ const TokenSection = () => {
         <FloatingParticle delay={2} duration={9} x="25%" y="60%" />
         <FloatingParticle delay={1.5} duration={11} x="70%" y="70%" />
         <FloatingParticle delay={0.5} duration={12} x="50%" y="40%" />
-        <FloatingParticle delay={2.5} duration={9.5} x="90%" y="80%" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -150,13 +132,13 @@ const TokenSection = () => {
                 scale: [1, 1.2, 1],
               }}
               transition={{
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
               className="relative"
             >
-              <Sparkles className="w-12 h-12 text-accent-amber" />
+              <Sparkles className="w-10 h-10 text-accent-amber" />
               <motion.div
                 className="absolute inset-0 blur-xl"
                 animate={{
@@ -167,14 +149,14 @@ const TokenSection = () => {
                   repeat: Infinity,
                 }}
                 style={{
-                  background: 'radial-gradient(circle, hsl(38 100% 64% / 0.6), transparent)',
+                  background: 'radial-gradient(circle, rgba(255, 181, 71, 0.5), transparent)',
                 }}
               />
             </motion.div>
           </motion.div>
 
           {/* Animated cycling headline */}
-          <div className="min-h-[200px] flex items-center justify-center mb-8">
+          <div className="min-h-[180px] flex items-center justify-center mb-8">
             <AnimatePresence mode="wait">
               <motion.h2
                 key={currentIndex}
@@ -207,13 +189,13 @@ const TokenSection = () => {
             </AnimatePresence>
           </div>
 
-          {/* Enhanced tagline with staggered animation */}
+          {/* Enhanced tagline */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="space-y-4"
+            className="space-y-3"
           >
             <motion.p
               className="text-2xl md:text-3xl text-foreground/90 font-medium"
@@ -245,7 +227,7 @@ const TokenSection = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 1, duration: 1 }}
-            className="mt-16 h-px max-w-md mx-auto bg-gradient-to-r from-transparent via-primary to-transparent"
+            className="mt-16 h-px max-w-md mx-auto bg-gradient-to-r from-transparent via-accent-amber/50 to-transparent"
           />
 
           {/* Token stats preview */}
@@ -254,7 +236,7 @@ const TokenSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 1.2 }}
-            className="mt-12 grid grid-cols-3 gap-8 max-w-2xl mx-auto"
+            className="mt-12 grid grid-cols-3 gap-6 max-w-2xl mx-auto"
           >
             {[
               { value: '$UNAI', label: 'Token Symbol' },
@@ -270,16 +252,16 @@ const TokenSection = () => {
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="relative group"
               >
-                <div className="glass-strong border border-primary/20 rounded-2xl p-6 backdrop-blur-xl">
+                <div className="glass-dark border border-accent-amber/15 rounded-2xl p-5">
                   <motion.div
                     className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
-                      background: 'radial-gradient(circle at center, hsl(262 83% 58% / 0.1), transparent 70%)',
+                      background: 'radial-gradient(circle at center, rgba(255, 181, 71, 0.08), transparent 70%)',
                     }}
                   />
                   <div className="relative z-10">
-                    <div className="text-2xl font-bold text-accent-amber mb-2">{stat.value}</div>
-                    <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    <div className="text-xl font-bold text-accent-amber mb-1">{stat.value}</div>
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
                   </div>
                 </div>
               </motion.div>

@@ -8,25 +8,28 @@ const features = [
     icon: Shield,
     title: 'Ownership',
     description: 'Full control and sovereignty over your creative work and AI outputs',
-    gradient: 'from-secondary/20 to-primary/20',
+    gradient: 'from-secondary/10 to-secondary/5',
     iconColor: 'text-secondary',
-    borderColor: 'border-secondary/30',
+    borderColor: 'border-secondary/20',
+    glowColor: 'rgba(0, 200, 200, 0.15)',
   },
   {
     icon: Link2,
     title: 'Attribution',
     description: 'Transparent, verifiable provenance for all AI-generated content',
-    gradient: 'from-primary/20 to-accent-rose/20',
+    gradient: 'from-primary/10 to-primary/5',
     iconColor: 'text-primary',
-    borderColor: 'border-primary/30',
+    borderColor: 'border-primary/20',
+    glowColor: 'rgba(138, 92, 246, 0.15)',
   },
   {
     icon: TrendingUp,
     title: 'Monetization',
     description: 'Direct revenue streams when AI systems use your creative identity',
-    gradient: 'from-accent-amber/20 to-accent-rose/20',
+    gradient: 'from-accent-amber/10 to-accent-amber/5',
     iconColor: 'text-accent-amber',
-    borderColor: 'border-accent-amber/30',
+    borderColor: 'border-accent-amber/20',
+    glowColor: 'rgba(255, 181, 71, 0.15)',
   },
 ];
 
@@ -56,11 +59,11 @@ const BuiltDifferentFeatures = () => {
 
   return (
     <section className="relative py-32 overflow-hidden">
-      {/* Animated background gradients */}
+      {/* Warm ambient background */}
       <motion.div
         className="absolute top-0 left-1/4 w-[600px] h-[600px] -translate-x-1/2"
         style={{
-          background: 'radial-gradient(circle, hsl(217 91% 60% / 0.1), transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255, 181, 71, 0.06), transparent 70%)',
           filter: 'blur(100px)',
         }}
         animate={{
@@ -68,7 +71,7 @@ const BuiltDifferentFeatures = () => {
           opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-          duration: 8,
+          duration: 10,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -76,7 +79,7 @@ const BuiltDifferentFeatures = () => {
       <motion.div
         className="absolute bottom-0 right-1/4 w-[600px] h-[600px] translate-x-1/2"
         style={{
-          background: 'radial-gradient(circle, hsl(38 100% 64% / 0.1), transparent 70%)',
+          background: 'radial-gradient(circle, rgba(255, 107, 157, 0.06), transparent 70%)',
           filter: 'blur(100px)',
         }}
         animate={{
@@ -84,7 +87,7 @@ const BuiltDifferentFeatures = () => {
           opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-          duration: 10,
+          duration: 12,
           repeat: Infinity,
           ease: 'easeInOut',
         }}
@@ -101,7 +104,7 @@ const BuiltDifferentFeatures = () => {
           <PillLabel className="mb-6">Built different</PillLabel>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-playfair italic font-bold mb-6 tracking-tight">
             Embedded creator rights with{' '}
-            <span className="bg-gradient-to-r from-primary via-accent-amber to-accent-rose bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-accent-amber via-accent-rose to-primary bg-clip-text text-transparent">
               AI-as-a-Protocol
             </span>
           </h2>
@@ -111,7 +114,7 @@ const BuiltDifferentFeatures = () => {
         </motion.div>
 
         {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -129,15 +132,15 @@ const BuiltDifferentFeatures = () => {
               className="relative group cursor-pointer perspective-1000"
             >
               <motion.div
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{ y: -8, scale: 1.01 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className={`relative h-full rounded-3xl glass-strong border-2 ${feature.borderColor} p-8 overflow-hidden backdrop-blur-xl`}
+                className={`relative h-full rounded-3xl glass-dark ${feature.borderColor} border p-8 overflow-hidden`}
               >
-                {/* Animated gradient background */}
+                {/* Subtle gradient background */}
                 <motion.div
-                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-40`}
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-50`}
                   animate={{
-                    opacity: hoveredCard === index ? 0.7 : 0.4,
+                    opacity: hoveredCard === index ? 0.8 : 0.5,
                   }}
                   transition={{ duration: 0.3 }}
                 />
@@ -146,13 +149,7 @@ const BuiltDifferentFeatures = () => {
                 <motion.div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
-                    background: `radial-gradient(circle at 50% 50%, ${
-                      feature.title === 'Ownership'
-                        ? 'hsl(217 91% 60% / 0.2)'
-                        : feature.title === 'Attribution'
-                        ? 'hsl(262 83% 58% / 0.2)'
-                        : 'hsl(38 100% 64% / 0.2)'
-                    }, transparent 70%)`,
+                    background: `radial-gradient(circle at 50% 50%, ${feature.glowColor}, transparent 70%)`,
                   }}
                 />
 
@@ -161,34 +158,27 @@ const BuiltDifferentFeatures = () => {
                   {/* Icon with glow */}
                   <motion.div
                     className="mb-6 relative"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileHover={{ scale: 1.05 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                   >
-                    <div className="absolute inset-0 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity"
-                      style={{
-                        background: feature.title === 'Ownership'
-                          ? 'hsl(217 91% 60% / 0.4)'
-                          : feature.title === 'Attribution'
-                          ? 'hsl(262 83% 58% / 0.4)'
-                          : 'hsl(38 100% 64% / 0.4)',
-                      }}
+                    <div 
+                      className="absolute inset-0 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity"
+                      style={{ background: feature.glowColor }}
                     />
                     <div
-                      className={`relative w-20 h-20 rounded-2xl glass-strong border-2 ${feature.borderColor} flex items-center justify-center group-hover:border-opacity-100 transition-all`}
+                      className={`relative w-16 h-16 rounded-2xl glass-dark border ${feature.borderColor} flex items-center justify-center group-hover:border-opacity-100 transition-all`}
                     >
-                      <feature.icon className={`w-10 h-10 ${feature.iconColor}`} />
+                      <feature.icon className={`w-8 h-8 ${feature.iconColor}`} />
                     </div>
                   </motion.div>
 
-                  {/* Title with gradient on hover */}
-                  <motion.h3
-                    className="text-3xl font-bold mb-4 group-hover:bg-gradient-to-r group-hover:from-foreground group-hover:to-foreground/80 group-hover:bg-clip-text group-hover:text-transparent transition-all"
-                  >
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold mb-3 text-foreground">
                     {feature.title}
-                  </motion.h3>
+                  </h3>
 
                   {/* Description */}
-                  <p className="text-muted-foreground leading-relaxed text-lg">{feature.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
 
                   {/* Special content for Monetization card */}
                   {feature.title === 'Monetization' && (
@@ -197,16 +187,16 @@ const BuiltDifferentFeatures = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.6, duration: 0.4 }}
-                      className="mt-8 p-6 rounded-2xl glass border border-accent-amber/30 relative overflow-hidden group/earnings"
+                      className="mt-6 p-5 rounded-2xl glass-dark border border-accent-amber/20 relative overflow-hidden"
                     >
                       {/* Shimmer effect */}
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-amber/10 to-transparent"
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-accent-amber/5 to-transparent"
                         animate={{
                           x: ['-100%', '100%'],
                         }}
                         transition={{
-                          duration: 2,
+                          duration: 3,
                           repeat: Infinity,
                           ease: 'linear',
                         }}
@@ -214,7 +204,7 @@ const BuiltDifferentFeatures = () => {
                       
                       <div className="relative z-10">
                         <motion.div
-                          className="text-4xl font-bold text-accent-amber mb-2 font-mono"
+                          className="text-3xl font-bold text-accent-amber mb-1 font-mono"
                           animate={{
                             scale: [1, 1.02, 1],
                           }}
@@ -225,29 +215,20 @@ const BuiltDifferentFeatures = () => {
                         >
                           $4,892.47
                         </motion.div>
-                        <div className="text-sm text-muted-foreground mb-4">Monthly Earnings</div>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          <motion.span
-                            whileHover={{ scale: 1.1 }}
-                            className="px-3 py-1.5 rounded-full glass border border-accent-amber/30 text-accent-amber text-xs font-medium"
-                          >
+                        <div className="text-xs text-muted-foreground mb-3">Monthly Earnings</div>
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          <span className="px-2.5 py-1 rounded-full glass-dark border border-accent-amber/20 text-accent-amber text-xs font-medium">
                             Royalties
-                          </motion.span>
-                          <motion.span
-                            whileHover={{ scale: 1.1 }}
-                            className="px-3 py-1.5 rounded-full glass border border-accent-rose/30 text-accent-rose text-xs font-medium"
-                          >
+                          </span>
+                          <span className="px-2.5 py-1 rounded-full glass-dark border border-accent-rose/20 text-accent-rose text-xs font-medium">
                             Licensing
-                          </motion.span>
-                          <motion.span
-                            whileHover={{ scale: 1.1 }}
-                            className="px-3 py-1.5 rounded-full glass border border-primary/30 text-primary text-xs font-medium"
-                          >
+                          </span>
+                          <span className="px-2.5 py-1 rounded-full glass-dark border border-primary/20 text-primary text-xs font-medium">
                             Tips
-                          </motion.span>
+                          </span>
                         </div>
-                        <p className="text-sm text-muted-foreground italic leading-relaxed">
-                          Embed your creative identity anywhere, in your own brand
+                        <p className="text-xs text-muted-foreground italic">
+                          Embed your creative identity anywhere
                         </p>
                       </div>
                     </motion.div>
@@ -255,33 +236,14 @@ const BuiltDifferentFeatures = () => {
 
                   {/* Learn more link */}
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.7 }}
                     className="mt-6 flex items-center gap-2 text-sm font-medium group/link cursor-pointer"
                   >
                     <span className={`${feature.iconColor} group-hover/link:underline`}>
                       Learn more
                     </span>
-                    <ArrowUpRight className={`w-4 h-4 ${feature.iconColor} group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform`} />
+                    <ArrowUpRight className={`w-4 h-4 ${feature.iconColor} group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform`} />
                   </motion.div>
                 </div>
-
-                {/* Animated border gradient on hover */}
-                <motion.div
-                  className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 pointer-events-none"
-                  style={{
-                    background: `linear-gradient(135deg, ${
-                      feature.title === 'Ownership'
-                        ? 'hsl(217 91% 60% / 0.3), transparent'
-                        : feature.title === 'Attribution'
-                        ? 'hsl(262 83% 58% / 0.3), transparent'
-                        : 'hsl(38 100% 64% / 0.3), transparent'
-                    })`,
-                  }}
-                  transition={{ duration: 0.3 }}
-                />
               </motion.div>
             </motion.div>
           ))}

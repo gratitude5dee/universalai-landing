@@ -70,9 +70,9 @@ const UniversalAIFooter = () => {
   return (
     <footer className="relative mt-32 overflow-hidden">
       {/* Rounded top corners container */}
-      <div className="relative bg-background-secondary rounded-t-[3rem] border-t border-primary/20">
+      <div className="relative bg-background rounded-t-[3rem] border-t border-accent-amber/10">
         {/* Ambient glow at top */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 bg-gradient-to-b from-primary/10 to-transparent blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-64 bg-gradient-to-b from-accent-amber/5 to-transparent blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 relative z-10">
           {/* Top section - Logo + Email subscription */}
@@ -80,7 +80,7 @@ const UniversalAIFooter = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="pt-20 pb-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border-b border-primary/10"
+            className="pt-20 pb-16 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border-b border-accent-amber/10"
           >
             {/* Logo */}
             <div className="flex items-center gap-3">
@@ -95,12 +95,12 @@ const UniversalAIFooter = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="lg:w-80 glass border-primary/30 focus:border-primary/50 bg-background/50"
+                className="lg:w-80 glass-dark border-accent-amber/15 focus:border-accent-amber/30 bg-background/50 rounded-2xl"
                 required
               />
               <Button
                 type="submit"
-                className="bg-gradient-to-r from-primary to-accent-rose hover:opacity-90 group"
+                className="bg-gradient-to-r from-accent-amber to-accent-rose hover:opacity-90 group text-background font-semibold rounded-2xl"
               >
                 Subscribe
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -126,7 +126,7 @@ const UniversalAIFooter = () => {
                     <li key={link.label}>
                       <a
                         href={link.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 hover:translate-x-1 inline-block"
+                        className="text-sm text-muted-foreground hover:text-accent-amber transition-colors duration-300 hover:translate-x-1 inline-block"
                       >
                         {link.label}
                       </a>
@@ -138,15 +138,15 @@ const UniversalAIFooter = () => {
           </div>
 
           {/* Bottom Row */}
-          <div className="border-t border-primary/10 py-8">
+          <div className="border-t border-accent-amber/10 py-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               {/* Legal Links */}
               <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                <a href="#" className="hover:text-foreground transition-colors">
+                <a href="#" className="hover:text-accent-amber transition-colors">
                   Privacy Policy
                 </a>
-                <span className="text-primary/30">|</span>
-                <a href="#" className="hover:text-foreground transition-colors">
+                <span className="text-accent-amber/30">|</span>
+                <a href="#" className="hover:text-accent-amber transition-colors">
                   Terms of Use
                 </a>
               </div>
@@ -175,7 +175,7 @@ const UniversalAIFooter = () => {
                       href={social.href}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-10 h-10 rounded-full glass border border-primary/20 hover:border-primary/40 flex items-center justify-center text-muted-foreground hover:text-primary transition-all duration-300 group"
+                      className="w-10 h-10 rounded-2xl glass-dark border border-accent-amber/15 hover:border-accent-amber/30 flex items-center justify-center text-muted-foreground hover:text-accent-amber transition-all duration-300 group"
                       aria-label={social.label}
                     >
                       {IconComponent}
