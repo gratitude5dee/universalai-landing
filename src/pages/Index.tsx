@@ -9,7 +9,7 @@ import ManifestoSection from '@/components/sections/ManifestoSection';
 import ProductsSection from '@/components/sections/ProductsSection';
 import FiveDeeTokenSection from '@/components/sections/FiveDeeTokenSection';
 import FAQSection from '@/components/sections/FAQSection';
-import UniversalAIIntroAnimation from '@/components/ui/UniversalAIIntroAnimation';
+import WZRDIntroAnimation from '@/components/ui/WZRDIntroAnimation';
 import SectionDivider from '@/components/ui/SectionDivider';
 
 const Index = () => {
@@ -24,10 +24,12 @@ const Index = () => {
       <CustomCursor />
       {!showIntro && <ScrollProgress />}
       
-      <UniversalAIIntroAnimation 
-        onComplete={handleIntroComplete}
-        allowSkip={true}
-      />
+      {showIntro && (
+        <WZRDIntroAnimation 
+          onComplete={handleIntroComplete}
+          allowSkip={true}
+        />
+      )}
       
       <div className="min-h-screen text-foreground relative bg-background">
         <WZRDHeader />

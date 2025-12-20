@@ -21,18 +21,26 @@ const WZRDHeroSection: React.FC = () => {
   return (
     <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Spline 3D Background */}
-        <div className="absolute inset-0 z-0">
+        {/* Spline 3D Background - Centered and Responsive */}
+        <div className="absolute inset-0 z-0 spline-container">
           <Suspense fallback={<SplineLoadingSkeleton />}>
             <Spline 
               scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode"
               onLoad={() => setSplineLoaded(true)}
-              className="w-full h-full"
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+              }}
             />
           </Suspense>
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background pointer-events-none" />
+          {/* Gradient overlays for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40 pointer-events-none" />
         </div>
 
         {/* Content */}
@@ -43,25 +51,25 @@ const WZRDHeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-liquid mb-8"
             >
               <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">The Future of Creator Economies</span>
+              <span className="text-sm font-semibold tracking-wide text-primary">The Future of Creator Economies</span>
             </motion.div>
 
-            {/* Headline */}
+            {/* Headline - Updated */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-[1.1] tracking-tight"
             >
-              <span className="bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
-                Billion Dollar Companies
+              <span className="block text-foreground/60 text-2xl sm:text-3xl md:text-4xl font-medium mb-2">The</span>
+              <span className="block bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
+                Creator-Agent
               </span>
-              <br />
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
-                Run by Zero People
+              <span className="block bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
+                Operating System
               </span>
             </motion.h1>
 
@@ -70,7 +78,7 @@ const WZRDHeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed"
+              className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed font-light"
             >
               The protocol for autonomous creator economies.{' '}
               <span className="text-foreground font-medium">Privacy. Identity. IP. Self-Sovereign.</span>
@@ -81,12 +89,12 @@ const WZRDHeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
             >
               <Button
                 onClick={() => setWaitlistOpen(true)}
                 size="lg"
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all"
+                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold px-10 py-7 text-lg rounded-2xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 transition-all hover:scale-105"
               >
                 Join Waitlist
                 <ArrowRight className="ml-2 w-5 h-5" />
@@ -95,7 +103,7 @@ const WZRDHeroSection: React.FC = () => {
                 onClick={scrollToManifesto}
                 variant="outline"
                 size="lg"
-                className="border-border/40 hover:border-border/60 bg-background/20 backdrop-blur-sm px-8 py-6 text-lg rounded-xl"
+                className="glass-liquid border-border/30 hover:border-primary/40 px-10 py-7 text-lg rounded-2xl font-semibold"
               >
                 Read Manifesto
               </Button>
@@ -112,12 +120,12 @@ const WZRDHeroSection: React.FC = () => {
                 href="https://www.producthunt.com/posts/wzrd-tech"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="opacity-80 hover:opacity-100 transition-opacity"
+                className="opacity-80 hover:opacity-100 transition-opacity hover:scale-105 transform duration-200"
               >
                 <img 
                   src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=wzrd-tech&theme=dark" 
                   alt="WZRD.tech on Product Hunt" 
-                  className="h-12"
+                  className="h-14"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                   }}
@@ -137,9 +145,9 @@ const WZRDHeroSection: React.FC = () => {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 rounded-full border-2 border-foreground/30 flex justify-center pt-2"
+            className="w-7 h-12 rounded-full border-2 border-foreground/20 flex justify-center pt-2"
           >
-            <motion.div className="w-1.5 h-1.5 rounded-full bg-foreground/50" />
+            <motion.div className="w-1.5 h-1.5 rounded-full bg-primary/60" />
           </motion.div>
         </motion.div>
       </section>

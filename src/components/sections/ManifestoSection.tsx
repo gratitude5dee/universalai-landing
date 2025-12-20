@@ -82,8 +82,8 @@ const ManifestoSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Manifesto cards */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {/* Manifesto cards - Liquid Glassmorphism */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {manifestoCards.map((card, index) => (
             <motion.div
               key={card.title}
@@ -91,21 +91,28 @@ const ManifestoSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
+              whileHover={{ y: -8, scale: 1.02 }}
               className="group relative"
             >
-              <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${card.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl`} />
-              <div className="relative p-8 rounded-3xl bg-card-dark border border-border/20 backdrop-blur-sm hover:border-primary/30 transition-all duration-300">
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <card.icon className="w-7 h-7 text-primary" />
+              {/* Glow effect */}
+              <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br ${card.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} />
+              
+              {/* Card with liquid glass effect */}
+              <div className="glass-liquid glass-liquid-hover relative p-8 rounded-[2rem] transition-all duration-500">
+                {/* Inner light reflection */}
+                <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.08] via-transparent to-transparent pointer-events-none" />
+                
+                {/* Icon container with glass effect */}
+                <div className="relative w-16 h-16 rounded-2xl glass-liquid flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent" />
+                  <card.icon className="relative w-8 h-8 text-primary" />
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent group-hover:from-primary group-hover:to-primary/80 transition-all duration-300">
                   {card.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-[15px]">
                   {card.description}
                 </p>
               </div>
