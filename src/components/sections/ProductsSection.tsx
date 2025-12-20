@@ -78,53 +78,58 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -10, scale: 1.02 }}
       className="group relative h-full"
     >
       {/* Glow effect on hover */}
-      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl -z-10`} />
+      <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} />
       
-      <div className="relative h-full rounded-3xl bg-card-dark border border-border/20 backdrop-blur-sm overflow-hidden hover:border-primary/30 transition-all duration-300">
+      {/* Liquid glass card */}
+      <div className="glass-liquid glass-liquid-hover relative h-full rounded-[2rem] overflow-hidden transition-all duration-500">
+        {/* Inner light reflection */}
+        <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none z-10" />
+        
         {/* Spline Background or Gradient */}
         {product.splineScene ? (
-          <div className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity">
+          <div className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500">
             <Suspense fallback={<div className={`w-full h-full bg-gradient-to-br ${product.gradient}`} />}>
               <Spline 
                 scene={product.splineScene}
-                className="w-full h-full"
+                style={{ width: '100%', height: '100%' }}
               />
             </Suspense>
           </div>
         ) : (
-          <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-30 group-hover:opacity-50 transition-opacity`} />
+          <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-20 group-hover:opacity-40 transition-opacity duration-500`} />
         )}
 
         {/* Content */}
-        <div className="relative p-8 h-full flex flex-col">
-          {/* Icon */}
-          <div className="w-14 h-14 rounded-2xl bg-background/80 backdrop-blur-sm border border-border/30 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-primary/50 transition-all duration-300">
-            <Icon className="w-7 h-7 text-primary" />
+        <div className="relative z-20 p-8 h-full flex flex-col">
+          {/* Icon with glass container */}
+          <div className="w-16 h-16 rounded-2xl glass-liquid flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/20 to-transparent" />
+            <Icon className="relative w-8 h-8 text-primary" />
           </div>
 
           {/* Tagline */}
-          <span className="text-xs font-mono uppercase tracking-wider text-primary/80 mb-2">
+          <span className="text-xs font-mono uppercase tracking-widest text-primary/70 mb-3">
             {product.tagline}
           </span>
 
           {/* Name */}
-          <h3 className="text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+          <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent group-hover:from-primary group-hover:to-primary/80 transition-all duration-300">
             {product.name}
           </h3>
 
           {/* Description */}
-          <p className="text-muted-foreground leading-relaxed flex-grow">
+          <p className="text-muted-foreground leading-relaxed flex-grow text-[15px]">
             {product.description}
           </p>
 
           {/* Learn more link */}
-          <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary/80 group-hover:text-primary transition-colors">
+          <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-primary/80 group-hover:text-primary transition-colors">
             <span>Learn more</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
           </div>
         </div>
       </div>

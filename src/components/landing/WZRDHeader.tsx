@@ -53,27 +53,27 @@ const WZRDHeader: React.FC = () => {
           backdropFilter: `blur(${headerBlur}px)`,
         }}
       >
-        <div className="flex items-center justify-between px-6 py-3">
-          {/* Logo */}
+        <div className="flex items-center justify-between px-6 py-4">
+          {/* Logo - Doubled size */}
           <Link to="/" className="flex items-center gap-3 group">
             <motion.img 
               src={wzrdLogo} 
               alt="WZRD.tech" 
-              className="h-8 w-auto"
+              className="h-12 md:h-16 w-auto drop-shadow-[0_0_12px_rgba(59,130,246,0.3)]"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - Enhanced typography */}
+          <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item) => {
               const isActive = location.pathname === item.to || location.hash === item.to;
               return item.to.startsWith('#') ? (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.to)}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  className={`px-5 py-2.5 text-sm font-semibold tracking-wide rounded-xl transition-all duration-200 ${
                     isActive
                       ? 'text-foreground bg-primary/10'
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
@@ -85,7 +85,7 @@ const WZRDHeader: React.FC = () => {
                 <Link
                   key={item.label}
                   to={item.to}
-                  className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  className={`px-5 py-2.5 text-sm font-semibold tracking-wide rounded-xl transition-all duration-200 ${
                     isActive
                       ? 'text-foreground bg-primary/10'
                       : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
