@@ -20,9 +20,9 @@ const faqs = [
       'UniversalAI is built to be chain-agnostic, supporting multiple blockchain ecosystems including Ethereum, Polygon, Solana, and emerging L2 solutions. Our protocol integrates with major AI platforms and creative tools to ensure maximum interoperability.',
   },
   {
-    question: 'What is the $UNAI token?',
+    question: 'What is the $5DEE token?',
     answer:
-      'The $UNAI token powers the UniversalAI ecosystem, serving as the medium for creator compensation, governance participation, and access to premium features. Token holders can stake, earn rewards, and participate in protocol governance decisions.',
+      'The $5DEE token powers the UniversalAI ecosystem, serving as the medium for creator compensation, governance participation, and access to premium features. Token holders can stake, earn rewards, and participate in protocol governance decisions.',
   },
   {
     question: 'How does UniversalAI solve creator attribution?',

@@ -95,9 +95,9 @@ const FiveDeeTokenSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-lg text-muted-foreground mb-16 max-w-xl mx-auto"
+            className="text-lg text-muted-foreground mb-16 max-w-2xl mx-auto"
           >
-            Financial rails for the creator-agent economy. Powering autonomous transactions, creator royalties, and public goods funding.
+            A "GENIUS ACT" compliant stablecoin built in partnership with Bridge, Tempo, Thirdweb, & Coinbase. Powering autonomous transactions, creator royalties, and public goods funding.
           </motion.p>
 
           {/* Stats */}

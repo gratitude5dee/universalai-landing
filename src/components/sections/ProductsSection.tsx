@@ -17,22 +17,6 @@ interface Product {
 
 const products: Product[] = [
   {
-    id: 'fifth-spaces',
-    name: 'Fifth Spaces',
-    tagline: 'Creator Spaces',
-    description: 'Creator Spaces utilizing the complete application layer',
-    icon: Layers,
-    gradient: 'from-blue-600/30 via-blue-500/20 to-cyan-500/30',
-  },
-  {
-    id: 'universalai',
-    name: 'UniversalAI',
-    tagline: 'Client Interface',
-    description: 'Universal Interface for Creators - an alternative to realID & WorldCoin',
-    icon: User,
-    gradient: 'from-purple-600/30 via-purple-500/20 to-pink-500/30',
-  },
-  {
     id: 'wzrd-tech',
     name: 'WZRD.tech',
     tagline: 'Agent Architecture',
@@ -40,14 +24,6 @@ const products: Product[] = [
     icon: Cpu,
     gradient: 'from-primary/30 via-primary/20 to-accent/30',
     splineScene: 'https://prod.spline.design/7t4TC5KZHbW7nHWM/scene.splinecode',
-  },
-  {
-    id: '5dee',
-    name: '$5DEE',
-    tagline: 'Financial Rails',
-    description: 'The Digital Penny for the Creator-Agent Economy',
-    icon: Coins,
-    gradient: 'from-amber-500/30 via-amber-400/20 to-orange-500/30',
   },
   {
     id: 'eartone',

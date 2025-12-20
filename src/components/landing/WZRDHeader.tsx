@@ -11,6 +11,7 @@ const navItems = [
   { label: 'Manifesto', to: '#manifesto' },
   { label: '$5DEE', to: '#token' },
   { label: 'Docs', to: '/docs' },
+  { label: 'Changelog', to: '/changelog' },
 ];
 
 const WZRDHeader: React.FC = () => {
@@ -116,12 +117,12 @@ const WZRDHeader: React.FC = () => {
               />
             </a>
 
-            {/* Sign Up Button */}
+            {/* Join Waitlist Button */}
             <Button
               onClick={() => setWaitlistOpen(true)}
-              className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium px-6 rounded-xl"
+              className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium px-6 rounded-xl animate-pulse shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] transition-all duration-300"
             >
-              Sign Up
+              Join Waitlist
             </Button>
           </div>
 
@@ -167,9 +168,9 @@ const WZRDHeader: React.FC = () => {
                 setMobileMenuOpen(false);
                 setWaitlistOpen(true);
               }}
-              className="w-full mt-4 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium"
+              className="w-full mt-4 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium animate-pulse shadow-[0_0_15px_rgba(59,130,246,0.5)]"
             >
-              Sign Up
+              Join Waitlist
             </Button>
           </motion.div>
         )}
