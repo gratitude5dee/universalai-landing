@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import wzrdLogo from '@/assets/wzrd-logo.png';
 
 interface WZRDIntroAnimationProps {
   onComplete: () => void;
@@ -199,18 +200,11 @@ const WZRDIntroAnimation: React.FC<WZRDIntroAnimationProps> = ({
                 }}
                 className="relative z-10"
               >
-                <h1 
-                  className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter"
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    background: 'linear-gradient(135deg, #E2E8F0 0%, #3B82F6 50%, #1E3A8A 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    filter: 'drop-shadow(0 0 60px rgba(59, 130, 246, 0.6))'
-                  }}
-                >
-                  WZRD.tech
-                </h1>
+                <img
+                  src={wzrdLogo}
+                  alt="WZRD.tech"
+                  className="w-32 md:w-48 lg:w-64 h-auto drop-shadow-[0_0_60px_rgba(59,130,246,0.6)]"
+                />
               </motion.div>
 
               {/* Tagline */}

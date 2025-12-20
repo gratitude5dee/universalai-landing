@@ -112,172 +112,53 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
   const handleClose = () => {
     setFormData({ name: '', email: '' });
     setIsSuccess(false);
-    setShowCalendar(false);
+    setShowCalendar(true); // Default to calendar if needed, or false. But here we want to reset.
     onOpenChange(false);
   };
 
+  // Force show calendar immediately when opened, based on user request to "take user to cal embed"
+  useEffect(() => {
+    if (open) {
+        setShowCalendar(true);
+    }
+  }, [open]);
+
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-lg bg-card-dark border border-border/20 backdrop-blur-xl p-0 overflow-hidden">
-        <div className="relative">
+      <DialogContent className="sm:max-w-4xl bg-card-dark border border-border/20 backdrop-blur-xl p-0 overflow-hidden h-[80vh]">
+        <div className="relative h-full">
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
           
-          <div className="relative p-8">
+          <div className="relative h-full flex flex-col">
             {/* Logo */}
-            <div className="flex justify-center mb-6">
-              <img src={wzrdLogo} alt="WZRD.tech" className="h-12 w-auto" />
+            <div className="flex justify-center py-6 border-b border-border/10">
+              <img src={wzrdLogo} alt="WZRD.tech" className="h-8 w-auto" />
             </div>
 
-            <AnimatePresence mode="wait">
-              {!isSuccess ? (
-                <motion.div
-                  key="form"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                >
-                  {/* Title */}
-                  <h2 className="text-2xl font-bold text-center mb-2 text-foreground">
-                    Join the Waitlist
-                  </h2>
-                  <p className="text-muted-foreground text-center mb-6 text-sm">
-                    Be among the first to experience autonomous creator economies
-                  </p>
-
-                  {/* Live counter */}
-                  {waitlistCount !== null && (
-                    <motion.div 
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      className="flex items-center justify-center gap-2 mb-6 py-3 px-4 rounded-xl bg-primary/10 border border-primary/20"
-                    >
-                      <Users className="w-4 h-4 text-primary" />
-                      <span className="text-sm text-foreground">
-                        <span className="font-bold text-primary">{waitlistCount.toLocaleString()}</span> people on the waitlist
-                      </span>
-                    </motion.div>
-                  )}
-
-                  {/* Form */}
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-foreground/80">Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        type="text"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        className="bg-background/50 border-border/30 focus:border-primary/50"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground/80">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="you@example.com"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="bg-background/50 border-border/30 focus:border-primary/50"
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium py-6"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Joining...
-                        </>
-                      ) : (
-                        'Join Waitlist'
-                      )}
-                    </Button>
-                  </form>
-                </motion.div>
-              ) : !showCalendar ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="text-center"
-                >
-                  {/* Success checkmark */}
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", delay: 0.1 }}
-                    className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center"
-                  >
-                    <Check className="w-8 h-8 text-green-500" />
-                  </motion.div>
-
-                  <h2 className="text-2xl font-bold mb-2 text-foreground">You're In!</h2>
-                  
-                  {waitlistPosition && (
-                    <p className="text-muted-foreground mb-6">
-                      You're <span className="text-primary font-bold">#{waitlistPosition}</span> on the waitlist
-                    </p>
-                  )}
-
-                  <p className="text-sm text-muted-foreground mb-6">
-                    Want to fast-track your access? Book an onboarding call with our team.
-                  </p>
-
-                  <div className="flex flex-col gap-3">
-                    <Button
-                      onClick={() => setShowCalendar(true)}
-                      className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70"
-                    >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Book Onboarding Call
-                    </Button>
-                    <Button
-                      variant="outline"
-                      onClick={handleClose}
-                      className="w-full border-border/30 hover:bg-background/50"
-                    >
-                      Maybe Later
-                    </Button>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="calendar"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center"
-                >
-                  <h2 className="text-xl font-bold mb-4 text-foreground">Book Your Call</h2>
-                  <div className="min-h-[400px] flex items-center justify-center">
+            <div className="flex-1 w-full overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center">
                     <button
                       data-cal-namespace="wzrd.tech-onboarding-call"
                       data-cal-link="5deestudios/wzrd.tech-onboarding-call"
                       data-cal-config='{"layout":"month_view","theme":"dark"}'
-                      className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+                      className="w-full h-full flex items-center justify-center"
                     >
-                      Open Calendar
+                      <span className="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
+                        Click to Schedule Onboarding Call
+                      </span>
                     </button>
-                  </div>
-                  <Button
+                </div>
+            </div>
+
+            <div className="p-4 flex justify-center border-t border-border/10">
+                <Button
                     variant="ghost"
                     onClick={handleClose}
-                    className="mt-4"
-                  >
+                >
                     Close
-                  </Button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                </Button>
+            </div>
           </div>
         </div>
       </DialogContent>

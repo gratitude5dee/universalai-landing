@@ -54,7 +54,7 @@ const WZRDHeroSection: React.FC = () => {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-liquid mb-8"
             >
               <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold tracking-wide text-primary">The Future of Creator Economies</span>
+              <span className="text-sm font-semibold tracking-wide text-primary">The Creator-Agent OS</span>
             </motion.div>
 
             {/* Headline - Updated */}
@@ -64,12 +64,11 @@ const WZRDHeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-[1.1] tracking-tight"
             >
-              <span className="block text-foreground/60 text-2xl sm:text-3xl md:text-4xl font-medium mb-2">The</span>
-              <span className="block bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent">
-                Creator-Agent
+              <span className="block bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+                The Creator-Agent OS
               </span>
-              <span className="block bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
-                Operating System
+              <span className="block text-foreground/80 mt-4 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+                Every Being is A Billion
               </span>
             </motion.h1>
 
@@ -80,8 +79,7 @@ const WZRDHeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed font-light"
             >
-              The protocol for autonomous creator economies.{' '}
-              <span className="text-foreground font-medium">Privacy. Identity. IP. Self-Sovereign.</span>
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-medium drop-shadow-[0_0_15px_rgba(59,130,246,0.2)]">Privacy. Identity. IP. Self-Sovereign.</span>
             </motion.p>
 
             {/* CTAs */}
@@ -94,7 +92,7 @@ const WZRDHeroSection: React.FC = () => {
               <Button
                 onClick={() => setWaitlistOpen(true)}
                 size="lg"
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold px-10 py-7 text-lg rounded-2xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/35 transition-all hover:scale-105"
+                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold px-10 py-7 text-lg rounded-2xl shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] transition-all hover:scale-105 animate-pulse"
               >
                 Join Waitlist
                 <ArrowRight className="ml-2 w-5 h-5" />
