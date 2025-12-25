@@ -8,6 +8,13 @@ const stats = [
   { label: 'Launch Type', value: 'Fair', icon: Lock },
 ];
 
+const partners = [
+  { name: 'Bridge', logo: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=100&h=40&fit=crop&auto=format' },
+  { name: 'Tempo', logo: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=100&h=40&fit=crop&auto=format' },
+  { name: 'Coinbase', logo: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=100&h=40&fit=crop&auto=format' },
+  { name: 'Thirdweb', logo: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=100&h=40&fit=crop&auto=format' },
+];
+
 const FiveDeeTokenSection: React.FC = () => {
   return (
     <section id="token" className="py-32 relative overflow-hidden">
@@ -60,15 +67,16 @@ const FiveDeeTokenSection: React.FC = () => {
             <span className="text-sm font-medium text-primary">Token Economics</span>
           </motion.div>
 
-          {/* Giant token symbol */}
+          {/* Giant token symbol with animated gradient border */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, type: "spring" }}
-            className="mb-8"
+            className="mb-8 relative inline-block"
           >
-            <h2 className="text-7xl md:text-9xl lg:text-[12rem] font-black bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent leading-none">
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-primary via-accent to-primary opacity-20 blur-2xl animate-pulse" />
+            <h2 className="relative text-7xl md:text-9xl lg:text-[12rem] font-black bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent leading-none">
               $5DEE
             </h2>
           </motion.div>
@@ -95,12 +103,44 @@ const FiveDeeTokenSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="text-lg text-muted-foreground mb-16 max-w-2xl mx-auto"
+            className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto"
           >
             A "GENIUS ACT" compliant stablecoin built in partnership with Bridge, Tempo, Thirdweb, & Coinbase. Powering autonomous transactions, creator royalties, and public goods funding.
           </motion.p>
 
-          {/* Stats */}
+          {/* Partner Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.35 }}
+            className="mb-16"
+          >
+            <p className="text-sm text-muted-foreground mb-6 uppercase tracking-widest">
+              Powered by
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-8">
+              {partners.map((partner, index) => (
+                <motion.div
+                  key={partner.name}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="flex flex-col items-center gap-2 group"
+                >
+                  <div className="w-20 h-10 rounded-lg glass-liquid flex items-center justify-center group-hover:border-primary/30 transition-all">
+                    <span className="text-sm font-bold text-foreground/80 group-hover:text-primary transition-colors">
+                      {partner.name}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Stats with 3D tilt effect */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -111,11 +151,18 @@ const FiveDeeTokenSection: React.FC = () => {
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
-                whileHover={{ y: -5, scale: 1.02 }}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.02,
+                  rotateX: 5,
+                  rotateY: index === 0 ? 5 : index === 2 ? -5 : 0
+                }}
+                transition={{ type: "spring", stiffness: 300 }}
                 className="group relative"
+                style={{ transformStyle: 'preserve-3d' }}
               >
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-                <div className="relative p-8 rounded-3xl bg-card-dark border border-border/20 backdrop-blur-sm hover:border-primary/30 transition-all">
+                <div className="relative p-8 rounded-3xl glass-liquid border border-border/20 hover:border-primary/30 transition-all">
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
                     <stat.icon className="w-6 h-6 text-primary" />
                   </div>

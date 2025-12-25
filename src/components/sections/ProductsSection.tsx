@@ -13,6 +13,7 @@ interface Product {
   icon: React.ComponentType<{ className?: string }>;
   gradient: string;
   splineScene?: string;
+  link?: string;
 }
 
 const products: Product[] = [
@@ -24,6 +25,7 @@ const products: Product[] = [
     icon: Cpu,
     gradient: 'from-primary/30 via-primary/20 to-accent/30',
     splineScene: 'https://prod.spline.design/7t4TC5KZHbW7nHWM/scene.splinecode',
+    link: 'https://studio.universal-ai.xyz',
   },
   {
     id: 'eartone',
@@ -33,6 +35,7 @@ const products: Product[] = [
     icon: Music,
     gradient: 'from-emerald-500/30 via-emerald-400/20 to-teal-500/30',
     splineScene: 'https://prod.spline.design/JKbazm5fEzQWHl4g/scene.splinecode',
+    link: 'https://eartone.lovable.app/',
   },
   {
     id: 'pleiades',
@@ -48,6 +51,12 @@ const products: Product[] = [
 const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, index }) => {
   const Icon = product.icon;
 
+  const handleClick = () => {
+    if (product.link) {
+      window.open(product.link, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -55,7 +64,8 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -10, scale: 1.02 }}
-      className="group relative h-full"
+      onClick={handleClick}
+      className={`group relative h-full ${product.link ? 'cursor-pointer' : ''}`}
     >
       {/* Glow effect on hover */}
       <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} />
@@ -65,9 +75,9 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
         {/* Inner light reflection */}
         <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none z-10" />
         
-        {/* Spline Background or Gradient */}
+        {/* Spline Background or Gradient - wrapped with overflow-hidden */}
         {product.splineScene ? (
-          <div className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500">
+          <div className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500 overflow-hidden">
             <Suspense fallback={<div className={`w-full h-full bg-gradient-to-br ${product.gradient}`} />}>
               <Spline 
                 scene={product.splineScene}
@@ -104,7 +114,7 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
 
           {/* Learn more link */}
           <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-primary/80 group-hover:text-primary transition-colors">
-            <span>Learn more</span>
+            <span>{product.link ? 'Open App' : 'Coming Soon'}</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
           </div>
         </div>
