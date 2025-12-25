@@ -1,14 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Twitter, MessageCircle, ArrowUpRight } from 'lucide-react';
+import { Twitter, MessageCircle, ArrowUpRight, Mail } from 'lucide-react';
 import wzrdLogo from '@/assets/wzrd-logo.png';
 
-const footerLinks = [
-  { label: 'Products', href: '#products' },
+const productLinks = [
+  { label: 'WZRD Studio', href: 'https://studio.universal-ai.xyz' },
+  { label: 'Eartone', href: 'https://eartone.lovable.app/' },
+  { label: 'Project Pleiades', href: '#' },
+];
+
+const resourceLinks = [
+  { label: 'Documentation', href: '/docs' },
+  { label: 'Changelog', href: '/changelog' },
   { label: 'Manifesto', href: '#manifesto' },
-  { label: '$5DEE', href: '#token' },
-  { label: 'Docs', href: '/docs' },
+];
+
+const legalLinks = [
+  { label: 'Terms of Service', href: 'https://5dee.studio/terms' },
+  { label: 'Privacy Policy', href: 'https://5dee.studio/privacy' },
 ];
 
 const socialLinks = [
@@ -28,90 +38,112 @@ const WZRDFooter: React.FC = () => {
 
   return (
     <footer className="relative py-20 border-t border-border/10">
-      {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="relative container mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-          {/* Logo & Tagline */}
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <Link to="/" className="flex items-center gap-3">
-              <img src={wzrdLogo} alt="WZRD.tech" className="h-10 w-auto" />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div className="lg:col-span-1">
+            <Link to="/" className="inline-block mb-4">
+              <img src={wzrdLogo} alt="WZRD.tech" className="h-12 w-auto" />
             </Link>
-            <p className="text-sm text-muted-foreground text-center md:text-left max-w-xs">
-              Building the infrastructure for autonomous creator economies.
+            <p className="text-sm text-muted-foreground mb-6 max-w-xs">
+              Building the infrastructure for autonomous creator economies. Privacy. Identity. IP. Self-Sovereign.
             </p>
+            <div className="flex items-center gap-3">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-xl glass-liquid border border-border/20 text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                >
+                  <link.icon className="w-5 h-5" />
+                </a>
+              ))}
+              <a
+                href="mailto:hello@5dee.studio"
+                className="p-3 rounded-xl glass-liquid border border-border/20 text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-8">
-            {footerLinks.map((link) => (
-              link.href.startsWith('#') ? (
-                <button
-                  key={link.label}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </button>
-              ) : (
-                <Link
-                  key={link.label}
-                  to={link.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )
-            ))}
-          </nav>
+          {/* Products Column */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-4">Products</h4>
+            <ul className="space-y-3">
+              {productLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="text-muted-foreground hover:text-primary transition-colors inline-flex items-center gap-1"
+                  >
+                    {link.label}
+                    {link.href.startsWith('http') && <ArrowUpRight className="w-3 h-3" />}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-xl bg-card-dark border border-border/20 text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all group"
-              >
-                <link.icon className="w-5 h-5" />
-              </a>
-            ))}
+          {/* Resources Column */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-4">Resources</h4>
+            <ul className="space-y-3">
+              {resourceLinks.map((link) => (
+                <li key={link.label}>
+                  {link.href.startsWith('#') ? (
+                    <button
+                      onClick={() => handleNavClick(link.href)}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <Link to={link.href} className="text-muted-foreground hover:text-primary transition-colors">
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal Column */}
+          <div>
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-4">Legal</h4>
+            <ul className="space-y-3">
+              {legalLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 pt-8 border-t border-border/10 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="pt-8 border-t border-border/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2024 WZRD.tech. All rights reserved.
+            © {new Date().getFullYear()} 5-Dee Studios. All rights reserved.
           </p>
-          
-          <div className="flex items-center gap-6">
-            <a 
-              href="https://www.producthunt.com/posts/wzrd-tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              Product Hunt
-              <ArrowUpRight className="w-3 h-3" />
-            </a>
-            <span className="text-muted-foreground/40">|</span>
-            <a 
-              href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Privacy
-            </a>
-            <a 
-              href="#"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Terms
-            </a>
-          </div>
+          <p className="text-sm text-muted-foreground">
+            Built with 💜 for the creator economy
+          </p>
         </div>
       </div>
     </footer>

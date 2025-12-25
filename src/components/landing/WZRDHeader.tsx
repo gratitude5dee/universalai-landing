@@ -55,12 +55,12 @@ const WZRDHeader: React.FC = () => {
         }}
       >
         <div className="flex items-center justify-between px-6 py-4">
-          {/* Logo - Doubled size */}
+          {/* Logo - Increased size */}
           <Link to="/" className="flex items-center gap-3 group">
             <motion.img 
               src={wzrdLogo} 
               alt="WZRD.tech" 
-              className="h-12 md:h-16 w-auto drop-shadow-[0_0_12px_rgba(59,130,246,0.3)]"
+              className="h-12 md:h-14 w-auto drop-shadow-[0_0_12px_rgba(59,130,246,0.3)]"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             />
@@ -117,10 +117,10 @@ const WZRDHeader: React.FC = () => {
               />
             </a>
 
-            {/* Join Waitlist Button */}
+            {/* Join Waitlist Button - REMOVED animate-pulse */}
             <Button
               onClick={() => setWaitlistOpen(true)}
-              className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium px-6 rounded-xl animate-pulse shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] transition-all duration-300"
+              className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium px-6 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] hover:scale-105 transition-all duration-300"
             >
               Join Waitlist
             </Button>
@@ -163,12 +163,13 @@ const WZRDHeader: React.FC = () => {
                 </Link>
               )
             ))}
+            {/* Mobile Join Waitlist - REMOVED animate-pulse */}
             <Button
               onClick={() => {
                 setMobileMenuOpen(false);
                 setWaitlistOpen(true);
               }}
-              className="w-full mt-4 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium animate-pulse shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+              className="w-full mt-4 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium shadow-[0_0_15px_rgba(59,130,246,0.5)]"
             >
               Join Waitlist
             </Button>

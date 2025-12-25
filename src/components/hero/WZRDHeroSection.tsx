@@ -22,7 +22,7 @@ const WZRDHeroSection: React.FC = () => {
     <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Spline 3D Background - Centered and Responsive */}
-        <div className="absolute inset-0 z-0 spline-container">
+        <div className="absolute inset-0 z-0 spline-container overflow-hidden">
           <Suspense fallback={<SplineLoadingSkeleton />}>
             <Spline 
               scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode"
@@ -82,7 +82,7 @@ const WZRDHeroSection: React.FC = () => {
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-medium drop-shadow-[0_0_15px_rgba(59,130,246,0.2)]">Privacy. Identity. IP. Self-Sovereign.</span>
             </motion.p>
 
-            {/* CTAs */}
+            {/* CTAs - REMOVED animate-pulse from Join Waitlist button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ const WZRDHeroSection: React.FC = () => {
               <Button
                 onClick={() => setWaitlistOpen(true)}
                 size="lg"
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold px-10 py-7 text-lg rounded-2xl shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] transition-all hover:scale-105 animate-pulse"
+                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold px-10 py-7 text-lg rounded-2xl shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] transition-all duration-300 hover:scale-105"
               >
                 Join Waitlist
                 <ArrowRight className="ml-2 w-5 h-5" />
