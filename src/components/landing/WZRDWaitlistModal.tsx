@@ -122,15 +122,15 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-lg bg-card-dark border border-border/20 backdrop-blur-xl p-0 overflow-hidden">
+      <DialogContent className="w-[calc(100%-2rem)] sm:w-full max-w-[95vw] sm:max-w-lg mx-auto bg-card-dark border border-border/20 backdrop-blur-xl p-0 overflow-hidden max-h-[90vh] overflow-y-auto">
         <div className="relative">
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 pointer-events-none" />
           
           <div className="relative">
-            {/* Logo */}
-            <div className="flex justify-center py-6 border-b border-border/10">
-              <img src={wzrdLogo} alt="WZRD.tech" className="h-20 w-auto" />
+            {/* Logo - Mobile optimized */}
+            <div className="flex justify-center py-4 sm:py-6 border-b border-border/10">
+              <img src={wzrdLogo} alt="WZRD.tech" className="h-16 sm:h-20 w-auto" />
             </div>
 
             <AnimatePresence mode="wait">
@@ -140,33 +140,33 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
-                  className="p-8"
+                  className="p-5 sm:p-8"
                 >
-                  <div className="text-center mb-8">
+                  <div className="text-center mb-6 sm:mb-8">
                     <h2 
-                      className="text-2xl font-bold mb-2 bg-gradient-to-r from-accent via-purple-400 to-accent bg-clip-text text-transparent"
+                      className="text-xl sm:text-2xl font-bold mb-2 bg-gradient-to-r from-accent via-purple-400 to-accent bg-clip-text text-transparent"
                       style={{
                         filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.6))',
                       }}
                     >
                       Join the Waitlist
                     </h2>
-                    <p className="text-muted-foreground">
+                    <p className="text-sm sm:text-base text-muted-foreground">
                       Be among the first to access the Creator-Agent Operating System
                     </p>
                     {waitlistCount && (
-                      <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
+                      <div className="mt-3 sm:mt-4 inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
                         <Users className="w-4 h-4 text-primary" />
-                        <span className="text-sm font-medium text-primary">
+                        <span className="text-xs sm:text-sm font-medium text-primary">
                           {waitlistCount.toLocaleString()}+ creators waiting
                         </span>
                       </div>
                     )}
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-foreground/80">Full Name</Label>
+                      <Label htmlFor="name" className="text-foreground/80 text-sm sm:text-base">Full Name</Label>
                       <Input
                         id="name"
                         name="name"
@@ -174,16 +174,17 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                         placeholder="Enter your full name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="bg-background/50 border-border/30 focus:border-accent/50 text-purple-400"
+                        className="bg-background/50 border-border/30 focus:border-accent/50 text-purple-400 h-12 sm:h-11 text-base touch-manipulation"
                         style={{
-                          textShadow: formData.name ? '0 0 10px rgba(168, 85, 247, 0.6)' : 'none'
+                          textShadow: formData.name ? '0 0 10px rgba(168, 85, 247, 0.6)' : 'none',
+                          fontSize: '16px' // Prevents iOS zoom
                         }}
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-foreground/80">Email Address</Label>
+                      <Label htmlFor="email" className="text-foreground/80 text-sm sm:text-base">Email Address</Label>
                       <Input
                         id="email"
                         name="email"
@@ -191,9 +192,10 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                         placeholder="Enter your email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="bg-background/50 border-border/30 focus:border-accent/50 text-purple-400"
+                        className="bg-background/50 border-border/30 focus:border-accent/50 text-purple-400 h-12 sm:h-11 text-base touch-manipulation"
                         style={{
-                          textShadow: formData.email ? '0 0 10px rgba(168, 85, 247, 0.6)' : 'none'
+                          textShadow: formData.email ? '0 0 10px rgba(168, 85, 247, 0.6)' : 'none',
+                          fontSize: '16px' // Prevents iOS zoom
                         }}
                         required
                       />
@@ -204,9 +206,9 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                         id="terms"
                         checked={agreedToTerms}
                         onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
-                        className="mt-1"
+                        className="mt-1 h-5 w-5 sm:h-4 sm:w-4"
                       />
-                      <Label htmlFor="terms" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
+                      <Label htmlFor="terms" className="text-xs sm:text-sm text-muted-foreground leading-relaxed cursor-pointer">
                         I agree to{' '}
                         <a 
                           href="https://5dee.studio/terms" 
@@ -223,7 +225,7 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                     <Button
                       type="submit"
                       disabled={!isFormValid() || isSubmitting}
-                      className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground font-semibold py-6 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [text-shadow:0_0_10px_rgba(168,85,247,0.8)]"
+                      className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground font-semibold min-h-[52px] py-4 sm:py-6 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [text-shadow:0_0_10px_rgba(168,85,247,0.8)] text-base touch-manipulation"
                     >
                       {isSubmitting ? (
                         <>
@@ -245,24 +247,24 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="p-8"
+                  className="p-5 sm:p-8"
                 >
-                  <div className="text-center mb-8">
+                  <div className="text-center mb-6 sm:mb-8">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-                      className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4"
+                      className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4"
                     >
-                      <Check className="w-8 h-8 text-primary" />
+                      <Check className="w-7 h-7 sm:w-8 sm:h-8 text-primary" />
                     </motion.div>
-                    <h2 className="text-2xl font-bold mb-2">You're on the list!</h2>
+                    <h2 className="text-xl sm:text-2xl font-bold mb-2">You're on the list!</h2>
                     {waitlistPosition && (
-                      <p className="text-muted-foreground mb-2">
+                      <p className="text-muted-foreground mb-2 text-sm sm:text-base">
                         Position #{waitlistPosition.toLocaleString()}
                       </p>
                     )}
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-sm sm:text-base">
                       Schedule your onboarding call below.
                     </p>
                   </div>
@@ -271,13 +273,13 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                     <div className="w-full p-4 rounded-xl bg-background/50 border border-border/20">
                       <div className="flex items-center gap-3 mb-4">
                         <Calendar className="w-5 h-5 text-primary" />
-                        <span className="font-medium">Schedule Onboarding Call</span>
+                        <span className="font-medium text-sm sm:text-base">Schedule Onboarding Call</span>
                       </div>
                       <button
                         data-cal-namespace="wzrd.tech-onboarding-call"
                         data-cal-link="5deestudios/wzrd.tech-onboarding-call"
                         data-cal-config='{"layout":"month_view","theme":"dark"}'
-                        className="w-full px-6 py-4 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors font-medium"
+                        className="w-full px-6 min-h-[52px] py-4 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors font-medium text-base touch-manipulation"
                       >
                         Open Calendar
                       </button>
@@ -286,7 +288,7 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                     <Button
                       variant="ghost"
                       onClick={handleClose}
-                      className="text-muted-foreground hover:text-foreground"
+                      className="text-muted-foreground hover:text-foreground min-h-[44px] touch-manipulation"
                     >
                       Close
                     </Button>
