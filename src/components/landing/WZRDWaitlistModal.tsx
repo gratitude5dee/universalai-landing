@@ -130,7 +130,7 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
           <div className="relative">
             {/* Logo */}
             <div className="flex justify-center py-6 border-b border-border/10">
-              <img src={wzrdLogo} alt="WZRD.tech" className="h-10 w-auto" />
+              <img src={wzrdLogo} alt="WZRD.tech" className="h-20 w-auto" />
             </div>
 
             <AnimatePresence mode="wait">
@@ -143,7 +143,14 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                   className="p-8"
                 >
                   <div className="text-center mb-8">
-                    <h2 className="text-2xl font-bold mb-2">Join the Waitlist</h2>
+                    <h2 
+                      className="text-2xl font-bold mb-2 bg-gradient-to-r from-accent via-purple-400 to-accent bg-clip-text text-transparent"
+                      style={{
+                        filter: 'drop-shadow(0 0 20px rgba(168, 85, 247, 0.6))',
+                      }}
+                    >
+                      Join the Waitlist
+                    </h2>
                     <p className="text-muted-foreground">
                       Be among the first to access the Creator-Agent Operating System
                     </p>
@@ -167,7 +174,10 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                         placeholder="Enter your full name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        className="bg-background/50 border-border/30 focus:border-primary/50"
+                        className="bg-background/50 border-border/30 focus:border-accent/50 text-purple-400"
+                        style={{
+                          textShadow: formData.name ? '0 0 10px rgba(168, 85, 247, 0.6)' : 'none'
+                        }}
                         required
                       />
                     </div>
@@ -181,7 +191,10 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                         placeholder="Enter your email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        className="bg-background/50 border-border/30 focus:border-primary/50"
+                        className="bg-background/50 border-border/30 focus:border-accent/50 text-purple-400"
+                        style={{
+                          textShadow: formData.email ? '0 0 10px rgba(168, 85, 247, 0.6)' : 'none'
+                        }}
                         required
                       />
                     </div>
