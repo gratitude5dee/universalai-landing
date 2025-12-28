@@ -120,7 +120,7 @@ const WZRDHeader: React.FC = () => {
             {/* Join Waitlist Button - Purple glow */}
             <Button
               onClick={() => setWaitlistOpen(true)}
-              className="bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground font-medium px-6 rounded-xl shadow-[0_0_15px_rgba(168,85,247,0.5)] hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:scale-105 transition-all duration-300 [text-shadow:0_0_10px_rgba(168,85,247,0.8)]"
+              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-medium px-6 rounded-xl shadow-[0_0_15px_rgba(147,51,234,0.5)] hover:shadow-[0_0_25px_rgba(147,51,234,0.7)] hover:scale-105 transition-all duration-300 [text-shadow:0_0_12px_rgba(255,255,255,0.9)]"
             >
               Join Waitlist
             </Button>
