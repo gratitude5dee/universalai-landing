@@ -117,10 +117,10 @@ const WZRDHeader: React.FC = () => {
               />
             </a>
 
-            {/* Join Waitlist Button - REMOVED animate-pulse */}
+            {/* Join Waitlist Button - Purple glow */}
             <Button
               onClick={() => setWaitlistOpen(true)}
-              className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-medium px-6 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_rgba(59,130,246,0.7)] hover:scale-105 transition-all duration-300"
+              className="bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground font-medium px-6 rounded-xl shadow-[0_0_15px_rgba(168,85,247,0.5)] hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] hover:scale-105 transition-all duration-300 [text-shadow:0_0_10px_rgba(168,85,247,0.8)]"
             >
               Join Waitlist
             </Button>
@@ -163,13 +163,13 @@ const WZRDHeader: React.FC = () => {
                 </Link>
               )
             ))}
-            {/* Mobile Join Waitlist - REMOVED animate-pulse */}
+            {/* Mobile Join Waitlist - Purple glow */}
             <Button
               onClick={() => {
                 setMobileMenuOpen(false);
                 setWaitlistOpen(true);
               }}
-              className="w-full mt-4 bg-gradient-to-r from-primary to-primary/80 text-primary-foreground font-medium shadow-[0_0_15px_rgba(59,130,246,0.5)]"
+              className="w-full mt-4 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-medium shadow-[0_0_15px_rgba(168,85,247,0.5)] [text-shadow:0_0_10px_rgba(168,85,247,0.8)]"
             >
               Join Waitlist
             </Button>

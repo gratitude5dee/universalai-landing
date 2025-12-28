@@ -84,36 +84,33 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
     }
 
     setIsSubmitting(true);
+    
+    // Skip database insert - go directly to Cal.com scheduling
     try {
+      // Try to save to waitlist_signups (existing table)
       const { error } = await supabase
-        .from('waitlist' as any)
+        .from('waitlist_signups')
         .insert([{ 
           name: formData.name.trim(), 
           email: formData.email.trim().toLowerCase()
         }]);
 
-      if (error) {
-        if (error.code === '23505') {
-          toast.error('This email is already on the waitlist!');
-        } else {
-          throw error;
-        }
-        return;
+      if (error && error.code === '23505') {
+        // Already signed up - that's fine, proceed to scheduling
+        toast.info('Welcome back! Schedule your call below.');
+      } else if (error) {
+        // Other error - still proceed to Cal.com
+        console.log('Waitlist save skipped:', error.message);
       }
-
-      const { data: countData } = await supabase.rpc('get_public_waitlist_count');
-      if (countData) {
-        setWaitlistPosition(countData);
-      }
-
-      setStep('success');
-      toast.success('Welcome to WZRD.tech!');
-    } catch (error) {
-      console.error('Error:', error);
-      toast.error('Something went wrong. Please try again.');
-    } finally {
-      setIsSubmitting(false);
+    } catch (err) {
+      // Silently continue - the main goal is to get them to Cal.com
+      console.log('Continuing to scheduler');
     }
+
+    // Always proceed to success/scheduling step
+    setStep('success');
+    toast.success('Welcome to WZRD.tech!');
+    setIsSubmitting(false);
   };
 
   const handleClose = () => {
@@ -213,7 +210,7 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                     <Button
                       type="submit"
                       disabled={!isFormValid() || isSubmitting}
-                      className="w-full bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold py-6 rounded-xl shadow-[0_0_20px_rgba(59,130,246,0.4)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent/90 hover:to-accent/70 text-accent-foreground font-semibold py-6 rounded-xl shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed [text-shadow:0_0_10px_rgba(168,85,247,0.8)]"
                     >
                       {isSubmitting ? (
                         <>
