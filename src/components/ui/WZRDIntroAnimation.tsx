@@ -180,11 +180,7 @@ const WZRDIntroAnimation: React.FC<WZRDIntroAnimationProps> = ({
                           duration: 0.7,
                           ease: [0.16, 1, 0.3, 1]
                         }}
-                        className={`font-bold tracking-tight ${
-                          isLastIdentity 
-                            ? 'text-5xl md:text-7xl mt-4' 
-                            : 'text-4xl md:text-6xl'
-                        }`}
+                        className="font-bold tracking-tight text-4xl md:text-6xl"
                         style={{
                           background: isLastIdentity 
                             ? 'linear-gradient(135deg, #60A5FA 0%, #93C5FD 50%, #FFFFFF 100%)'
