@@ -45,7 +45,7 @@ const WZRDHeader: React.FC = () => {
   return (
     <>
       <motion.header
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl rounded-2xl border transition-all duration-300 ${
+        className={`fixed top-2 md:top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1rem)] md:w-[95%] max-w-6xl rounded-2xl border transition-all duration-300 ${
           scrolled 
             ? 'border-border/30 bg-card-dark/90 shadow-2xl shadow-black/20' 
             : 'border-border/10 bg-card-dark/60'
@@ -54,13 +54,13 @@ const WZRDHeader: React.FC = () => {
           backdropFilter: `blur(${headerBlur}px)`,
         }}
       >
-        <div className="flex items-center justify-between px-6 py-4">
-          {/* Logo - Increased size */}
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
+          {/* Logo - Responsive sizing */}
           <Link to="/" className="flex items-center gap-3 group">
             <motion.img 
               src={wzrdLogo} 
               alt="WZRD.tech" 
-              className="h-12 md:h-14 w-auto drop-shadow-[0_0_12px_rgba(59,130,246,0.3)]"
+              className="h-10 sm:h-12 md:h-14 w-auto drop-shadow-[0_0_12px_rgba(59,130,246,0.3)]"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
             />
@@ -126,29 +126,30 @@ const WZRDHeader: React.FC = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Menu Toggle - Larger touch target */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-foreground/70 hover:text-foreground"
+            className="md:hidden p-3 text-foreground/70 hover:text-foreground min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Enhanced touch targets */}
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden border-t border-border/20 px-6 py-4 space-y-2"
+            className="md:hidden border-t border-border/20 px-4 py-3 space-y-1 overscroll-contain"
           >
             {navItems.map((item) => (
               item.to.startsWith('#') ? (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.to)}
-                  className="block w-full text-left px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
+                  className="block w-full text-left px-4 py-4 text-foreground/80 hover:text-foreground hover:bg-white/5 rounded-lg transition-colors min-h-[48px] touch-manipulation"
                 >
                   {item.label}
                 </button>
@@ -157,19 +158,19 @@ const WZRDHeader: React.FC = () => {
                   key={item.label}
                   to={item.to}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-foreground/80 hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
+                  className="block px-4 py-4 text-foreground/80 hover:text-foreground hover:bg-white/5 rounded-lg transition-colors min-h-[48px] touch-manipulation"
                 >
                   {item.label}
                 </Link>
               )
             ))}
-            {/* Mobile Join Waitlist - Purple glow */}
+            {/* Mobile Join Waitlist - Full width with proper touch target */}
             <Button
               onClick={() => {
                 setMobileMenuOpen(false);
                 setWaitlistOpen(true);
               }}
-              className="w-full mt-4 bg-gradient-to-r from-accent to-accent/80 text-accent-foreground font-medium shadow-[0_0_15px_rgba(168,85,247,0.5)] [text-shadow:0_0_10px_rgba(168,85,247,0.8)]"
+              className="w-full mt-3 min-h-[52px] py-4 bg-gradient-to-r from-purple-600 to-purple-500 text-white font-medium shadow-[0_0_15px_rgba(147,51,234,0.5)] [text-shadow:0_0_10px_rgba(255,255,255,0.8)] touch-manipulation"
             >
               Join Waitlist
             </Button>

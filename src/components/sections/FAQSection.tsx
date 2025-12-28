@@ -38,27 +38,27 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="relative py-32 overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="relative py-20 sm:py-32 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <PillLabel className="mb-6">FAQ</PillLabel>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          <PillLabel className="mb-4 sm:mb-6">FAQ</PillLabel>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3 sm:mb-4">
             Questions,{' '}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               Answered
             </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Everything you need to know about WZRD.tech and the 5DEE ecosystem.
           </p>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -71,10 +71,10 @@ const FAQSection = () => {
               <div className="rounded-xl glass-liquid border border-primary/20 overflow-hidden hover:border-primary/40 transition-all duration-300">
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between p-6 text-left transition-all duration-300"
+                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left transition-all duration-300 min-h-[64px] touch-manipulation"
                 >
-                  <span className="text-lg font-semibold pr-8">{faq.question}</span>
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full glass-liquid border border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-all duration-300">
+                  <span className="text-base sm:text-lg font-semibold pr-6 sm:pr-8">{faq.question}</span>
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-8 sm:h-8 rounded-full glass-liquid border border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-all duration-300">
                     <AnimatePresence mode="wait">
                       {openIndex === index ? (
                         <motion.div
@@ -110,8 +110,8 @@ const FAQSection = () => {
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 pt-0">
-                        <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
+                      <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0">
+                        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">{faq.answer}</p>
                       </div>
                     </motion.div>
                   )}
