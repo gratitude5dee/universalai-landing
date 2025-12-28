@@ -81,7 +81,7 @@ const WZRDHeroSection: React.FC = () => {
             duration: 0.8,
             delay: 0.2
           }} className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed font-light">
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-medium drop-shadow-[0_0_15px_rgba(59,130,246,0.2)]">Privacy. Identity. IP. Self-Sovereign.</span>
+              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent font-medium drop-shadow-[0_0_15px_rgba(59,130,246,0.2)]">Privacy. Identity. IP. Self-Sovereign. Identity.</span>
             </motion.p>
 
             {/* CTAs - REMOVED animate-pulse from Join Waitlist button */}
