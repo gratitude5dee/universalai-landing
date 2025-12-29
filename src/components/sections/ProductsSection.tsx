@@ -1,7 +1,10 @@
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Layers, User, Cpu, Coins, Music, Shirt } from 'lucide-react';
+import { ArrowRight, Cpu, Music, Shirt } from 'lucide-react';
 import SplineLoadingSkeleton from '@/components/ui/SplineLoadingSkeleton';
+import { TextAnimate } from '@/components/ui/text-animate';
+import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
+import { ShineBorder } from '@/components/ui/shine-border';
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
@@ -14,6 +17,7 @@ interface Product {
   gradient: string;
   splineScene?: string;
   link?: string;
+  shineColors: string[];
 }
 
 const products: Product[] = [
@@ -26,6 +30,7 @@ const products: Product[] = [
     gradient: 'from-primary/30 via-primary/20 to-accent/30',
     splineScene: 'https://prod.spline.design/7t4TC5KZHbW7nHWM/scene.splinecode',
     link: 'https://studio.universal-ai.xyz',
+    shineColors: ['#9333ea', '#7c3aed', '#a855f7'],
   },
   {
     id: 'eartone',
@@ -36,6 +41,7 @@ const products: Product[] = [
     gradient: 'from-emerald-500/30 via-emerald-400/20 to-teal-500/30',
     splineScene: 'https://prod.spline.design/JKbazm5fEzQWHl4g/scene.splinecode',
     link: 'https://eartone.lovable.app/',
+    shineColors: ['#10b981', '#14b8a6', '#34d399'],
   },
   {
     id: 'pleiades',
@@ -45,6 +51,7 @@ const products: Product[] = [
     icon: Shirt,
     gradient: 'from-rose-500/30 via-rose-400/20 to-pink-500/30',
     splineScene: 'https://prod.spline.design/MUYEdQvRLyvqwCCc/scene.splinecode',
+    shineColors: ['#f43f5e', '#ec4899', '#fb7185'],
   },
 ];
 
@@ -70,12 +77,18 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
       {/* Glow effect on hover */}
       <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} />
       
-      {/* Liquid glass card */}
+      {/* Liquid glass card with ShineBorder */}
       <div className="glass-liquid glass-liquid-hover relative h-full rounded-[2rem] overflow-hidden transition-all duration-500">
+        <ShineBorder
+          shineColor={product.shineColors}
+          borderWidth={1}
+          duration={12}
+        />
+        
         {/* Inner light reflection */}
         <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none z-10" />
         
-        {/* Spline Background or Gradient - wrapped with overflow-hidden */}
+        {/* Spline Background or Gradient */}
         {product.splineScene ? (
           <div className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500 overflow-hidden">
             <Suspense fallback={<div className={`w-full h-full bg-gradient-to-br ${product.gradient}`} />}>
@@ -112,7 +125,7 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
             {product.description}
           </p>
 
-          {/* Open App button - positioned to overlay Spline badge */}
+          {/* Open App button */}
           <div className="mt-6 flex items-center justify-between">
             <div className="flex items-center gap-2 text-sm font-semibold text-primary/80 group-hover:text-primary transition-colors">
               <span>{product.link ? 'Open App' : 'Coming Soon'}</span>
@@ -145,30 +158,45 @@ const ProductsSection: React.FC = () => {
             <span className="text-sm font-medium text-primary">Product Ecosystem</span>
           </motion.div>
 
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-5xl font-bold mb-6"
+            className="mb-6"
           >
-            <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <TextAnimate
+              animation="blurInUp"
+              by="word"
+              className="text-3xl md:text-5xl font-bold inline"
+            >
               Building the
-            </span>{' '}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            </TextAnimate>{' '}
+            <AnimatedGradientText
+              speed={1.5}
+              colorFrom="#9333ea"
+              colorTo="#f97316"
+              className="text-3xl md:text-5xl font-bold"
+            >
               Creator Stack
-            </span>
-          </motion.h2>
+            </AnimatedGradientText>
+          </motion.div>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-muted-foreground max-w-2xl mx-auto"
           >
-            A complete ecosystem for autonomous creator economies
-          </motion.p>
+            <TextAnimate
+              animation="fadeIn"
+              by="word"
+              delay={0.3}
+              className="text-xl text-muted-foreground max-w-2xl mx-auto"
+            >
+              A complete ecosystem for autonomous creator economies
+            </TextAnimate>
+          </motion.div>
         </div>
 
         {/* Products grid */}
