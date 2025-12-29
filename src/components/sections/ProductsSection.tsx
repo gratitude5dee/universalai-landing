@@ -39,7 +39,7 @@ const products: Product[] = [
   },
   {
     id: 'pleiades',
-    name: 'Project Pleiades',
+    name: 'WZRD.work',
     tagline: 'Hardware & DePin',
     description: 'Interoperable Open-Architecture Hardware for Fashion Industry; DePin & Creator Spaces',
     icon: Shirt,
@@ -112,10 +112,14 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
             {product.description}
           </p>
 
-          {/* Learn more link */}
-          <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-primary/80 group-hover:text-primary transition-colors">
-            <span>{product.link ? 'Open App' : 'Coming Soon'}</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+          {/* Open App button - positioned to overlay Spline badge */}
+          <div className="mt-6 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm font-semibold text-primary/80 group-hover:text-primary transition-colors">
+              <span>{product.link ? 'Open App' : 'Coming Soon'}</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+            </div>
+            {/* Overlay element to cover Spline badge */}
+            <div className="w-32 h-8 bg-background/90 backdrop-blur-sm rounded-lg" />
           </div>
         </div>
       </div>
