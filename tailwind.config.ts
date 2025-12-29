@@ -131,35 +131,6 @@ export default {
                     '50%': { transform: 'translate(-10px, 10px) rotate(-2deg)' },
                     '75%': { transform: 'translate(15px, 15px) rotate(2deg)' },
                 },
-                // Magic UI Animations
-                marquee: {
-                    '0%': { transform: 'translateX(0)' },
-                    '100%': { transform: 'translateX(calc(-100% - var(--gap)))' },
-                },
-                'marquee-vertical': {
-                    '0%': { transform: 'translateY(0)' },
-                    '100%': { transform: 'translateY(calc(-100% - var(--gap)))' },
-                },
-                gradient: {
-                    '0%, 100%': { backgroundPosition: '0% 50%' },
-                    '50%': { backgroundPosition: 'var(--bg-size) 50%' },
-                },
-                'shimmer-slide': {
-                    '0%': { transform: 'translate(0, 0)' },
-                    '100%': { transform: 'translate(calc(100cqw - 100%), 0)' },
-                },
-                'spin-around': {
-                    '0%': { transform: 'rotate(0deg)' },
-                    '25%': { transform: 'rotate(90deg)' },
-                    '50%': { transform: 'rotate(90deg)' },
-                    '75%': { transform: 'rotate(270deg)' },
-                    '100%': { transform: 'rotate(360deg)' },
-                },
-                shine: {
-                    '0%': { backgroundPosition: '0% 0%' },
-                    '50%': { backgroundPosition: '100% 100%' },
-                    '100%': { backgroundPosition: '0% 0%' },
-                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -171,13 +142,6 @@ export default {
                 'breathe': 'breathe 4s ease-in-out infinite',
                 'shimmer': 'shimmer 3s linear infinite',
                 'float-gentle': 'floatGentle 30s ease-in-out infinite',
-                // Magic UI Animations
-                'marquee': 'marquee var(--duration) linear infinite',
-                'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
-                'gradient': 'gradient 8s linear infinite',
-                'shimmer-slide': 'shimmer-slide var(--speed) ease-in-out infinite alternate',
-                'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
-                'shine': 'shine var(--duration) infinite linear',
             },
             dropShadow: {
                 'glow': '0 0 20px hsl(var(--primary) / 0.6)',
