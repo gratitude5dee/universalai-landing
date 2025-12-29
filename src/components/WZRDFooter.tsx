@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Twitter, MessageCircle, ArrowUpRight, Mail } from 'lucide-react';
 import wzrdLogo from '@/assets/wzrd-logo.png';
+import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
+import { LightRays } from '@/components/ui/light-rays';
 
 const productLinks = [
   { label: 'WZRD Studio', href: 'https://studio.universal-ai.xyz' },
@@ -37,12 +39,22 @@ const WZRDFooter: React.FC = () => {
   };
 
   return (
-    <footer className="relative py-16 sm:py-20 border-t border-border/10">
+    <footer className="relative py-16 sm:py-20 border-t border-border/10 overflow-hidden">
+      {/* Light Rays Background */}
+      <LightRays
+        count={5}
+        color="rgba(147, 51, 234, 0.1)"
+        blur={40}
+        speed={20}
+        length="50vh"
+        className="opacity-50"
+      />
+      
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="relative container mx-auto px-4 sm:px-6">
+      <div className="relative container mx-auto px-4 sm:px-6 z-10">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1 lg:col-span-1">
@@ -50,7 +62,15 @@ const WZRDFooter: React.FC = () => {
               <img src={wzrdLogo} alt="WZRD.tech" className="h-10 sm:h-12 w-auto" />
             </Link>
             <p className="text-xs sm:text-sm text-muted-foreground mb-6 max-w-xs">
-              Building the infrastructure for autonomous creator economies. Privacy. Identity. IP. Self-Sovereign.
+              Building the infrastructure for autonomous creator economies.{' '}
+              <AnimatedGradientText
+                speed={2}
+                colorFrom="#9333ea"
+                colorTo="#f97316"
+                className="text-xs sm:text-sm font-medium"
+              >
+                Privacy. Identity. IP. Self-Sovereign.
+              </AnimatedGradientText>
             </p>
             <div className="flex items-center gap-2 sm:gap-3">
               {socialLinks.map((link) => (
@@ -144,7 +164,16 @@ const WZRDFooter: React.FC = () => {
         {/* Bottom bar */}
         <div className="pt-6 sm:pt-8 border-t border-border/10 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
           <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left">
-            © {new Date().getFullYear()} 5-Dee Studios. All rights reserved.
+            © {new Date().getFullYear()}{' '}
+            <AnimatedGradientText
+              speed={3}
+              colorFrom="#9333ea"
+              colorTo="#7c3aed"
+              className="text-xs sm:text-sm"
+            >
+              5-Dee Studios
+            </AnimatedGradientText>
+            . All rights reserved.
           </p>
           <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-right">
             Built with 💜 for the creator economy
