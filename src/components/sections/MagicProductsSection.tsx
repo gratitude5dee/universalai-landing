@@ -1,10 +1,35 @@
-import React, { Suspense, lazy, useState } from 'react';
+import React, { Suspense, lazy, useState, Component, ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Wand2, Mic, Shield, Wallet, Bot } from 'lucide-react';
 import { TextAnimate, AnimatedGradientText, FlickeringGrid, ShineBorder, NumberTicker, ShimmerButton } from '@/components/magicui';
 
 // Lazy load Spline for performance
 const Spline = lazy(() => import('@splinetool/react-spline'));
+
+// Error boundary for Spline components
+class SplineErrorBoundary extends Component<{ children: ReactNode; fallback?: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode; fallback?: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error) {
+    console.warn('Spline failed to load:', error.message);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || (
+        <div className="w-full h-full bg-gradient-to-br from-purple-500/10 to-purple-700/10" />
+      );
+    }
+    return this.props.children;
+  }
+}
 
 interface Product {
   id: string;
@@ -138,9 +163,11 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           {/* 3D Spline Preview for Large Cards */}
           {product.size === 'large' && product.splineUrl && (
             <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
-              <Suspense fallback={<div className="w-full h-full bg-gradient-to-br from-purple-500/10 to-purple-700/10 animate-pulse" />}>
-                <Spline scene={product.splineUrl} />
-              </Suspense>
+              <SplineErrorBoundary fallback={<div className="w-full h-full bg-gradient-to-br from-purple-500/10 to-purple-700/10" />}>
+                <Suspense fallback={<div className="w-full h-full bg-gradient-to-br from-purple-500/10 to-purple-700/10 animate-pulse" />}>
+                  <Spline scene={product.splineUrl} />
+                </Suspense>
+              </SplineErrorBoundary>
             </div>
           )}
 
