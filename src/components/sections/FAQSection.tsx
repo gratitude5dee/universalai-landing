@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import PillLabel from '@/components/ui/PillLabel';
-import { TextAnimate } from '@/components/ui/text-animate';
-import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
-import { FlickeringGrid } from '@/components/ui/flickering-grid';
-import { ShineBorder } from '@/components/ui/shine-border';
 
 const faqs = [
   {
@@ -43,21 +39,7 @@ const FAQSection = () => {
 
   return (
     <section className="relative py-20 sm:py-32 overflow-hidden">
-      {/* Flickering Grid Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <FlickeringGrid
-          color="hsl(var(--primary))"
-          maxOpacity={0.03}
-          flickerChance={0.08}
-          squareSize={3}
-          gridGap={6}
-        />
-      </div>
-      
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" />
-
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,33 +47,15 @@ const FAQSection = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <PillLabel className="mb-4 sm:mb-6">FAQ</PillLabel>
-          
-          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3 sm:mb-4">
-            <TextAnimate
-              animation="blurInUp"
-              by="word"
-              className="inline"
-            >
-              Questions,
-            </TextAnimate>{' '}
-            <AnimatedGradientText
-              speed={1.5}
-              colorFrom="#9333ea"
-              colorTo="#ec4899"
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold"
-            >
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-3 sm:mb-4">
+            Questions,{' '}
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               Answered
-            </AnimatedGradientText>
-          </div>
-          
-          <TextAnimate
-            animation="fadeIn"
-            by="word"
-            delay={0.3}
-            className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4"
-          >
+            </span>
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Everything you need to know about WZRD.tech and the 5DEE ecosystem.
-          </TextAnimate>
+          </p>
         </motion.div>
 
         <div className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
@@ -104,15 +68,7 @@ const FAQSection = () => {
               transition={{ delay: index * 0.05 }}
               className="group"
             >
-              <div className="relative rounded-xl glass-liquid border border-primary/20 overflow-hidden hover:border-primary/40 transition-all duration-300">
-                {openIndex === index && (
-                  <ShineBorder
-                    shineColor={['#9333ea', '#ec4899', '#a855f7']}
-                    borderWidth={1}
-                    duration={6}
-                  />
-                )}
-                
+              <div className="rounded-xl glass-liquid border border-primary/20 overflow-hidden hover:border-primary/40 transition-all duration-300">
                 <button
                   onClick={() => toggleFAQ(index)}
                   className="w-full flex items-center justify-between p-5 sm:p-6 text-left transition-all duration-300 min-h-[64px] touch-manipulation"

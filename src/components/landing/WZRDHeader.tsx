@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ShimmerButton } from '@/components/ui/shimmer-button';
 import WZRDWaitlistModal from './WZRDWaitlistModal';
 import wzrdLogo from '@/assets/wzrd-logo.png';
 
@@ -118,16 +117,13 @@ const WZRDHeader: React.FC = () => {
               />
             </a>
 
-            {/* Join Waitlist Button - ShimmerButton */}
-            <ShimmerButton
+            {/* Join Waitlist Button - Purple glow */}
+            <Button
               onClick={() => setWaitlistOpen(true)}
-              shimmerColor="#ffffff"
-              shimmerDuration="2.5s"
-              background="linear-gradient(135deg, hsl(271, 81%, 56%), hsl(271, 81%, 45%))"
-              className="px-6 py-2.5 text-sm font-semibold"
+              className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-medium px-6 rounded-xl shadow-[0_0_15px_rgba(147,51,234,0.5)] hover:shadow-[0_0_25px_rgba(147,51,234,0.7)] hover:scale-105 transition-all duration-300 [text-shadow:0_0_12px_rgba(255,255,255,0.9)]"
             >
               Join Waitlist
-            </ShimmerButton>
+            </Button>
           </div>
 
           {/* Mobile Menu Toggle - Larger touch target */}
@@ -169,18 +165,15 @@ const WZRDHeader: React.FC = () => {
               )
             ))}
             {/* Mobile Join Waitlist - Full width with proper touch target */}
-            <ShimmerButton
+            <Button
               onClick={() => {
                 setMobileMenuOpen(false);
                 setWaitlistOpen(true);
               }}
-              shimmerColor="#ffffff"
-              shimmerDuration="2.5s"
-              background="linear-gradient(135deg, hsl(271, 81%, 56%), hsl(271, 81%, 45%))"
-              className="w-full mt-3 min-h-[52px] py-4 text-base font-medium"
+              className="w-full mt-3 min-h-[52px] py-4 bg-gradient-to-r from-purple-600 to-purple-500 text-white font-medium shadow-[0_0_15px_rgba(147,51,234,0.5)] [text-shadow:0_0_10px_rgba(255,255,255,0.8)] touch-manipulation"
             >
               Join Waitlist
-            </ShimmerButton>
+            </Button>
           </motion.div>
         )}
       </motion.header>
