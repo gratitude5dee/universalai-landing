@@ -3,9 +3,10 @@ import { motion } from 'framer-motion';
 
 // Partner logos
 import fiveDee from '@/assets/partners/5dee-logo.svg';
-import createMusic from '@/assets/partners/create-music-logo.svg';
-import manus from '@/assets/partners/manus-logo.png';
-import e3 from '@/assets/partners/e3-logo.jpg';
+import anthropic from '@/assets/partners/anthropic-logo.png';
+import thirdweb from '@/assets/partners/thirdweb-logo.png';
+import elevenlabs from '@/assets/partners/elevenlabs-logo.png';
+import storyProtocol from '@/assets/partners/story-protocol-logo.png';
 import gq from '@/assets/partners/gq-logo.png';
 
 interface Logo {
@@ -16,10 +17,11 @@ interface Logo {
 
 const logos: Logo[] = [
   { id: '1', name: '5DEE Studios', src: fiveDee },
-  { id: '2', name: 'Create Music', src: createMusic },
-  { id: '3', name: 'Manus', src: manus },
-  { id: '4', name: 'E3', src: e3 },
-  { id: '5', name: 'GQ', src: gq },
+  { id: '2', name: 'Anthropic', src: anthropic },
+  { id: '3', name: 'Thirdweb', src: thirdweb },
+  { id: '4', name: 'ElevenLabs', src: elevenlabs },
+  { id: '5', name: 'Story Protocol', src: storyProtocol },
+  { id: '6', name: 'GQ', src: gq },
 ];
 
 const ScrollingPartners: React.FC = () => {
