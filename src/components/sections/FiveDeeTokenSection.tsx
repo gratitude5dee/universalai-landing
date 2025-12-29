@@ -1,18 +1,27 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Coins, TrendingUp, Lock, Zap } from 'lucide-react';
+import { NumberTicker } from '@/components/ui/number-ticker';
+import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
+import { FlickeringGrid } from '@/components/ui/flickering-grid';
+import { ShineBorder } from '@/components/ui/shine-border';
+
 const stats = [{
   label: 'Symbol',
   value: '$5DEE',
-  icon: Coins
+  icon: Coins,
+  isText: true
 }, {
   label: 'Total Supply',
-  value: '100M',
-  icon: TrendingUp
+  value: 100,
+  suffix: 'M',
+  icon: TrendingUp,
+  isText: false
 }, {
   label: 'Launch Type',
   value: 'Fair',
-  icon: Lock
+  icon: Lock,
+  isText: true
 }];
 const partners = [{
   name: 'Bridge',
@@ -29,10 +38,22 @@ const partners = [{
 }];
 const FiveDeeTokenSection: React.FC = () => {
   return <section id="token" className="py-32 relative overflow-hidden">
+      {/* Flickering Grid Background */}
+      <div className="absolute inset-0 z-0">
+        <FlickeringGrid
+          squareSize={4}
+          gridGap={8}
+          color="hsl(210 100% 50%)"
+          maxOpacity={0.15}
+          flickerChance={0.2}
+          className="absolute inset-0"
+        />
+      </div>
+
       {/* Cinematic background */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-[1]">
         {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
         
         {/* Warm ambient orbs */}
         <motion.div animate={{
@@ -49,23 +70,11 @@ const FiveDeeTokenSection: React.FC = () => {
         duration: 10,
         repeat: Infinity
       }} className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-accent/20 blur-[100px]" />
-        
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `
-              linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px),
-              linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px)
-            `,
-        backgroundSize: '60px 60px'
-      }} />
       </div>
 
-      <div className="relative container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-6">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          
-
-          {/* Giant token symbol with animated gradient border */}
+          {/* Giant token symbol with AnimatedGradientText */}
           <motion.div initial={{
           opacity: 0,
           scale: 0.8
@@ -79,8 +88,14 @@ const FiveDeeTokenSection: React.FC = () => {
           type: "spring"
         }} className="mb-8 relative inline-block">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-primary via-accent to-primary opacity-20 blur-2xl animate-pulse" />
-            <h2 className="relative text-7xl md:text-9xl lg:text-[12rem] font-black bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent leading-none">
-              $5DEE
+            <h2 className="relative text-7xl md:text-9xl lg:text-[12rem] font-black leading-none">
+              <AnimatedGradientText
+                colorFrom="hsl(210 100% 60%)"
+                colorTo="hsl(280 100% 60%)"
+                speed={0.8}
+              >
+                $5DEE
+              </AnimatedGradientText>
             </h2>
           </motion.div>
 
@@ -182,13 +197,18 @@ const FiveDeeTokenSection: React.FC = () => {
             transformStyle: 'preserve-3d'
           }}>
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-                <div className="relative p-8 rounded-3xl glass-liquid border border-border/20 hover:border-primary/30 transition-all">
+                <div className="relative p-8 rounded-3xl glass-liquid border border-border/20 hover:border-primary/30 transition-all overflow-hidden">
+                  <ShineBorder 
+                    shineColor={["hsl(210 100% 60%)", "hsl(280 100% 60%)"]} 
+                    borderWidth={1}
+                    duration={10}
+                  />
                   <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
                     <stat.icon className="w-6 h-6 text-primary" />
                   </div>
                   <p className="text-sm text-muted-foreground mb-2">{stat.label}</p>
                   <p className="text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
-                    {stat.value}
+                    {stat.isText ? stat.value : <NumberTicker value={stat.value as number} suffix={stat.suffix} />}
                   </p>
                 </div>
               </motion.div>)}

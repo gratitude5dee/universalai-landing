@@ -4,6 +4,10 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import WZRDWaitlistModal from '@/components/landing/WZRDWaitlistModal';
 import SplineLoadingSkeleton from '@/components/ui/SplineLoadingSkeleton';
+import { TextAnimate } from '@/components/ui/text-animate';
+import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
+import { LightRays } from '@/components/ui/light-rays';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 const WZRDHeroSection: React.FC = () => {
@@ -44,6 +48,15 @@ const WZRDHeroSection: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40 pointer-events-none" />
         </div>
 
+        {/* Light Rays Effect */}
+        <LightRays 
+          count={5} 
+          color="hsl(210 100% 50% / 0.12)" 
+          blur={60} 
+          speed={14}
+          length="70vh"
+        />
+
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-20">
           <div className="max-w-4xl mx-auto text-center">
@@ -58,20 +71,33 @@ const WZRDHeroSection: React.FC = () => {
               <span className="text-xs sm:text-sm font-semibold tracking-wide text-primary">The Creator-Agent OS</span>
             </motion.div>
 
-            {/* Headline - Mobile optimized typography */}
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.8, delay: 0.1 }} 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black mb-6 sm:mb-8 leading-[1.1] tracking-tight"
-            >
-              <span className="block bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+            {/* Headline with TextAnimate */}
+            <div className="mb-6 sm:mb-8">
+              <TextAnimate
+                animation="blurInUp"
+                by="word"
+                once
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black leading-[1.1] tracking-tight bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent"
+                duration={1.5}
+              >
                 The Neobank for the Creator Economy
-              </span>
-              <span className="block text-foreground/80 mt-3 sm:mt-4 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
-                Every Being is A Billion
-              </span>
-            </motion.h1>
+              </TextAnimate>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="mt-3 sm:mt-4"
+              >
+                <AnimatedGradientText
+                  colorFrom="hsl(210 100% 60%)"
+                  colorTo="hsl(40 100% 60%)"
+                  speed={1.2}
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold"
+                >
+                  Every Being is A Billion
+                </AnimatedGradientText>
+              </motion.div>
+            </div>
 
             {/* Subheadline */}
             <motion.p 
@@ -92,14 +118,17 @@ const WZRDHeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }} 
               className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-2"
             >
-              <Button 
-                onClick={() => setWaitlistOpen(true)} 
-                size="lg" 
-                className="w-full sm:w-auto bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-bold px-8 sm:px-10 min-h-[56px] py-5 sm:py-7 text-base sm:text-lg rounded-2xl shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:shadow-[0_0_30px_rgba(59,130,246,0.7)] transition-all duration-300 hover:scale-105 touch-manipulation"
+              <ShimmerButton 
+                onClick={() => setWaitlistOpen(true)}
+                shimmerColor="hsl(210 100% 70%)"
+                background="hsl(var(--primary))"
+                borderRadius="16px"
+                shimmerDuration="2.5s"
+                className="w-full sm:w-auto font-bold px-8 sm:px-10 min-h-[56px] py-5 sm:py-7 text-base sm:text-lg"
               >
                 Join Waitlist
                 <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              </ShimmerButton>
               <Button 
                 onClick={scrollToManifesto} 
                 variant="outline" 
