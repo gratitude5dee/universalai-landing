@@ -3,11 +3,11 @@ import WZRDHeader from '@/components/landing/WZRDHeader';
 import WZRDFooter from '@/components/WZRDFooter';
 import ScrollProgress from '@/components/ui/ScrollProgress';
 import CustomCursor from '@/components/ui/CustomCursor';
-import WZRDHeroSection from '@/components/hero/WZRDHeroSection';
-import ScrollingPartners from '@/components/sections/ScrollingPartners';
-import ManifestoSection from '@/components/sections/ManifestoSection';
-import ProductsSection from '@/components/sections/ProductsSection';
-import FiveDeeTokenSection from '@/components/sections/FiveDeeTokenSection';
+import { MagicHeroSection } from '@/components/sections/MagicHeroSection';
+import { MagicPartnersSection } from '@/components/sections/MagicPartnersSection';
+import { MagicManifestoSection } from '@/components/sections/MagicManifestoSection';
+import { MagicProductsSection } from '@/components/sections/MagicProductsSection';
+import { MagicCTASection } from '@/components/sections/MagicCTASection';
 import FAQSection from '@/components/sections/FAQSection';
 import WZRDIntroAnimation from '@/components/ui/WZRDIntroAnimation';
 import SectionDivider from '@/components/ui/SectionDivider';
@@ -34,14 +34,14 @@ const Index = () => {
       <div className="min-h-screen text-foreground relative bg-background">
         <WZRDHeader />
         <main className="relative z-10">
-          {!showIntro && <WZRDHeroSection />}
-          <ScrollingPartners />
+          {!showIntro && <MagicHeroSection />}
+          <MagicPartnersSection />
           <SectionDivider className="my-16" />
-          <ManifestoSection />
+          <MagicManifestoSection />
           <SectionDivider className="my-16" />
-          <ProductsSection />
+          <MagicProductsSection />
           <SectionDivider className="my-16" />
-          <FiveDeeTokenSection />
+          <MagicCTASection />
           <SectionDivider className="my-16" />
           <FAQSection />
         </main>
