@@ -13,15 +13,16 @@ interface Logo {
   id: string;
   name: string;
   src: string;
+  scale?: number;
 }
 
 const logos: Logo[] = [
-  { id: '1', name: '5DEE Studios', src: fiveDee },
-  { id: '2', name: 'Anthropic', src: anthropic },
-  { id: '3', name: 'Thirdweb', src: thirdweb },
-  { id: '4', name: 'ElevenLabs', src: elevenlabs },
-  { id: '5', name: 'Story Protocol', src: storyProtocol },
-  { id: '6', name: 'GQ', src: gq },
+  { id: '1', name: '5DEE Studios', src: fiveDee, scale: 1 },
+  { id: '2', name: 'Anthropic', src: anthropic, scale: 1 },
+  { id: '3', name: 'Thirdweb', src: thirdweb, scale: 3 },
+  { id: '4', name: 'ElevenLabs', src: elevenlabs, scale: 2 },
+  { id: '5', name: 'Story Protocol', src: storyProtocol, scale: 1 },
+  { id: '6', name: 'GQ', src: gq, scale: 1 },
 ];
 
 const ScrollingPartners: React.FC = () => {
@@ -51,6 +52,7 @@ const ScrollingPartners: React.FC = () => {
                   <div 
                     key={`${setIndex}-${logo.id}`} 
                     className="mx-12 flex items-center justify-center w-32 h-16"
+                    style={{ transform: `scale(${logo.scale || 1})` }}
                   >
                     <img 
                       src={logo.src} 
