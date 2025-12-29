@@ -7,7 +7,7 @@ import anthropic from '@/assets/partners/anthropic-logo.png';
 import thirdweb from '@/assets/partners/thirdweb-logo.png';
 import elevenlabs from '@/assets/partners/elevenlabs-logo.png';
 import storyProtocol from '@/assets/partners/story-protocol-logo.png';
-import gq from '@/assets/partners/gq-logo.png';
+import humanTech from '@/assets/partners/human-tech-logo.png';
 
 interface Logo {
   id: string;
@@ -22,7 +22,7 @@ const logos: Logo[] = [
   { id: '3', name: 'Thirdweb', src: thirdweb, scale: 3 },
   { id: '4', name: 'ElevenLabs', src: elevenlabs, scale: 2 },
   { id: '5', name: 'Story Protocol', src: storyProtocol, scale: 1 },
-  { id: '6', name: 'GQ', src: gq, scale: 1 },
+  { id: '6', name: 'Human.tech', src: humanTech, scale: 1.5 },
 ];
 
 const ScrollingPartners: React.FC = () => {
@@ -36,7 +36,7 @@ const ScrollingPartners: React.FC = () => {
         className="text-center mb-12"
       >
         <p className="text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground">
-          Trusted by Leading Companies
+          Built in Partnership With
         </p>
       </motion.div>
 
