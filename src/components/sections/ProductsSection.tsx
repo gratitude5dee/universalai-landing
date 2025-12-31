@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Layers, User, Cpu, Coins, Music, Shirt } from 'lucide-react';
-import SplineLoadingSkeleton from '@/components/ui/SplineLoadingSkeleton';
+import { ArrowRight, Cpu, Music, Shirt } from 'lucide-react';
+import { ShimmerButton } from '@/components/ui/shimmer-button';
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
@@ -51,12 +51,6 @@ const products: Product[] = [
 const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, index }) => {
   const Icon = product.icon;
 
-  const handleClick = () => {
-    if (product.link) {
-      window.open(product.link, '_blank', 'noopener,noreferrer');
-    }
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -64,8 +58,7 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -10, scale: 1.02 }}
-      onClick={handleClick}
-      className={`group relative h-full ${product.link ? 'cursor-pointer' : ''}`}
+      className="group relative h-full"
     >
       {/* Glow effect on hover */}
       <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} />
@@ -112,14 +105,27 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
             {product.description}
           </p>
 
-          {/* Open App button - positioned to overlay Spline badge */}
-          <div className="mt-6 flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm font-semibold text-primary/80 group-hover:text-primary transition-colors">
-              <span>{product.link ? 'Open App' : 'Coming Soon'}</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-            </div>
-            {/* Overlay element to cover Spline badge */}
-            <div className="w-32 h-8 bg-background/90 backdrop-blur-sm rounded-lg" />
+          {/* CTA - Positioned at bottom-right to cover Spline badge */}
+          <div className="mt-6 flex items-center justify-end">
+            <ShimmerButton
+              shimmerColor={product.link ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))"}
+              shimmerSize="0.06em"
+              shimmerDuration="2.5s"
+              borderRadius="12px"
+              background={product.link ? "hsl(var(--primary) / 0.15)" : "hsl(var(--muted) / 0.3)"}
+              className="px-5 py-2 text-sm font-semibold min-w-[140px]"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (product.link) {
+                  window.open(product.link, '_blank', 'noopener,noreferrer');
+                }
+              }}
+            >
+              <span className="flex items-center gap-2">
+                {product.link ? 'Open App' : 'Coming Soon'}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </ShimmerButton>
           </div>
         </div>
       </div>
