@@ -1,14 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Shield, Users, Database, Lock, Fingerprint, Globe, Cpu, Music, Coffee, Coins } from 'lucide-react';
+import { Shield, Fingerprint, Globe, Cpu, Music, Coffee, Coins, ArrowRight } from 'lucide-react';
+import { ShineBorder } from '@/components/ui/shine-border';
 
 const dimensions = [
-  { label: 'SOVEREIGNTY', color: 'from-blue-500 to-cyan-500' },
-  { label: 'IDENTITY', color: 'from-purple-500 to-pink-500' },
-  { label: 'IP', color: 'from-amber-500 to-orange-500' },
-  { label: 'PRIVACY', color: 'from-emerald-500 to-teal-500' },
-  { label: 'LONGEVITY', color: 'from-rose-500 to-red-500' },
+  { label: 'SOVEREIGNTY', color: 'from-blue-500 to-cyan-400', icon: '⚡' },
+  { label: 'IDENTITY', color: 'from-purple-500 to-pink-400', icon: '🔐' },
+  { label: 'IP', color: 'from-amber-500 to-orange-400', icon: '💎' },
+  { label: 'PRIVACY', color: 'from-emerald-500 to-teal-400', icon: '🛡️' },
+  { label: 'LONGEVITY', color: 'from-rose-500 to-red-400', icon: '∞' },
 ];
 
 const products = [
@@ -17,42 +18,48 @@ const products = [
     name: 'UniversalAI',
     tagline: 'Universal identity for creators—without biometric surveillance.',
     description: 'Your digital license. Your vote. Your passport.',
-    gradient: 'from-blue-500/20 to-cyan-500/20',
+    gradient: 'from-blue-500 to-cyan-500',
+    bgGradient: 'from-blue-500/10 to-cyan-500/10',
   },
   {
     icon: Cpu,
     name: 'WZRD.tech',
     tagline: 'Vertical AI agents on x402 and ERC-8004.',
     description: 'WZRD.Studio delivers production-grade creative assets from your pocket.',
-    gradient: 'from-purple-500/20 to-pink-500/20',
+    gradient: 'from-purple-500 to-pink-500',
+    bgGradient: 'from-purple-500/10 to-pink-500/10',
   },
   {
     icon: Coins,
     name: '$5DEE',
     tagline: 'The digital penny powering autonomous creator commerce.',
     description: 'Micro-transactions for the agentic economy.',
-    gradient: 'from-amber-500/20 to-orange-500/20',
+    gradient: 'from-amber-500 to-orange-500',
+    bgGradient: 'from-amber-500/10 to-orange-500/10',
   },
   {
     icon: Music,
     name: 'EARTONE',
     tagline: 'Distribution as public infrastructure.',
     description: 'Your content, your revenue, forever.',
-    gradient: 'from-emerald-500/20 to-teal-500/20',
+    gradient: 'from-emerald-500 to-teal-500',
+    bgGradient: 'from-emerald-500/10 to-teal-500/10',
   },
   {
     icon: Globe,
     name: 'Project Pleiades',
     tagline: 'Interoperable hardware for fashion, media, and physical creator spaces.',
     description: 'Bridging digital and physical creator economies.',
-    gradient: 'from-indigo-500/20 to-violet-500/20',
+    gradient: 'from-indigo-500 to-violet-500',
+    bgGradient: 'from-indigo-500/10 to-violet-500/10',
   },
   {
     icon: Coffee,
     name: 'Fifth Spaces',
     tagline: 'Creator Cafés and studios reimagined.',
     description: 'DePIN for the creative class.',
-    gradient: 'from-rose-500/20 to-red-500/20',
+    gradient: 'from-rose-500 to-red-500',
+    bgGradient: 'from-rose-500/10 to-red-500/10',
   },
 ];
 
@@ -63,37 +70,41 @@ const ManifestoSection: React.FC = () => {
   });
 
   return (
-    <section id="manifesto" className="py-32 relative overflow-hidden">
+    <section id="manifesto" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
-      <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[200px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/[0.02] to-background pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-liquid border border-primary/20 mb-8"
           >
             <Shield className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">THE 5-DEE MANIFESTO</span>
+            <span className="text-sm font-semibold text-primary tracking-wider">THE 5-DEE MANIFESTO</span>
           </motion.div>
 
-          {/* Five Dimensions */}
-          <div ref={ref} className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-12">
+          {/* Five Dimensions - Enhanced Pills */}
+          <div ref={ref} className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
             {dimensions.map((dim, index) => (
-              <motion.span
+              <motion.div
                 key={dim.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r ${dim.color} bg-clip-text text-transparent`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className="group relative"
               >
-                {dim.label}
-              </motion.span>
+                <div className={`px-4 py-2 rounded-full glass-liquid border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2`}>
+                  <span className="text-base">{dim.icon}</span>
+                  <span className={`text-sm sm:text-base font-bold bg-gradient-to-r ${dim.color} bg-clip-text text-transparent`}>
+                    {dim.label}
+                  </span>
+                </div>
+              </motion.div>
             ))}
           </div>
 
@@ -108,59 +119,76 @@ const ManifestoSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* Declaration Section */}
+        {/* Declaration Section - Premium Glass Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-4xl mx-auto mb-24"
+          className="max-w-4xl mx-auto mb-20 md:mb-28"
         >
-          <div className="glass-liquid rounded-[2rem] p-8 md:p-12 relative overflow-hidden">
-            {/* Inner glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        <div className="relative rounded-[2rem] overflow-hidden">
+            <ShineBorder 
+              shineColor={["hsl(210 100% 50%)", "hsl(280 100% 60%)", "hsl(40 100% 50%)"]} 
+              duration={8}
+              borderWidth={2}
+            />
+            <div className="glass-liquid p-8 md:p-12 lg:p-16 rounded-[2rem]">
+              {/* Subtle inner glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
 
-            <div className="relative space-y-10">
-              {/* We Declare */}
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                  We Declare
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                  The future belongs to no one—and everyone. Billion-dollar companies will be run by zero people. 
-                  AI agents will negotiate your licensing deals at 3 AM. Your creative DNA will generate revenue 
-                  across dimensions you haven't imagined yet. This isn't speculation. This is acceleration.
-                </p>
-              </div>
+              <div className="relative space-y-10">
+                {/* We Declare */}
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-1 h-8 rounded-full bg-gradient-to-b from-primary to-accent" />
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                      We Declare
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg pl-6">
+                    The future belongs to no one—and everyone. Billion-dollar companies will be run by zero people. 
+                    AI agents will negotiate your licensing deals at 3 AM. Your creative DNA will generate revenue 
+                    across dimensions you haven't imagined yet. <span className="text-primary font-medium">This isn't speculation. This is acceleration.</span>
+                  </p>
+                </div>
 
-              {/* H/Acc */}
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-                  Holistic Acceleration (H/Acc)
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                  Building autonomous companies that serve public good by design. Treasuries that fund infrastructure. 
-                  Revenue that flows to creative public works. Systems optimized for one thing: the expansion of human potential.
-                </p>
-              </div>
+                {/* H/Acc */}
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-1 h-8 rounded-full bg-gradient-to-b from-emerald-400 to-teal-400" />
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                      Holistic Acceleration (H/Acc)
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed text-base md:text-lg pl-6">
+                    Building autonomous companies that serve public good by design. Treasuries that fund infrastructure. 
+                    Revenue that flows to creative public works. Systems optimized for one thing: <span className="text-emerald-400 font-medium">the expansion of human potential.</span>
+                  </p>
+                </div>
 
-              {/* The Reckoning */}
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r from-rose-400 to-orange-400 bg-clip-text text-transparent">
-                  The Reckoning
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-4">
-                  Technology consolidation is inevitable. M&A will reshape every industry. The post-labor economy 
-                  will arrive faster than policymakers can respond. Tech giants will become the new governing forces.
-                </p>
-                <p className="text-foreground font-semibold text-lg md:text-xl mb-4">
-                  The only question that matters: Will you be owned—or will you own?
-                </p>
-                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                  Original IP. Personal data. Identity verification. These become the new oil, the new gold, the new power. 
-                  We're building the vault. We're building the infrastructure. We're building the future.
-                </p>
+                {/* The Reckoning */}
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-1 h-8 rounded-full bg-gradient-to-b from-rose-400 to-orange-400" />
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground">
+                      The Reckoning
+                    </h3>
+                  </div>
+                  <div className="pl-6 space-y-4">
+                    <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+                      Technology consolidation is inevitable. M&A will reshape every industry. The post-labor economy 
+                      will arrive faster than policymakers can respond. Tech giants will become the new governing forces.
+                    </p>
+                    <p className="text-lg md:text-xl font-semibold bg-gradient-to-r from-rose-400 to-orange-400 bg-clip-text text-transparent">
+                      The only question that matters: Will you be owned—or will you own?
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+                      Original IP. Personal data. Identity verification. These become the new oil, the new gold, the new power. 
+                      We're building the vault. We're building the infrastructure. We're building the future.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -168,17 +196,22 @@ const ManifestoSection: React.FC = () => {
 
         {/* Architecture of Freedom - Products Grid */}
         <div className="mb-16">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-4xl font-bold text-center mb-12"
+            className="text-center mb-12"
           >
-            <span className="text-foreground">The Architecture of</span>{' '}
-            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Freedom</span>
-          </motion.h2>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold mb-4">
+              <span className="text-foreground">The Architecture of </span>
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">Freedom</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto">
+              Six pillars powering the creator-sovereign stack
+            </p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {products.map((product, index) => {
               const Icon = product.icon;
               return (
@@ -187,37 +220,43 @@ const ManifestoSection: React.FC = () => {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.08 }}
-                  whileHover={{ y: -8, scale: 1.02 }}
+                  transition={{ duration: 0.4, delay: index * 0.06 }}
+                  whileHover={{ y: -6 }}
                   className="group relative"
                 >
-                  {/* Glow effect */}
-                  <div className={`absolute -inset-1 rounded-[1.5rem] bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl`} />
-
                   {/* Card */}
-                  <div className="glass-liquid glass-liquid-hover relative p-6 rounded-[1.5rem] h-full transition-all duration-300">
-                    {/* Inner reflection */}
-                    <div className="absolute inset-0 rounded-[1.5rem] bg-gradient-to-br from-white/[0.05] via-transparent to-transparent pointer-events-none" />
+                  <div className="relative h-full rounded-2xl glass-liquid border border-white/5 hover:border-white/10 p-6 transition-all duration-300 overflow-hidden">
+                    {/* Background gradient on hover */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${product.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                    
+                    {/* Content */}
+                    <div className="relative z-10">
+                      {/* Icon */}
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${product.bgGradient} border border-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className={`w-6 h-6 bg-gradient-to-r ${product.gradient} bg-clip-text`} style={{ color: 'transparent', background: `linear-gradient(to right, var(--tw-gradient-from), var(--tw-gradient-to))`, WebkitBackgroundClip: 'text' }} />
+                        <Icon className={`w-6 h-6 text-primary`} />
+                      </div>
 
-                    {/* Icon */}
-                    <div className="relative w-12 h-12 rounded-xl glass-liquid flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-6 h-6 text-primary" />
+                      {/* Name */}
+                      <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                        {product.name}
+                      </h3>
+
+                      {/* Tagline */}
+                      <p className={`text-sm mb-3 font-medium bg-gradient-to-r ${product.gradient} bg-clip-text text-transparent`}>
+                        {product.tagline}
+                      </p>
+
+                      {/* Description */}
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {product.description}
+                      </p>
                     </div>
 
-                    {/* Name */}
-                    <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                      {product.name}
-                    </h3>
-
-                    {/* Tagline */}
-                    <p className="text-sm text-primary/80 mb-3 font-medium">
-                      {product.tagline}
-                    </p>
-
-                    {/* Description */}
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {product.description}
-                    </p>
+                    {/* Arrow indicator */}
+                    <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <ArrowRight className="w-4 h-4 text-primary" />
+                    </div>
                   </div>
                 </motion.div>
               );
@@ -226,15 +265,19 @@ const ManifestoSection: React.FC = () => {
         </div>
 
         {/* Closing Statement */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto"
+          className="text-center max-w-3xl mx-auto"
         >
-          The technology to connect and optimize humans via self-sovereign identity, data, and fiscal governance already exists.{' '}
-          <span className="text-primary font-semibold">Now we deploy it.</span>
-        </motion.p>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+            The technology to connect and optimize humans via self-sovereign identity, data, and fiscal governance already exists.
+          </p>
+          <p className="text-xl md:text-2xl font-bold mt-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Now we deploy it.
+          </p>
+        </motion.div>
       </div>
     </section>
   );
