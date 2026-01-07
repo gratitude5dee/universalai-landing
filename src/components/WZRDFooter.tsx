@@ -141,14 +141,43 @@ const WZRDFooter: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-6 sm:pt-8 border-t border-border/10 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
-          <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-left">
-            © {new Date().getFullYear()} 5-Dee Studios. All rights reserved.
-          </p>
-          <p className="text-xs sm:text-sm text-muted-foreground text-center md:text-right">
-            Built with 💜 for the creator economy
-          </p>
+        {/* Bottom bar - Centered Buttons */}
+        <div className="pt-6 sm:pt-8 border-t border-border/10 flex flex-col items-center gap-6">
+          {/* Centered Action Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {socialLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 text-sm text-muted-foreground hover:text-foreground"
+                >
+                  <Icon className="w-4 h-4" />
+                  {link.label}
+                </a>
+              );
+            })}
+            <a
+              href="mailto:hello@5dee.studio"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 text-sm text-muted-foreground hover:text-foreground"
+            >
+              <Mail className="w-4 h-4" />
+              Contact
+            </a>
+          </div>
+
+          {/* Copyright - Centered Below */}
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              © {new Date().getFullYear()} 5-Dee Studios. All rights reserved.
+            </p>
+            <p className="text-xs sm:text-sm text-muted-foreground">
+              Built with 💜 for the creator economy
+            </p>
+          </div>
         </div>
       </div>
     </footer>

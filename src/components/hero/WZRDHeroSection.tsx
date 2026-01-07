@@ -118,25 +118,25 @@ const WZRDHeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }} 
               className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12 px-2"
             >
-              <ShimmerButton 
-                onClick={() => setWaitlistOpen(true)}
-                shimmerColor="hsl(210 100% 70%)"
-                background="hsl(var(--primary))"
-                borderRadius="16px"
-                shimmerDuration="2.5s"
-                className="w-full sm:w-auto font-bold px-8 sm:px-10 min-h-[56px] py-5 sm:py-7 text-base sm:text-lg"
-              >
-                Join Waitlist
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </ShimmerButton>
-              <Button 
-                onClick={scrollToManifesto} 
-                variant="outline" 
-                size="lg" 
-                className="w-full sm:w-auto glass-liquid border-border/30 hover:border-primary/40 px-8 sm:px-10 min-h-[56px] py-5 sm:py-7 text-base sm:text-lg rounded-2xl font-semibold touch-manipulation"
-              >
-                Read Manifesto
-              </Button>
+            <ShimmerButton 
+              onClick={() => setWaitlistOpen(true)}
+              shimmerColor="hsl(210 100% 70%)"
+              background="hsl(var(--primary))"
+              borderRadius="16px"
+              shimmerDuration="2.5s"
+              className="w-full sm:w-auto font-bold px-8 sm:px-10 h-[52px] text-base sm:text-lg"
+            >
+              Join Waitlist
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </ShimmerButton>
+            <Button 
+              onClick={scrollToManifesto} 
+              variant="outline" 
+              size="lg" 
+              className="w-full sm:w-auto glass-liquid border-border/30 hover:border-primary/40 px-8 sm:px-10 h-[52px] text-base sm:text-lg rounded-2xl font-semibold touch-manipulation"
+            >
+              Read Manifesto
+            </Button>
             </motion.div>
 
             {/* Product Hunt Badge */}
@@ -144,7 +144,7 @@ const WZRDHeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.8, delay: 0.4 }} 
-              className="flex justify-center"
+              className="flex justify-center mb-8"
             >
               <a 
                 href="https://www.producthunt.com/posts/wzrd-tech" 
@@ -161,6 +161,49 @@ const WZRDHeroSection: React.FC = () => {
                   }} 
                 />
               </a>
+            </motion.div>
+
+            {/* Company Attribution Badges */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-col items-center gap-4"
+            >
+              {/* Attribution Label */}
+              <span className="text-xs sm:text-sm font-medium text-muted-foreground/70 uppercase tracking-widest">
+                Backed by visionaries from
+              </span>
+
+              {/* Logo Row */}
+              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                {/* Y Combinator Badge */}
+                <div className="group flex items-center gap-2 px-4 py-2 rounded-full glass-liquid border border-border/20 hover:border-primary/30 transition-all duration-300 cursor-default">
+                  <div className="w-6 h-6 rounded-md bg-[#FF6600] flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">Y</span>
+                  </div>
+                  <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">Combinator</span>
+                </div>
+
+                {/* Stanford */}
+                <div className="group flex items-center gap-2 px-4 py-2 rounded-full glass-liquid border border-border/20 hover:border-primary/30 transition-all duration-300 cursor-default">
+                  <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">Stanford</span>
+                </div>
+
+                {/* Berkeley */}
+                <div className="group flex items-center gap-2 px-4 py-2 rounded-full glass-liquid border border-border/20 hover:border-primary/30 transition-all duration-300 cursor-default">
+                  <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">UC Berkeley</span>
+                </div>
+
+                {/* Product Hunt Featured Badge */}
+                <div className="group flex items-center gap-2 px-4 py-2 rounded-full glass-liquid border border-border/20 hover:border-primary/30 transition-all duration-300 cursor-default">
+                  <div className="w-5 h-5 rounded-full bg-[#DA552F] flex items-center justify-center">
+                    <span className="text-white text-[10px] font-bold">P</span>
+                  </div>
+                  <span className="text-xs text-muted-foreground">Featured on</span>
+                  <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">Product Hunt</span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
