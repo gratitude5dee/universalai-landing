@@ -106,7 +106,7 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
           </p>
 
           {/* CTA - Positioned at bottom-right to cover Spline badge */}
-          <div className="mt-6 flex items-center justify-end">
+          <div className="mt-6 flex items-center justify-end translate-y-[2px] translate-x-[2px]">
             <ShimmerButton
               shimmerColor={product.link ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))"}
               shimmerSize="0.06em"
