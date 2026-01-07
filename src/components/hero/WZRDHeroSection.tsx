@@ -46,6 +46,25 @@ const WZRDHeroSection: React.FC = () => {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-4 sm:px-6 pt-24 sm:pt-32 pb-16 sm:pb-20">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Product Hunt Badge - Top */}
+            <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} animate={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.5
+          }} className="flex justify-center mb-4">
+              <a href="https://www.producthunt.com/posts/wzrd-tech" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2 px-4 py-2 rounded-full glass-liquid border border-border/20 hover:border-primary/30 transition-all duration-300">
+                <div className="w-5 h-5 rounded-full bg-[#DA552F] flex items-center justify-center">
+                  <span className="text-white text-[10px] font-bold">P</span>
+                </div>
+                <span className="text-xs text-muted-foreground">Featured on</span>
+                <span className="text-sm font-medium text-foreground/80 group-hover:text-primary transition-colors">Product Hunt</span>
+              </a>
+            </motion.div>
+
             {/* Badge */}
             <motion.div initial={{
             opacity: 0,
@@ -54,7 +73,8 @@ const WZRDHeroSection: React.FC = () => {
             opacity: 1,
             y: 0
           }} transition={{
-            duration: 0.6
+            duration: 0.6,
+            delay: 0.1
           }} className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full glass-liquid mb-6 sm:mb-8">
               <Sparkles className="w-4 h-4 text-primary" />
               <span className="text-xs sm:text-sm font-semibold tracking-wide text-primary">The Creator-Agent OS</span>
@@ -117,59 +137,6 @@ const WZRDHeroSection: React.FC = () => {
             </Button>
             </motion.div>
 
-            {/* Product Hunt Badge */}
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.4
-          }} className="flex justify-center mb-8">
-              <a href="https://www.producthunt.com/posts/wzrd-tech" target="_blank" rel="noopener noreferrer" className="opacity-80 hover:opacity-100 transition-opacity hover:scale-105 transform duration-200">
-                <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=wzrd-tech&theme=dark" alt="WZRD.tech on Product Hunt" className="h-12 sm:h-14" onError={e => {
-                e.currentTarget.style.display = 'none';
-              }} />
-              </a>
-            </motion.div>
-
-            {/* Company Attribution Badges */}
-            <motion.div initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.8,
-            delay: 0.5
-          }} className="flex flex-col items-center gap-4">
-              {/* Attribution Label */}
-              
-
-              {/* Logo Row */}
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                {/* Y Combinator Badge */}
-                
-
-                {/* Stanford */}
-                
-
-                {/* Berkeley */}
-                
-
-                {/* Product Hunt Featured Badge */}
-                <div className="group flex items-center gap-2 px-4 py-2 rounded-full glass-liquid border border-border/20 hover:border-primary/30 transition-all duration-300 cursor-default">
-                  <div className="w-5 h-5 rounded-full bg-[#DA552F] flex items-center justify-center">
-                    <span className="text-white text-[10px] font-bold">P</span>
-                  </div>
-                  <span className="text-xs text-muted-foreground">Featured on</span>
-                  <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">Product Hunt</span>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
 
