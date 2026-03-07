@@ -51,7 +51,9 @@ const products: Product[] = [
 
 const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, index }) => {
   const Icon = product.icon;
-
+  const [hasBeenHovered, setHasBeenHovered] = useState(false);
+  const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true });
+  const showSpline = inView && hasBeenHovered && !!product.splineScene;
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
