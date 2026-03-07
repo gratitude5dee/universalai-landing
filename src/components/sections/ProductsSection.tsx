@@ -1,7 +1,8 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Cpu, Music, Shirt } from 'lucide-react';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
+import { useInView } from 'react-intersection-observer';
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
@@ -50,7 +51,9 @@ const products: Product[] = [
 
 const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, index }) => {
   const Icon = product.icon;
-
+  const [hasBeenHovered, setHasBeenHovered] = useState(false);
+  const { ref, inView } = useInView({ threshold: 0.3, triggerOnce: true });
+  const showSpline = inView && hasBeenHovered && !!product.splineScene;
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -58,7 +61,9 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -10, scale: 1.02 }}
+      onHoverStart={() => setHasBeenHovered(true)}
       className="group relative h-full"
+      ref={ref}
     >
       {/* Glow effect on hover */}
       <div className={`absolute -inset-1 rounded-[2rem] bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl`} />
@@ -69,11 +74,11 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
         <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none z-10" />
         
         {/* Spline Background or Gradient - wrapped with overflow-hidden */}
-        {product.splineScene ? (
+        {showSpline ? (
           <div className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500 overflow-hidden">
             <Suspense fallback={<div className={`w-full h-full bg-gradient-to-br ${product.gradient}`} />}>
               <Spline 
-                scene={product.splineScene}
+                scene={product.splineScene!}
                 style={{ width: '100%', height: '100%' }}
               />
             </Suspense>

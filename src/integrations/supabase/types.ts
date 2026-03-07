@@ -284,13 +284,16 @@ export type Database = {
           body_html: string | null
           body_text: string | null
           canonical_url: string | null
+          comments_count: number
           entities: Json | null
           excerpt: string | null
           fetched_at: string | null
           id: string
           image_url: string | null
+          likes_count: number
           published_at: string | null
           score: number | null
+          shares_count: number
           simhash: number | null
           source_id: string | null
           tags: string[] | null
@@ -298,19 +301,23 @@ export type Database = {
           title: string
           topics: string[] | null
           url: string
+          views_count: number
         }
         Insert: {
           author?: string | null
           body_html?: string | null
           body_text?: string | null
           canonical_url?: string | null
+          comments_count?: number
           entities?: Json | null
           excerpt?: string | null
           fetched_at?: string | null
           id?: string
           image_url?: string | null
+          likes_count?: number
           published_at?: string | null
           score?: number | null
+          shares_count?: number
           simhash?: number | null
           source_id?: string | null
           tags?: string[] | null
@@ -318,19 +325,23 @@ export type Database = {
           title: string
           topics?: string[] | null
           url: string
+          views_count?: number
         }
         Update: {
           author?: string | null
           body_html?: string | null
           body_text?: string | null
           canonical_url?: string | null
+          comments_count?: number
           entities?: Json | null
           excerpt?: string | null
           fetched_at?: string | null
           id?: string
           image_url?: string | null
+          likes_count?: number
           published_at?: string | null
           score?: number | null
+          shares_count?: number
           simhash?: number | null
           source_id?: string | null
           tags?: string[] | null
@@ -338,6 +349,7 @@ export type Database = {
           title?: string
           topics?: string[] | null
           url?: string
+          views_count?: number
         }
         Relationships: []
       }
@@ -1466,6 +1478,77 @@ export type Database = {
           },
         ]
       }
+      content_bookmarks: {
+        Row: {
+          content_id: string
+          content_type: string
+          created_at: string
+          id: string
+          user_wallet: string
+        }
+        Insert: {
+          content_id: string
+          content_type: string
+          created_at?: string
+          id?: string
+          user_wallet: string
+        }
+        Update: {
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          id?: string
+          user_wallet?: string
+        }
+        Relationships: []
+      }
+      content_comments: {
+        Row: {
+          content: string
+          content_id: string
+          content_type: string
+          created_at: string
+          id: string
+          likes_count: number
+          parent_comment_id: string | null
+          user_avatar: string | null
+          user_name: string | null
+          user_wallet: string
+        }
+        Insert: {
+          content: string
+          content_id: string
+          content_type: string
+          created_at?: string
+          id?: string
+          likes_count?: number
+          parent_comment_id?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          user_wallet: string
+        }
+        Update: {
+          content?: string
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          id?: string
+          likes_count?: number
+          parent_comment_id?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          user_wallet?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_comments_parent_comment_id_fkey"
+            columns: ["parent_comment_id"]
+            isOneToOne: false
+            referencedRelation: "content_comments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       content_folders: {
         Row: {
           created_at: string
@@ -1616,6 +1699,30 @@ export type Database = {
           },
         ]
       }
+      content_likes: {
+        Row: {
+          content_id: string
+          content_type: string
+          created_at: string
+          id: string
+          user_wallet: string
+        }
+        Insert: {
+          content_id: string
+          content_type: string
+          created_at?: string
+          id?: string
+          user_wallet: string
+        }
+        Update: {
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          id?: string
+          user_wallet?: string
+        }
+        Relationships: []
+      }
       content_queue: {
         Row: {
           angle_id: string
@@ -1736,6 +1843,45 @@ export type Database = {
           level?: string | null
           meta?: Json | null
           msg?: string | null
+        }
+        Relationships: []
+      }
+      creator_balances: {
+        Row: {
+          bookmarks_earned: number | null
+          comments_earned: number | null
+          last_payout_at: string | null
+          likes_earned: number | null
+          pending_payout: number | null
+          shares_earned: number | null
+          total_earned: number | null
+          updated_at: string | null
+          views_earned: number | null
+          wallet_address: string
+        }
+        Insert: {
+          bookmarks_earned?: number | null
+          comments_earned?: number | null
+          last_payout_at?: string | null
+          likes_earned?: number | null
+          pending_payout?: number | null
+          shares_earned?: number | null
+          total_earned?: number | null
+          updated_at?: string | null
+          views_earned?: number | null
+          wallet_address: string
+        }
+        Update: {
+          bookmarks_earned?: number | null
+          comments_earned?: number | null
+          last_payout_at?: string | null
+          likes_earned?: number | null
+          pending_payout?: number | null
+          shares_earned?: number | null
+          total_earned?: number | null
+          updated_at?: string | null
+          views_earned?: number | null
+          wallet_address?: string
         }
         Relationships: []
       }
@@ -2076,6 +2222,48 @@ export type Database = {
           },
         ]
       }
+      engagement_payouts: {
+        Row: {
+          action_type: string
+          amount: number
+          confirmed_at: string | null
+          content_id: string
+          content_type: string
+          created_at: string | null
+          creator_wallet: string
+          id: string
+          payer_wallet: string
+          status: string | null
+          tx_hash: string | null
+        }
+        Insert: {
+          action_type: string
+          amount: number
+          confirmed_at?: string | null
+          content_id: string
+          content_type: string
+          created_at?: string | null
+          creator_wallet: string
+          id?: string
+          payer_wallet: string
+          status?: string | null
+          tx_hash?: string | null
+        }
+        Update: {
+          action_type?: string
+          amount?: number
+          confirmed_at?: string | null
+          content_id?: string
+          content_type?: string
+          created_at?: string | null
+          creator_wallet?: string
+          id?: string
+          payer_wallet?: string
+          status?: string | null
+          tx_hash?: string | null
+        }
+        Relationships: []
+      }
       evaluation_results: {
         Row: {
           created_at: string | null
@@ -2366,6 +2554,74 @@ export type Database = {
         }
         Relationships: []
       }
+      export_jobs: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          error_message: string | null
+          fallback_used: boolean | null
+          id: string
+          output_url: string | null
+          progress: number | null
+          project_id: string
+          provider: string | null
+          provider_job_id: string | null
+          provider_payload: Json | null
+          provider_status: string | null
+          settings: Json | null
+          started_at: string | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          fallback_used?: boolean | null
+          id?: string
+          output_url?: string | null
+          progress?: number | null
+          project_id: string
+          provider?: string | null
+          provider_job_id?: string | null
+          provider_payload?: Json | null
+          provider_status?: string | null
+          settings?: Json | null
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          error_message?: string | null
+          fallback_used?: boolean | null
+          id?: string
+          output_url?: string | null
+          progress?: number | null
+          project_id?: string
+          provider?: string | null
+          provider_job_id?: string | null
+          provider_payload?: Json | null
+          provider_status?: string | null
+          settings?: Json | null
+          started_at?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "export_jobs_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       falai_job_updates: {
         Row: {
           created_at: string | null
@@ -2442,6 +2698,59 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "falai_jobs_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      final_project_assets: {
+        Row: {
+          asset_type: string
+          created_at: string
+          duration_ms: number | null
+          file_size: number | null
+          file_url: string | null
+          id: string
+          metadata: Json | null
+          project_id: string
+          storage_bucket: string | null
+          storage_path: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          asset_type?: string
+          created_at?: string
+          duration_ms?: number | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          metadata?: Json | null
+          project_id: string
+          storage_bucket?: string | null
+          storage_path?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          asset_type?: string
+          created_at?: string
+          duration_ms?: number | null
+          file_size?: number | null
+          file_url?: string | null
+          id?: string
+          metadata?: Json | null
+          project_id?: string
+          storage_bucket?: string | null
+          storage_path?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "final_project_assets_project_id_fkey"
             columns: ["project_id"]
             isOneToOne: false
             referencedRelation: "projects"
@@ -3331,6 +3640,318 @@ export type Database = {
             columns: ["product_template_id"]
             isOneToOne: false
             referencedRelation: "product_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mog_agent_profiles: {
+        Row: {
+          api_key_hash: string | null
+          avatar_url: string | null
+          created_at: string | null
+          description: string | null
+          follower_count: number | null
+          following_count: number | null
+          id: string
+          is_active: boolean | null
+          is_verified: boolean | null
+          karma: number | null
+          last_active_at: string | null
+          moltbook_id: string
+          name: string
+          post_count: number | null
+          updated_at: string | null
+          wallet_address: string
+        }
+        Insert: {
+          api_key_hash?: string | null
+          avatar_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          follower_count?: number | null
+          following_count?: number | null
+          id?: string
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          karma?: number | null
+          last_active_at?: string | null
+          moltbook_id: string
+          name: string
+          post_count?: number | null
+          updated_at?: string | null
+          wallet_address: string
+        }
+        Update: {
+          api_key_hash?: string | null
+          avatar_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          follower_count?: number | null
+          following_count?: number | null
+          id?: string
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          karma?: number | null
+          last_active_at?: string | null
+          moltbook_id?: string
+          name?: string
+          post_count?: number | null
+          updated_at?: string | null
+          wallet_address?: string
+        }
+        Relationships: []
+      }
+      mog_bookmarks: {
+        Row: {
+          created_at: string | null
+          id: string
+          post_id: string | null
+          user_wallet: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          post_id?: string | null
+          user_wallet: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          post_id?: string | null
+          user_wallet?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mog_bookmarks_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "mog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mog_comments: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          likes_count: number | null
+          parent_comment_id: string | null
+          post_id: string | null
+          user_avatar: string | null
+          user_name: string | null
+          user_type: string | null
+          user_wallet: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          likes_count?: number | null
+          parent_comment_id?: string | null
+          post_id?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          user_type?: string | null
+          user_wallet: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          likes_count?: number | null
+          parent_comment_id?: string | null
+          post_id?: string | null
+          user_avatar?: string | null
+          user_name?: string | null
+          user_type?: string | null
+          user_wallet?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mog_comments_parent_comment_id_fkey"
+            columns: ["parent_comment_id"]
+            isOneToOne: false
+            referencedRelation: "mog_comments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mog_comments_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "mog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mog_follows: {
+        Row: {
+          created_at: string | null
+          follower_wallet: string
+          following_wallet: string
+          id: string
+        }
+        Insert: {
+          created_at?: string | null
+          follower_wallet: string
+          following_wallet: string
+          id?: string
+        }
+        Update: {
+          created_at?: string | null
+          follower_wallet?: string
+          following_wallet?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      mog_likes: {
+        Row: {
+          created_at: string | null
+          id: string
+          post_id: string | null
+          user_wallet: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          post_id?: string | null
+          user_wallet: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          post_id?: string | null
+          user_wallet?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mog_likes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "mog_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mog_posts: {
+        Row: {
+          audio_id: string | null
+          audio_name: string | null
+          comments_count: number | null
+          content_type: string
+          created_at: string | null
+          creator_avatar: string | null
+          creator_name: string | null
+          creator_type: string
+          creator_wallet: string
+          description: string | null
+          hashtags: string[] | null
+          id: string
+          is_featured: boolean | null
+          is_published: boolean | null
+          likes_count: number | null
+          media_url: string | null
+          shares_count: number | null
+          thumbnail_url: string | null
+          title: string | null
+          updated_at: string | null
+          views_count: number | null
+        }
+        Insert: {
+          audio_id?: string | null
+          audio_name?: string | null
+          comments_count?: number | null
+          content_type: string
+          created_at?: string | null
+          creator_avatar?: string | null
+          creator_name?: string | null
+          creator_type?: string
+          creator_wallet: string
+          description?: string | null
+          hashtags?: string[] | null
+          id?: string
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          likes_count?: number | null
+          media_url?: string | null
+          shares_count?: number | null
+          thumbnail_url?: string | null
+          title?: string | null
+          updated_at?: string | null
+          views_count?: number | null
+        }
+        Update: {
+          audio_id?: string | null
+          audio_name?: string | null
+          comments_count?: number | null
+          content_type?: string
+          created_at?: string | null
+          creator_avatar?: string | null
+          creator_name?: string | null
+          creator_type?: string
+          creator_wallet?: string
+          description?: string | null
+          hashtags?: string[] | null
+          id?: string
+          is_featured?: boolean | null
+          is_published?: boolean | null
+          likes_count?: number | null
+          media_url?: string | null
+          shares_count?: number | null
+          thumbnail_url?: string | null
+          title?: string | null
+          updated_at?: string | null
+          views_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mog_posts_audio_id_fkey"
+            columns: ["audio_id"]
+            isOneToOne: false
+            referencedRelation: "music_tracks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      mog_rate_limits: {
+        Row: {
+          action_count: number | null
+          action_type: string
+          agent_id: string | null
+          created_at: string | null
+          id: string
+          window_start: string | null
+        }
+        Insert: {
+          action_count?: number | null
+          action_type: string
+          agent_id?: string | null
+          created_at?: string | null
+          id?: string
+          window_start?: string | null
+        }
+        Update: {
+          action_count?: number | null
+          action_type?: string
+          agent_id?: string | null
+          created_at?: string | null
+          id?: string
+          window_start?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mog_rate_limits_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "agent_profiles_safe"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "mog_rate_limits_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "mog_agent_profiles"
             referencedColumns: ["id"]
           },
         ]
@@ -4462,6 +5083,87 @@ export type Database = {
           },
         ]
       }
+      music_albums: {
+        Row: {
+          artist: string
+          cover_path: string | null
+          created_at: string
+          description: string | null
+          id: string
+          release_date: string | null
+          title: string
+        }
+        Insert: {
+          artist: string
+          cover_path?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          release_date?: string | null
+          title: string
+        }
+        Update: {
+          artist?: string
+          cover_path?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          release_date?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      music_entitlements: {
+        Row: {
+          expires_at: string | null
+          granted_at: string
+          id: string
+          is_active: boolean
+          track_id: string | null
+          tx_hash: string | null
+          user_id: string | null
+          user_wallet: string | null
+          video_id: string | null
+        }
+        Insert: {
+          expires_at?: string | null
+          granted_at?: string
+          id?: string
+          is_active?: boolean
+          track_id?: string | null
+          tx_hash?: string | null
+          user_id?: string | null
+          user_wallet?: string | null
+          video_id?: string | null
+        }
+        Update: {
+          expires_at?: string | null
+          granted_at?: string
+          id?: string
+          is_active?: boolean
+          track_id?: string | null
+          tx_hash?: string | null
+          user_id?: string | null
+          user_wallet?: string | null
+          video_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "music_entitlements_track_id_fkey"
+            columns: ["track_id"]
+            isOneToOne: false
+            referencedRelation: "music_tracks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "music_entitlements_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "music_videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       music_items: {
         Row: {
           album: string | null
@@ -4561,6 +5263,280 @@ export type Database = {
           user_id?: string
           valence?: number | null
           youtube_id?: string | null
+        }
+        Relationships: []
+      }
+      music_streams: {
+        Row: {
+          access_token: string
+          created_at: string
+          expires_at: string
+          id: string
+          stream_id: string
+          track_id: string
+          user_wallet: string | null
+        }
+        Insert: {
+          access_token: string
+          created_at?: string
+          expires_at: string
+          id?: string
+          stream_id: string
+          track_id: string
+          user_wallet?: string | null
+        }
+        Update: {
+          access_token?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          stream_id?: string
+          track_id?: string
+          user_wallet?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "music_streams_track_id_fkey"
+            columns: ["track_id"]
+            isOneToOne: false
+            referencedRelation: "music_tracks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      music_tracks: {
+        Row: {
+          album_id: string | null
+          artist: string
+          artist_wallet: string | null
+          audio_path: string | null
+          comments_count: number
+          cover_path: string | null
+          created_at: string
+          description: string | null
+          duration: number | null
+          id: string
+          likes_count: number
+          price: number
+          shares_count: number
+          title: string
+          views_count: number
+        }
+        Insert: {
+          album_id?: string | null
+          artist: string
+          artist_wallet?: string | null
+          audio_path?: string | null
+          comments_count?: number
+          cover_path?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          id?: string
+          likes_count?: number
+          price?: number
+          shares_count?: number
+          title: string
+          views_count?: number
+        }
+        Update: {
+          album_id?: string | null
+          artist?: string
+          artist_wallet?: string | null
+          audio_path?: string | null
+          comments_count?: number
+          cover_path?: string | null
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          id?: string
+          likes_count?: number
+          price?: number
+          shares_count?: number
+          title?: string
+          views_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "music_tracks_album_id_fkey"
+            columns: ["album_id"]
+            isOneToOne: false
+            referencedRelation: "music_albums"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      music_transactions: {
+        Row: {
+          amount: number
+          artist_wallet: string
+          created_at: string
+          id: string
+          status: string
+          track_id: string
+          tx_hash: string | null
+          user_wallet: string
+        }
+        Insert: {
+          amount: number
+          artist_wallet: string
+          created_at?: string
+          id?: string
+          status?: string
+          track_id: string
+          tx_hash?: string | null
+          user_wallet: string
+        }
+        Update: {
+          amount?: number
+          artist_wallet?: string
+          created_at?: string
+          id?: string
+          status?: string
+          track_id?: string
+          tx_hash?: string | null
+          user_wallet?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "music_transactions_track_id_fkey"
+            columns: ["track_id"]
+            isOneToOne: false
+            referencedRelation: "music_tracks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      music_video_streams: {
+        Row: {
+          access_token: string
+          created_at: string
+          expires_at: string
+          id: string
+          stream_id: string
+          user_wallet: string | null
+          video_id: string
+        }
+        Insert: {
+          access_token: string
+          created_at?: string
+          expires_at: string
+          id?: string
+          stream_id: string
+          user_wallet?: string | null
+          video_id: string
+        }
+        Update: {
+          access_token?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          stream_id?: string
+          user_wallet?: string | null
+          video_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "music_video_streams_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "music_videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      music_video_transactions: {
+        Row: {
+          amount: number
+          artist_wallet: string
+          created_at: string
+          id: string
+          status: string
+          tx_hash: string | null
+          user_wallet: string
+          video_id: string
+        }
+        Insert: {
+          amount: number
+          artist_wallet: string
+          created_at?: string
+          id?: string
+          status?: string
+          tx_hash?: string | null
+          user_wallet: string
+          video_id: string
+        }
+        Update: {
+          amount?: number
+          artist_wallet?: string
+          created_at?: string
+          id?: string
+          status?: string
+          tx_hash?: string | null
+          user_wallet?: string
+          video_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "music_video_transactions_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "music_videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      music_videos: {
+        Row: {
+          artist: string
+          artist_wallet: string | null
+          comments_count: number
+          created_at: string
+          description: string | null
+          duration: number | null
+          id: string
+          is_livestream: boolean
+          likes_count: number
+          price: number
+          shares_count: number
+          thumbnail_path: string | null
+          title: string
+          video_path: string
+          views_count: number
+        }
+        Insert: {
+          artist: string
+          artist_wallet?: string | null
+          comments_count?: number
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          id?: string
+          is_livestream?: boolean
+          likes_count?: number
+          price?: number
+          shares_count?: number
+          thumbnail_path?: string | null
+          title: string
+          video_path: string
+          views_count?: number
+        }
+        Update: {
+          artist?: string
+          artist_wallet?: string | null
+          comments_count?: number
+          created_at?: string
+          description?: string | null
+          duration?: number | null
+          id?: string
+          is_livestream?: boolean
+          likes_count?: number
+          price?: number
+          shares_count?: number
+          thumbnail_path?: string | null
+          title?: string
+          video_path?: string
+          views_count?: number
         }
         Relationships: []
       }
@@ -4918,15 +5894,7 @@ export type Database = {
           wallet_address?: string | null
           wallet_type?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       project_assets: {
         Row: {
@@ -4981,6 +5949,8 @@ export type Database = {
           created_at: string | null
           id: string
           project_id: string | null
+          storyline_text_model: string | null
+          storyline_text_settings: Json | null
           updated_at: string | null
         }
         Insert: {
@@ -4991,6 +5961,8 @@ export type Database = {
           created_at?: string | null
           id?: string
           project_id?: string | null
+          storyline_text_model?: string | null
+          storyline_text_settings?: Json | null
           updated_at?: string | null
         }
         Update: {
@@ -5001,6 +5973,8 @@ export type Database = {
           created_at?: string | null
           id?: string
           project_id?: string | null
+          storyline_text_model?: string | null
+          storyline_text_settings?: Json | null
           updated_at?: string | null
         }
         Relationships: [
@@ -6312,6 +7286,59 @@ export type Database = {
           },
         ]
       }
+      timeline_assets: {
+        Row: {
+          asset_type: string
+          created_at: string
+          duration_ms: number | null
+          id: string
+          metadata: Json | null
+          position_order: number
+          project_id: string
+          scene_id: string | null
+          shot_id: string | null
+          source_url: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          asset_type?: string
+          created_at?: string
+          duration_ms?: number | null
+          id?: string
+          metadata?: Json | null
+          position_order?: number
+          project_id: string
+          scene_id?: string | null
+          shot_id?: string | null
+          source_url?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          asset_type?: string
+          created_at?: string
+          duration_ms?: number | null
+          id?: string
+          metadata?: Json | null
+          position_order?: number
+          project_id?: string
+          scene_id?: string | null
+          shot_id?: string | null
+          source_url?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "timeline_assets_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       timelines: {
         Row: {
           composition_data: Json
@@ -6355,6 +7382,30 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      token_config: {
+        Row: {
+          action_type: string
+          daily_cap_per_user: number | null
+          is_enabled: boolean | null
+          payout_amount: number
+          updated_at: string | null
+        }
+        Insert: {
+          action_type: string
+          daily_cap_per_user?: number | null
+          is_enabled?: boolean | null
+          payout_amount: number
+          updated_at?: string | null
+        }
+        Update: {
+          action_type?: string
+          daily_cap_per_user?: number | null
+          is_enabled?: boolean | null
+          payout_amount?: number
+          updated_at?: string | null
+        }
+        Relationships: []
       }
       token_holders: {
         Row: {
@@ -6667,6 +7718,57 @@ export type Database = {
           updated_at?: string
           used_credits?: number
           user_id?: string
+        }
+        Relationships: []
+      }
+      user_karma: {
+        Row: {
+          actions_given: number | null
+          actions_received: number | null
+          bookmarks_earned: number | null
+          comments_earned: number | null
+          created_at: string | null
+          karma: number | null
+          last_action_at: string | null
+          likes_earned: number | null
+          shares_earned: number | null
+          total_earned: number | null
+          total_spent: number | null
+          updated_at: string | null
+          views_earned: number | null
+          wallet_address: string
+        }
+        Insert: {
+          actions_given?: number | null
+          actions_received?: number | null
+          bookmarks_earned?: number | null
+          comments_earned?: number | null
+          created_at?: string | null
+          karma?: number | null
+          last_action_at?: string | null
+          likes_earned?: number | null
+          shares_earned?: number | null
+          total_earned?: number | null
+          total_spent?: number | null
+          updated_at?: string | null
+          views_earned?: number | null
+          wallet_address: string
+        }
+        Update: {
+          actions_given?: number | null
+          actions_received?: number | null
+          bookmarks_earned?: number | null
+          comments_earned?: number | null
+          created_at?: string | null
+          karma?: number | null
+          last_action_at?: string | null
+          likes_earned?: number | null
+          shares_earned?: number | null
+          total_earned?: number | null
+          total_spent?: number | null
+          updated_at?: string | null
+          views_earned?: number | null
+          wallet_address?: string
         }
         Relationships: []
       }
@@ -7483,7 +8585,45 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      agent_profiles_safe: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          description: string | null
+          id: string | null
+          is_active: boolean | null
+          is_verified: boolean | null
+          moltbook_id: string | null
+          name: string | null
+          updated_at: string | null
+          wallet_address: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          moltbook_id?: string | null
+          name?: string | null
+          updated_at?: string | null
+          wallet_address?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          description?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          is_verified?: boolean | null
+          moltbook_id?: string | null
+          name?: string | null
+          updated_at?: string | null
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       add_credits: {
@@ -7507,6 +8647,10 @@ export type Database = {
         Args: { func_name: string; max_calls?: number; window_minutes?: number }
         Returns: boolean
       }
+      check_valid_session: {
+        Args: { p_access_token: string; p_stream_id: string }
+        Returns: boolean
+      }
       cleanup_expired_idempotency: { Args: never; Returns: undefined }
       cleanup_mrkt_decision_logs: { Args: never; Returns: undefined }
       generate_board_slug: { Args: { board_title: string }; Returns: string }
@@ -7527,6 +8671,16 @@ export type Database = {
           upcoming_gigs: number
         }[]
       }
+      get_entitlement: {
+        Args: { p_track_id: string; p_user_wallet: string }
+        Returns: {
+          expires_at: string
+          id: string
+          is_active: boolean
+          track_id: string
+          user_wallet: string
+        }[]
+      }
       get_mrkt_principal_id: { Args: never; Returns: string }
       get_mrkt_tenant_id: { Args: never; Returns: string }
       get_public_waitlist_count: { Args: never; Returns: number }
@@ -7545,6 +8699,18 @@ export type Database = {
         }[]
       }
       get_waitlist_count: { Args: never; Returns: number }
+      increment_mog_post_comments: {
+        Args: { increment_by?: number; post_id: string }
+        Returns: undefined
+      }
+      increment_mog_post_likes: {
+        Args: { increment_by?: number; post_id: string }
+        Returns: undefined
+      }
+      increment_mog_post_views: {
+        Args: { increment_by?: number; post_id: string }
+        Returns: undefined
+      }
       is_authenticated_user: {
         Args: { requested_user_id: string }
         Returns: boolean
