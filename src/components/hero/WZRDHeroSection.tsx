@@ -9,6 +9,27 @@ import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { LightRays } from '@/components/ui/light-rays';
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
+
+class SplineErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: { children: React.ReactNode; fallback: React.ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  componentDidCatch(error: Error) {
+    console.warn('Spline WebGL context unavailable:', error.message);
+  }
+  render() {
+    if (this.state.hasError) return this.props.fallback;
+    return this.props.children;
+  }
+}
+
 const WZRDHeroSection: React.FC = () => {
   const [waitlistOpen, setWaitlistOpen] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
@@ -24,16 +45,18 @@ const WZRDHeroSection: React.FC = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Spline 3D Background - Centered and Responsive */}
         <div className="absolute inset-0 z-0 spline-container overflow-hidden">
-          <Suspense fallback={<SplineLoadingSkeleton />}>
-            <Spline scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode" onLoad={() => setSplineLoaded(true)} style={{
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-          }} />
-          </Suspense>
+          <SplineErrorBoundary fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />}>
+            <Suspense fallback={<SplineLoadingSkeleton />}>
+              <Spline scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode" onLoad={() => setSplineLoaded(true)} style={{
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)'
+            }} />
+            </Suspense>
+          </SplineErrorBoundary>
           {/* Gradient overlays for text readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background pointer-events-none" />
