@@ -1,7 +1,8 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Cpu, Music, Shirt } from 'lucide-react';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
+import { useInView } from 'react-intersection-observer';
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
