@@ -74,11 +74,11 @@ const ProductCard: React.FC<{ product: Product; index: number }> = ({ product, i
         <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/[0.06] via-transparent to-transparent pointer-events-none z-10" />
         
         {/* Spline Background or Gradient - wrapped with overflow-hidden */}
-        {product.splineScene ? (
+        {showSpline ? (
           <div className="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-500 overflow-hidden">
             <Suspense fallback={<div className={`w-full h-full bg-gradient-to-br ${product.gradient}`} />}>
               <Spline 
-                scene={product.splineScene}
+                scene={product.splineScene!}
                 style={{ width: '100%', height: '100%' }}
               />
             </Suspense>
