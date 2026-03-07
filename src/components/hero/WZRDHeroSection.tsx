@@ -1,17 +1,15 @@
-import React, { useState, Suspense } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import WZRDWaitlistModal from '@/components/landing/WZRDWaitlistModal';
-import SplineLoadingSkeleton from '@/components/ui/SplineLoadingSkeleton';
 import { TextAnimate } from '@/components/ui/text-animate';
 import { AnimatedGradientText } from '@/components/ui/animated-gradient-text';
 import { ShimmerButton } from '@/components/ui/shimmer-button';
 import { LightRays } from '@/components/ui/light-rays';
-const Spline = React.lazy(() => import('@splinetool/react-spline'));
+
 const WZRDHeroSection: React.FC = () => {
   const [waitlistOpen, setWaitlistOpen] = useState(false);
-  const [splineLoaded, setSplineLoaded] = useState(false);
   const scrollToManifesto = () => {
     const element = document.querySelector('#manifesto');
     if (element) {
@@ -23,18 +21,8 @@ const WZRDHeroSection: React.FC = () => {
   return <>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Spline 3D Background - Centered and Responsive */}
-        <div className="absolute inset-0 z-0 spline-container overflow-hidden">
-          <Suspense fallback={<SplineLoadingSkeleton />}>
-            <Spline scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode" onLoad={() => setSplineLoaded(true)} style={{
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)'
-          }} />
-          </Suspense>
-          {/* Gradient overlays for text readability */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background pointer-events-none" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-transparent to-background/40 pointer-events-none" />
