@@ -7,11 +7,11 @@ import WZRDWaitlistModal from './WZRDWaitlistModal';
 import wzrdLogo from '@/assets/wzrd-logo.png';
 
 const navItems = [
-  { label: 'Products', to: '#products' },
-  { label: 'Manifesto', to: '#manifesto' },
-  { label: '$5DEE', to: '#token' },
-  { label: 'Docs', to: '/docs' },
-  { label: 'Changelog', to: '/changelog' },
+  { label: 'WZRD.tech', to: 'https://www.abc.5-dee.com', external: true },
+  { label: 'Manifesto', to: '#manifesto', external: false },
+  { label: '$5DEE', to: 'https://explore.moderato.tempo.xyz/tx/0x4608bd62cccc633d9f043b22e3d433b528be5beb9cadddc5f0f5e87eeaf84ec2', external: true },
+  { label: 'Docs', to: '/docs', external: false },
+  { label: 'Changelog', to: '/changelog', external: false },
 ];
 
 const WZRDHeader: React.FC = () => {
