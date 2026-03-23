@@ -1,4 +1,4 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
@@ -33,6 +33,47 @@ class SplineErrorBoundary extends React.Component<
 const WZRDHeroSection: React.FC = () => {
   const [waitlistOpen, setWaitlistOpen] = useState(false);
   const [splineLoaded, setSplineLoaded] = useState(false);
+  const splineAppRef = useRef<any>(null);
+
+  // Block browser mic/camera permission requests from Spline
+  useEffect(() => {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      const originalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+      navigator.mediaDevices.getUserMedia = async (constraints) => {
+        console.warn('getUserMedia blocked — Spline scene requested media access:', constraints);
+        // Return a silent/empty MediaStream instead of prompting
+        const ctx = new AudioContext();
+        const oscillator = ctx.createOscillator();
+        const dest = ctx.createMediaStreamDestination();
+        oscillator.connect(dest);
+        oscillator.start();
+        oscillator.stop(ctx.currentTime + 0.001);
+        await ctx.close();
+        return dest.stream;
+      };
+      return () => {
+        navigator.mediaDevices.getUserMedia = originalGetUserMedia;
+      };
+    }
+  }, []);
+
+  // Stop all audio/video on first user interaction
+  useEffect(() => {
+    const stopAllMedia = () => {
+      document.querySelectorAll('audio, video').forEach((el) => {
+        (el as HTMLMediaElement).pause();
+        (el as HTMLMediaElement).muted = true;
+      });
+      // Suspend any AudioContexts
+      if ((window as any).__audioContexts) {
+        (window as any).__audioContexts.forEach((ctx: AudioContext) => {
+          if (ctx.state === 'running') ctx.suspend();
+        });
+      }
+    };
+    document.addEventListener('click', stopAllMedia, { once: true });
+    return () => document.removeEventListener('click', stopAllMedia);
+  }, []);
   const scrollToManifesto = () => {
     const element = document.querySelector('#manifesto');
     if (element) {
@@ -47,7 +88,10 @@ const WZRDHeroSection: React.FC = () => {
         <div className="absolute inset-0 z-0 spline-container overflow-hidden">
           <SplineErrorBoundary fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />}>
             <Suspense fallback={<SplineLoadingSkeleton />}>
-              <Spline scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode" onLoad={() => setSplineLoaded(true)} style={{
+              <Spline scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode" onLoad={(app) => {
+                splineAppRef.current = app;
+                setSplineLoaded(true);
+              }} style={{
               width: '100%',
               height: '100%',
               position: 'absolute',
