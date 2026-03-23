@@ -158,7 +158,7 @@ const WZRDWaitlistModal: React.FC<WZRDWaitlistModalProps> = ({ open, onOpenChang
                       <div className="mt-3 sm:mt-4 inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
                         <Users className="w-4 h-4 text-primary" />
                         <span className="text-xs sm:text-sm font-medium text-primary">
-                          {waitlistCount.toLocaleString()}+ creators waiting
+                          {(waitlistCount + 300).toLocaleString()}+ creators waiting
                         </span>
                       </div>
                     )}
