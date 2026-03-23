@@ -155,7 +155,18 @@ const WZRDHeader: React.FC = () => {
             className="md:hidden border-t border-border/20 px-4 py-3 space-y-1 overscroll-contain"
           >
             {navItems.map((item) => (
-              item.to.startsWith('#') ? (
+              item.external ? (
+                <a
+                  key={item.label}
+                  href={item.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-4 text-foreground/80 hover:text-foreground hover:bg-white/5 rounded-lg transition-colors min-h-[48px] touch-manipulation"
+                >
+                  {item.label}
+                </a>
+              ) : item.to.startsWith('#') ? (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.to)}
