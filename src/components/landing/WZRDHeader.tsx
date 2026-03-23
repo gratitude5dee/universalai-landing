@@ -70,7 +70,17 @@ const WZRDHeader: React.FC = () => {
           <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item) => {
               const isActive = location.pathname === item.to || location.hash === item.to;
-              return item.to.startsWith('#') ? (
+              return item.external ? (
+                <a
+                  key={item.label}
+                  href={item.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`px-5 py-2.5 text-sm font-semibold tracking-wide rounded-xl transition-all duration-200 text-muted-foreground hover:text-foreground hover:bg-white/5`}
+                >
+                  {item.label}
+                </a>
+              ) : item.to.startsWith('#') ? (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.to)}
