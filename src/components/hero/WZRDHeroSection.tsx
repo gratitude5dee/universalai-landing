@@ -88,7 +88,10 @@ const WZRDHeroSection: React.FC = () => {
         <div className="absolute inset-0 z-0 spline-container overflow-hidden">
           <SplineErrorBoundary fallback={<div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/10" />}>
             <Suspense fallback={<SplineLoadingSkeleton />}>
-              <Spline scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode" onLoad={() => setSplineLoaded(true)} style={{
+              <Spline scene="https://prod.spline.design/7n8f5YWSgL4MSvLr/scene.splinecode" onLoad={(app) => {
+                splineAppRef.current = app;
+                setSplineLoaded(true);
+              }} style={{
               width: '100%',
               height: '100%',
               position: 'absolute',
