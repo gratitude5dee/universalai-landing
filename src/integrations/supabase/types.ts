@@ -2833,13 +2833,20 @@ export type Database = {
           config: Json
           created_at: string
           error_message: string | null
+          external_request_id: string | null
           id: string
+          input_assets: string[] | null
           job_type: string
+          model_id: string | null
           priority: number | null
           progress: number | null
+          project_id: string | null
+          result_payload: Json | null
           result_url: string | null
           started_at: string | null
           status: string
+          studio: string | null
+          updated_at: string | null
           user_id: string
           worker_id: string | null
         }
@@ -2848,13 +2855,20 @@ export type Database = {
           config?: Json
           created_at?: string
           error_message?: string | null
+          external_request_id?: string | null
           id?: string
+          input_assets?: string[] | null
           job_type: string
+          model_id?: string | null
           priority?: number | null
           progress?: number | null
+          project_id?: string | null
+          result_payload?: Json | null
           result_url?: string | null
           started_at?: string | null
           status?: string
+          studio?: string | null
+          updated_at?: string | null
           user_id: string
           worker_id?: string | null
         }
@@ -2863,13 +2877,20 @@ export type Database = {
           config?: Json
           created_at?: string
           error_message?: string | null
+          external_request_id?: string | null
           id?: string
+          input_assets?: string[] | null
           job_type?: string
+          model_id?: string | null
           priority?: number | null
           progress?: number | null
+          project_id?: string | null
+          result_payload?: Json | null
           result_url?: string | null
           started_at?: string | null
           status?: string
+          studio?: string | null
+          updated_at?: string | null
           user_id?: string
           worker_id?: string | null
         }
@@ -6088,6 +6109,7 @@ export type Database = {
           music_video_data: Json | null
           product_name: string | null
           selected_storyline_id: string | null
+          short_film_data: Json | null
           special_requests: string | null
           status: string | null
           style_reference_asset_id: string | null
@@ -6122,6 +6144,7 @@ export type Database = {
           music_video_data?: Json | null
           product_name?: string | null
           selected_storyline_id?: string | null
+          short_film_data?: Json | null
           special_requests?: string | null
           status?: string | null
           style_reference_asset_id?: string | null
@@ -6156,6 +6179,7 @@ export type Database = {
           music_video_data?: Json | null
           product_name?: string | null
           selected_storyline_id?: string | null
+          short_film_data?: Json | null
           special_requests?: string | null
           status?: string | null
           style_reference_asset_id?: string | null
@@ -8653,6 +8677,10 @@ export type Database = {
       }
       cleanup_expired_idempotency: { Args: never; Returns: undefined }
       cleanup_mrkt_decision_logs: { Args: never; Returns: undefined }
+      deduct_credits: {
+        Args: { p_amount: number; p_user_id: string }
+        Returns: number
+      }
       generate_board_slug: { Args: { board_title: string }; Returns: string }
       generate_invoice_number: { Args: never; Returns: string }
       get_available_credits: { Args: never; Returns: number }

@@ -7,11 +7,11 @@ import WZRDWaitlistModal from './WZRDWaitlistModal';
 import wzrdLogo from '@/assets/wzrd-logo.png';
 
 const navItems = [
-  { label: 'Products', to: '#products' },
-  { label: 'Manifesto', to: '#manifesto' },
-  { label: '$5DEE', to: '#token' },
-  { label: 'Docs', to: '/docs' },
-  { label: 'Changelog', to: '/changelog' },
+  { label: 'WZRD.tech', to: 'https://www.abc.5-dee.com', external: true },
+  { label: 'Manifesto', to: '#manifesto', external: false },
+  { label: '$5DEE', to: 'https://explore.moderato.tempo.xyz/tx/0x4608bd62cccc633d9f043b22e3d433b528be5beb9cadddc5f0f5e87eeaf84ec2', external: true },
+  { label: 'Docs', to: '/docs', external: false },
+  { label: 'Changelog', to: '/changelog', external: false },
 ];
 
 const WZRDHeader: React.FC = () => {
@@ -70,7 +70,17 @@ const WZRDHeader: React.FC = () => {
           <nav className="hidden md:flex items-center gap-2">
             {navItems.map((item) => {
               const isActive = location.pathname === item.to || location.hash === item.to;
-              return item.to.startsWith('#') ? (
+              return item.external ? (
+                <a
+                  key={item.label}
+                  href={item.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`px-5 py-2.5 text-sm font-semibold tracking-wide rounded-xl transition-all duration-200 text-muted-foreground hover:text-foreground hover:bg-white/5`}
+                >
+                  {item.label}
+                </a>
+              ) : item.to.startsWith('#') ? (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.to)}
@@ -145,7 +155,18 @@ const WZRDHeader: React.FC = () => {
             className="md:hidden border-t border-border/20 px-4 py-3 space-y-1 overscroll-contain"
           >
             {navItems.map((item) => (
-              item.to.startsWith('#') ? (
+              item.external ? (
+                <a
+                  key={item.label}
+                  href={item.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-4 py-4 text-foreground/80 hover:text-foreground hover:bg-white/5 rounded-lg transition-colors min-h-[48px] touch-manipulation"
+                >
+                  {item.label}
+                </a>
+              ) : item.to.startsWith('#') ? (
                 <button
                   key={item.label}
                   onClick={() => handleNavClick(item.to)}
